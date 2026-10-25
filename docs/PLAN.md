@@ -1,8 +1,17 @@
 # PLAN — Tema `mea-orbit` + plugin `mea-leads` (meagency.co.id)
 
-Fase 0 · ditulis 25 Okt 2026 · **revisi 2** (jawaban final bagian 10) · status: **menunggu "lanjut"**
+Fase 0 · ditulis 25 Okt 2026 · **revisi 3** (keluar penuh dari Elementor, aman untuk crawl Google) · status: **menunggu "lanjut"**
 
-Dokumen ini memetakan apa yang akan dibangun di Fase 1–5. Bagian 9 berisi konflik yang ditemukan beserta penyelesaiannya. Bagian 10 berisi jawaban final pemilik.
+> **Yang berubah di revisi 3.** Bagian yang berubah ditandai **[rev 3]**.
+> 1. Tujuan dipertegas: tema mandiri **dan** meninggalkan page builder Elementor sepenuhnya, dengan risiko paling kecil untuk crawl Google (bagian 2, 14).
+> 2. Temuan baru: **ke-212 artikel blog dibangun dengan Elementor** (bukan hanya halaman). Isinya widget Text Editor dan Heading berisi HTML biasa, jadi bisa dikonversi ke HTML klasik secara mekanis (bagian 12).
+> 3. Header dan footer **satu kode yang sama di setiap URL** (bagian 3.1, 14.2).
+> 4. Keluar dari Elementor dibuat dua langkah terpisah yang masing-masing diverifikasi: ganti tema dulu, konversi konten belakangan (bagian 11 Fase 6, 14).
+> 5. Alat baru: pembanding SEO sebelum/sesudah (`tools/seo-parity/`) dan konverter Elementor → HTML klasik (bagian 3.5).
+> 6. Laporan klien di luar perhatian karena akan pindah ke CDPS (bagian 2, 12).
+> 7. Koreksi angka: artikel terbit **212**, bukan sekitar 780 (angka lama adalah hasil pencarian lintas jenis konten). Halaman terbit 1.929, sebagian besar laporan klien.
+
+Dokumen ini memetakan apa yang akan dibangun di Fase 1–6. Bagian 9 berisi konflik yang ditemukan beserta penyelesaiannya. Bagian 10 berisi jawaban final pemilik.
 
 > **Yang berubah di revisi 2.** Bagian yang berubah ditandai **[rev 2]**.
 > 1. Arsitektur: `mea-orbit` sekarang **tema mandiri**, bukan child theme Hello Elementor. Tema ini berlaku untuk seluruh situs dan punya template umum sendiri (page, single, archive, search, 404, password). Ada dokumen baru `docs/ELEMENTOR-EXIT.md` (bagian 2, 3.1, 3.4, 6, 11, 12, 13).
@@ -11,7 +20,7 @@ Dokumen ini memetakan apa yang akan dibangun di Fase 1–5. Bagian 9 berisi konf
 > 4. Uji lokal, unduhan foto, dan PHPCS diizinkan (bagian 10, 11).
 > 5. Konflik 9.1–9.8 disetujui sesuai usulan (bagian 9).
 >
-> **Catatan:** jawaban 25 Okt nomor 4 sebelumnya memilih *child theme* ("Pilih A: mea-orbit sebagai CHILD THEME"). Jawaban final menyebut "keputusan A" sebagai *tema mandiri*. PLAN ini mengikuti jawaban final (tema mandiri). Konsekuensinya ada di bagian 12, dan masih bisa dikoreksi sebelum "lanjut".
+> **Catatan:** jawaban 25 Okt nomor 4 sempat memilih child theme. **[rev 3] Dikonfirmasi pemilik: tema mandiri, dan Elementor ditinggalkan sepenuhnya.**
 
 ---
 
@@ -39,6 +48,9 @@ Fakta yang diverifikasi di situs live (read-only, sebelum Fase 0): homepage = pa
   - **Lapis umum** (semua halaman): header, footer, token, tipografi, dan template `page`, `single`, `archive`, `search`, `404`, form password. Artikel blog, laporan klien, dan halaman Elementor lama tampil dengan header/footer mea-orbit. Isi kontennya tetap dirender Elementor seperti sekarang.
   - **Lapis Orbit** (13411, 14144, 14512, dan yang dipindah kemudian): desain prototipe, motion, JSON-LD tambahan. Di halaman ini CSS/JS Elementor dan addon-nya tidak dimuat.
   - Plugin Elementor tetap aktif selama transisi. Rencana keluarnya ditulis di `docs/ELEMENTOR-EXIT.md`.
+- **[rev 3] Keluar penuh dari Elementor.** Target akhirnya: Elementor, Elementor Pro, ElementsKit Lite, dan Unlimited Elements dinonaktifkan. Urutannya dua langkah terpisah (bagian 14): (1) ganti tema ke mea-orbit dengan Elementor masih aktif, sehingga isi konten tidak berubah sama sekali; (2) setelah stabil, konversi isi artikel dan halaman dari Elementor ke HTML klasik, lalu nonaktifkan Elementor.
+- **[rev 3] Prioritas: aman untuk crawl Google.** URL, title, meta description, canonical, robots, H1, teks utama, link internal, gambar, dan JSON-LD setiap URL dijaga sama. Yang berubah hanya kepala, kaki, dan gaya halaman, dan perubahannya identik di semua URL.
+- **[rev 3] Laporan klien** tidak menjadi perhatian karena akan pindah ke CDPS. Tampilannya boleh berubah saat Elementor dinonaktifkan.
 - **[rev 2] og:locale** `id_ID` di seluruh situs lewat filter tema. Settings → General tidak diubah.
 - **Kontrak HMAC** sesuai jawaban nomor 5, ditulis di `docs/WEBSITE_LEAD_CONTRACT.md` (sudah dibuat di Fase 0).
 - **Retensi** 90 hari setelah `terkirim`: nama, WhatsApp, link toko, UTM dihapus. Baris tetap ada.
@@ -65,6 +77,7 @@ wp-meagency/
 │   ├── themes/mea-orbit/
 │   └── plugins/mea-leads/
 ├── tests/                              ← (Fase 3) test tanpa dependency: php tests/run.php
+├── tools/                              ← [rev 3] seo-parity/, elementor-to-classic/ (alat kerja, tidak masuk zip tema/plugin)
 └── dist/                               ← (Fase 5) mea-orbit.zip, mea-leads.zip, CARA-PASANG.md
 ```
 
@@ -77,14 +90,14 @@ wp-meagency/
 | `inc/scope.php` | `mea_orbit_is_view()`: true hanya di homepage statis dan halaman bertemplate Orbit. Lapis Orbit (CSS section, motion, JSON-LD tambahan, dequeue Elementor) digerbang fungsi ini. Lapis umum berlaku di semua halaman |
 | `inc/setup.php` | Theme support (`title-tag`, `post-thumbnails`, `html5` termasuk `search-form`, `comment-form`, `gallery`, `caption`, `style`, `script`), lokasi menu `mea-orbit-utama` dan `mea-orbit-footer`, ukuran gambar tambahan, `content_width` |
 | `inc/assets.php` | **[rev 2]** Sitewide: `base.css` (token, reset, header, footer, tipografi) dan `content.css` (page/single/archive). Lapis Orbit: `orbit.css`, `motion.js`. Dequeue aset Elementor, Elementor Pro, ElementsKit, Unlimited Elements hanya di halaman Orbit. Preload Inter 400/600 sitewide, poster LCP di homepage |
-| `inc/elementor.php` | **[rev 2]** Kompatibilitas selama transisi: dukungan lokasi Theme Builder (`elementor/theme/register_locations`) supaya header/footer Elementor Pro tidak menimpa header/footer mea-orbit, wadah lebar penuh untuk halaman yang dibangun Elementor, reset dasar yang sebelumnya disediakan Hello Elementor (box-sizing, margin) supaya widget lama tidak bergeser |
+| `inc/elementor.php` | **[rev 2, rev 3: sementara, dihapus di akhir Fase 6]** Kompatibilitas selama transisi: dukungan lokasi Theme Builder (`elementor/theme/register_locations`) supaya header/footer Elementor Pro tidak menimpa header/footer mea-orbit, wadah lebar penuh untuk halaman yang dibangun Elementor, reset dasar yang sebelumnya disediakan Hello Elementor (box-sizing, margin) supaya widget lama tidak bergeser |
 | `inc/locale.php` | **[rev 2]** Filter og:locale Rank Math → `id_ID` dan `language_attributes` → `lang="id-ID"` di seluruh situs. Settings → General tidak diubah |
 | `inc/fields.php` | `register_post_meta` (show_in_rest: true) + meta box per template + sanitasi |
 | `inc/options.php` | Halaman opsi "Homepage" (Tampilan → Homepage MEA) dan daftar kutipan |
 | `inc/seo.php` | JSON-LD lewat filter Rank Math (halaman Orbit), og:image cadangan, data breadcrumb |
 | `inc/media.php` | `mea_orbit_img()`: `wp_get_attachment_image` dengan srcset, sizes, width/height, alt, lazy/eager |
 | `inc/template-tags.php` | Render breadcrumb, pull quote, deret angka, panel hasil, kartu layanan |
-| `header.php`, `footer.php` | **[rev 2]** Satu header/footer untuk seluruh situs (desain prototipe). Tetap memanggil `wp_head`, `wp_body_open`, `wp_footer` supaya GTM, Site Kit, Meta Pixel, WPCode tetap jalan |
+| `header.php`, `footer.php` | **[rev 2, rev 3]** Satu header/footer untuk seluruh situs (desain prototipe), **kode yang sama di setiap URL**: tidak ada varian per template, tidak bergantung JavaScript, link sama di desktop dan mobile. Satu-satunya yang berbeda adalah tujuan tombol "Jadwalkan konsultasi": ke `#konsultasi` di halaman yang punya form, ke `/#konsultasi` di halaman lain. Tetap memanggil `wp_head`, `wp_body_open`, `wp_footer` supaya GTM, Site Kit, Meta Pixel, WPCode tetap jalan |
 | `index.php` | **[rev 2]** Cadangan terakhir hierarki template: daftar posting |
 | `page.php` | **[rev 2]** Halaman umum. Halaman yang dibangun Elementor dirender lebar penuh tanpa gaya prosa, supaya tata letak Elementor tidak berubah. Halaman klasik memakai gaya prosa `content.css` |
 | `single.php` | **[rev 2]** Artikel blog: breadcrumb, H1, tanggal, gambar unggulan, isi, kategori/tag, navigasi artikel sebelumnya/berikutnya, komentar bila dibuka, ajakan konsultasi singkat (tombol WhatsApp, bukan form) |
@@ -139,6 +152,16 @@ Rencana keluar dari Elementor, ditulis di Fase 1 dan dilengkapi di Fase 5 setela
 3. **Urutan keluar**: pindahkan halaman layanan dan studi kasus ke template Orbit satu per satu → nonaktifkan Theme Builder header/footer → nonaktifkan Unlimited Elements dan ElementsKit Lite → evaluasi Elementor Pro → evaluasi Elementor.
 4. **Cek sebelum tiap langkah**: halaman yang terdampak, cara mengecek, cara rollback.
 5. **Rollback tema**: aktifkan kembali Hello Elementor dari Tampilan → Tema (data field dan lead tetap tersimpan).
+6. **[rev 3] Konversi konten**: daftar artikel dan halaman per jenis widget (yang hanya Text Editor/Heading/Image bisa otomatis, yang memakai widget lain ditandai untuk migrasi manual), hasil uji paritas per URL, dan kapan Elementor boleh dinonaktifkan (syarat: 0 URL terindeks yang masih bergantung Elementor).
+
+### 3.5 Alat bantu keluar dari Elementor **[rev 3, baru]**
+
+Keduanya alat kerja, tidak masuk `dist/mea-orbit.zip` maupun `dist/mea-leads.zip`.
+
+| Alat | Isi |
+|---|---|
+| `tools/seo-parity/parity.php` | CLI PHP tanpa dependency (DOM + curl bawaan PHP). Input: daftar URL dari sitemap Rank Math, alamat "sebelum" dan "sesudah". Per URL dibandingkan: kode status dan redirect, canonical, meta robots, title, meta description, jumlah dan teks H1, urutan H2/H3, teks utama (jumlah kata dan kemiripan), himpunan link internal, gambar (src dan alt), tipe JSON-LD, og:locale/og:image. Keluaran CSV + ringkasan: URL yang lolos, URL yang berbeda, beserta bedanya |
+| `tools/elementor-to-classic/` | Plugin sekali pakai `mea-migrasi-elementor` (zip terpisah, `dist/tools/`). Mode uji coba (laporan saja) dan mode konversi per batch. Konversi: susun HTML klasik dari `_elementor_data` (Text Editor, Heading, Image, Spacer, Divider, Button), simpan ke `post_content`, cadangkan data Elementor asli di meta `_mea_elementor_cadangan` + revisi WordPress, lalu lepaskan mode Elementor untuk URL itu. Bisa dikembalikan per URL. Widget lain → URL ditandai "manual", tidak dikonversi |
 
 ---
 
@@ -396,10 +419,19 @@ Mobile lolos semua batas tanpa perubahan (M3 mobile tidak perlu dipotong ke tiap
 | 4 | WebP | JPEG + srcset biasa dulu. WebP setelah live |
 | 5 | PHPCS | Boleh, dev saja, tidak ikut zip |
 | — | Arsitektur | Tema mandiri (bukan child theme), template umum lengkap, `docs/ELEMENTOR-EXIT.md` |
+| — | **[rev 3]** Elementor | Ditinggalkan sepenuhnya, dengan risiko crawl Google paling kecil. Header dan footer sama di setiap halaman. Laporan klien tidak jadi masalah (pindah ke CDPS) |
+
+### 10.1 Perlu konfirmasi sebelum Fase 1 **[rev 3, baru]**
+
+1. **Fase 6 masuk proyek ini?** Konversi 212 artikel dan halaman pemasaran dari Elementor ke HTML klasik, lalu nonaktifkan Elementor dan addon-nya. Usulan: ya, dikerjakan setelah tema baru live dan stabil sekitar 2 minggu (Search Console bersih).
+2. **Menu di HP.** Di prototipe, menu disembunyikan di bawah 900 px (hanya tombol konsultasi). Link-nya tetap ada di HTML, jadi tetap terbaca Google, tetapi pengunjung HP tidak punya menu. Usulan: tombol "Menu" sederhana tanpa JavaScript (`<details>`), link yang sama persis dengan desktop.
+3. **Link di footer.** Footer prototipe hanya berisi kontak (WhatsApp, Instagram, TikTok). Footer lama kemungkinan berisi link ke halaman layanan dan blog. Menghapus link sitewide mengubah struktur link internal yang dibaca Google. Usulan: footer memakai desain prototipe, ditambah satu kolom "Layanan" dan link "Blog" berisi halaman penting yang sekarang ditautkan dari header/footer lama (diinventaris di staging, diatur lewat menu WordPress).
+4. **Akses baca untuk uji paritas.** `tools/seo-parity` perlu GET halaman publik produksi (sebelum) dan staging (sesudah) di Fase 5 dan Fase 6. Hanya membaca, tidak menulis. Boleh?
+
 
 ---
 
-## 11. Rencana fase **[rev 2]**
+## 11. Rencana fase **[rev 2, rev 3]**
 
 | Fase | Isi | Hasil yang ditunjukkan |
 |---|---|---|
@@ -407,29 +439,72 @@ Mobile lolos semua batas tanpa perubahan (M3 mobile tidak perlu dipotong ke tiap
 | 2 | Tiga template Orbit, field + meta box, opsi Homepage + kutipan, SEO, gambar, `docs/seed/` | Screenshot pembanding prototipe vs tema (1366 dan 390 px), contoh JSON-LD per halaman |
 | 3 | Plugin `mea-leads` + `tests/run.php` | Hasil test, contoh payload + tanda tangan, screenshot admin "Leads MEA" |
 | 4 | Salin aset motion, `motion.js`, M1–M4 + motion kode | Rekaman/screenshot per section, tab Network untuk reduced motion dan normal, angka byte terukur |
-| 5 | QA kriteria lulus, uji regresi di staging dengan konten asli dan Elementor Pro, `ELEMENTOR-EXIT.md` final, `dist/` | Laporan QA + `dist/` |
+| 5 | **[rev 3]** `tools/seo-parity`. QA kriteria lulus. Di staging: uji paritas seluruh URL di sitemap (produksi vs staging) dengan Elementor masih aktif, `ELEMENTOR-EXIT.md` versi staging, `dist/` | Laporan QA, laporan paritas (target: 0 URL berbeda di title, meta, canonical, robots, H1, teks utama, JSON-LD), `dist/` |
+| 6 | **[rev 3, baru, perlu konfirmasi 10.1 nomor 1]** Setelah tema live dan stabil: `tools/elementor-to-classic`, uji coba (laporan widget per URL), konversi per batch di staging → uji paritas per batch → terapkan ke produksi per batch. Halaman bertanda "manual" dipindah ke template Orbit atau ditulis ulang sebagai HTML klasik. Terakhir: nonaktifkan Elementor Pro, ElementsKit, Unlimited Elements, Elementor; hapus `inc/elementor.php` | Laporan per batch, laporan paritas, daftar URL manual, konfirmasi 0 URL bergantung Elementor |
 
 PHPCS (WordPress Coding Standards) dijalankan lokal di setiap fase. Composer dan PHPCS dipasang di luar repo (scratchpad), jadi tidak ada `vendor/` atau `composer.json` yang ikut ter-commit atau masuk zip.
 
 ---
 
-## 12. Konsekuensi tema mandiri **[rev 2, baru]**
+## 12. Konsekuensi tema mandiri **[rev 2, rev 3]**
 
-Supaya jelas apa yang berubah dibanding rencana child theme:
-
-1. **Seluruh situs berubah tampilan header dan footer** begitu mea-orbit aktif: sekitar 780 artikel blog, ratusan laporan klien, dan semua halaman Elementor lama. Isi halaman tetap dirender Elementor, tetapi kepala dan kaki halaman menjadi milik mea-orbit.
-2. **Kriteria uji regresi menyesuaikan.** Kriteria lama "tampil identik sebelum dan sesudah" tidak mungkin terpenuhi untuk header/footer. Kriteria baru: area konten artikel, laporan berpassword, dan halaman Elementor tidak rusak (tata letak, widget, gambar, tautan, form password tetap jalan), dibandingkan lewat screenshot sebelum (Hello Elementor) vs sesudah (mea-orbit).
+1. **Header dan footer seluruh situs berubah sekali, serentak, dan identik** begitu mea-orbit aktif: 212 artikel, halaman pemasaran, dan laporan klien. Isi halaman tetap dirender Elementor sampai Fase 6, jadi teks dan struktur konten tidak berubah di langkah ini.
+2. **Kriteria uji regresi = paritas SEO**, bukan "tampil identik". Untuk setiap URL di sitemap: status, canonical, robots, title, meta, H1, teks utama, link internal di area konten, gambar, dan JSON-LD harus sama. Yang boleh berbeda hanya link di header/footer (dan perbedaan itu sama di semua URL). Ditambah screenshot sebelum/sesudah untuk contoh artikel dan halaman.
 3. **Artikel blog, arsip, pencarian, dan 404 tidak punya prototipe.** Desainnya saya turunkan dari token dan komponen prototipe (font, warna, tombol, breadcrumb, lebar baca), lalu saya tunjukkan lewat screenshot di Fase 1 untuk disetujui sebelum lanjut.
-4. **Header/footer Elementor Pro Theme Builder.** Kalau situs memakai header/footer Theme Builder dengan kondisi "seluruh situs", Elementor Pro bisa mencoba menimpa header/footer tema. Tema mendaftarkan lokasi Theme Builder secara eksplisit dan tidak menyerahkan header/footer ke Elementor, sehingga header/footer mea-orbit yang tampil. Ini hanya bisa diuji dengan Elementor Pro di staging (Elementor Pro berbayar dan tidak tersedia di uji lokal).
-5. **Halaman Elementor Canvas** (`elementor_canvas`) tetap tanpa header/footer, karena template itu milik plugin Elementor.
-6. **Gaya dasar Hello Elementor hilang.** Widget Elementor lama mungkin mengandalkan reset CSS Hello Elementor. `inc/elementor.php` menyediakan reset setara supaya widget tidak bergeser. Ini dicek di screenshot regresi.
-7. **Rollback tetap satu langkah**: aktifkan kembali Hello Elementor. Data field, opsi, dan lead tidak hilang.
-8. **Pekerjaan bertambah** di Fase 1 (template umum dan lingkungan uji). Tidak ada perubahan di plugin `mea-leads`.
+4. **[rev 3] Semua artikel dibangun dengan Elementor.** Contoh yang dicek (ID 18546 dan 17265): seluruh isi ada di widget Text Editor dan Heading, berisi paragraf, H2/H3, gambar dengan srcset, link internal, kotak CTA ber-style inline, dan FAQ JSON-LD di dalam konten. Semua itu bisa dipindah apa adanya ke HTML klasik. 15 artikel memakai template `elementor_theme`; sisanya template default. Widget lain (bila ada) baru ketahuan lewat uji coba konverter di Fase 6.
+5. **[rev 3] Isi artikel tidak diedit.** Kotak CTA di artikel memakai warna hijau dan nama "MEA Digital Agency" (tidak sesuai brand MEA Agency). Itu konten, bukan tema. Mengubahnya sekaligus dengan ganti tema menambah risiko crawl, jadi dicatat sebagai pekerjaan setelah live (bagian 13).
+6. **Header/footer Elementor Pro Theme Builder.** Sebelum tema diganti di produksi, template Theme Builder (header, footer, single, archive, popup) dijadikan draft supaya tidak menimpa header/footer mea-orbit. Ini hanya bisa diuji dengan Elementor Pro di staging.
+7. **Halaman Elementor Canvas** (`elementor_canvas`) tanpa header/footer sampai dikonversi di Fase 6, karena template itu milik plugin Elementor.
+8. **Gaya dasar Hello Elementor hilang.** Widget Elementor mungkin mengandalkan reset CSS Hello Elementor. `inc/elementor.php` menyediakan reset setara sampai Fase 6. Dicek lewat screenshot dan paritas.
+9. **Rollback tetap satu langkah** di setiap tahap: aktifkan kembali Hello Elementor (langkah 1), atau kembalikan konversi per URL dari cadangan (langkah 2). Data field, opsi, dan lead tidak hilang.
+10. **Laporan klien** tidak diuji paritas (pindah ke CDPS, berpassword, dan noindex).
 
 ---
 
-## 13. Pekerjaan setelah live **[rev 2, baru]**
+## 13. Pekerjaan setelah live **[rev 2, rev 3]**
 
 - **WebP/AVIF**: hasilkan ukuran turunan WebP untuk foto yang dipakai template, lalu tambahkan ke `srcset`.
-- Lanjutan dari `docs/ELEMENTOR-EXIT.md`: pindahkan halaman layanan dan studi kasus lain ke template Orbit, lalu nonaktifkan addon Elementor bertahap.
+- Fase 6 (bila disetujui): konversi konten Elementor dan nonaktifkan Elementor.
+- Pindahkan halaman layanan dan studi kasus lain ke template Orbit.
+- **[rev 3]** Seragamkan kotak CTA di artikel ke brand MEA Agency (warna, nama, sapaan), satu batch per kali dengan uji paritas.
 - Template About Us (kutipan `k3`).
+
+---
+
+## 14. Strategi aman untuk crawl Google **[rev 3, baru]**
+
+### 14.1 Prinsip
+
+Ubah satu hal pada satu waktu, ukur, baru lanjut. Google paling mudah menerima perubahan tampilan bila URL, isi utama, dan sinyal SEO tiap URL tidak bergerak.
+
+| Dijaga sama | Cara |
+|---|---|
+| URL dan permalink | Tidak ada slug yang diubah. Bila terpaksa: redirect 301 lewat modul Redirections Rank Math, dicatat |
+| Title, meta description, canonical, robots, sitemap, OG | Tetap dipegang Rank Math. Tema tidak mencetak tag ini |
+| H1 | Artikel: judul posting (sama dengan sekarang). Halaman Orbit: H1 dari field, satu per halaman |
+| Teks utama, heading, gambar, link di konten | Langkah 1: tetap dirender Elementor. Langkah 2: dipindah apa adanya ke HTML klasik, diverifikasi alat paritas |
+| JSON-LD | Rank Math tetap. FAQ JSON-LD di dalam konten artikel ikut dipindah. Tambahan tema hanya di halaman Orbit |
+| Konten mobile | DOM yang sama untuk desktop dan HP (Google memakai versi HP). Tidak ada teks yang hanya muncul di desktop |
+| Gambar | URL Media Library tidak berubah |
+
+### 14.2 Header dan footer identik
+
+- Satu `header.php` dan satu `footer.php` untuk setiap URL, termasuk 404, pencarian, dan halaman berpassword.
+- Link navigasi berupa HTML statis yang dirender server, sama di desktop dan HP, tidak dibuat oleh JavaScript.
+- Isi menu diatur dari dua menu WordPress (`mea-orbit-utama`, `mea-orbit-footer`), jadi perubahan menu berlaku serentak di semua halaman.
+- Satu landmark `<header>`, `<nav>`, `<main>`, `<footer>` per halaman.
+
+### 14.3 Urutan peluncuran
+
+1. Staging: tema mea-orbit aktif, Elementor masih aktif, Theme Builder header/footer dijadikan draft.
+2. Uji paritas seluruh sitemap (produksi vs staging). Lanjut hanya bila tidak ada beda di luar header/footer.
+3. Cek staging tidak terbawa `noindex` ke produksi (Settings → Reading "Discourage search engines" harus mati di produksi setelah push).
+4. Produksi: aktifkan tema di jam sepi. Bersihkan cache. Uji paritas ulang terhadap snapshot "sebelum".
+5. Search Console: kirim ulang sitemap, pantau Pages (indexing), 404, dan Core Web Vitals selama 2–4 minggu.
+6. Setelah stabil: Fase 6 per batch (misalnya 25 URL), setiap batch melewati staging → paritas → produksi → pantau.
+7. Nonaktifkan Elementor hanya bila laporan konverter menunjukkan 0 URL terindeks yang masih bergantung Elementor.
+
+### 14.4 Rollback
+
+- Langkah 1 (tema): aktifkan Hello Elementor. Isi tidak pernah berubah, jadi tidak ada yang perlu dipulihkan.
+- Langkah 2 (konten): kembalikan URL atau batch dari `_mea_elementor_cadangan` lewat konverter, atau dari revisi WordPress.
