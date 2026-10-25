@@ -1,0 +1,18 @@
+{
+  "desktop": {
+    "files": "frames/desktop/000.webp to 119.webp",
+    "count": 120,
+    "size": 1200,
+    "bytes": 2350682,
+    "webp": "lossless, 256-colour palette"
+  },
+  "mobile": {
+    "files": "frames/mobile/000.webp to 059.webp",
+    "count": 60,
+    "size": 720,
+    "bytes": 742018,
+    "webp": "lossless, 256-colour palette"
+  },
+  "scroll": "progress = scrollY / (heroTop + heroHeight), clamped 0..1; frame = round(progress * (count - 1))",
+  "breakpoint": "mobile set below 768 px viewport width"
+}

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MEA Agency hero cube - seek(p) renderer</title>
+<!--
+  MEA Agency homepage hero: source of the scroll-scrubbed image sequence.
+  three.js r149 (pinned, vendor/three.r149.min.js) + Inter 600 embedded (SIL OFL).
+  Every transform is a pure function of p (0-1) inside window.seek(p):
+  no timers, no CSS animation, no state carried between frames.
+  URL params: ?out=1200&ss=2 (output px, supersample)  ?bg=1 (paint #1A1A1A, preview/video)  ?p=0.5
+-->
+<style>
+@font-face{font-family:'Inter Lock';src:url(data:font/woff2;base64,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) format('woff2');font-weight:600;font-style:normal;font-display:block;}
+html,body{margin:0;background:transparent;overflow:hidden}
+canvas{display:block}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="vendor/three.r149.min.js"></script>
+<script>
+'use strict';
+/* ======================= STYLE LOCK (reference 1200x1200) ======================= */
+/* World units = output px at camera zoom 1.0 in the 1200 render.                    */
+const LOCK = {
+  face: '#232325', faceBack: '#1C1C1E', faceSide: '#2A2A2D',
+  edgeA: '#EC7832', edgeB: '#F69541',            // 135 deg: top-left -> bottom-right
+  text: '#FAFAFA', labelPx: 40, tracking: -0.01, // Inter 600
+  tile: 292, thickness: 8, gap: 24,              // hex R = (tile + gap) / cos30 = 365
+  ring: '#F69541', dot: '#F69541', ringAlpha: { core: 0.40, mid: 0.30, outer: 0.15 },
+  coreW: 112, coreDepth: 16, fold: '#BA4231',
+  fov: 28, zoom0: 1.0, zoom1: 1.04,
+};
+/* ============================== FRAME MAP (0-119) ============================== */
+const FM = {
+  last: 119,
+  slow: [0, 20],     // closed cube, slow turntable
+  turn: [20, 78],    // cube turns into the isometric pose
+  sep: [24, 80],     // faces separate along their normals
+  face: [32, 80],    // tiles rotate to face camera, upright
+  settle: [80, 119], // tiles glide onto the hexagon plane
+  core: [30, 100],   // core turns front-on
+  rings: [78, 119],  // rings expand x1.14
+  tilt: [20, 119],   // ring tilts flatten
+};
+
+const Q = new URLSearchParams(location.search);
+const OUT = +(Q.get('out') || 1200), SS = +(Q.get('ss') || 1), MOBILE = OUT < 1000;
+const EDGE_PX = +(Q.get('edge') || (MOBILE ? 1.5 : 2.0));
+const RING_PX = +(Q.get('ringw') || (MOBILE ? 1.25 : 1.5));
+const DOT_PX = +(Q.get('dot') || (MOBILE ? 7 : 10));
+const RPX = Math.round(OUT * SS), WORLD_PER_OUT = 1200 / OUT, PAINT_BG = Q.get('bg') === '1';
+
+const clamp01 = t => Math.min(1, Math.max(0, t));
+const lerp = (a, b, t) => a + (b - a) * t;
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+const expoOut = (t, k) => (1 - Math.pow(2, -k * t)) / (1 - Math.pow(2, -k));
+// exponential ease-out with a tiny C1 start ramp, so no move starts with a velocity jump
+function ease(t, k, tau = 0.06) {
+  t = clamp01(t);
+  const u = t < tau ? (t * t) / (2 * tau) : t - tau / 2;
+  return expoOut(clamp01(u / (1 - tau / 2)), k);
+}
+const seg = (f, r, k) => ease((f - r[0]) / (r[1] - r[0]), k);
+function rgb(hex) { const n = parseInt(hex.slice(1), 16); return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255); }
+
+/* ------------------------------ renderer + camera ------------------------------ */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(RPX, RPX, false); renderer.autoClear = false;
+const DIST = 600 / Math.tan(rad(LOCK.fov / 2));
+const camera = new THREE.PerspectiveCamera(LOCK.fov, 1, 50, 8000);
+camera.position.set(0, 0, DIST); camera.lookAt(0, 0, 0);
+const scene = new THREE.Scene();      // tiles + core, opaque
+const ringScene = new THREE.Scene();  // rings + dots, always drawn behind the tiles
+
+/* ------------------------------ light ------------------------------ */
+const Lw = new THREE.Vector3(-0.42, 0.60, 0.68).normalize();   // gentle top-left key
+const AMB = 0.56, KEY = 0.44, SKY = 0.12;
+const LIGHT = {
+  uL: { value: Lw }, uAmb: { value: AMB }, uKey: { value: KEY }, uSky: { value: SKY },
+  uRef: { value: AMB + KEY * Math.max(Lw.z, 0) },  // front-facing surfaces render their exact colour
+};
+const GLSL_COMMON = `
+  vec3 toLin(vec3 c){ return pow(c, vec3(2.2)); }
+  vec3 toSrgb(vec3 c){ return pow(max(c, 0.0), vec3(1.0/2.2)); }
+  uniform vec3 uL; uniform float uAmb, uKey, uSky, uRef;
+  float shadeOf(vec3 n){ return (uAmb*(1.0 + uSky*n.y) + uKey*max(dot(n, uL), 0.0)) / uRef; }
+`;
+const C = {
+  face: rgb(LOCK.face), back: rgb(LOCK.faceBack), side: rgb(LOCK.faceSide),
+  edgeA: rgb(LOCK.edgeA), edgeB: rgb(LOCK.edgeB), text: rgb(LOCK.text),
+  ring: rgb(LOCK.ring), dot: rgb(LOCK.dot), fold: rgb(LOCK.fold),
+};
+
+/* ------------------------------ tiles ------------------------------ */
+const S = LOCK.tile, T = LOCK.thickness;
+const R_HEX = (S + LOCK.gap) / Math.cos(Math.PI / 6);
+const D_MAX = R_HEX / Math.sqrt(2 / 3) - S / 2;   // isometric screen radius at full separation = R_HEX
+
+const VS_TILE = `
+  varying vec2 vUv; varying vec3 vNw;
+  void main(){ vUv = uv; vNw = normalize(mat3(modelMatrix) * normal);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const FS_TILE = GLSL_COMMON + `
+  uniform sampler2D uLabel; uniform float uHas;
+  uniform vec3 uBase, uText, uEA, uEB; uniform float uEdgePx;
+  varying vec2 vUv; varying vec3 vNw;
+  void main(){
+    vec3 n = normalize(vNw);
+    float sh = shadeOf(n);
+    vec3 col = toSrgb(toLin(uBase) * sh);
+    float m = texture2D(uLabel, vUv).a * uHas;
+    vec3 txt = toSrgb(toLin(uText) * mix(1.0, sh, 0.35));
+    col = mix(col, txt, m);
+    float gx = length(vec2(dFdx(vUv.x), dFdy(vUv.x)));
+    float gy = length(vec2(dFdx(vUv.y), dFdy(vUv.y)));
+    float px = min(min(vUv.x, 1.0 - vUv.x) / max(gx, 1e-6), min(vUv.y, 1.0 - vUv.y) / max(gy, 1e-6));
+    float e = 1.0 - smoothstep(uEdgePx - 0.5, uEdgePx + 0.5, px);
+    float t = clamp((vUv.x + (1.0 - vUv.y)) * 0.5, 0.0, 1.0);
+    vec3 ec = toSrgb(toLin(mix(uEA, uEB, t)) * mix(1.0, sh, 0.25));
+    gl_FragColor = vec4(mix(col, ec, e), 1.0);
+  }`;
+const FS_SIDE = GLSL_COMMON + `
+  uniform vec3 uBase; varying vec2 vUv; varying vec3 vNw;
+  void main(){ gl_FragColor = vec4(toSrgb(toLin(uBase) * shadeOf(normalize(vNw))), 1.0); }`;
+const blank = new THREE.DataTexture(new Uint8Array([0, 0, 0, 0]), 1, 1); blank.needsUpdate = true;
+function tileMaterial(base) {
+  return new THREE.ShaderMaterial({
+    uniforms: Object.assign({
+      uLabel: { value: blank }, uHas: { value: 0 }, uBase: { value: base }, uText: { value: C.text },
+      uEA: { value: C.edgeA }, uEB: { value: C.edgeB }, uEdgePx: { value: EDGE_PX * SS },
+    }, LIGHT),
+    vertexShader: VS_TILE, fragmentShader: FS_TILE, extensions: { derivatives: true },
+  });
+}
+const sideMaterial = new THREE.ShaderMaterial({ uniforms: Object.assign({ uBase: { value: C.side } }, LIGHT), vertexShader: VS_TILE, fragmentShader: FS_SIDE });
+
+const LABEL_FIT = {};
+function labelTexture(text) {
+  const N = 1024, cv = document.createElement('canvas'); cv.width = cv.height = N;
+  const g = cv.getContext('2d');
+  const fpx = LOCK.labelPx * N / S;
+  g.font = `600 ${fpx}px 'Inter Lock'`;
+  g.letterSpacing = `${LOCK.tracking * fpx}px`;
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = '#fff';
+  LABEL_FIT[text] = +(g.measureText(text).width / N).toFixed(3);
+  g.fillText(text, N / 2, N / 2 + 0.727 * fpx / 2);   // cap height centred on the face
+  const tex = new THREE.CanvasTexture(cv);
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return tex;
+}
+
+// n = outward normal (cube space); up = label up on the closed cube.
+// 'auto' = the in-plane up that needs the smallest rotation to end upright facing camera.
+const FACES = [
+  { label: 'Shopee',      n: [0, 1, 0],  up: [1, 0, 0] },  // top face, visible 0-20
+  { label: 'TikTok Shop', n: [0, -1, 0], up: 'auto' },     // opposite Shopee
+  { label: 'Iklan',       n: [0, 0, 1],  up: [0, 1, 0] },  // right face at start
+  { label: 'Konten',      n: [0, 0, -1], up: 'auto' },     // opposite Iklan
+  { label: 'Live',        n: [-1, 0, 0], up: [0, 1, 0] },  // left face at start
+  { label: 'Affiliate',   n: [1, 0, 0],  up: 'auto' },     // opposite Live
+];
+const YAW0 = 50, YAW1 = 58, YAWF = 135, PITCH0 = 30, PITCHF = deg(Math.atan(1 / Math.SQRT2)); // 35.26 = isometric
+function cubeQuat(yawDeg, pitchDeg) {
+  const qy = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), rad(yawDeg));
+  const qx = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), rad(pitchDeg));
+  return qx.multiply(qy);   // yaw first, then pitch
+}
+const qFinal = cubeQuat(YAWF, PITCHF);
+function faceQuat(n, up) {
+  const N = new THREE.Vector3(...n), U = new THREE.Vector3(...up), Rv = new THREE.Vector3().crossVectors(U, N);
+  return new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(Rv, U, N));
+}
+const quatAngle = q => 2 * Math.acos(Math.min(1, Math.abs(q.w)));
+
+const tiles = FACES.map(F => {
+  let up = F.up;
+  if (up === 'auto') {
+    const cands = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]].filter(a => Math.abs(a[0]*F.n[0] + a[1]*F.n[1] + a[2]*F.n[2]) < 0.5);
+    up = cands.map(a => [a, quatAngle(qFinal.clone().multiply(faceQuat(F.n, a)))]).sort((a, b) => a[1] - b[1])[0][0];
+  }
+  const qFace = faceQuat(F.n, up);
+  const nF = new THREE.Vector3(...F.n).applyQuaternion(qFinal), ang = Math.atan2(nF.y, nF.x);
+  const group = new THREE.Group();
+  const frontMat = tileMaterial(C.face);
+  const front = new THREE.Mesh(new THREE.PlaneGeometry(S, S), frontMat);
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(S, S), tileMaterial(C.back));
+  back.rotation.y = Math.PI; back.position.z = -T;
+  const box = new THREE.Mesh(new THREE.BoxGeometry(S - 3, S - 3, T - 0.8), sideMaterial);
+  box.position.z = -T / 2;
+  group.add(front, back, box); scene.add(group);
+  return {
+    label: F.label, n: new THREE.Vector3(...F.n), up, qFace, group, frontMat,
+    hex: new THREE.Vector3(R_HEX * Math.cos(ang), R_HEX * Math.sin(ang), 0),
+    hexDeg: Math.round(deg(ang) + 360) % 360, near: nF.z > 0,
+    turnDeg: Math.round(deg(quatAngle(qFinal.clone().multiply(qFace)))),
+  };
+});
+
+/* ------------------------------ core: MEA bar mark ------------------------------ */
+// Vector geometry pulled from MEA_LOGO_ORANGE (Illustrator native data), artboard points, y up.
+const MARK = {
+  bars: [
+    [[-6038.04,-1555.32],[-4718.04,-975.48],[-4718.04,-2506.44],[-6038.04,-2506.44]],
+    [[-4296.12,-746.28],[-2976.12,-166.44],[-2976.12,-2506.44],[-4296.12,-2506.44]],
+    [[-2554.44,53.16],[-1234.44,633.24],[-1234.44,-2506.44],[-2554.44,-2506.44]],
+  ],
+  folds: [
+    [[-4293.18,-1491.25],[-4731.02,-975.45],[-4731.02,-1949.34],[-4293.18,-2498.35]],
+    [[-2989.20,-166.41],[-2989.20,-1976.07],[-2551.36,-2498.35],[-2551.36,-717.24]],
+  ],
+  box: [-6038.04, -2506.44, -1234.44, 633.24],
+};
+const MK = LOCK.coreW / (MARK.box[2] - MARK.box[0]);
+const MCX = (MARK.box[0] + MARK.box[2]) / 2, MCY = (MARK.box[1] + MARK.box[3]) / 2;
+const MW = LOCK.coreW, MH = (MARK.box[3] - MARK.box[1]) * MK;
+function markShape(pts) {
+  const s = new THREE.Shape();
+  pts.forEach(([x, y], i) => { const X = (x - MCX) * MK, Y = (y - MCY) * MK; i ? s.lineTo(X, Y) : s.moveTo(X, Y); });
+  s.closePath(); return s;
+}
+const VS_CORE = `
+  varying vec3 vPos; varying vec3 vNl; varying vec3 vNw;
+  void main(){ vPos = position; vNl = normal; vNw = normalize(mat3(modelMatrix) * normal);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const FS_CORE = GLSL_COMMON + `
+  uniform vec3 uA, uB, uFold; uniform float uIsFold; uniform vec2 uMin, uMax;
+  varying vec3 vPos; varying vec3 vNl; varying vec3 vNw;
+  void main(){
+    vec2 q = (vPos.xy - uMin) / (uMax - uMin);
+    float t = clamp((q.x + (1.0 - q.y)) * 0.5, 0.0, 1.0);
+    vec3 c = toLin(uIsFold > 0.5 ? uFold : mix(uA, uB, t));
+    float z = vNl.z;
+    if (abs(z) < 0.5) c *= 0.52; else if (z < 0.0) c *= 0.42;
+    gl_FragColor = vec4(toSrgb(c * shadeOf(normalize(vNw))), 1.0);
+  }`;
+function coreMaterial(isFold) {
+  return new THREE.ShaderMaterial({
+    uniforms: Object.assign({
+      uA: { value: C.edgeA }, uB: { value: C.edgeB }, uFold: { value: C.fold }, uIsFold: { value: isFold ? 1 : 0 },
+      uMin: { value: new THREE.Vector2(-MW / 2, -MH / 2) }, uMax: { value: new THREE.Vector2(MW / 2, MH / 2) },
+    }, LIGHT),
+    vertexShader: VS_CORE, fragmentShader: FS_CORE,
+  });
+}
+const core = new THREE.Group();
+{
+  const CD = LOCK.coreDepth;
+  const barGeo = new THREE.ExtrudeGeometry(MARK.bars.map(markShape), { depth: CD, bevelEnabled: false });
+  barGeo.translate(0, 0, -CD / 2);
+  const foldGeo = new THREE.ExtrudeGeometry(MARK.folds.map(markShape), { depth: CD * 0.8, bevelEnabled: false });
+  foldGeo.translate(0, 0, -CD / 2 - 1.2);
+  core.add(new THREE.Mesh(barGeo, coreMaterial(false)), new THREE.Mesh(foldGeo, coreMaterial(true)));
+  scene.add(core);
+}
+
+/* ------------------------------ rings + dots ------------------------------ */
+const VS_RING = `varying vec2 vP; void main(){ vP = position.xy; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const FS_RING = `
+  uniform float uR, uHalfW, uAlpha; uniform vec3 uColor; varying vec2 vP;
+  void main(){
+    float r = length(vP);
+    float g = length(vec2(dFdx(r), dFdy(r)));
+    float px = abs(r - uR) / max(g, 1e-7);
+    float a = (1.0 - smoothstep(uHalfW - 0.5, uHalfW + 0.5, px)) * uAlpha;
+    if (a < 0.002) discard;
+    gl_FragColor = vec4(uColor * a, a);
+  }`;
+const FS_DOT = `
+  uniform vec3 uColor; varying vec2 vP;
+  void main(){
+    float r = length(vP) * 2.0;
+    float g = length(vec2(dFdx(r), dFdy(r)));
+    float a = 1.0 - smoothstep(1.0 - g, 1.0 + g, r);
+    if (a < 0.002) discard;
+    gl_FragColor = vec4(uColor * a, a);
+  }`;
+const premult = {
+  transparent: true, depthTest: false, depthWrite: false, premultipliedAlpha: true,
+  blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor,
+  blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneMinusSrcAlphaFactor, extensions: { derivatives: true },
+};
+const RINGS = [
+  { name: 'core',  r0: 116, tilt0: 38, tiltF: 10, ax0: 70,  axF: 95,  dot0: -40, dotF: 50 },
+  { name: 'mid',   r0: 320, tilt0: 24, tiltF: 6,  ax0: 25,  axF: 40,  dot0: 200, dotF: 360 },
+  { name: 'outer', r0: 435, tilt0: 18, tiltF: 4,  ax0: -40, axF: -25, dot0: 110, dotF: -60 },
+];
+const EXPAND = 1.14, DOT_WORLD = DOT_PX * WORLD_PER_OUT;
+RINGS.forEach((R, i) => {
+  R.half = R.r0 * EXPAND * 1.08;
+  R.mat = new THREE.ShaderMaterial(Object.assign({
+    uniforms: { uR: { value: 0.9 }, uHalfW: { value: RING_PX * SS / 2 }, uAlpha: { value: LOCK.ringAlpha[R.name] }, uColor: { value: C.ring } },
+    vertexShader: VS_RING, fragmentShader: FS_RING,
+  }, premult));
+  R.mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), R.mat);
+  R.mesh.scale.setScalar(R.half); R.mesh.renderOrder = i;
+  R.dot = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShaderMaterial(Object.assign({
+    uniforms: { uColor: { value: C.dot } }, vertexShader: VS_RING, fragmentShader: FS_DOT,
+  }, premult)));
+  R.dot.scale.setScalar(DOT_WORLD); R.dot.renderOrder = 10 + i;
+  ringScene.add(R.mesh, R.dot);
+});
+
+/* ------------------------------ update(p): pure function of p ------------------------------ */
+const _v = new THREE.Vector3(), _ax = new THREE.Vector3(), _q = new THREE.Quaternion(), _qa = new THREE.Quaternion(), qI = new THREE.Quaternion();
+function update(p) {
+  const f = clamp01(+p) * FM.last;
+  camera.zoom = lerp(LOCK.zoom0, LOCK.zoom1, ease(f / FM.last, 2.2));
+  camera.updateProjectionMatrix();
+
+  const yaw = YAW0 + (YAW1 - YAW0) * clamp01(f / FM.slow[1]) + (YAWF - YAW1) * seg(f, FM.turn, 5);
+  const pitch = lerp(PITCH0, PITCHF, seg(f, FM.turn, 5));
+  const qCube = cubeQuat(yaw, pitch);
+  const sep = seg(f, FM.sep, 4.5), zKeep = 1 - 0.6 * sep, uFace = seg(f, FM.face, 4), st = seg(f, FM.settle, 5);
+  for (const t of tiles) {
+    _v.copy(t.n).applyQuaternion(qCube).multiplyScalar(S / 2 + D_MAX * sep);
+    _v.z *= zKeep;                 // depth spread eases off as the faces fan out
+    _v.lerp(t.hex, st);            // then everything settles into one plane on the hexagon
+    t.group.position.copy(_v);
+    _qa.copy(qCube).multiply(t.qFace);
+    if (_qa.dot(qI) < 0) _qa.set(-_qa.x, -_qa.y, -_qa.z, -_qa.w);
+    t.group.quaternion.slerpQuaternions(_qa, qI, uFace);
+  }
+
+  const cs = seg(f, FM.core, 4);
+  core.rotation.set(rad(16 * (1 - cs)), rad(-55 * (1 - cs)), 0);
+
+  const tl = seg(f, FM.tilt, 3), ex = seg(f, FM.rings, 4), dd = ease(f / FM.last, 2.5);
+  for (const R of RINGS) {
+    const r = R.r0 * lerp(1, EXPAND, ex), ax = rad(lerp(R.ax0, R.axF, tl));
+    _q.setFromAxisAngle(_ax.set(Math.cos(ax), Math.sin(ax), 0), rad(lerp(R.tilt0, R.tiltF, tl)));
+    R.mesh.quaternion.copy(_q);
+    R.mat.uniforms.uR.value = r / R.half;
+    const phi = rad(lerp(R.dot0, R.dotF, dd));
+    R.dot.position.set(r * Math.cos(phi), r * Math.sin(phi), 0).applyQuaternion(_q);
+  }
+  return f;
+}
+function draw() {
+  renderer.setClearColor(PAINT_BG ? 0x1A1A1A : 0x000000, PAINT_BG ? 1 : 0);
+  renderer.clear(true, true, true);
+  renderer.render(ringScene, camera);
+  renderer.clearDepth();
+  renderer.render(scene, camera);
+}
+window.seek = p => { const f = update(p); draw(); return f; };
+window.capture = () => renderer.domElement.toDataURL('image/png');
+window.info = () => ({
+  out: OUT, ss: SS, render: RPX, edgePx: EDGE_PX, ringPx: RING_PX, dotPx: DOT_PX,
+  hexR: +R_HEX.toFixed(1), dMax: +D_MAX.toFixed(1), labelFit: LABEL_FIT,
+  tiles: tiles.map(t => ({ label: t.label, hexDeg: t.hexDeg, near: t.near, up: t.up, turnDeg: t.turnDeg })),
+});
+// continuity check: per-step rotation/position change at 1/20-frame resolution (catches slerp flips)
+window.audit = () => {
+  const N = FM.last * 20, pq = tiles.map(() => new THREE.Quaternion()), pp = tiles.map(() => new THREE.Vector3());
+  const res = tiles.map(t => ({ label: t.label, maxDeg: 0, at: 0, maxMove: 0 }));
+  for (let i = 0; i <= N; i++) {
+    update(i / N);
+    tiles.forEach((t, k) => {
+      if (i) {
+        const a = deg(2 * Math.acos(Math.min(1, Math.abs(pq[k].dot(t.group.quaternion)))));
+        if (a > res[k].maxDeg) { res[k].maxDeg = +a.toFixed(3); res[k].at = +(i / N * FM.last).toFixed(2); }
+        res[k].maxMove = Math.max(res[k].maxMove, +pp[k].distanceTo(t.group.position).toFixed(2));
+      }
+      pq[k].copy(t.group.quaternion); pp[k].copy(t.group.position);
+    });
+  }
+  update(0);
+  return res;
+};
+window.READY = (async () => {
+  await document.fonts.load("600 40px 'Inter Lock'");
+  const fontOK = document.fonts.check("600 40px 'Inter Lock'");
+  for (const t of tiles) { t.frontMat.uniforms.uLabel.value = labelTexture(t.label); t.frontMat.uniforms.uHas.value = 1; }
+  window.seek(+(Q.get('p') || 0));
+  return Object.assign(window.info(), { fontOK });
+})();
+</script>
+</body>
+</html>

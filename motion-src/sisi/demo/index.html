@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enam Sisi · uji grid layanan</title>
+<style>
+:root { --bg: #FAFAFA; --ink: #1A1A1A; --muted: #46474B; --tile: 140px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Inter, system-ui, sans-serif; }
+main { max-width: 1040px; margin: 0 auto; padding: 56px 24px 72px; }
+.note { margin: 0 0 40px; color: var(--muted); font-size: 14px; max-width: 60ch; }
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 40px 24px;
+        grid-template-columns: repeat(auto-fill, minmax(var(--tile), 1fr)); }
+.svc { display: flex; flex-direction: column; gap: 14px; color: inherit; text-decoration: none; border-radius: 2px; }
+.svc:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+/* square, no radius: the tile has square corners and its orange edge is drawn inside the frame */
+.svc video { display: block; width: var(--tile); height: var(--tile); }
+.svc span { font-weight: 600; }
+@media (max-width: 600px) { :root { --tile: 120px; } .grid { gap: 32px 16px; } }
+</style>
+</head>
+<body>
+<main>
+<p class="note">Desktop: arahkan kursor atau Tab ke kartu. Mobile: loop berjalan saat tile 60% terlihat. Saat kursor pergi,
+loop menyelesaikan putarannya lalu berhenti di frame terakhir, yang identik dengan poster.</p>
+<ul class="grid">
+  <li><a class="svc" href="#iklan"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../iklan.webp"><source src="../iklan.webm" type="video/webm"><source src="../iklan.mp4" type="video/mp4"></video><span>Iklan</span></a></li>
+  <li><a class="svc" href="#tiktok-shop"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../tiktok-shop.webp"><source src="../tiktok-shop.webm" type="video/webm"><source src="../tiktok-shop.mp4" type="video/mp4"></video><span>TikTok Shop</span></a></li>
+  <li><a class="svc" href="#shopee"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../shopee.webp"><source src="../shopee.webm" type="video/webm"><source src="../shopee.mp4" type="video/mp4"></video><span>Shopee</span></a></li>
+  <li><a class="svc" href="#live"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../live.webp"><source src="../live.webm" type="video/webm"><source src="../live.mp4" type="video/mp4"></video><span>Live</span></a></li>
+  <li><a class="svc" href="#affiliate"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../affiliate.webp"><source src="../affiliate.webm" type="video/webm"><source src="../affiliate.mp4" type="video/mp4"></video><span>Affiliate</span></a></li>
+  <li><a class="svc" href="#konten"><video muted playsinline preload="none" width="480" height="480" aria-hidden="true" disablepictureinpicture disableremoteplayback poster="../konten.webp"><source src="../konten.webm" type="video/webm"><source src="../konten.mp4" type="video/mp4"></video><span>Konten</span></a></li>
+</ul>
+</main>
+<script>
+'use strict';
+const canHover = matchMedia('(hover: hover) and (pointer: fine)');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+const videos = [...document.querySelectorAll('.svc video')];
+
+// Start looping. Never reset currentTime: frame 0 is the rest state, so a jump back would cut a move.
+function start(v) {
+  if (reduce.matches) return;                // reduced motion: the poster is the complete pictogram
+  v.loop = true;
+  const p = v.play();
+  if (p) p.catch(() => {});                  // autoplay refused (e.g. low-power mode): the poster stays
+}
+// Stop at the loop point: let the current cycle finish. The last frame is pixel-identical to the poster.
+function finish(v) { v.loop = false; }
+
+// Posters first; fetch the small clips after load so the first hover starts instantly.
+// Frame 0 equals the poster, so the swap from poster to video is invisible.
+// Only touch clips that have not started: load() resets an element that is already playing.
+addEventListener('load', () => videos.forEach(v => {
+  if (v.paused && v.readyState === 0) { v.preload = 'auto'; v.load(); }
+}));
+
+if (canHover.matches) {
+  videos.forEach(v => {
+    const card = v.closest('.svc');
+    card.addEventListener('pointerenter', () => start(v));
+    card.addEventListener('pointerleave', () => finish(v));
+    card.addEventListener('focus', () => start(v));
+    card.addEventListener('blur', () => finish(v));
+  });
+} else {
+  const io = new IntersectionObserver(entries => entries.forEach(e => (e.isIntersecting ? start : finish)(e.target)),
+                                      { threshold: 0.6 });
+  videos.forEach(v => io.observe(v));
+}
+</script>
+</body>
+</html>

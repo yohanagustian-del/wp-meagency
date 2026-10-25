@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>MEA Agency orbit proses - seek(p) renderer</title>
+<!--
+  M3 "Orbit Proses": source of the scroll-scrubbed image sequence for the meagency.co.id
+  "cara kerja" section (light page #FFFFFF). Plain SVG + Inter 600 (SIL OFL, the same subset
+  file as the hero cube, vendor/inter-600.woff2).
+  Every attribute that moves is a pure function of p (0-1) inside window.seek(p):
+  no timers, no CSS animation, no state carried between frames.
+  Geometry is measured from the live SVG once the font has loaded: station points come from
+  getPointAtLength() on the orbit path and label boxes from the rendered text. Nothing about
+  where the dot meets a station is hard-coded.
+  URL params: ?out=1200 | ?out=800 (mobile line weights)   ?p=0.5
+-->
+<style>
+@font-face{font-family:'Inter Lock';src:url('vendor/inter-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:block;}
+html,body{margin:0;background:#FFFFFF;overflow:hidden}
+svg{display:block;width:100vw;height:100vh}
+text{font-family:'Inter Lock',sans-serif;font-weight:600;font-kerning:normal}
+</style>
+</head>
+<body>
+<svg id="s" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"></svg>
+<script>
+'use strict';
+/* ======================= STYLE LOCK (reference 1200x1200, light page) ======================= */
+const LOCK = {
+  bg: '#FFFFFF', ink: '#1A1A1A', muted: '#71717A', orbit: '#E4E4E7', white: '#FFFFFF',
+  oA: '#EC7832', oB: '#F69541',          // hero lock gradient, 135 deg: top-left -> bottom-right
+  dot: '#EC7832',
+  labelPx: 32, numPx: 20, tilePx: 30, tagPx: 28, tracking: -0.01,   // Inter 600, tracking -1%
+  stationR: 20,                           // 40 px stations
+  capH: 0.727,                            // Inter cap height per em
+};
+/* ============================== FRAME MAP (0-149) ============================== */
+/* Equal share: station k (0-4) owns frames 30k .. 30k+29. Offsets inside a share:   */
+const FM = {
+  last: 149, share: 30,
+  fill:   [0, 3],    // station fills as the dot lands (station 1 is already full at frame 0)
+  build:  [1, 13],   // pictogram builds in the orbit centre
+  hold:   [13, 20],  // complete, nothing moves
+  clear:  [20, 25],  // pictogram clears as the dot moves on
+  unfill: [20, 22],  // station shrinks back into the dot
+  travel: [22, 30],  // dot rides the orbit and lands on the next share's first frame
+};
+const STEPS = ['Riset awal toko', 'Strategi tertulis', 'Rencana per periode', 'Eksekusi tim', 'Rekap mingguan'];
+
+const Q = new URLSearchParams(location.search);
+const OUT = +(Q.get('out') || 1200), MOBILE = OUT < 1000, U = 1200 / OUT;   // viewBox units per output px
+// weights in output px; mobile a touch heavier than proportional, as the hero lock did for 720
+const PX = MOBILE ? { orbit: 1.5, station: 1.25, line: 2.25, accent: 3.5, dot: 9 }
+                  : { orbit: 2,   station: 1.5,  line: 3,    accent: 5,   dot: 12 };
+const SW = { orbit: PX.orbit * U, station: PX.station * U, line: PX.line * U, accent: PX.accent * U };
+const DOT_R = PX.dot * U / 2;
+const ORB = { cx: 600, cy: 600, rx: 395, ry: 288 };   // wide orbit; vertical centring is measured below
+
+const clamp01 = t => Math.min(1, Math.max(0, t));
+const lerp = (a, b, t) => a + (b - a) * t;
+const expoOut = (t, k) => (1 - Math.pow(2, -k * t)) / (1 - Math.pow(2, -k));
+// hero lock: exponential ease-out with a C1 start ramp (tau), so no move starts with a velocity jump
+function ease(t, k = 3, tau = 0.06) {
+  t = clamp01(t);
+  const u = t < tau ? (t * t) / (2 * tau) : t - tau / 2;
+  return expoOut(clamp01(u / (1 - tau / 2)), k);
+}
+const win = (t, a, b, k = 3, tau = 0.06) => ease((t - a) / (b - a), k, tau);   // eased sub-window of a 0-1 progress
+const hexRGB = h => { const n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+const mix = (a, b, t) => { const A = hexRGB(a), B = hexRGB(b); return '#' + A.map((v, i) => Math.round(lerp(v, B[i], clamp01(t))).toString(16).padStart(2, '0')).join(''); };
+
+/* ------------------------------------ svg ------------------------------------ */
+const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('s');
+function mk(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs || {}) e.setAttribute(k, attrs[k]);
+  (parent || svg).appendChild(e);
+  return e;
+}
+const defs = mk('defs');
+const grad = mk('linearGradient', { id: 'og', x1: 0, y1: 0, x2: 1, y2: 1 }, defs);
+mk('stop', { offset: 0, 'stop-color': LOCK.oA }, grad);
+mk('stop', { offset: 1, 'stop-color': LOCK.oB }, grad);
+mk('rect', { width: 1200, height: 1200, fill: LOCK.bg });
+const scene = mk('g', { id: 'scene' });
+const gOrbit = mk('g', {}, scene), gPicto = mk('g', {}, scene), gBase = mk('g', {}, scene),
+      gDot = mk('g', {}, scene), gFill = mk('g', {}, scene), gNum = mk('g', {}, scene), gLabel = mk('g', {}, scene);
+
+function text(str, px, attrs, parent) {
+  const t = mk('text', Object.assign({ 'font-size': px, 'letter-spacing': +(LOCK.tracking * px).toFixed(3), fill: LOCK.ink }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+const STROKE = () => ({ fill: 'none', stroke: LOCK.ink, 'stroke-width': SW.line, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+function line(d, parent, extra) {
+  const e = mk('path', Object.assign(STROKE(), { d }, extra || {}), parent);
+  e._len = e.getTotalLength();          // static geometry, measured once
+  return e;
+}
+// show the part of a stroke between fractions a and b of its length (draw on: b grows; draw off: a grows)
+function span(el, a, b) {
+  const len = el._len; a = clamp01(a); b = clamp01(b);
+  if ((b - a) * len < 0.4) { el.setAttribute('visibility', 'hidden'); return; }
+  el.setAttribute('visibility', 'visible');
+  if (a <= 0 && b >= 1) { el.removeAttribute('stroke-dasharray'); el.removeAttribute('stroke-dashoffset'); return; }
+  el.setAttribute('stroke-dasharray', `${((b - a) * len).toFixed(3)} ${(len * 2).toFixed(3)}`);
+  el.setAttribute('stroke-dashoffset', (-a * len).toFixed(3));
+}
+const show = (el, on) => el.setAttribute('visibility', on ? 'visible' : 'hidden');
+function rrect(x0, y0, x1, y1, r) {
+  return `M ${x0 + r} ${y0} H ${x1 - r} A ${r} ${r} 0 0 1 ${x1} ${y0 + r} V ${y1 - r} A ${r} ${r} 0 0 1 ${x1 - r} ${y1}` +
+         ` H ${x0 + r} A ${r} ${r} 0 0 1 ${x0} ${y1 - r} V ${y0 + r} A ${r} ${r} 0 0 1 ${x0 + r} ${y0} Z`;
+}
+function circ(cx, cy, r, a0) {   // full circle as a path, clockwise from angle a0 (deg)
+  const a = a0 * Math.PI / 180, x0 = cx + r * Math.cos(a), y0 = cy + r * Math.sin(a), x1 = cx - r * Math.cos(a), y1 = cy - r * Math.sin(a);
+  return `M ${x0} ${y0} A ${r} ${r} 0 1 1 ${x1} ${y1} A ${r} ${r} 0 1 1 ${x0} ${y0}`;
+}
+function scaleAbout(el, x, y, s) {
+  if (s <= 0.002) { show(el, false); return; }
+  show(el, true);
+  el.setAttribute('transform', `translate(${x} ${y}) scale(${s.toFixed(4)}) translate(${-x} ${-y})`);
+}
+let clipN = 0;
+function wipeClip(x, y, h) {    // a clip rect whose x/width are set per frame
+  const id = `w${clipN++}`, cp = mk('clipPath', { id }, defs);
+  return { id, rect: mk('rect', { x, y, width: 0, height: h }, cp) };
+}
+function setWipe(w, x0, x1) { w.rect.setAttribute('x', x0.toFixed(2)); w.rect.setAttribute('width', Math.max(0, x1 - x0).toFixed(2)); }
+
+/* ------------------------------------ orbit ------------------------------------ */
+const orbit = mk('path', {
+  d: `M ${ORB.cx} ${ORB.cy - ORB.ry} A ${ORB.rx} ${ORB.ry} 0 0 1 ${ORB.cx} ${ORB.cy + ORB.ry} A ${ORB.rx} ${ORB.ry} 0 0 1 ${ORB.cx} ${ORB.cy - ORB.ry}`,
+  fill: 'none', stroke: LOCK.orbit, 'stroke-width': SW.orbit,
+}, gOrbit);
+const dot = mk('circle', { r: DOT_R, fill: LOCK.dot }, gDot);
+const S = [];              // stations, measured in layout()
+const SHIFT = { x: 0, y: 0 };
+
+/* ---------------------------------- pictograms ---------------------------------- */
+/* All in local coordinates around the orbit centre. render(b, c): b = build 0-1, c = clear 0-1. */
+function pictoResearch(g) {            // 1. magnifier passing over three bar-chart columns
+  const base = 118, bw = 72, rr = 8, bars = [[-120, 108], [0, 182], [120, 144]];
+  const lensR = 62, lensY = 22, hand = 76, a45 = Math.SQRT1_2;
+  const baseline = line('M -206 118 H 206', g);
+  const lensClip = mk('clipPath', { id: 'lens' }, defs), lensC = mk('circle', { r: 0 }, lensClip);
+  const fills = mk('g', { 'clip-path': 'url(#lens)' }, g);
+  const barFill = bars.map(() => mk('path', { fill: 'url(#og)' }, fills));
+  const barLine = bars.map(() => mk('path', STROKE(), g));
+  const lens = mk('g', {}, g);
+  const ring = line(circ(0, 0, lensR, -135), lens);
+  const handle = line(`M ${lensR * a45} ${lensR * a45} L ${(lensR + hand) * a45} ${(lensR + hand) * a45}`, lens);
+  const barD = (x, h, closed) => {
+    const x0 = x - bw / 2, x1 = x + bw / 2, yt = base - h, r = Math.min(rr, h);
+    return `M ${x0} ${base} V ${yt + r} A ${r} ${r} 0 0 1 ${x0 + r} ${yt} H ${x1 - r} A ${r} ${r} 0 0 1 ${x1} ${yt + r} V ${base}${closed ? ' Z' : ''}`;
+  };
+  return { g, render(b, c) {
+    span(baseline, win(c, 0.45, 1.0), win(b, 0.0, 0.30));
+    bars.forEach(([x, h], j) => {
+      const hh = h * win(b, 0.10 + 0.08 * j, 0.40 + 0.08 * j) * (1 - win(c, 0.12 + 0.08 * j, 0.62 + 0.08 * j));
+      const on = hh >= 0.75;
+      show(barLine[j], on); show(barFill[j], on);
+      if (on) { barLine[j].setAttribute('d', barD(x, hh, false)); barFill[j].setAttribute('d', barD(x, hh, true)); }
+    });
+    const ringIn = win(b, 0.36, 0.56), ringOut = win(c, 0.0, 0.45);
+    span(ring, ringOut, ringIn);
+    span(handle, win(c, 0.0, 0.35), win(b, 0.46, 0.60));
+    const lx = lerp(-120, 120, win(b, 0.56, 1.0, 3, 0.2));
+    lens.setAttribute('transform', `translate(${lx.toFixed(3)} ${lensY})`);
+    lensC.setAttribute('cx', lx.toFixed(3)); lensC.setAttribute('cy', lensY);
+    lensC.setAttribute('r', Math.max(0, (lensR - SW.line / 2) * ringIn * (1 - ringOut)).toFixed(3));
+  } };
+}
+
+function pictoDoc(g) {                 // 2. document: three lines fill in, one orange tick at the end
+  const x0 = -124, y0 = -158, x1 = 124, y1 = 158, r = 14, f = 58;
+  const page = line(`M ${x0 + r} ${y0} H ${x1 - f} L ${x1} ${y0 + f} V ${y1 - r} A ${r} ${r} 0 0 1 ${x1 - r} ${y1}` +
+                    ` H ${x0 + r} A ${r} ${r} 0 0 1 ${x0} ${y1 - r} V ${y0 + r} A ${r} ${r} 0 0 1 ${x0 + r} ${y0} Z`, g);
+  const fold = line(`M ${x1 - f} ${y0} V ${y0 + f - 12} A 12 12 0 0 0 ${x1 - f + 12} ${y0 + f} H ${x1}`, g);
+  const rows = [[-72, 78], [-14, 78], [44, 20]].map(([y, xe]) => line(`M -78 ${y} H ${xe}`, g));
+  const tick = line('M 36 104 L 58 126 L 98 82', g, { stroke: 'url(#og)', 'stroke-width': SW.accent });
+  return { g, render(b, c) {
+    span(page, win(c, 0.42, 1.0), win(b, 0.0, 0.32));
+    span(fold, win(c, 0.30, 0.55), win(b, 0.26, 0.38));
+    rows.forEach((e, j) => span(e, win(c, 0.10 + 0.06 * j, 0.50 + 0.06 * j), win(b, 0.36 + 0.14 * j, 0.54 + 0.14 * j)));
+    span(tick, win(c, 0.0, 0.36), win(b, 0.80, 1.0));
+  } };
+}
+
+function pictoCalendar(g) {            // 3. four-week calendar; week cells light up in sequence
+  const x0 = -170, y0 = -140, x1 = 170, y1 = 160, hy = -76;
+  const body = line(rrect(x0, y0, x1, y1, 18), g);
+  const head = line(`M ${x0} ${hy} H ${x1}`, g);
+  const rings = [-92, 92].map(x => line(`M ${x} -164 V -116`, g));
+  const cw0 = -146, cw1 = 146, ch = 40, gap = 13, top = -57.5, inf = SW.line / 2;
+  const cells = [0, 1, 2, 3].map(j => {
+    const ya = top + j * (ch + gap), yb = ya + ch;
+    const out = line(rrect(cw0, ya, cw1, yb, 10), g);
+    const w = wipeClip(cw0 - inf - 1, ya - inf - 1, ch + 2 * inf + 2);
+    const fill = mk('path', { d: rrect(cw0 - inf, ya - inf, cw1 + inf, yb + inf, 10 + inf), fill: 'url(#og)', 'clip-path': `url(#${w.id})` }, g);
+    const dots = [0, 1, 2, 3, 4, 5, 6].map(i => mk('circle', { cx: -117 + 39 * i, cy: (ya + yb) / 2, r: 0, fill: LOCK.ink }, g));
+    return { out, w, fill, dots };
+  });
+  const span0 = cw0 - inf - 1, span1 = cw1 + inf + 1;
+  return { g, render(b, c) {
+    span(body, win(c, 0.45, 1.0), win(b, 0.0, 0.24));
+    rings.forEach((e, j) => span(e, win(c, 0.35, 0.60), win(b, 0.14 + 0.04 * j, 0.28 + 0.04 * j)));
+    span(head, win(c, 0.35, 0.65), win(b, 0.20, 0.32));
+    const off = win(c, 0.0, 0.38);                       // all weeks switch off together, wipe leaves to the right
+    cells.forEach((cl, j) => {
+      span(cl.out, win(c, 0.20 + 0.04 * j, 0.62 + 0.04 * j), win(b, 0.26 + 0.04 * j, 0.42 + 0.04 * j));
+      const on = win(b, 0.48 + 0.13 * j, Math.min(1, 0.62 + 0.13 * j));
+      const xa = lerp(span0, span1, off), xb = lerp(span0, span1, on);
+      setWipe(cl.w, xa, xb); show(cl.fill, xb - xa > 0.5);
+      const grow = win(b, 0.34 + 0.04 * j, 0.46 + 0.04 * j) * (1 - win(c, 0.15, 0.50));
+      cl.dots.forEach(d => {
+        const x = +d.getAttribute('cx');
+        d.setAttribute('r', (4.5 * grow).toFixed(3));
+        d.setAttribute('fill', x >= xa && x <= xb ? LOCK.white : LOCK.ink);
+      });
+    });
+  } };
+}
+
+function pictoTeam(g) {                // 4. four tiles switch on together
+  const tw = 196, th = 112, tr = 18, inf = SW.line / 2, names = ['Iklan', 'Konten', 'Live', 'Toko'];
+  const tiles = [[-110, -68], [110, -68], [-110, 68], [110, 68]].map(([x, y], j) => {
+    const out = line(rrect(x - tw / 2, y - th / 2, x + tw / 2, y + th / 2, tr), g);
+    const fill = mk('path', { d: rrect(x - tw / 2 - inf, y - th / 2 - inf, x + tw / 2 + inf, y + th / 2 + inf, tr + inf), fill: 'url(#og)' }, g);
+    const w = wipeClip(x - tw / 2, y - th / 2, th);
+    const t = text(names[j], LOCK.tilePx, { x, y: +(y + LOCK.capH * LOCK.tilePx / 2).toFixed(2), 'text-anchor': 'middle', 'clip-path': `url(#${w.id})` }, g);
+    return { x, y, out, fill, w, t };
+  });
+  return { g, render(b, c) {
+    const on = win(b, 0.70, 0.90, 3, 0.15) * (1 - win(c, 0.0, 0.40));   // together, same frames for all four
+    tiles.forEach((tl, j) => {
+      span(tl.out, win(c, 0.35 + 0.05 * j, 0.85 + 0.05 * j), win(b, 0.07 * j, 0.34 + 0.07 * j));
+      const xin = win(b, 0.30 + 0.06 * j, 0.56 + 0.06 * j), xout = win(c, 0.20, 0.55);
+      setWipe(tl.w, tl.x - tw / 2 - 2 + (tw + 4) * xout, tl.x - tw / 2 - 2 + (tw + 4) * xin);
+      scaleAbout(tl.fill, tl.x, tl.y, on);
+      tl.t.setAttribute('fill', on > 0.55 ? LOCK.white : LOCK.ink);
+    });
+  } };
+}
+
+function pictoChart(g) {               // 5. line chart rising across four weeks; last point orange; "Senin"
+  const P = [[-128, 74], [-38, 34], [52, -6], [142, -86]], y1 = 122;
+  const axis = line(`M -200 -150 V ${y1} H 214`, g);
+  const ticks = P.map(([x]) => line(`M ${x} ${y1} V ${y1 + 14}`, g));
+  const pl = line(`M ${P.map(p => p.join(' ')).join(' L ')}`, g);
+  const cum = [0];
+  for (let i = 1; i < P.length; i++) cum.push(cum[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]));
+  const pts = P.map(([x, y], i) => i < P.length - 1
+    ? mk('circle', { cx: x, cy: y, r: 10, fill: LOCK.white, stroke: LOCK.ink, 'stroke-width': SW.line }, g)
+    : mk('circle', { cx: x, cy: y, r: 14, fill: 'url(#og)' }, g));
+  const w = wipeClip(142 - 64, -150, 50);
+  const tag = text('Senin', LOCK.tagPx, { x: 142, y: -86 - 14 - 16, 'text-anchor': 'middle', 'clip-path': `url(#${w.id})` }, g);
+  return { g, render(b) {
+    span(axis, 0, win(b, 0.0, 0.28));
+    ticks.forEach((e, i) => span(e, 0, win(b, 0.18 + 0.03 * i, 0.30 + 0.03 * i)));
+    const lp = win(b, 0.30, 0.78, 2.5, 0.12);
+    span(pl, 0, lp);
+    pts.forEach((e, i) => {
+      const s = i < P.length - 1 ? ease((lp - cum[i] / cum[cum.length - 1]) / 0.16 + 0.2, 3) * (lp > 0 ? 1 : 0)
+                                 : win(b, 0.72, 0.88);
+      scaleAbout(e, P[i][0], P[i][1], s);
+    });
+    setWipe(w, 142 - 64, 142 - 64 + 128 * win(b, 0.84, 1.0));
+  } };
+}
+
+const PICTO = [pictoResearch, pictoDoc, pictoCalendar, pictoTeam, pictoChart].map(fn =>
+  fn(mk('g', { transform: `translate(${ORB.cx} ${ORB.cy})`, display: 'none' }, gPicto)));
+
+/* ------------------------------ layout (measured) ------------------------------ */
+function placeLabel(st, str) {
+  const px = LOCK.labelPx, cap = LOCK.capH * px, lh = Math.round(px * 1.16), R = LOCK.stationR, gap = 16, margin = 44;
+  const t = text('', px, { fill: LOCK.muted }, gLabel);
+  const width = s => { t.textContent = s; return t.getComputedTextLength(); };
+  const side = Math.abs(st.nx) >= 0.6, dir = st.nx >= 0 ? 1 : -1;
+  let lines = [str], x, y0, anchor;
+  if (side) {                                   // beside the circle, vertically centred on it
+    x = st.x + dir * (R + gap); anchor = dir > 0 ? 'start' : 'end';
+    const room = dir > 0 ? (1200 - margin) - x : x - margin;
+    if (width(str) > room) {                    // best two-line split
+      const words = str.split(' '); let best = null;
+      for (let i = 1; i < words.length; i++) {
+        const a = words.slice(0, i).join(' '), bb = words.slice(i).join(' '), m = Math.max(width(a), width(bb));
+        if (!best || m < best.m) best = { a, b: bb, m };
+      }
+      lines = [best.a, best.b];
+    }
+    y0 = st.y - (cap + (lines.length - 1) * lh) / 2 + cap;
+  } else {                                      // above / below, hanging outward so it clears the orbit
+    anchor = Math.abs(st.nx) < 0.15 ? 'middle' : (dir > 0 ? 'start' : 'end');
+    x = anchor === 'middle' ? st.x : st.x - dir * R;
+    y0 = st.ny < 0 ? st.y - R - gap : st.y + R + gap + cap;
+  }
+  t.textContent = '';
+  t.setAttribute('text-anchor', anchor);
+  lines.forEach((ln, i) => { const ts = mk('tspan', { x: +x.toFixed(2), y: +(y0 + i * lh).toFixed(2) }, t); ts.textContent = ln; });
+  return { el: t, lines };
+}
+
+function layout() {
+  const L = orbit.getTotalLength();
+  for (let k = 0; k < 5; k++) {
+    const s = L * k / 5, pt = orbit.getPointAtLength(s);
+    const gx = (pt.x - ORB.cx) / (ORB.rx * ORB.rx), gy = (pt.y - ORB.cy) / (ORB.ry * ORB.ry), gl = Math.hypot(gx, gy);
+    S.push({ k, s, x: pt.x, y: pt.y, nx: gx / gl, ny: gy / gl });
+  }
+  S.forEach(st => {
+    st.base = mk('circle', { cx: st.x, cy: st.y, r: LOCK.stationR, fill: LOCK.white, stroke: LOCK.ink, 'stroke-width': SW.station }, gBase);
+    st.fill = mk('circle', { cx: st.x, cy: st.y, r: 0, fill: 'url(#og)', visibility: 'hidden' }, gFill);
+    st.num = text(String(st.k + 1), LOCK.numPx, { x: st.x, y: +(st.y + LOCK.capH * LOCK.numPx / 2).toFixed(2), 'text-anchor': 'middle' }, gNum);
+    const lb = placeLabel(st, STEPS[st.k]); st.label = lb.el; st.lines = lb.lines;
+  });
+  // centre the composition vertically (orbit + stations + labels); the orbit stays centred horizontally
+  let y0 = Infinity, y1 = -Infinity;
+  const ob = orbit.getBBox(); y0 = Math.min(y0, ob.y); y1 = Math.max(y1, ob.y + ob.height);
+  S.forEach(st => {
+    const b = st.label.getBBox();
+    y0 = Math.min(y0, b.y, st.y - LOCK.stationR); y1 = Math.max(y1, b.y + b.height, st.y + LOCK.stationR);
+  });
+  SHIFT.y = Math.round((600 - (y0 + y1) / 2) * 2) / 2;
+  scene.setAttribute('transform', `translate(0 ${SHIFT.y})`);
+}
+
+/* ----------------------------------- timeline ----------------------------------- */
+function dotArc(F) {
+  for (let k = 0; k < 4; k++) {
+    const t0 = FM.share * k + FM.travel[0], t1 = FM.share * k + FM.travel[1];
+    if (F <= t0) return S[k].s;
+    if (F < t1) return lerp(S[k].s, S[k + 1].s, ease((F - t0) / (t1 - t0), 3, 0.35));   // longer start ramp: calm departure
+  }
+  return S[4].s;
+}
+function phi(k, F) {          // station fill 0-1
+  const base = FM.share * k;
+  const on = k === 0 ? 1 : ease((F - base - FM.fill[0]) / (FM.fill[1] - FM.fill[0]));
+  const off = k === 4 ? 0 : ease((F - base - FM.unfill[0]) / (FM.unfill[1] - FM.unfill[0]));
+  return on * (1 - off);
+}
+window.seek = p => {
+  const F = clamp01(+p) * FM.last;
+  const pt = orbit.getPointAtLength(dotArc(F));
+  dot.setAttribute('cx', pt.x.toFixed(3)); dot.setAttribute('cy', pt.y.toFixed(3));
+  S.forEach(st => {
+    const f = phi(st.k, F);
+    show(st.fill, f > 0);
+    st.fill.setAttribute('r', lerp(DOT_R, LOCK.stationR + SW.station / 2, f).toFixed(3));
+    const onTop = Math.hypot(pt.x - st.x, pt.y - st.y) < LOCK.stationR * 0.7;   // dot covering the number
+    show(st.num, f >= 0.5 || !onTop);
+    st.num.setAttribute('fill', f >= 0.5 ? LOCK.white : LOCK.ink);
+    st.label.setAttribute('fill', mix(LOCK.muted, LOCK.ink, f));
+  });
+  PICTO.forEach((pc, k) => {
+    const base = FM.share * k;
+    const b = clamp01((F - base - FM.build[0]) / (FM.build[1] - FM.build[0]));
+    const c = k < 4 ? clamp01((F - base - FM.clear[0]) / (FM.clear[1] - FM.clear[0])) : 0;
+    const vis = b > 0 && c < 1;
+    pc.g.setAttribute('display', vis ? 'inline' : 'none');
+    if (vis) pc.render(b, c);
+  });
+  return F;
+};
+
+/* --------------------------------- checks --------------------------------- */
+const r1 = v => +v.toFixed(1);
+function box(el) { const b = el.getBBox(); return { x0: b.x, y0: b.y + SHIFT.y, x1: b.x + b.width, y1: b.y + b.height + SHIFT.y }; }
+function orbitPts(step = 3) { const L = orbit.getTotalLength(), out = []; for (let s = 0; s < L; s += step) { const p = orbit.getPointAtLength(s); out.push([p.x, p.y + SHIFT.y]); } return out; }
+const distBox = (x, y, b) => Math.hypot(Math.max(b.x0 - x, 0, x - b.x1), Math.max(b.y0 - y, 0, y - b.y1));
+window.info = () => {
+  const pts = orbitPts();
+  const labels = S.map(st => {
+    const b = box(st.label);
+    return { step: st.k + 1, lines: st.lines, box: [b.x0, b.y0, b.x1, b.y1].map(r1),
+             orbitGap: r1(Math.min(...pts.map(([x, y]) => distBox(x, y, b))) - SW.orbit / 2),
+             edgeGap: r1(Math.min(b.x0, b.y0, 1200 - b.x1, 1200 - b.y1)),
+             stationGap: r1(Math.min(...S.filter(o => o !== st).map(o => distBox(o.x, o.y + SHIFT.y, b) - LOCK.stationR))) };
+  });
+  const overlaps = [];
+  labels.forEach((a, i) => labels.forEach((c, j) => {
+    if (j <= i) return;
+    const [ax0, ay0, ax1, ay1] = a.box, [cx0, cy0, cx1, cy1] = c.box;
+    if (ax0 < cx1 && cx0 < ax1 && ay0 < cy1 && cy0 < ay1) overlaps.push([a.step, c.step]);
+  }));
+  const picto = PICTO.map((pc, k) => {                       // pictogram at its hold vs orbit / stations
+    window.seek((FM.share * k + 16) / FM.last);
+    const b = pc.g.getBBox(), bb = { x0: b.x + ORB.cx, y0: b.y + ORB.cy + SHIFT.y, x1: b.x + b.width + ORB.cx, y1: b.y + b.height + ORB.cy + SHIFT.y };
+    return { step: k + 1, box: [bb.x0, bb.y0, bb.x1, bb.y1].map(r1),
+             orbitGap: r1(Math.min(...pts.map(([x, y]) => distBox(x, y, bb)))),
+             stationGap: r1(Math.min(...S.map(o => distBox(o.x, o.y + SHIFT.y, bb) - LOCK.stationR))) };
+  });
+  window.seek(0);
+  return { out: OUT, unitsPerPx: U, shiftY: SHIFT.y, orbitLength: r1(orbit.getTotalLength()), weightsPx: PX,
+           stations: S.map(st => ({ step: st.k + 1, x: r1(st.x), y: r1(st.y + SHIFT.y), arc: r1(st.s), nx: +st.nx.toFixed(3) })),
+           labels, labelOverlaps: overlaps, picto };
+};
+window.audit = () => {     // dot continuity + landing accuracy, in output px
+  let prev = null, maxStep = 0, at = 0;
+  for (let f = 0; f <= FM.last; f++) {
+    const p = orbit.getPointAtLength(dotArc(f));
+    if (prev) { const d = Math.hypot(p.x - prev.x, p.y - prev.y) / U; if (d > maxStep) { maxStep = d; at = f; } }
+    prev = p;
+  }
+  const landing = S.map(st => {
+    const p = orbit.getPointAtLength(dotArc(FM.share * st.k));
+    return r1(Math.hypot(p.x - st.x, p.y - st.y) / U);
+  });
+  return { maxDotStepPx: r1(maxStep), atFrame: at, landingErrorPx: landing };
+};
+window.READY = (async () => {
+  await document.fonts.load(`600 ${LOCK.labelPx}px 'Inter Lock'`);
+  const fontOK = document.fonts.check(`600 ${LOCK.labelPx}px 'Inter Lock'`);
+  layout();
+  window.seek(+(Q.get('p') || 0));
+  return { fontOK };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>MEA Agency cara kerja: scroll-scrub test</title>
+<link rel="preload" as="image" type="image/webp" href="../posters/poster-first-1200.webp" media="(min-width: 768px)">
+<link rel="preload" as="image" type="image/webp" href="../posters/poster-first-800.webp" media="(max-width: 767.98px)">
+<style>
+  @font-face { font-family: "Inter"; src: url("inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Inter"; src: url("inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  :root {
+    --bg: #FFFFFF; --fg: #1A1A1A; --muted: #71717A; --body: #52525B; --line: #E4E4E7; --o1: #EC7832; --o2: #F69541;
+    --step: 72vh; --step: 72svh;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { width: min(1240px, 100%); margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+  .intro { padding-top: clamp(64px, 14vh, 140px); padding-bottom: clamp(24px, 6vh, 64px); }
+  .intro h2 { font-weight: 600; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.022em; margin: 0; max-width: 17ch; text-wrap: balance; }
+
+  .process { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); column-gap: clamp(24px, 5vw, 72px); }
+  .visual { position: sticky; top: 0; align-self: start; height: 100vh; height: 100svh; display: grid; place-items: center; }
+  .stage { position: relative; width: 100%; max-width: min(620px, 88vh); max-width: min(620px, 88svh); aspect-ratio: 1 / 1; }
+  .stage img, .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage canvas { visibility: hidden; }
+  .stage.live canvas { visibility: visible; }
+  .stage.live img { visibility: hidden; }
+
+  .steps { list-style: none; margin: 0; padding: 50vh 0; padding: 50svh 0; }
+  .step { height: var(--step); display: grid; align-content: center; justify-items: start; gap: 14px; }
+  .num { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 600 17px/1 Inter, system-ui, sans-serif;
+         color: var(--fg); box-shadow: inset 0 0 0 1.5px var(--fg); font-variant-numeric: tabular-nums; }
+  .step h3 { margin: 0; font-weight: 600; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -0.015em; color: var(--muted); }
+  .step p { margin: 0; max-width: 34ch; color: var(--body); }
+  .step.on .num { color: #FFFFFF; background: linear-gradient(135deg, var(--o1), var(--o2)); box-shadow: none; }
+  .step.on h3 { color: var(--fg); }
+
+  .outro { min-height: 90vh; min-height: 90svh; padding-top: 96px; color: var(--body); }
+
+  @media (max-width: 767.98px) {
+    :root { --sq: min(calc(100vw - 40px), 46svh); --step: 58vh; --step: 58svh; }
+    .process { grid-template-columns: 1fr; }
+    .visual { height: auto; padding: 12px 0; background: var(--bg); z-index: 2; }
+    .stage { width: var(--sq); max-width: none; }
+    .steps { padding: calc((100vh - var(--sq) - 24px) / 2) 0; padding: calc((100svh - var(--sq) - 24px) / 2) 0; }
+    .step { gap: 10px; }
+  }
+
+  .hud { position: fixed; z-index: 10; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%); display: flex; gap: 14px;
+         padding: 9px 14px; border-radius: 12px; background: rgba(26, 26, 26, 0.88); color: #E4E4E7; font: 600 13px/1 Inter, system-ui, sans-serif;
+         font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .hud span b { color: #FFFFFF; font-weight: 600; }
+</style>
+</head>
+<body>
+<header class="wrap intro">
+  <h2>Setiap kerja sama berjalan dalam lima langkah</h2>
+</header>
+
+<section class="wrap process" id="process" aria-labelledby="process-title">
+  <h2 id="process-title" hidden>Cara kerja</h2>
+  <div class="visual">
+    <div class="stage" id="stage" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 767.98px)" srcset="../posters/poster-first-800.webp">
+        <img id="poster" src="../posters/poster-first-1200.webp" width="1200" height="1200" alt="" fetchpriority="high">
+      </picture>
+      <canvas id="seq"></canvas>
+    </div>
+  </div>
+  <ol class="steps">
+    <li class="step on" aria-current="step"><span class="num">1</span><h3>Riset awal toko</h3><p>Tim membaca data Seller Center toko Anda sebelum memberi saran apa pun.</p></li>
+    <li class="step"><span class="num">2</span><h3>Strategi tertulis</h3><p>Target, prioritas channel, dan risiko ditulis, lalu disepakati bersama.</p></li>
+    <li class="step"><span class="num">3</span><h3>Rencana per periode</h3><p>Strategi diturunkan jadi rencana bulanan dengan target mingguan.</p></li>
+    <li class="step"><span class="num">4</span><h3>Eksekusi tim</h3><p>Iklan, konten, live, dan toko dijalankan oleh divisinya masing-masing.</p></li>
+    <li class="step"><span class="num">5</span><h3>Rekap mingguan</h3><p>Hasil minggu lalu dan langkah berikutnya dilaporkan setiap minggu.</p></li>
+  </ol>
+</section>
+
+<section class="wrap outro"><p>Scroll back up to scrub the sequence again.</p></section>
+
+<div class="hud" aria-live="off"><span>frame <b id="hf">0</b>/149</span><span>step <b id="hs">1</b></span><span>loaded <b id="hl">0</b></span><span id="hm"></span></div>
+
+<script>
+(() => {
+  'use strict';
+  const SEQ = {
+    desktop: { dir: '../frames/desktop/', count: @@DCOUNT@@, size: 1200 },
+    mobile:  { dir: '../frames/mobile/',  count: @@MCOUNT@@, size: 800 },
+  };
+  const HOLDS = [17, 47, 77, 107, 149];          // complete pictogram per step, on the 150-frame scale
+  const $ = id => document.getElementById(id);
+  const section = $('process'), stage = $('stage'), canvas = $('seq'), ctx = canvas.getContext('2d');
+  const steps = [...document.querySelectorAll('.step')];
+  const mq = matchMedia('(max-width: 767.98px)');
+  const seq = mq.matches ? SEQ.mobile : SEQ.desktop;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const frames = new Array(seq.count), loaded = new Uint8Array(seq.count);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const to150 = i => Math.round(i * 149 / (seq.count - 1));      // this set's index -> 150-frame scale
+  const fromF = f => Math.round(f * (seq.count - 1) / 149);      // 150-frame scale -> this set's index
+  let current = 0, target = 0, drawn = -1, raf = 0, inView = true, nLoaded = 0, active = -1;
+
+  // Brief: frame 0 when the section top meets the viewport top, last frame when its bottom meets the viewport bottom.
+  function progress() {
+    const span = section.offsetHeight - innerHeight;
+    return span > 0 ? clamp(-section.getBoundingClientRect().top / span, 0, 1) : 0;
+  }
+  function setStep(k) {
+    if (k === active) return;
+    active = k;
+    steps.forEach((s, i) => {
+      s.classList.toggle('on', i === k);
+      if (i === k) s.setAttribute('aria-current', 'step'); else s.removeAttribute('aria-current');
+    });
+    $('hs').textContent = k + 1;
+  }
+  function sizeCanvas() {
+    const px = Math.max(1, Math.round(Math.min(stage.clientWidth * Math.min(devicePixelRatio || 1, 2), seq.size)));
+    if (canvas.width !== px) { canvas.width = canvas.height = px; drawn = -1; }
+  }
+  function nearest(i) {
+    if (loaded[i]) return i;
+    for (let d = 1; d < seq.count; d++) {
+      if (i - d >= 0 && loaded[i - d]) return i - d;
+      if (i + d < seq.count && loaded[i + d]) return i + d;
+    }
+    return -1;
+  }
+  function paint() {
+    const k = nearest(Math.round(current));
+    if (k < 0 || k === drawn) return;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(frames[k], 0, 0, canvas.width, canvas.height);      // frames are opaque, no clear needed
+    drawn = k;
+    stage.classList.add('live');
+    $('hf').textContent = to150(k);
+  }
+  function tick() {
+    raf = 0;
+    const p = progress();
+    if (reduce) {
+      setStep(Math.min(4, Math.floor(p * 5)));
+      current = target = fromF(HOLDS[active]);
+    } else {
+      target = p * (seq.count - 1);
+      current += (target - current) * 0.25;
+      if (Math.abs(target - current) < 0.02) current = target;
+      setStep(Math.min(4, Math.floor(to150(Math.round(current)) / 30)));   // follow the drawn frame, not the scroll
+    }
+    paint();
+    if (current !== target && inView) raf = requestAnimationFrame(tick);
+  }
+  const kick = () => { if (!raf && inView) raf = requestAnimationFrame(tick); };
+
+  // Progressive load: first, last, then every 16th, 8th, 4th, 2nd frame, then the rest.
+  function order(n) {
+    if (reduce) return [...new Set(HOLDS.map(fromF))];
+    const out = [0, n - 1], seen = new Set(out);
+    for (let s = 16; s >= 1; s >>= 1) for (let i = 0; i < n; i += s) if (!seen.has(i)) { seen.add(i); out.push(i); }
+    return out;
+  }
+  function load() {
+    const q = order(seq.count); let next = 0, busy = 0;
+    const pump = () => {
+      while (busy < 6 && next < q.length) {
+        const i = q[next++], im = new Image(); busy++;
+        im.decoding = 'async';
+        im.onload = () => (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => {
+          frames[i] = im; loaded[i] = 1; nLoaded++; busy--; $('hl').textContent = `${nLoaded}/${q.length}`;
+          drawn = -1; paint(); kick(); pump();
+        });
+        im.onerror = () => { busy--; pump(); };
+        im.src = seq.dir + String(i).padStart(3, '0') + '.webp';
+      }
+    };
+    pump();
+  }
+
+  $('hm').textContent = `${seq.size} px set${reduce ? ', reduced motion' : ''}`;
+  mq.addEventListener('change', () => location.reload());        // different frame set below 768 px
+  new IntersectionObserver(es => { inView = es[0].isIntersecting; if (inView) kick(); }, { rootMargin: '120px' }).observe(section);
+  addEventListener('scroll', kick, { passive: true });
+  addEventListener('resize', () => { sizeCanvas(); drawn = -1; paint(); kick(); });
+  if ('ResizeObserver' in window) new ResizeObserver(() => { sizeCanvas(); drawn = -1; paint(); }).observe(stage);
+  sizeCanvas();
+  const start = () => setTimeout(load, 0);
+  if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  kick();
+})();
+</script>
+</body>
+</html>
