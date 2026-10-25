@@ -1,0 +1,98 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "http://localhost:8080/#organization",
+   "name": "MEA Agency",
+   "legalName": "PT MEA Agensi Digital",
+   "url": "http://localhost:8080/",
+   "telephone": "+6282117932648",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Rajawali Barat No.77A",
+    "addressLocality": "Bandung",
+    "postalCode": "40184",
+    "addressCountry": "ID"
+   },
+   "founder": {
+    "@type": "Person",
+    "name": "Yohan Agustian"
+   },
+   "foundingDate": "2020"
+  },
+  {
+   "@type": "Service",
+   "@id": "http://localhost:8080/jasa-performance-ads/#service",
+   "name": "Iklan Shopee dan TikTok Shop",
+   "url": "http://localhost:8080/jasa-performance-ads/",
+   "provider": {
+    "@id": "http://localhost:8080/#organization"
+   },
+   "areaServed": "ID",
+   "serviceType": "Marketplace advertising management"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "http://localhost:8080/jasa-performance-ads/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Berapa budget iklan minimum?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Budget ditentukan setelah riset awal, karena bergantung pada kategori, harga produk, dan target Anda. Kami tidak menjanjikan angka ROAS sebelum membaca data toko."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Berapa lama sampai hasilnya terlihat?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Minggu-minggu awal dipakai untuk menguji struktur kampanye dan materi iklan. Rekap mingguan menunjukkan perkembangannya sejak minggu pertama."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Apakah layanan ini bisa digabung dengan layanan lain?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Bisa. Iklan paling efektif bila materi iklan, toko, dan live dikerjakan tim yang sama. Kombinasinya kami usulkan di proposal."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Bagaimana laporan dikirim?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Setiap pekan Anda menerima rekap hasil dan rencana berikutnya dari account manager."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "http://localhost:8080/jasa-performance-ads/#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Beranda",
+     "item": "http://localhost:8080/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Layanan",
+     "item": "http://localhost:8080/services/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Iklan Shopee dan TikTok Shop",
+     "item": "http://localhost:8080/jasa-performance-ads/"
+    }
+   ]
+  }
+ ]
+}

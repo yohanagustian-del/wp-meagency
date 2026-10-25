@@ -1,0 +1,67 @@
+/* MEA Orbit · admin.css: meta box dan halaman opsi "Homepage MEA". */
+
+.mea-fields {
+	display: grid;
+	gap: 18px;
+	max-width: 960px;
+}
+
+.mea-field {
+	display: grid;
+	gap: 6px;
+}
+
+.mea-label {
+	font-weight: 600;
+}
+
+.mea-object {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 12px;
+	padding: 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+}
+
+.mea-repeater .mea-rows {
+	list-style: none;
+	margin: 0 0 8px;
+	padding: 0;
+	display: grid;
+	gap: 8px;
+}
+
+.mea-row {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 12px;
+	padding: 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+}
+
+.mea-row-fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.mea-row-tools {
+	display: grid;
+	align-content: start;
+	gap: 4px;
+}
+
+.mea-media {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.mea-media-thumb img {
+	width: 48px;
+	height: 48px;
+	object-fit: cover;
+	display: block;
+}

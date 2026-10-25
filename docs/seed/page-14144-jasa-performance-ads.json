@@ -1,0 +1,93 @@
+{
+  "page_id": 14144,
+  "url": "/jasa-performance-ads/",
+  "template": "page-templates/template-layanan.php",
+  "meta": {
+    "mea_judul_pendek": "Iklan Shopee dan TikTok Shop",
+    "mea_h1": "Iklan Shopee dan TikTok Shop berbasis data penjualan",
+    "mea_lede": "Tim iklan kami mengelola Shopee Ads dan TikTok Shop Ads setiap hari, dengan target ROAS yang disepakati setelah membaca data toko Anda.",
+    "mea_foto_hero_id": 15630,
+    "mea_foto_hero_alt": "Tim iklan MEA Agency meninjau performa kampanye",
+    "mea_cocok": [
+      "Omzet toko Anda Rp 250 juta sampai 1 miliar per bulan dan iklan mulai menjadi biaya terbesar.",
+      "Anda butuh tim yang mengeksekusi, bukan pelatihan agar tim sendiri bisa mengerjakan.",
+      "Anda ingin laporan rutin yang menjelaskan uang iklan dipakai ke mana."
+    ],
+    "mea_belum_cocok": [
+      "Toko masih baru mulai dan belum punya data penjualan untuk dibaca.",
+      "Anda mencari cara mengatur iklan sendiri. Untuk itu, program pendampingan SkilSkul lebih tepat."
+    ],
+    "mea_dikerjakan_lede": "Lingkup akhirnya ditulis di proposal setelah riset awal. Ini pekerjaan yang biasanya masuk.",
+    "mea_deliverables": [
+      {
+        "judul": "Riset kata kunci dan produk",
+        "deskripsi": "Menentukan produk yang layak diiklankan dan kata kunci yang benar-benar dicari pembeli."
+      },
+      {
+        "judul": "Struktur kampanye",
+        "deskripsi": "Memisahkan kampanye uji, kampanye skala, dan kampanye proteksi merek."
+      },
+      {
+        "judul": "Materi iklan",
+        "deskripsi": "Video dan gambar iklan diproduksi tim konten, lalu diuji berdampingan."
+      },
+      {
+        "judul": "Optimasi harian",
+        "deskripsi": "Budget dan bid disesuaikan setiap hari berdasarkan hasil, bukan jadwal."
+      },
+      {
+        "judul": "Rekap mingguan",
+        "deskripsi": "Ringkasan angka, penjelasan perubahan, dan langkah minggu berikutnya."
+      }
+    ],
+    "mea_langkah": [
+      {
+        "judul": "Riset awal toko",
+        "deskripsi": "Data Seller Center dibaca sebelum ada saran apa pun."
+      },
+      {
+        "judul": "Strategi tertulis",
+        "deskripsi": "Target dan prioritas disetujui bersama."
+      },
+      {
+        "judul": "Rencana per periode",
+        "deskripsi": "Rencana bulanan dengan target mingguan."
+      },
+      {
+        "judul": "Eksekusi tim",
+        "deskripsi": "Dikerjakan divisi iklan dan konten."
+      },
+      {
+        "judul": "Rekap mingguan",
+        "deskripsi": "Hasil dan langkah berikutnya tiap pekan."
+      }
+    ],
+    "mea_kutipan_id": "k4",
+    "mea_kasus_terkait_id": 14512,
+    "mea_bukti_judul": "Bellarosa: iklan Rp 97 juta menghasilkan Rp 2 miliar",
+    "mea_bukti_angka": [
+      "ROAS",
+      "GMV"
+    ],
+    "mea_faq": [
+      {
+        "tanya": "Berapa budget iklan minimum?",
+        "jawab": "Budget ditentukan setelah riset awal, karena bergantung pada kategori, harga produk, dan target Anda. Kami tidak menjanjikan angka ROAS sebelum membaca data toko."
+      },
+      {
+        "tanya": "Berapa lama sampai hasilnya terlihat?",
+        "jawab": "Minggu-minggu awal dipakai untuk menguji struktur kampanye dan materi iklan. Rekap mingguan menunjukkan perkembangannya sejak minggu pertama."
+      },
+      {
+        "tanya": "Apakah layanan ini bisa digabung dengan layanan lain?",
+        "jawab": "Bisa. Iklan paling efektif bila materi iklan, toko, dan live dikerjakan tim yang sama. Kombinasinya kami usulkan di proposal."
+      },
+      {
+        "tanya": "Bagaimana laporan dikirim?",
+        "jawab": "Setiap pekan Anda menerima rekap hasil dan rencana berikutnya dari account manager."
+      }
+    ],
+    "mea_service_type": "Marketplace advertising management",
+    "mea_sumber_form": "layanan-performance-ads"
+  }
+}

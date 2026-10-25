@@ -530,3 +530,45 @@ Google Fonts menyajikan Inter sebagai satu file variable (bobot 400–700, subse
 ### 15.3 Aset per halaman (hasil uji lokal)
 
 Halaman umum hanya memuat `base.css` + `content.css`. Selama Elementor aktif, atau bila kontennya dibangun Elementor, ditambah `elementor-compat.css`. Belum ada JavaScript tema di halaman umum.
+
+---
+
+## 16. Catatan Fase 2 **[baru]**
+
+### 16.1 Yang dibangun
+
+- `front-page.php`, `page-templates/template-layanan.php`, `page-templates/template-studi-kasus.php`, dan `template-parts/` per section. Urutan section dan copy sama dengan prototipe.
+- `inc/fields.php`: satu definisi field dipakai untuk `register_post_meta` (show_in_rest + skema, kunci asing ditolak HTTP 400), sanitasi, meta box, dan pembacaan nilai. Meta box muncul setelah template dipilih dan disimpan.
+- `inc/options.php`: Tampilan → Homepage MEA (opsi `mea_orbit_home`) dan daftar kutipan (`mea_orbit_kutipan`, teks final brief 3.4). Keduanya terbaca di `/wp/v2/settings`.
+- `inc/seo.php`: JSON-LD disisipkan ke graph Rank Math (Organization dilengkapi di homepage; Service + FAQPage + BreadcrumbList di layanan; Article + BreadcrumbList di studi kasus). Hanya node Rank Math bertipe sama yang diganti. Cadangan mandiri bila Rank Math atau modul schema-nya nonaktif.
+- `assets/css/orbit.css`, `assets/css/admin.css`, `assets/js/admin-fields.js` (repeater dan pemilih gambar, JS vanilla, hanya di wp-admin).
+- `assets/motion/`: salinan file runtime M1–M4 dari `motion-src/` tanpa diubah (frames, posters, video, README). Poster sudah dipakai di layout. Animasinya di Fase 4.
+- `docs/seed/`: isi awal 14144 dan 14512 (format body REST) dan draf alt text.
+
+### 16.2 Keputusan kecil selama Fase 2
+
+| # | Keputusan | Alasan |
+|---|---|---|
+| a | Field halaman layanan dan studi kasus **tanpa default berisi copy** | Template akan dipakai halaman lain; default berisi copy Bellarosa atau iklan akan bocor ke sana. Copy prototipe ada di `docs/seed/` |
+| b | Field tambahan `foto_hero_alt` (layanan) dan pilihan loop M2 per kartu layanan (opsi Homepage) | Alt per penempatan dan pemetaan kartu → loop Enam Sisi |
+| c | Visual M4 hanya dipakai bila studi kasus unggulan adalah Bellarosa dengan izin aktif. Studi kasus lain (atau izin dicabut) memakai foto proses kerja pertamanya | Angka Bellarosa terbakar di video M4 |
+| d | Reduced motion dan ukuran HP untuk poster diatur dengan `<picture><source media>` | Berjalan tanpa JavaScript; tidak ada unduhan sequence |
+| e | Di HP, kotak sticky Cara kerja punya latar selebar layar | Teks langkah tidak terlihat di samping kotak saat discroll |
+| f | Tinggi blok langkah 28svh (desktop) / 26svh (HP) | Cukup untuk scrub 30 frame per langkah, tanpa ruang kosong berlebihan |
+| g | Form konsultasi memanggil `mea_leads_form()` dari plugin (Fase 3). Tanpa plugin: tombol WhatsApp | Tema tetap berfungsi tanpa plugin |
+| h | Menu cadangan menandai "Layanan" di template layanan dan "Studi kasus" di template studi kasus (`aria-current`) | Sama dengan prototipe |
+
+### 16.3 Hasil uji lokal
+
+- Prototipe vs tema, 1366 dan 390 px: H1 dan urutan H2 sama, tanpa error JS, tanpa scroll horizontal (`docs/qa/fase-2/banding-*.jpg`). Perbedaan yang memang direncanakan: tile M2, kotak sticky M3, poster M4, dan form (Fase 3).
+- Halaman Orbit hanya memuat `base.css` + `orbit.css`. Belum ada JS. Satu gambar `fetchpriority="high"` per halaman (poster hero / foto hero layanan). Tidak ada hotlink ke meagency.co.id.
+- Request homepage setelah seluruh halaman discroll: 20 (motion belum dipasang).
+- Izin publikasi dimatikan → angka homepage, Panel Hasil, bukti layanan, dan M4 hilang; dinyalakan lagi → kembali.
+- Meta box disimpan dari wp-admin tanpa perubahan → isi meta identik dengan seed. Opsi Homepage tersimpan dan notifikasinya tampil.
+- PHPCS (WordPress) bersih, tanpa warning/notice PHP dengan WP_DEBUG.
+
+### 16.4 Dicek di staging
+
+- Filter og:image cadangan (`rank_math/opengraph/*/add_additional_images`) dan graph JSON-LD Rank Math yang sebenarnya, lewat Rich Results Test.
+- Title dan meta description 14144 dan 14512 di Rank Math masih memakai teks lama (Google/Bing, "brand baru"). Perlu diperbarui tim di wp-admin.
+- Alt foto produk Bellarosa di `docs/seed/media-alt.json` masih netral; perlu dicek per foto.

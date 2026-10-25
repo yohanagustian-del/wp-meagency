@@ -1,0 +1,234 @@
+[
+ {
+  "w": 1366,
+  "name": "homepage",
+  "kind": "prototipe",
+  "h1": [
+   "Toko online Anda, kami yang jalankan"
+  ],
+  "h2": [
+   "Orang-orang yang mengerjakan toko Anda",
+   "Enam sisi operasional, satu tim",
+   "Cara kami bekerja",
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 6266,
+  "overflowX": false,
+  "requests": 10,
+  "errors": []
+ },
+ {
+  "w": 1366,
+  "name": "homepage",
+  "kind": "tema",
+  "h1": [
+   "Toko online Anda, kami yang jalankan"
+  ],
+  "h2": [
+   "Orang-orang yang mengerjakan toko Anda",
+   "Enam sisi operasional, satu tim",
+   "Cara kami bekerja",
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 7712,
+  "overflowX": false,
+  "requests": 20,
+  "errors": []
+ },
+ {
+  "w": 1366,
+  "name": "layanan",
+  "kind": "prototipe",
+  "h1": [
+   "Iklan Shopee dan TikTok Shop berbasis data penjualan"
+  ],
+  "h2": [
+   "Apakah layanan ini cocok untuk Anda",
+   "Yang dikerjakan tim kami",
+   "Cara kami bekerja",
+   "Bellarosa: iklan Rp 97 juta menghasilkan Rp 2 miliar",
+   "Pertanyaan yang sering diajukan",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 5189,
+  "overflowX": false,
+  "requests": 3,
+  "errors": []
+ },
+ {
+  "w": 1366,
+  "name": "layanan",
+  "kind": "tema",
+  "h1": [
+   "Iklan Shopee dan TikTok Shop berbasis data penjualan"
+  ],
+  "h2": [
+   "Apakah layanan ini cocok untuk Anda",
+   "Yang dikerjakan tim kami",
+   "Cara kami bekerja",
+   "Bellarosa: iklan Rp 97 juta menghasilkan Rp 2 miliar",
+   "Pertanyaan yang sering diajukan",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 6330,
+  "overflowX": false,
+  "requests": 8,
+  "errors": []
+ },
+ {
+  "w": 1366,
+  "name": "studi-kasus",
+  "kind": "prototipe",
+  "h1": [
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar"
+  ],
+  "h2": [
+   "Tantangannya",
+   "Yang kami kerjakan",
+   "Hasilnya",
+   "Studi kasus lain",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 3893,
+  "overflowX": false,
+  "requests": 3,
+  "errors": []
+ },
+ {
+  "w": 1366,
+  "name": "studi-kasus",
+  "kind": "tema",
+  "h1": [
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar"
+  ],
+  "h2": [
+   "Tantangannya",
+   "Yang kami kerjakan",
+   "Hasilnya",
+   "Studi kasus lain",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 3693,
+  "overflowX": false,
+  "requests": 7,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "homepage",
+  "kind": "prototipe",
+  "h1": [
+   "Toko online Anda, kami yang jalankan"
+  ],
+  "h2": [
+   "Orang-orang yang mengerjakan toko Anda",
+   "Enam sisi operasional, satu tim",
+   "Cara kami bekerja",
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 8563,
+  "overflowX": false,
+  "requests": 8,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "homepage",
+  "kind": "tema",
+  "h1": [
+   "Toko online Anda, kami yang jalankan"
+  ],
+  "h2": [
+   "Orang-orang yang mengerjakan toko Anda",
+   "Enam sisi operasional, satu tim",
+   "Cara kami bekerja",
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 10157,
+  "overflowX": false,
+  "requests": 18,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "layanan",
+  "kind": "prototipe",
+  "h1": [
+   "Iklan Shopee dan TikTok Shop berbasis data penjualan"
+  ],
+  "h2": [
+   "Apakah layanan ini cocok untuk Anda",
+   "Yang dikerjakan tim kami",
+   "Cara kami bekerja",
+   "Bellarosa: iklan Rp 97 juta menghasilkan Rp 2 miliar",
+   "Pertanyaan yang sering diajukan",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 6529,
+  "overflowX": false,
+  "requests": 3,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "layanan",
+  "kind": "tema",
+  "h1": [
+   "Iklan Shopee dan TikTok Shop berbasis data penjualan"
+  ],
+  "h2": [
+   "Apakah layanan ini cocok untuk Anda",
+   "Yang dikerjakan tim kami",
+   "Cara kami bekerja",
+   "Bellarosa: iklan Rp 97 juta menghasilkan Rp 2 miliar",
+   "Pertanyaan yang sering diajukan",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 7333,
+  "overflowX": false,
+  "requests": 8,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "studi-kasus",
+  "kind": "prototipe",
+  "h1": [
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar"
+  ],
+  "h2": [
+   "Tantangannya",
+   "Yang kami kerjakan",
+   "Hasilnya",
+   "Studi kasus lain",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 5511,
+  "overflowX": false,
+  "requests": 3,
+  "errors": []
+ },
+ {
+  "w": 390,
+  "name": "studi-kasus",
+  "kind": "tema",
+  "h1": [
+   "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar"
+  ],
+  "h2": [
+   "Tantangannya",
+   "Yang kami kerjakan",
+   "Hasilnya",
+   "Studi kasus lain",
+   "Ceritakan kondisi toko Anda"
+  ],
+  "height": 5096,
+  "overflowX": false,
+  "requests": 7,
+  "errors": []
+ }
+]

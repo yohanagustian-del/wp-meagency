@@ -1,0 +1,84 @@
+{
+  "page_id": 14512,
+  "url": "/bellarosa/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Bellarosa",
+    "mea_h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "mea_kartu_judul": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "mea_kartu_lede": "Produsen kue kering sejak 2005 ini kami dampingi dua tahun. Affiliate, live, dan iklan di momen Ramadhan membawa GMV April 2023 ke Rp 8,2 miliar.",
+    "mea_kategori": "Kue kering dan cokelat",
+    "mea_kanal": "Shopee dan TikTok Shop",
+    "mea_periode": "Dua tahun, puncak Ramadhan 2023",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "toko",
+        "page_id": 0
+      },
+      {
+        "label": "konten",
+        "page_id": 0
+      },
+      {
+        "label": "live",
+        "page_id": 0
+      },
+      {
+        "label": "affiliate",
+        "page_id": 0
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "Rp 8,2 miliar",
+        "label": "GMV",
+        "tampil_beranda": true,
+        "nilai_beranda": "",
+        "label_beranda": "GMV Bellarosa dalam sebulan, April 2023"
+      },
+      {
+        "nilai": "21x",
+        "label": "ROAS",
+        "tampil_beranda": true,
+        "nilai_beranda": "",
+        "label_beranda": "ROAS iklan Bellarosa: Rp 97 juta menghasilkan Rp 2 miliar"
+      },
+      {
+        "nilai": "75 : 25",
+        "label": "Porsi GMV dari organik dan affiliate dibanding iklan",
+        "tampil_beranda": true,
+        "nilai_beranda": "75%",
+        "label_beranda": "Porsi GMV Bellarosa dari organik dan affiliate"
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "Organik dan affiliate",
+      "persen_a": 75,
+      "label_b": "Iklan",
+      "persen_b": 25
+    },
+    "mea_tantangan": "<p>Bellarosa adalah produsen dan grosir kue kering dan cokelat sejak 2005, dengan kemasan eksklusif untuk oleh-oleh Lebaran. Tokonya di Shopee dan TikTok Shop dimulai dari nol, dan penjualannya sangat bergantung pada satu momen: Ramadhan.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Riset momentum.</strong> Membaca perilaku pembeli kue kering menjelang Ramadhan, termasuk banyaknya orang yang mencari produk untuk dijual kembali.</li><li><strong>Affiliate dan live.</strong> Merekrut affiliator sebanyak mungkin lewat iklan leads sebelum Ramadhan, ditambah live streaming TikTok. Keduanya menyumbang hingga 75% omzet selama Ramadhan 2023.</li><li><strong>Retargeting dan eksperimen.</strong> Iklan retargeting, A/B testing konten, serta pengujian targeting dan strategi bidding.</li><li><strong>Scaling budget.</strong> Budget iklan dinaikkan hampir setiap hari sampai puncak Ramadhan.</li></ul>",
+    "mea_hasil": "<p>Dalam dua tahun pendampingan, GMV April 2023 mencapai Rp 8,2 miliar: 75% dari organik dan affiliate, 25% dari iklan. Kontribusi iklan sekitar Rp 2 miliar diperoleh dari modal Rp 97 juta, atau ROAS 21.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [
+      {
+        "media_id": 16519,
+        "keterangan": "",
+        "alt": "Produksi konten di studio MEA Agency"
+      }
+    ],
+    "mea_kasus_lain": [
+      18653,
+      16160,
+      16144
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": ""
+  }
+}

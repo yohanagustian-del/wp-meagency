@@ -16,4 +16,8 @@ require MEA_ORBIT_DIR . '/inc/setup.php';
 require MEA_ORBIT_DIR . '/inc/assets.php';
 require MEA_ORBIT_DIR . '/inc/locale.php';
 require MEA_ORBIT_DIR . '/inc/template-tags.php';
+require MEA_ORBIT_DIR . '/inc/fields.php';
+require MEA_ORBIT_DIR . '/inc/options.php';
+require MEA_ORBIT_DIR . '/inc/orbit.php';
+require MEA_ORBIT_DIR . '/inc/seo.php';
 require MEA_ORBIT_DIR . '/inc/elementor.php';

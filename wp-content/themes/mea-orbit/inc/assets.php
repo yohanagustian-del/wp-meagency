@@ -31,6 +31,7 @@ function mea_orbit_enqueue_assets() {
 	wp_enqueue_style( 'mea-orbit-base', MEA_ORBIT_URI . '/assets/css/base.css', array(), mea_orbit_asset_version( 'assets/css/base.css' ) );
 
 	if ( mea_orbit_is_view() ) {
+		wp_enqueue_style( 'mea-orbit-orbit', MEA_ORBIT_URI . '/assets/css/orbit.css', array( 'mea-orbit-base' ), mea_orbit_asset_version( 'assets/css/orbit.css' ) );
 		return;
 	}
 

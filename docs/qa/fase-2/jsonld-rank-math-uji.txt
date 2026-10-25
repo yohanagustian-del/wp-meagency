@@ -1,0 +1,20 @@
+== /
+publisher        Organization legalName=PT MEA Agensi Digital
+WebSite          WebSite
+WebPage          WebPage
+BreadcrumbList   BreadcrumbList
+richSnippet      Article headline=lama
+== /jasa-performance-ads/
+publisher        Organization
+WebSite          WebSite
+WebPage          WebPage
+richSnippet      Article headline=lama
+mea_orbit_0      Service provider=http://localhost:8080/#organization
+mea_orbit_1      FAQPage faq=4
+mea_orbit_2      BreadcrumbList crumbs=Beranda > Layanan > Iklan Shopee dan TikTok Shop
+== /bellarosa/
+publisher        Organization
+WebSite          WebSite
+WebPage          WebPage
+mea_orbit_0      Article headline=Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar
+mea_orbit_1      BreadcrumbList crumbs=Beranda > Studi kasus > Bellarosa

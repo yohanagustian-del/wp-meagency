@@ -83,9 +83,20 @@ function mea_orbit_menu( $location ) {
 		return;
 	}
 
+	// Penanda halaman aktif di menu cadangan, sama dengan prototipe:
+	// template layanan menandai "Layanan", template studi kasus menandai "Studi kasus".
+	$current = '';
+	if ( is_page_template( 'page-templates/template-layanan.php' ) ) {
+		$current = home_url( '/#layanan' );
+	} elseif ( is_page_template( 'page-templates/template-studi-kasus.php' ) ) {
+		$current = home_url( '/study-case/' );
+	} elseif ( is_singular() || is_home() ) {
+		$current = is_home() ? get_permalink( (int) get_option( 'page_for_posts' ) ) : get_permalink();
+	}
+
 	echo '<ul class="menu">';
 	foreach ( mea_orbit_fallback_menu_items( $location ) as $item ) {
-		printf( '<li><a href="%1$s">%2$s</a></li>', esc_url( $item[1] ), esc_html( $item[0] ) );
+		printf( '<li><a href="%1$s"%3$s>%2$s</a></li>', esc_url( $item[1] ), esc_html( $item[0] ), $current === $item[1] ? ' aria-current="page"' : '' );
 	}
 	echo '</ul>';
 }

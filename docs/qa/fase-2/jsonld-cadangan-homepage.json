@@ -1,0 +1,35 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "http://localhost:8080/#organization",
+   "name": "MEA Agency",
+   "legalName": "PT MEA Agensi Digital",
+   "url": "http://localhost:8080/",
+   "telephone": "+6282117932648",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Rajawali Barat No.77A",
+    "addressLocality": "Bandung",
+    "postalCode": "40184",
+    "addressCountry": "ID"
+   },
+   "founder": {
+    "@type": "Person",
+    "name": "Yohan Agustian"
+   },
+   "foundingDate": "2020"
+  },
+  {
+   "@type": "WebSite",
+   "@id": "http://localhost:8080/#website",
+   "url": "http://localhost:8080/",
+   "name": "MEA Agency",
+   "publisher": {
+    "@id": "http://localhost:8080/#organization"
+   },
+   "inLanguage": "id-ID"
+  }
+ ]
+}
