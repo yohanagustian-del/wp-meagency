@@ -1,0 +1,46 @@
+<?php
+/**
+ * Footer situs. Kode yang sama dipakai di setiap URL.
+ *
+ * @package MEA_Orbit
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+$mea_orbit_sales = mea_orbit_sales();
+?>
+<footer class="site-foot">
+	<div class="wrap">
+		<div class="cols">
+			<div>
+				<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="brand-mark" aria-hidden="true"></span>MEA Agency</a>
+				<p class="foot-about"><?php esc_html_e( 'Mengerjakan iklan, toko, konten, dan live untuk brand yang berjualan di Shopee dan TikTok Shop.', 'mea-orbit' ); ?></p>
+			</div>
+			<div>
+				<p class="foot-h" id="foot-layanan"><?php esc_html_e( 'Layanan', 'mea-orbit' ); ?></p>
+				<nav aria-labelledby="foot-layanan">
+					<?php mea_orbit_menu( 'mea-orbit-footer' ); ?>
+				</nav>
+			</div>
+			<div>
+				<p class="foot-h"><?php esc_html_e( 'Kantor', 'mea-orbit' ); ?></p>
+				<p>Jl. Rajawali Barat No.77A<br>Kota Bandung 40184</p>
+			</div>
+			<div>
+				<p class="foot-h"><?php esc_html_e( 'Hubungi', 'mea-orbit' ); ?></p>
+				<ul>
+					<li><a href="<?php echo esc_url( $mea_orbit_sales['wa'] ); ?>"><?php echo esc_html( $mea_orbit_sales['tampil'] ); ?></a></li>
+					<li><a href="https://www.instagram.com/yohanagustian/">Instagram</a></li>
+					<li><a href="https://www.tiktok.com/@101bisnis">TikTok</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="legal">
+			<span>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> PT MEA Agensi Digital</span>
+			<span><?php esc_html_e( 'Bagian dari MEA Grup', 'mea-orbit' ); ?></span>
+		</div>
+	</div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>

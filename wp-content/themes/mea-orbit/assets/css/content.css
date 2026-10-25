@@ -1,0 +1,585 @@
+/*
+ * MEA Orbit · content.css (template umum: halaman, artikel, arsip, pencarian, 404)
+ * Prototipe tidak punya desain artikel. Gaya di sini diturunkan dari token dan
+ * komponen prototipe: Instrument Serif untuk judul, Inter untuk badan, lebar baca
+ * sekitar 70 karakter, oranye hanya untuk aksen.
+ */
+
+.site-main {
+	padding: 0 0 clamp(64px, 9vw, 112px);
+}
+
+/* Halaman yang dibangun Elementor: lebar penuh, tata letak milik Elementor. */
+.site-main.is-elementor {
+	padding: 0;
+}
+
+.entry-head {
+	padding: clamp(32px, 5vw, 56px) 0 clamp(28px, 4vw, 40px);
+	display: grid;
+	gap: 16px;
+}
+
+.entry-head .crumbs {
+	padding-top: 0;
+}
+
+.entry-kicker {
+	margin: 0;
+	font-size: .875rem;
+	font-weight: 600;
+	color: var(--graphite);
+}
+
+.entry-kicker a {
+	text-decoration: none;
+}
+
+.entry-title {
+	font-family: var(--serif);
+	font-weight: 400;
+	letter-spacing: -.01em;
+	line-height: 1.08;
+	font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+	max-width: 32ch;
+	margin: 0;
+}
+
+.entry-meta {
+	margin: 0;
+	font-size: .875rem;
+	color: var(--graphite);
+}
+
+.entry-thumb {
+	margin: 0 0 clamp(28px, 4vw, 40px);
+	border-radius: var(--r);
+	overflow: hidden;
+	background: #E9E9EB;
+}
+
+.entry-thumb img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* Prosa */
+.prose {
+	max-width: 720px;
+	font-size: 1.0625rem;
+	line-height: 1.7;
+}
+
+.prose > :first-child {
+	margin-top: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose figure,
+.prose table,
+.prose pre {
+	margin: 0 0 1.15em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+	line-height: 1.25;
+	margin: 1.8em 0 .6em;
+}
+
+.prose h2 {
+	font-family: var(--serif);
+	font-weight: 400;
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	letter-spacing: -.01em;
+	line-height: 1.12;
+}
+
+.prose h3 {
+	font-weight: 600;
+	font-size: 1.3rem;
+}
+
+.prose h4 {
+	font-weight: 600;
+	font-size: 1.12rem;
+}
+
+.prose a {
+	color: var(--ink);
+	text-decoration: underline;
+	text-decoration-color: var(--o1);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 3px;
+}
+
+.prose a:hover {
+	text-decoration-color: var(--ink);
+}
+
+.prose ul,
+.prose ol {
+	padding-left: 1.4em;
+}
+
+.prose li + li {
+	margin-top: .35em;
+}
+
+.prose img {
+	border-radius: 12px;
+}
+
+.prose blockquote {
+	padding-left: 20px;
+	border-left: 3px solid var(--o1);
+	color: var(--graphite);
+}
+
+.prose figcaption,
+.prose .wp-caption-text {
+	font-size: .875rem;
+	color: var(--graphite);
+	margin-top: 8px;
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: .95rem;
+}
+
+.prose th,
+.prose td {
+	border: 1px solid var(--line);
+	padding: 10px 12px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.prose th {
+	background: var(--paper);
+	font-weight: 600;
+}
+
+.prose pre,
+.prose code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: .9em;
+}
+
+.prose pre {
+	white-space: pre-wrap;
+	background: var(--paper);
+	padding: 16px;
+	border-radius: 10px;
+}
+
+.alignleft {
+	float: left;
+	margin: .3em 1.5em 1em 0;
+}
+
+.alignright {
+	float: right;
+	margin: .3em 0 1em 1.5em;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-caption {
+	max-width: 100%;
+}
+
+/* Halaman klasik (tanpa Elementor) */
+.page-body {
+	padding-top: 8px;
+}
+
+/* Tag, navigasi artikel */
+.entry-foot {
+	max-width: 720px;
+	display: grid;
+	gap: 28px;
+	margin-top: clamp(32px, 5vw, 48px);
+}
+
+.post-tags {
+	margin: 0;
+	font-size: .9rem;
+	color: var(--graphite);
+}
+
+.post-tags a {
+	display: inline-block;
+	margin: 0 6px 6px 0;
+	padding: 4px 12px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	text-decoration: none;
+	color: var(--ink);
+}
+
+.post-nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	border-top: 1px solid var(--line);
+	padding-top: 24px;
+}
+
+.post-nav a {
+	display: grid;
+	gap: 4px;
+	text-decoration: none;
+}
+
+.post-nav .small {
+	font-size: .8rem;
+	color: var(--graphite);
+}
+
+.post-nav .next {
+	text-align: right;
+}
+
+/* Ajakan konsultasi di akhir artikel (tanpa heading, supaya outline artikel tidak berubah) */
+.entry-cta {
+	max-width: 720px;
+	margin-top: clamp(40px, 6vw, 64px);
+	background: var(--ink);
+	color: var(--paper);
+	border-radius: 20px;
+	padding: clamp(24px, 4vw, 40px);
+	display: grid;
+	gap: 16px;
+}
+
+.entry-cta .display {
+	font-family: var(--serif);
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	line-height: 1.12;
+	margin: 0;
+}
+
+.entry-cta p {
+	margin: 0;
+	color: var(--muted-dark);
+	max-width: 56ch;
+}
+
+/* Daftar artikel */
+.archive-head {
+	padding: clamp(32px, 5vw, 56px) 0 clamp(28px, 4vw, 40px);
+	display: grid;
+	gap: 16px;
+}
+
+.archive-head .crumbs {
+	padding-top: 0;
+}
+
+.archive-desc {
+	margin: 0;
+	max-width: 62ch;
+	color: var(--graphite);
+	font-size: 1.125rem;
+}
+
+.post-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: clamp(24px, 3vw, 40px);
+}
+
+.post-card {
+	display: grid;
+	gap: 12px;
+	align-content: start;
+}
+
+.post-card .thumb {
+	display: block;
+	aspect-ratio: 16 / 9;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #E9E9EB;
+}
+
+.post-card .thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.post-card h2 {
+	font: 600 1.2rem/1.3 var(--sans);
+	margin: 0;
+}
+
+.post-card h2 a {
+	text-decoration: none;
+}
+
+.post-card h2 a:hover {
+	text-decoration: underline;
+	text-decoration-color: var(--o1);
+	text-underline-offset: 4px;
+}
+
+.post-card p {
+	margin: 0;
+	color: var(--graphite);
+	font-size: .95rem;
+}
+
+.post-card .meta {
+	font-size: .8rem;
+}
+
+@media (max-width: 900px) {
+	.post-list {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 600px) {
+	.post-list,
+	.post-nav {
+		grid-template-columns: 1fr;
+	}
+
+	.post-nav .next {
+		text-align: left;
+	}
+}
+
+.pagination {
+	margin-top: clamp(40px, 6vw, 64px);
+}
+
+.pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	padding: 0 14px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: .95rem;
+}
+
+.pagination .page-numbers.current {
+	background: var(--ink);
+	border-color: var(--ink);
+	color: var(--paper);
+}
+
+.empty-state {
+	display: grid;
+	gap: 20px;
+	max-width: 62ch;
+}
+
+.empty-state p {
+	margin: 0;
+	color: var(--graphite);
+}
+
+/* Form cari */
+.search-form {
+	display: flex;
+	gap: 8px;
+	max-width: 520px;
+}
+
+.search-form input[type="search"] {
+	flex: 1;
+	font: inherit;
+	min-height: 48px;
+	padding: .7rem .9rem;
+	border: 1px solid #C7C8CC;
+	border-radius: 10px;
+	background: #fff;
+	color: var(--ink);
+}
+
+.search-form input[type="search"]:focus {
+	outline: 2px solid var(--o1);
+	outline-offset: 1px;
+	border-color: var(--ink);
+}
+
+/* Form password */
+.post-password-form {
+	max-width: 560px;
+	display: grid;
+	gap: 16px;
+	padding: clamp(24px, 4vw, 40px);
+	border: 1px solid var(--line);
+	border-radius: 20px;
+	background: var(--paper);
+	margin: clamp(24px, 4vw, 40px) 0;
+}
+
+.post-password-form .pw-intro {
+	margin: 0;
+}
+
+.post-password-form .pw-row {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 8px 12px;
+	align-items: end;
+}
+
+.post-password-form label {
+	grid-column: 1 / -1;
+	font-weight: 600;
+	font-size: .95rem;
+}
+
+.post-password-form input {
+	font: inherit;
+	min-height: 48px;
+	padding: .7rem .9rem;
+	border: 1px solid #C7C8CC;
+	border-radius: 10px;
+	background: #fff;
+	width: 100%;
+}
+
+@media (max-width: 480px) {
+	.post-password-form .pw-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Komentar */
+.comments {
+	max-width: 720px;
+	margin-top: clamp(40px, 6vw, 64px);
+	border-top: 1px solid var(--line);
+	padding-top: 32px;
+}
+
+.comments-title {
+	font: 600 1.25rem/1.3 var(--sans);
+	margin: 0 0 20px;
+}
+
+.comment-list,
+.comment-list .children {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.comment-list .children {
+	padding-left: 24px;
+}
+
+.comment-body {
+	padding: 16px 0;
+	border-bottom: 1px solid var(--line);
+}
+
+.comment-meta {
+	font-size: .875rem;
+	color: var(--graphite);
+}
+
+.comment-author .avatar {
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.comment-respond {
+	margin-top: 32px;
+}
+
+.comment-form {
+	display: grid;
+	gap: 14px;
+}
+
+.comment-form p {
+	margin: 0;
+	display: grid;
+	gap: 6px;
+}
+
+.comment-form label {
+	font-weight: 600;
+	font-size: .95rem;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+	font: inherit;
+	padding: .7rem .9rem;
+	border: 1px solid #C7C8CC;
+	border-radius: 10px;
+	background: #fff;
+	width: 100%;
+}
+
+.comment-form .comment-form-cookies-consent {
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	font-size: .9rem;
+}
+
+.comment-form .form-submit .submit {
+	justify-self: start;
+	min-height: 48px;
+	padding: .85rem 1.45rem;
+	border-radius: 999px;
+	border: 0;
+	background: var(--grad);
+	color: var(--ink);
+	font: 600 1rem/1 var(--sans);
+	cursor: pointer;
+}
+
+/* 404 */
+.not-found {
+	padding: clamp(56px, 9vw, 112px) 0;
+	display: grid;
+	gap: 24px;
+}
+
+.not-found p {
+	margin: 0;
+	max-width: 62ch;
+	color: var(--graphite);
+	font-size: 1.125rem;
+}

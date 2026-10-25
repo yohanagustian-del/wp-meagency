@@ -1,0 +1,56 @@
+/*
+ * MEA Orbit · elementor-compat.css (sementara, dihapus di akhir Fase 6)
+ * Dimuat selama plugin Elementor aktif (atau konten masih dibangun Elementor). Menggantikan reset dasar
+ * yang sebelumnya disediakan Hello Elementor, supaya jarak widget lama tidak
+ * bergeser saat tema diganti. Warna dan font tetap diatur Kit Elementor.
+ * :where() membuat spesifisitasnya nol, jadi gaya .prose dan Kit Elementor selalu menang.
+ */
+
+:where(.elementor) h1,
+:where(.elementor) h2,
+:where(.elementor) h3,
+:where(.elementor) h4,
+:where(.elementor) h5,
+:where(.elementor) h6 {
+	font-weight: 500;
+	line-height: 1.2;
+	margin-block: .5rem 1rem;
+}
+
+:where(.elementor) p {
+	margin-block: 0 .9rem;
+}
+
+:where(.elementor) ul,
+:where(.elementor) ol,
+:where(.elementor) dl {
+	margin-block: 0;
+}
+
+:where(.elementor) img {
+	border-style: none;
+	height: auto;
+	max-width: 100%;
+}
+
+:where(.elementor) table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: .9em;
+	margin-block-end: 15px;
+	width: 100%;
+}
+
+:where(.elementor) table td,
+:where(.elementor) table th {
+	border: 1px solid hsla(0, 0%, 50%, .5);
+	line-height: 1.5;
+	padding: 15px;
+	vertical-align: top;
+}
+
+:where(.elementor) figcaption {
+	font-size: 16px;
+	font-style: italic;
+	line-height: 1.4;
+}

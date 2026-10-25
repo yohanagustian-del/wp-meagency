@@ -1,6 +1,6 @@
 # PLAN — Tema `mea-orbit` + plugin `mea-leads` (meagency.co.id)
 
-Fase 0 · ditulis 25 Okt 2026 · **revisi 3** (keluar penuh dari Elementor, aman untuk crawl Google) · status: **menunggu "lanjut"**
+Fase 0 · ditulis 25 Okt 2026 · **revisi 3** (keluar penuh dari Elementor, aman untuk crawl Google) · status: **disetujui, Fase 1 berjalan**
 
 > **Yang berubah di revisi 3.** Bagian yang berubah ditandai **[rev 3]**.
 > 1. Tujuan dipertegas: tema mandiri **dan** meninggalkan page builder Elementor sepenuhnya, dengan risiko paling kecil untuk crawl Google (bagian 2, 14).
@@ -421,7 +421,7 @@ Mobile lolos semua batas tanpa perubahan (M3 mobile tidak perlu dipotong ke tiap
 | — | Arsitektur | Tema mandiri (bukan child theme), template umum lengkap, `docs/ELEMENTOR-EXIT.md` |
 | — | **[rev 3]** Elementor | Ditinggalkan sepenuhnya, dengan risiko crawl Google paling kecil. Header dan footer sama di setiap halaman. Laporan klien tidak jadi masalah (pindah ke CDPS) |
 
-### 10.1 Perlu konfirmasi sebelum Fase 1 **[rev 3, baru]**
+### 10.1 Konfirmasi rev 3 **[rev 3, baru]** — dijawab pemilik: "lanjut pakai usulan" (keempat usulan disetujui)
 
 1. **Fase 6 masuk proyek ini?** Konversi 212 artikel dan halaman pemasaran dari Elementor ke HTML klasik, lalu nonaktifkan Elementor dan addon-nya. Usulan: ya, dikerjakan setelah tema baru live dan stabil sekitar 2 minggu (Search Console bersih).
 2. **Menu di HP.** Di prototipe, menu disembunyikan di bawah 900 px (hanya tombol konsultasi). Link-nya tetap ada di HTML, jadi tetap terbaca Google, tetapi pengunjung HP tidak punya menu. Usulan: tombol "Menu" sederhana tanpa JavaScript (`<details>`), link yang sama persis dengan desktop.
@@ -453,7 +453,7 @@ PHPCS (WordPress Coding Standards) dijalankan lokal di setiap fase. Composer dan
 3. **Artikel blog, arsip, pencarian, dan 404 tidak punya prototipe.** Desainnya saya turunkan dari token dan komponen prototipe (font, warna, tombol, breadcrumb, lebar baca), lalu saya tunjukkan lewat screenshot di Fase 1 untuk disetujui sebelum lanjut.
 4. **[rev 3] Semua artikel dibangun dengan Elementor.** Contoh yang dicek (ID 18546 dan 17265): seluruh isi ada di widget Text Editor dan Heading, berisi paragraf, H2/H3, gambar dengan srcset, link internal, kotak CTA ber-style inline, dan FAQ JSON-LD di dalam konten. Semua itu bisa dipindah apa adanya ke HTML klasik. 15 artikel memakai template `elementor_theme`; sisanya template default. Widget lain (bila ada) baru ketahuan lewat uji coba konverter di Fase 6.
 5. **[rev 3] Isi artikel tidak diedit.** Kotak CTA di artikel memakai warna hijau dan nama "MEA Digital Agency" (tidak sesuai brand MEA Agency). Itu konten, bukan tema. Mengubahnya sekaligus dengan ganti tema menambah risiko crawl, jadi dicatat sebagai pekerjaan setelah live (bagian 13).
-6. **Header/footer Elementor Pro Theme Builder.** Sebelum tema diganti di produksi, template Theme Builder (header, footer, single, archive, popup) dijadikan draft supaya tidak menimpa header/footer mea-orbit. Ini hanya bisa diuji dengan Elementor Pro di staging.
+6. **[Fase 1] Template Theme Builder Elementor Pro.** Header New (10093) dan Footer New (17281) otomatis tidak tampil lagi, karena tema mendaftarkan lokasi Theme Builder dan tidak pernah memanggil lokasi `header`/`footer`. **Single Post Template (13811) dan Blog Archive Template (14400) tetap aktif di langkah 1**, sehingga tata letak artikel dan arsip tidak berubah sama sekali. Keduanya baru dinonaktifkan di Fase 6, dan sejak itu `single.php`/`archive.php` mea-orbit yang dipakai. Perilaku ini hanya bisa diuji dengan Elementor Pro di staging.
 7. **Halaman Elementor Canvas** (`elementor_canvas`) tanpa header/footer sampai dikonversi di Fase 6, karena template itu milik plugin Elementor.
 8. **Gaya dasar Hello Elementor hilang.** Widget Elementor mungkin mengandalkan reset CSS Hello Elementor. `inc/elementor.php` menyediakan reset setara sampai Fase 6. Dicek lewat screenshot dan paritas.
 9. **Rollback tetap satu langkah** di setiap tahap: aktifkan kembali Hello Elementor (langkah 1), atau kembalikan konversi per URL dari cadangan (langkah 2). Data field, opsi, dan lead tidak hilang.
@@ -496,7 +496,7 @@ Ubah satu hal pada satu waktu, ukur, baru lanjut. Google paling mudah menerima p
 
 ### 14.3 Urutan peluncuran
 
-1. Staging: tema mea-orbit aktif, Elementor masih aktif, Theme Builder header/footer dijadikan draft.
+1. Staging: tema mea-orbit aktif, Elementor masih aktif. Header/footer Theme Builder otomatis tergantikan. Template Single Post dan Blog Archive tetap aktif.
 2. Uji paritas seluruh sitemap (produksi vs staging). Lanjut hanya bila tidak ada beda di luar header/footer.
 3. Cek staging tidak terbawa `noindex` ke produksi (Settings → Reading "Discourage search engines" harus mati di produksi setelah push).
 4. Produksi: aktifkan tema di jam sepi. Bersihkan cache. Uji paritas ulang terhadap snapshot "sebelum".
@@ -508,3 +508,25 @@ Ubah satu hal pada satu waktu, ukur, baru lanjut. Google paling mudah menerima p
 
 - Langkah 1 (tema): aktifkan Hello Elementor. Isi tidak pernah berubah, jadi tidak ada yang perlu dipulihkan.
 - Langkah 2 (konten): kembalikan URL atau batch dari `_mea_elementor_cadangan` lewat konverter, atau dari revisi WordPress.
+
+---
+
+## 15. Catatan Fase 1 **[baru]**
+
+### 15.1 Batasan jaringan container sesi ini
+
+| Host | Status | Dampak | Penanganan |
+|---|---|---|---|
+| wordpress.org, downloads.wordpress.org | Diblokir (403) | Tidak bisa unduh zip resmi | WordPress 7.1.3, SQLite Database Integration 3.1.1, dan Hello Elementor 3.5.1 diambil dari repo GitHub resmi (git clone) dan di-build lokal |
+| composer.elementor.com | Diblokir (403) | Plugin Elementor 4.0.8 tidak bisa di-build | Konten Elementor disimulasikan dengan markup yang sama persis dengan artikel 18546 di produksi. Uji visual dengan plugin Elementor dan Elementor Pro dilakukan di staging |
+| www.meagency.co.id | Diblokir (403) | Foto tidak bisa diunduh; alat paritas tidak bisa membaca produksi dari container ini | Uji lokal memakai gambar pengganti berukuran sama. `tools/seo-parity` dibuat agar bisa dijalankan dari mesin mana pun yang punya PHP (laptop tim atau SSH hosting), lalu hasil CSV-nya dibagikan |
+
+Konektor MEAgency (read-only) tetap bisa dipakai untuk membaca data situs.
+
+### 15.2 Font
+
+Google Fonts menyajikan Inter sebagai satu file variable (bobot 400–700, subset Latin, 48 KB). Preload Inter cukup satu file. Instrument Serif 400 (21 KB) tidak di-preload. Lisensi OFL disertakan di `assets/fonts/`.
+
+### 15.3 Aset per halaman (hasil uji lokal)
+
+Halaman umum hanya memuat `base.css` + `content.css`. Selama Elementor aktif, atau bila kontennya dibangun Elementor, ditambah `elementor-compat.css`. Belum ada JavaScript tema di halaman umum.
