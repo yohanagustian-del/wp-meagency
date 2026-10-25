@@ -1,8 +1,17 @@
 # PLAN — Tema `mea-orbit` + plugin `mea-leads` (meagency.co.id)
 
-Fase 0 · ditulis 25 Okt 2026 · status: **menunggu "lanjut"**
+Fase 0 · ditulis 25 Okt 2026 · **revisi 2** (jawaban final bagian 10) · status: **menunggu "lanjut"**
 
-Dokumen ini memetakan apa yang akan dibangun di Fase 1–5. Bagian 9 berisi konflik yang ditemukan beserta usulan penyelesaiannya. Bagian 10 berisi keputusan yang perlu konfirmasi sebelum Fase 1.
+Dokumen ini memetakan apa yang akan dibangun di Fase 1–5. Bagian 9 berisi konflik yang ditemukan beserta penyelesaiannya. Bagian 10 berisi jawaban final pemilik.
+
+> **Yang berubah di revisi 2.** Bagian yang berubah ditandai **[rev 2]**.
+> 1. Arsitektur: `mea-orbit` sekarang **tema mandiri**, bukan child theme Hello Elementor. Tema ini berlaku untuk seluruh situs dan punya template umum sendiri (page, single, archive, search, 404, password). Ada dokumen baru `docs/ELEMENTOR-EXIT.md` (bagian 2, 3.1, 3.4, 6, 11, 12, 13).
+> 2. og:locale `id_ID` diterapkan ke seluruh situs lewat filter tema (bagian 6).
+> 3. WebP ditunda sampai setelah live (bagian 9.18, 13).
+> 4. Uji lokal, unduhan foto, dan PHPCS diizinkan (bagian 10, 11).
+> 5. Konflik 9.1–9.8 disetujui sesuai usulan (bagian 9).
+>
+> **Catatan:** jawaban 25 Okt nomor 4 sebelumnya memilih *child theme* ("Pilih A: mea-orbit sebagai CHILD THEME"). Jawaban final menyebut "keputusan A" sebagai *tema mandiri*. PLAN ini mengikuti jawaban final (tema mandiri). Konsekuensinya ada di bagian 12, dan masih bisa dikoreksi sebelum "lanjut".
 
 ---
 
@@ -17,7 +26,8 @@ Dokumen ini memetakan apa yang akan dibangun di Fase 1–5. Bagian 9 berisi konf
 | M2 Enam Sisi | `motion-src/sisi/` | 6 loop WebM/MP4 480 px + poster frame 0 |
 | M3 Orbit Proses | `motion-src/proses/` | 150 frame desktop 1200 px, 75 frame mobile 800 px, poster, video, README, manifest |
 | M4 Kurva Bellarosa | `motion-src/bellarosa/` | Video desktop 1200×900 dan mobile 900×900 (7 dtk) + poster frame akhir. Tanpa README |
-| Jawaban pemilik 25 Okt | (pesan sesi) | Child theme, kontrak HMAC, retensi, budget motion baru, alt text, staging menyusul |
+| Jawaban pemilik 25 Okt | (pesan sesi) | Kontrak HMAC, retensi, budget motion baru, alt text, staging menyusul |
+| Jawaban final bagian 10 **[rev 2]** | (pesan sesi) | Tema mandiri, og:locale sitewide, WebP setelah live, izin uji lokal + foto + PHPCS, konflik 9.1–9.8 disetujui |
 
 Fakta yang diverifikasi di situs live (read-only, sebelum Fase 0): homepage = page 13411, `/jasa-performance-ads/` = 14144, `/bellarosa/` = 14512, `/study-case/` = 14645, `/services/` = 12356. Semua link di prototipe hidup (jasa-kelola-tiktok-shop 365, ecommerce-service 14637, jasa-live-streaming 15567, affiliate 14662, jasa-konten 15559, eleven-basic 18653, skynet 16160, tumbleryuk 16144). Media 15633, 15630, 15642, 16516–16519 ada (JPG, alt kosong). Media Bellarosa 14489–14495 dan 14503–14506, 14508 ada; **14507 tidak ditemukan**. Plugin aktif yang relevan: Elementor + Pro 3.30, ElementsKit Lite, Unlimited Elements, Rank Math, Site Kit, WPCode, Meta Pixel, Classic Editor.
 
@@ -25,7 +35,11 @@ Fakta yang diverifikasi di situs live (read-only, sebelum Fase 0): homepage = pa
 
 ## 2. Keputusan yang sudah dikunci (ringkas)
 
-- **Child theme** dari Hello Elementor. Hanya halaman bertemplate baru (13411, 14144, 14512, dan yang dipindah kemudian) yang berubah. Artikel blog, laporan klien, dan halaman Elementor lain tidak berubah. Template baru tidak memuat CSS/JS Elementor.
+- **[rev 2] Tema mandiri.** `mea-orbit` adalah tema klasik PHP yang berdiri sendiri (tanpa `Template:` induk) dan menggantikan Hello Elementor untuk **seluruh situs**. Ada dua lapis:
+  - **Lapis umum** (semua halaman): header, footer, token, tipografi, dan template `page`, `single`, `archive`, `search`, `404`, form password. Artikel blog, laporan klien, dan halaman Elementor lama tampil dengan header/footer mea-orbit. Isi kontennya tetap dirender Elementor seperti sekarang.
+  - **Lapis Orbit** (13411, 14144, 14512, dan yang dipindah kemudian): desain prototipe, motion, JSON-LD tambahan. Di halaman ini CSS/JS Elementor dan addon-nya tidak dimuat.
+  - Plugin Elementor tetap aktif selama transisi. Rencana keluarnya ditulis di `docs/ELEMENTOR-EXIT.md`.
+- **[rev 2] og:locale** `id_ID` di seluruh situs lewat filter tema. Settings → General tidak diubah.
 - **Kontrak HMAC** sesuai jawaban nomor 5, ditulis di `docs/WEBSITE_LEAD_CONTRACT.md` (sudah dibuat di Fase 0).
 - **Retensi** 90 hari setelah `terkirim`: nama, WhatsApp, link toko, UTM dihapus. Baris tetap ada.
 - **Budget motion homepage**: 0 byte sebelum `load` · ≤ 1,5 MB sebelum hero terlewati · total desktop ≤ 5 MB · total mobile ≤ 2,5 MB · tiap paket dimuat saat section-nya mendekati layar · aset tidak di-encode ulang tanpa izin.
@@ -42,6 +56,7 @@ wp-meagency/
 ├── docs/
 │   ├── PLAN.md                         ← dokumen ini
 │   ├── WEBSITE_LEAD_CONTRACT.md        ← kontrak v1 (pengirim WordPress ↔ penerima CDPS)
+│   ├── ELEMENTOR-EXIT.md               ← [rev 2] (Fase 1, dilengkapi Fase 5) rencana keluar dari Elementor
 │   ├── mea-orbit/                      ← brief + prototipe (baca saja)
 │   ├── motion/                         ← 00–05 (baca saja)
 │   └── seed/                           ← (Fase 2) isi field awal per halaman, JSON, untuk diisi di staging
@@ -57,32 +72,41 @@ wp-meagency/
 
 | File | Isi |
 |---|---|
-| `style.css` | Header tema: `Template: hello-elementor`, Text Domain `mea-orbit`. Tidak berisi CSS (CSS di `assets/css/`) |
+| `style.css` | **[rev 2]** Header tema mandiri (tanpa `Template:`), Text Domain `mea-orbit`, `Requires PHP: 8.0`. Tidak berisi CSS (CSS di `assets/css/`) |
 | `functions.php` | Hanya memuat file `inc/` |
-| `inc/scope.php` | `mea_orbit_is_view()`: true hanya di homepage statis dan halaman dengan template `mea-orbit`. Semua perilaku tema digerbang fungsi ini |
-| `inc/setup.php` | Theme support (title-tag dari induk, post-thumbnails, html5), lokasi menu `mea-orbit-utama`, ukuran gambar tambahan |
-| `inc/assets.php` | Enqueue CSS/JS hanya di `mea_orbit_is_view()`. Dequeue aset Elementor, Elementor Pro, ElementsKit, Unlimited Elements, dan CSS Hello Elementor di halaman itu. Preload Inter 400/600 + poster LCP |
+| `inc/scope.php` | `mea_orbit_is_view()`: true hanya di homepage statis dan halaman bertemplate Orbit. Lapis Orbit (CSS section, motion, JSON-LD tambahan, dequeue Elementor) digerbang fungsi ini. Lapis umum berlaku di semua halaman |
+| `inc/setup.php` | Theme support (`title-tag`, `post-thumbnails`, `html5` termasuk `search-form`, `comment-form`, `gallery`, `caption`, `style`, `script`), lokasi menu `mea-orbit-utama` dan `mea-orbit-footer`, ukuran gambar tambahan, `content_width` |
+| `inc/assets.php` | **[rev 2]** Sitewide: `base.css` (token, reset, header, footer, tipografi) dan `content.css` (page/single/archive). Lapis Orbit: `orbit.css`, `motion.js`. Dequeue aset Elementor, Elementor Pro, ElementsKit, Unlimited Elements hanya di halaman Orbit. Preload Inter 400/600 sitewide, poster LCP di homepage |
+| `inc/elementor.php` | **[rev 2]** Kompatibilitas selama transisi: dukungan lokasi Theme Builder (`elementor/theme/register_locations`) supaya header/footer Elementor Pro tidak menimpa header/footer mea-orbit, wadah lebar penuh untuk halaman yang dibangun Elementor, reset dasar yang sebelumnya disediakan Hello Elementor (box-sizing, margin) supaya widget lama tidak bergeser |
+| `inc/locale.php` | **[rev 2]** Filter og:locale Rank Math → `id_ID` dan `language_attributes` → `lang="id-ID"` di seluruh situs. Settings → General tidak diubah |
 | `inc/fields.php` | `register_post_meta` (show_in_rest: true) + meta box per template + sanitasi |
 | `inc/options.php` | Halaman opsi "Homepage" (Tampilan → Homepage MEA) dan daftar kutipan |
-| `inc/seo.php` | JSON-LD lewat filter Rank Math, og:locale, og:image cadangan, breadcrumb data |
+| `inc/seo.php` | JSON-LD lewat filter Rank Math (halaman Orbit), og:image cadangan, data breadcrumb |
 | `inc/media.php` | `mea_orbit_img()`: `wp_get_attachment_image` dengan srcset, sizes, width/height, alt, lazy/eager |
 | `inc/template-tags.php` | Render breadcrumb, pull quote, deret angka, panel hasil, kartu layanan |
-| `header-orbit.php`, `footer-orbit.php` | Header/footer milik mea-orbit (`get_header('orbit')`). Tetap memanggil `wp_head`, `wp_body_open`, `wp_footer` supaya GTM, Site Kit, Meta Pixel, WPCode tetap jalan |
-| `front-page.php` | Homepage. Bila homepage statis bukan memakai desain baru (opsi dimatikan), jatuh ke template induk |
+| `header.php`, `footer.php` | **[rev 2]** Satu header/footer untuk seluruh situs (desain prototipe). Tetap memanggil `wp_head`, `wp_body_open`, `wp_footer` supaya GTM, Site Kit, Meta Pixel, WPCode tetap jalan |
+| `index.php` | **[rev 2]** Cadangan terakhir hierarki template: daftar posting |
+| `page.php` | **[rev 2]** Halaman umum. Halaman yang dibangun Elementor dirender lebar penuh tanpa gaya prosa, supaya tata letak Elementor tidak berubah. Halaman klasik memakai gaya prosa `content.css` |
+| `single.php` | **[rev 2]** Artikel blog: breadcrumb, H1, tanggal, gambar unggulan, isi, kategori/tag, navigasi artikel sebelumnya/berikutnya, komentar bila dibuka, ajakan konsultasi singkat (tombol WhatsApp, bukan form) |
+| `archive.php`, `search.php`, `searchform.php` | **[rev 2]** Daftar posting (kategori, tag, penulis, tanggal) dan hasil pencarian, dengan paginasi |
+| `404.php` | **[rev 2]** Halaman tidak ditemukan: pesan singkat, form cari, tautan ke beranda dan layanan |
+| `comments.php` | **[rev 2]** Daftar dan form komentar bawaan WordPress, digaya ringan |
+| Form password | **[rev 2]** Filter `the_password_form` dengan markup dan gaya mea-orbit. Perilaku proteksi (cookie, noindex dari WPCode) tidak diubah |
+| `front-page.php` | Homepage (Lapis Orbit) |
 | `page-templates/template-layanan.php` | Template "MEA Orbit · Layanan" |
 | `page-templates/template-studi-kasus.php` | Template "MEA Orbit · Studi kasus" |
 | `template-parts/home/*.php` | `hero`, `tim`, `layanan`, `cara-kerja`, `kasus-unggulan` |
 | `template-parts/layanan/*.php` | `hero`, `cocok`, `dikerjakan`, `cara-kerja`, `bukti`, `faq` |
 | `template-parts/studi-kasus/*.php` | `head`, `hasil`, `cerita`, `lain` |
 | `template-parts/global/*.php` | `breadcrumb`, `kutipan`, `konsultasi` (form dari plugin, atau tombol WhatsApp bila plugin tidak aktif) |
-| `assets/css/orbit.css` | Satu stylesheet hasil port CSS ketiga prototipe (digabung, tanpa duplikat) |
+| `assets/css/base.css`, `content.css`, `orbit.css` | **[rev 2]** CSS prototipe dipecah tiga: `base.css` sitewide (token, reset, header, footer, tombol, tipografi), `content.css` untuk template umum (gaya prosa diturunkan dari token prototipe, karena prototipe tidak punya desain artikel), `orbit.css` khusus halaman Orbit (section prototipe) |
 | `assets/css/admin.css`, `assets/js/admin-fields.js` | Khusus wp-admin: repeater dan pemilih media di meta box (JS vanilla, memakai `wp.media` bawaan WordPress) |
 | `assets/js/motion.js` | Satu modul motion, `defer`, hanya di halaman yang memakainya |
 | `assets/fonts/` | Inter 400/500/600/700 + Instrument Serif 400, subset Latin, WOFF2, lisensi OFL |
 | `assets/motion/{hero,sisi,proses,bellarosa}/` | Salinan file runtime dari `motion-src/` tanpa diubah (frames, posters, video, manifest, README). Folder `source/`, `demo/`, `checks/` tidak ikut ke tema supaya zip ringan |
 | `screenshot.png` | Tangkapan homepage 1200×900 |
 
-Supaya kelak bisa dilepas jadi tema mandiri: tidak ada pemanggilan fungsi Hello Elementor, semua kode di `inc/` dan `template-parts/`. Melepasnya cukup dengan menghapus baris `Template:` dan menambah `index.php`, `page.php`, `single.php`, `archive.php`.
+**[rev 2]** Tema tidak memanggil fungsi Elementor atau Hello Elementor secara langsung. Semua kode yang menyentuh Elementor ada di `inc/elementor.php` dan dijaga `did_action('elementor/loaded')`, sehingga tema tetap jalan normal saat Elementor dinonaktifkan.
 
 ### 3.2 Plugin `wp-content/plugins/mea-leads/`
 
@@ -106,6 +130,16 @@ Supaya kelak bisa dilepas jadi tema mandiri: tidak ada pemanggilan fungsi Hello 
 - `tests/run.php`: runner tanpa dependency (`php tests/run.php`). Menguji HMAC dengan secret contoh dan vektor uji tetap, normalisasi nomor, bentuk payload v1, klasifikasi respons, jadwal backoff.
 - `dist/mea-orbit.zip`, `dist/mea-leads.zip`, `dist/CARA-PASANG.md`.
 
+### 3.4 `docs/ELEMENTOR-EXIT.md` **[rev 2, baru]**
+
+Rencana keluar dari Elementor, ditulis di Fase 1 dan dilengkapi di Fase 5 setelah dicek di staging. Isi:
+
+1. **Inventaris**: halaman yang memakai Elementor per template (`elementor_header_footer`, `elementor_theme`, `elementor_canvas`, default), template Theme Builder Elementor Pro (header, footer, single, archive, popup) beserta kondisinya, widget ElementsKit dan Unlimited Elements yang dipakai, Kit global (warna, font).
+2. **Apa yang terjadi saat mea-orbit aktif**, per jenis halaman: artikel blog, laporan klien berpassword, halaman Elementor, halaman Canvas, arsip, pencarian.
+3. **Urutan keluar**: pindahkan halaman layanan dan studi kasus ke template Orbit satu per satu → nonaktifkan Theme Builder header/footer → nonaktifkan Unlimited Elements dan ElementsKit Lite → evaluasi Elementor Pro → evaluasi Elementor.
+4. **Cek sebelum tiap langkah**: halaman yang terdampak, cara mengecek, cara rollback.
+5. **Rollback tema**: aktifkan kembali Hello Elementor dari Tampilan → Tema (data field dan lead tetap tersimpan).
+
 ---
 
 ## 4. Peta template, section, dan sumber isi
@@ -121,7 +155,7 @@ Kunci sumber: **F** = field halaman, **O** = opsi Homepage, **K** = studi kasus 
 | 3 | Tim | H2 + lede (T). Foto pimpinan 15633 + keterangan + kutipan #1 (O). Mosaik 5 foto: media ID + keterangan + alt (O) |
 | 4 | Enam layanan | H2 + lede (T). 6 kartu: nama, deskripsi, URL (O, default dari prototipe), tile M2 per kartu |
 | 5 | Cara kerja | H2 + lede (T). 5 langkah (T, karena sama dengan alur CDPS). M3. Kutipan #5 (O) |
-| 6 | Studi kasus unggulan | Label, H2, lede, link (K: judul kartu dan ringkasan kartu). Visual M4 menggantikan foto Studio-2 (lihat konflik 9.6) |
+| 6 | Studi kasus unggulan | Label, H2, lede, link (K: judul kartu dan ringkasan kartu). Visual M4 menggantikan foto Studio-2 (lihat konflik 9.7) |
 | 7 | Konsultasi | H2, lede, nomor sales (T). Form (P) dengan `sumber_form = home` |
 
 ### 4.2 Template layanan (`/jasa-performance-ads/`, page 14144)
@@ -222,10 +256,11 @@ Isi awal tiap halaman (copy prototipe) disiapkan di `docs/seed/*.json` pada Fase
   - Studi kasus: tambah `Article` (headline = `mea_h1`, author/publisher → `#org`, image = foto proses pertama, datePublished/dateModified dari halaman).
   - `BreadcrumbList` dari data breadcrumb tema. Bila Rank Math sudah mencetak BreadcrumbList, node milik Rank Math diganti, tidak digandakan.
   - Bila Rank Math nonaktif: tema mencetak `<script type="application/ld+json">` sendiri dengan isi yang sama.
-- **og:locale**: filter Rank Math → `id_ID` di halaman mea-orbit. Lihat keputusan 10.4 untuk seluruh situs.
+- **[rev 2] og:locale**: filter Rank Math → `id_ID` di **seluruh situs** (`inc/locale.php`), ditambah `lang="id-ID"` di `<html>`. Settings → General tidak diubah, jadi bahasa wp-admin tetap seperti sekarang.
+- **[rev 2] Template umum**: satu H1 per halaman juga berlaku untuk `single`, `page`, `archive`, `search`, `404`. JSON-LD halaman umum tetap sepenuhnya milik Rank Math; tema tidak menambah apa pun di sana.
 - **og:image**: memakai pilihan Rank Math per halaman. Bila kosong, tema mengisi: homepage → foto pimpinan 15633, layanan → foto hero, studi kasus → foto proses pertama.
 - Satu H1 per halaman. Judul section memakai H2/H3 seperti prototipe.
-- Halaman berpassword: template memanggil `post_password_required()` dan menampilkan form password. Perilaku halaman berpassword lain tidak diubah (tetap template induk).
+- **[rev 2] Halaman berpassword** (termasuk laporan klien): `page.php`, `single.php`, dan template Orbit memanggil `post_password_required()` dan menampilkan form password mea-orbit. Mekanisme proteksi bawaan WordPress (cookie `wp-postpass_…`) dan kode noindex dari WPCode tidak disentuh. Tema tidak mencetak meta robots apa pun.
 
 ---
 
@@ -308,7 +343,9 @@ Mobile lolos semua batas tanpa perubahan (M3 mobile tidak perlu dipotong ke tiap
 
 ---
 
-## 9. Konflik yang ditemukan dan usulan penyelesaian
+## 9. Konflik yang ditemukan dan penyelesaiannya
+
+**[rev 2]** Usulan 9.1–9.8 **disetujui pemilik** dan menjadi keputusan. 9.9–9.17 adalah penyelesaian yang saya ambil sesuai aturan "brief menang" atau catatan untuk tim. 9.18 diputuskan di bagian 10.
 
 **9.1 Hero desktop melebihi 1,5 MB sebelum hero terlewati.** Frame desktop M1 penuh = 2,35 MB. Usulan tanpa encode ulang: desktop memuat tier progresif sampai "tiap frame kedua" (61 frame, 1,19 MB + poster = 1,26 MB) dan berhenti di situ. Penggambaran tetap memakai frame terdekat yang sudah dimuat, sehingga scrub tetap mulus. Total desktop jadi 3,82 MB.
 
@@ -344,29 +381,55 @@ Mobile lolos semua batas tanpa perubahan (M3 mobile tidak perlu dipotong ke tiap
 
 **9.17 Media 14507 tidak ada.** Rentang foto produk Bellarosa di brief (14503–14508) ada celah: 14507 tidak ditemukan.
 
-**9.18 Gambar WebP/AVIF.** Foto di Media Library saat ini hanya JPG (dan PNG untuk foto Bellarosa). `srcset` WebP butuh ukuran turunan WebP di server. Lihat keputusan 10.3.
+**9.18 Gambar WebP/AVIF.** Foto di Media Library saat ini hanya JPG (dan PNG untuk foto Bellarosa). `srcset` WebP butuh ukuran turunan WebP di server. **[rev 2] Diputuskan:** JPEG/PNG + `srcset` biasa dulu, tanpa filter sitewide. WebP dicatat sebagai pekerjaan setelah live (bagian 13).
 
 ---
 
-## 10. Perlu konfirmasi sebelum Fase 1
+## 10. Jawaban final pemilik **[rev 2]**
 
-1. **Konflik 9.1–9.8** (anggaran hero desktop 61 frame, pemuatan hero setelah interaksi pertama, kolom `_beranda`, `mea_bukti_judul`, layout sticky Cara kerja, tile M2 di kartu, M4 menggantikan Studio-2, reduced motion Cara kerja hanya poster). Setuju semua, atau ada yang diubah?
-2. **Lingkungan uji lokal.** Untuk screenshot pembanding dan uji PHP tanpa warning saya perlu WordPress lokal. Di container ini ada PHP 8.3 tanpa MySQL. Usulan: unduh WordPress core, plugin SQLite Database Integration, dan Hello Elementor dari GitHub (repo resmi WordPress dan Elementor), dipakai hanya lokal, tidak masuk repo. Ini akses jaringan di luar Google Fonts, jadi perlu izin.
-3. **Foto untuk uji lokal.** Untuk screenshot yang sebanding dengan prototipe, saya perlu 7 foto publik (15633, 15630, 15642, 16516–16519) dari meagency.co.id (GET file gambar publik saja, tanpa login, tanpa menulis apa pun). Kalau tidak boleh, uji lokal memakai gambar pengganti berukuran sama dan pembanding akhir dilakukan di staging.
-4. **og:locale seluruh situs.** Tema mengubah og:locale ke `id_ID` hanya di halaman mea-orbit. Untuk seluruh situs, cara yang benar adalah mengganti bahasa situs di Settings → General (ini juga mengubah bahasa wp-admin pengguna yang tidak memilih bahasa sendiri), atau filter sitewide di child theme. Pilih: hanya halaman mea-orbit (default), atau sitewide lewat filter?
-5. **WebP.** Usulan: setelah tema aktif di staging, regenerasi ukuran gambar untuk 7 foto yang dipakai dengan output WebP (filter `image_editor_output_format` khusus JPEG → WebP). Filter ini berlaku untuk unggahan baru di seluruh situs. Setuju diterapkan sitewide, atau cukup JPEG + srcset biasa?
-6. **PHPCS (WordPress Coding Standards)** sebagai alat cek lokal lewat Composer (dev saja, tidak ikut zip). Boleh, atau cukup `php -l` dan review manual?
+| # | Pertanyaan | Keputusan |
+|---|---|---|
+| — | Konflik 9.1–9.8 | Disetujui semua sesuai usulan |
+| 1 | Lingkungan uji lokal | Boleh. Unduh WordPress core, SQLite Database Integration, Hello Elementor (untuk screenshot "sebelum"), dan plugin Elementor gratis (untuk menguji halaman Elementor lama di tema baru). Sumber resmi (wordpress.org / GitHub). Hanya lokal, tidak masuk repo |
+| 2 | Foto untuk uji lokal | Boleh. GET read-only 7 foto (15633, 15630, 15642, 16516–16519) dan foto produk Bellarosa (14489–14495, 14503–14506, 14508). Tidak masuk repo |
+| 3 | og:locale | `id_ID` sitewide lewat filter tema. Settings → General tidak diubah |
+| 4 | WebP | JPEG + srcset biasa dulu. WebP setelah live |
+| 5 | PHPCS | Boleh, dev saja, tidak ikut zip |
+| — | Arsitektur | Tema mandiri (bukan child theme), template umum lengkap, `docs/ELEMENTOR-EXIT.md` |
 
 ---
 
-## 11. Rencana fase
+## 11. Rencana fase **[rev 2]**
 
 | Fase | Isi | Hasil yang ditunjukkan |
 |---|---|---|
-| 1 | `style.css`, `functions.php`, `inc/scope.php`, `inc/setup.php`, `inc/assets.php`, token CSS, header/footer, skip link, font self-host + preload | Screenshot header/footer 1366 dan 390 px, daftar aset yang ter-enqueue di halaman mea-orbit vs halaman lain |
-| 2 | Tiga template, field + meta box, opsi Homepage + kutipan, SEO, gambar, `docs/seed/` | Screenshot pembanding prototipe vs tema (1366 dan 390 px), contoh JSON-LD per halaman |
+| 1 | Lingkungan lokal (WordPress + SQLite + Hello Elementor + Elementor gratis), screenshot "sebelum" dengan Hello Elementor. Kerangka tema mandiri: `style.css`, `functions.php`, `inc/scope.php`, `inc/setup.php`, `inc/assets.php`, `inc/elementor.php`, `inc/locale.php`, token, header/footer, skip link, font self-host + preload, **template umum** (`index`, `page`, `single`, `archive`, `search`, `404`, `comments`, form password). Draf pertama `docs/ELEMENTOR-EXIT.md` | Screenshot header/footer dan template umum di 1366 dan 390 px. Screenshot sebelum (Hello) vs sesudah (mea-orbit) untuk satu artikel, satu halaman berpassword, satu halaman Elementor contoh. Daftar aset ter-enqueue di halaman Orbit vs halaman lain |
+| 2 | Tiga template Orbit, field + meta box, opsi Homepage + kutipan, SEO, gambar, `docs/seed/` | Screenshot pembanding prototipe vs tema (1366 dan 390 px), contoh JSON-LD per halaman |
 | 3 | Plugin `mea-leads` + `tests/run.php` | Hasil test, contoh payload + tanda tangan, screenshot admin "Leads MEA" |
 | 4 | Salin aset motion, `motion.js`, M1–M4 + motion kode | Rekaman/screenshot per section, tab Network untuk reduced motion dan normal, angka byte terukur |
-| 5 | QA kriteria lulus, uji regresi child theme (artikel blog, laporan klien, halaman Elementor lain: sebelum vs sesudah, di staging), `dist/` | Laporan QA + `dist/` |
+| 5 | QA kriteria lulus, uji regresi di staging dengan konten asli dan Elementor Pro, `ELEMENTOR-EXIT.md` final, `dist/` | Laporan QA + `dist/` |
 
-Uji regresi child theme (artikel blog, laporan klien, halaman Elementor lain) butuh Elementor Pro dan konten asli, jadi dikerjakan di staging di Fase 5. Di lokal saya hanya bisa memastikan bahwa template induk tetap dipakai untuk halaman non-mea-orbit.
+PHPCS (WordPress Coding Standards) dijalankan lokal di setiap fase. Composer dan PHPCS dipasang di luar repo (scratchpad), jadi tidak ada `vendor/` atau `composer.json` yang ikut ter-commit atau masuk zip.
+
+---
+
+## 12. Konsekuensi tema mandiri **[rev 2, baru]**
+
+Supaya jelas apa yang berubah dibanding rencana child theme:
+
+1. **Seluruh situs berubah tampilan header dan footer** begitu mea-orbit aktif: sekitar 780 artikel blog, ratusan laporan klien, dan semua halaman Elementor lama. Isi halaman tetap dirender Elementor, tetapi kepala dan kaki halaman menjadi milik mea-orbit.
+2. **Kriteria uji regresi menyesuaikan.** Kriteria lama "tampil identik sebelum dan sesudah" tidak mungkin terpenuhi untuk header/footer. Kriteria baru: area konten artikel, laporan berpassword, dan halaman Elementor tidak rusak (tata letak, widget, gambar, tautan, form password tetap jalan), dibandingkan lewat screenshot sebelum (Hello Elementor) vs sesudah (mea-orbit).
+3. **Artikel blog, arsip, pencarian, dan 404 tidak punya prototipe.** Desainnya saya turunkan dari token dan komponen prototipe (font, warna, tombol, breadcrumb, lebar baca), lalu saya tunjukkan lewat screenshot di Fase 1 untuk disetujui sebelum lanjut.
+4. **Header/footer Elementor Pro Theme Builder.** Kalau situs memakai header/footer Theme Builder dengan kondisi "seluruh situs", Elementor Pro bisa mencoba menimpa header/footer tema. Tema mendaftarkan lokasi Theme Builder secara eksplisit dan tidak menyerahkan header/footer ke Elementor, sehingga header/footer mea-orbit yang tampil. Ini hanya bisa diuji dengan Elementor Pro di staging (Elementor Pro berbayar dan tidak tersedia di uji lokal).
+5. **Halaman Elementor Canvas** (`elementor_canvas`) tetap tanpa header/footer, karena template itu milik plugin Elementor.
+6. **Gaya dasar Hello Elementor hilang.** Widget Elementor lama mungkin mengandalkan reset CSS Hello Elementor. `inc/elementor.php` menyediakan reset setara supaya widget tidak bergeser. Ini dicek di screenshot regresi.
+7. **Rollback tetap satu langkah**: aktifkan kembali Hello Elementor. Data field, opsi, dan lead tidak hilang.
+8. **Pekerjaan bertambah** di Fase 1 (template umum dan lingkungan uji). Tidak ada perubahan di plugin `mea-leads`.
+
+---
+
+## 13. Pekerjaan setelah live **[rev 2, baru]**
+
+- **WebP/AVIF**: hasilkan ukuran turunan WebP untuk foto yang dipakai template, lalu tambahkan ke `srcset`.
+- Lanjutan dari `docs/ELEMENTOR-EXIT.md`: pindahkan halaman layanan dan studi kasus lain ke template Orbit, lalu nonaktifkan addon Elementor bertahap.
+- Template About Us (kutipan `k3`).
