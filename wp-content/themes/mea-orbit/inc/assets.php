@@ -32,6 +32,17 @@ function mea_orbit_enqueue_assets() {
 
 	if ( mea_orbit_is_view() ) {
 		wp_enqueue_style( 'mea-orbit-orbit', MEA_ORBIT_URI . '/assets/css/orbit.css', array( 'mea-orbit-base' ), mea_orbit_asset_version( 'assets/css/orbit.css' ) );
+		wp_enqueue_script(
+			'mea-orbit-motion',
+			MEA_ORBIT_URI . '/assets/js/motion.js',
+			array(),
+			mea_orbit_asset_version( 'assets/js/motion.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => false,
+			)
+		);
+		wp_add_inline_script( 'mea-orbit-motion', 'window.meaMotion=' . wp_json_encode( array( 'base' => MEA_ORBIT_URI . '/assets/motion/' ) ) . ';', 'before' );
 		return;
 	}
 
@@ -59,6 +70,23 @@ function mea_orbit_preload_fonts() {
 	);
 }
 add_action( 'wp_head', 'mea_orbit_preload_fonts', 1 );
+
+/**
+ * Tandai <html> dengan js-motion sebelum halaman tergambar (tanpa reduced motion).
+ *
+ * Keadaan awal motion kode (reveal, teks per baris, garis) diatur CSS di bawah
+ * kelas ini, jadi tidak ada konten yang tampil lalu hilang lagi. Tanpa
+ * JavaScript kelas ini tidak ada dan semua konten tampil apa adanya.
+ *
+ * @return void
+ */
+function mea_orbit_motion_flag() {
+	if ( ! mea_orbit_is_view() ) {
+		return;
+	}
+	wp_print_inline_script_tag( "if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion')}" );
+}
+add_action( 'wp_head', 'mea_orbit_motion_flag', 2 );
 
 /**
  * Pola handle aset yang tidak dimuat di halaman Orbit.

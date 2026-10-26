@@ -1,7 +1,7 @@
 <?php
 /**
- * Homepage · enam layanan (enam sisi kubus). Tile M2 per kartu: poster sekarang,
- * loop video dipasang di Fase 4.
+ * Homepage · enam layanan (enam sisi kubus). Tile M2 per kartu: poster di HTML,
+ * loop video dipasang assets/js/motion.js.
  *
  * @package MEA_Orbit
  */

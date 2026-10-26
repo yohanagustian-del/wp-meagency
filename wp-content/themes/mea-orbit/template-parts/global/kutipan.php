@@ -14,7 +14,7 @@ if ( ! $mea_orbit_quote ) {
 
 if ( 'pimpinan' === ( $args['gaya'] ?? 'pull' ) ) :
 	?>
-	<p class="display founder-quote"><?php echo esc_html( $mea_orbit_quote['teks'] ); ?></p>
+	<p class="display founder-quote" data-reveal-lines><?php echo esc_html( $mea_orbit_quote['teks'] ); ?></p>
 	<p class="small"><?php echo esc_html( $mea_orbit_quote['atribusi'] ); ?></p>
 	<?php
 	return;

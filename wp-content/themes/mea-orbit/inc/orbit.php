@@ -55,23 +55,28 @@ function mea_orbit_url( $url ) {
 
 /**
  * Atribut hitung naik dibaca dari teks nilai, mis. "Rp 8,2 miliar" → prefix "Rp ",
- * angka 8.2, 1 desimal, suffix " miliar". Nilai yang tidak bisa dihitung
- * (mis. "75 : 25") mengembalikan array kosong dan tampil statis.
+ * angka 8.2, 1 desimal, suffix " miliar". Pemisah ribuan titik ("3.000") ikut
+ * dikenali. Nilai yang tidak bisa dihitung (mis. "75 : 25") mengembalikan array
+ * kosong dan tampil statis.
  *
  * @param string $text Nilai tampil.
  * @return array<string, string>
  */
 function mea_orbit_count_attrs( $text ) {
-	if ( ! preg_match( '/^(\D*?)(\d+(?:,\d+)?)(\D*)$/u', trim( $text ), $m ) ) {
+	if ( ! preg_match( '/^(\D*?)(\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?)(\D*)$/u', trim( $text ), $m ) ) {
 		return array();
 	}
 	$parts = explode( ',', $m[2] );
-	return array(
-		'data-count'  => str_replace( ',', '.', $m[2] ),
+	$attrs = array(
+		'data-count'  => str_replace( array( '.', ',' ), array( '', '.' ), $m[2] ),
 		'data-prefix' => $m[1],
 		'data-suffix' => $m[3],
 		'data-dec'    => (string) ( isset( $parts[1] ) ? strlen( $parts[1] ) : 0 ),
 	);
+	if ( false !== strpos( $parts[0], '.' ) ) {
+		$attrs['data-group'] = '1';
+	}
+	return $attrs;
 }
 
 /**

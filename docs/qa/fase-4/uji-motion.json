@@ -1,0 +1,499 @@
+[
+ {
+  "name": "desktop",
+  "pages": {
+   "home": {
+    "requestsIdle": 22,
+    "heavyIdle": 0,
+    "heavyBeforeLoad": 0,
+    "heroLive": true,
+    "steps": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "proseLive": true,
+    "sisiVideos": 6,
+    "sisiPlaying": 2,
+    "bellarosa": {
+     "hidden": false,
+     "t": 7,
+     "ended": true,
+     "src": "bellarosa-case-desktop-1200x900.webm"
+    },
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "hiddenReveal": 0,
+    "jsMotion": "js-motion motion-ready",
+    "cls": 0.0003,
+    "h1": "Toko online Anda, kami yang jalankan",
+    "overflowX": false,
+    "bytes": {
+     "lain": {
+      "n": 15,
+      "kb": 226
+     },
+     "hero-poster": {
+      "n": 1,
+      "kb": 17
+     },
+     "sisi-poster": {
+      "n": 6,
+      "kb": 27
+     },
+     "hero-frames": {
+      "n": 61,
+      "kb": 1165
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 12
+     },
+     "sisi-video": {
+      "n": 6,
+      "kb": 193
+     },
+     "bellarosa-poster": {
+      "n": 1,
+      "kb": 24
+     },
+     "proses-frames": {
+      "n": 150,
+      "kb": 2009
+     },
+     "bellarosa-video": {
+      "n": 1,
+      "kb": 234
+     }
+    },
+    "motionKbTotal": 3681,
+    "errors": []
+   },
+   "layanan": {
+    "proseLive": true,
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cls": 0.0002,
+    "heavy": 150,
+    "errors": []
+   },
+   "studi": {
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "mixIn": true,
+    "babAktif": [
+     "bab-dikerjakan"
+    ],
+    "quoteIn": true,
+    "hiddenReveal": 0,
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "cls": 0.0003,
+    "heavy": 0,
+    "errors": []
+   }
+  }
+ },
+ {
+  "name": "mobile",
+  "pages": {
+   "home": {
+    "requestsIdle": 17,
+    "heavyIdle": 0,
+    "heavyBeforeLoad": 0,
+    "heroLive": true,
+    "steps": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "proseLive": true,
+    "sisiVideos": 6,
+    "sisiPlaying": 6,
+    "bellarosa": {
+     "hidden": false,
+     "t": 7,
+     "ended": true,
+     "src": "bellarosa-case-mobile-900x900.webm"
+    },
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "hiddenReveal": 0,
+    "jsMotion": "js-motion motion-ready",
+    "cls": 0,
+    "h1": "Toko online Anda, kami yang jalankan",
+    "overflowX": false,
+    "bytes": {
+     "lain": {
+      "n": 15,
+      "kb": 220
+     },
+     "hero-poster": {
+      "n": 1,
+      "kb": 36
+     },
+     "sisi-poster": {
+      "n": 6,
+      "kb": 27
+     },
+     "hero-frames": {
+      "n": 60,
+      "kb": 725
+     },
+     "sisi-video": {
+      "n": 6,
+      "kb": 193
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 9
+     },
+     "bellarosa-poster": {
+      "n": 1,
+      "kb": 25
+     },
+     "proses-frames": {
+      "n": 75,
+      "kb": 769
+     },
+     "bellarosa-video": {
+      "n": 1,
+      "kb": 230
+     }
+    },
+    "motionKbTotal": 2014,
+    "errors": []
+   },
+   "layanan": {
+    "proseLive": true,
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cls": 0,
+    "heavy": 75,
+    "errors": []
+   },
+   "studi": {
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "mixIn": true,
+    "babAktif": [
+     "bab-dikerjakan"
+    ],
+    "quoteIn": true,
+    "hiddenReveal": 0,
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "cls": 0,
+    "heavy": 0,
+    "errors": []
+   }
+  }
+ },
+ {
+  "name": "desktop-reduce",
+  "pages": {
+   "home": {
+    "requestsIdle": 22,
+    "heavyIdle": 0,
+    "heavyBeforeLoad": 0,
+    "heroLive": false,
+    "steps": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "proseLive": false,
+    "sisiVideos": 0,
+    "sisiPlaying": 0,
+    "bellarosa": null,
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "hiddenReveal": 0,
+    "jsMotion": "motion-ready",
+    "cls": 0.0003,
+    "h1": "Toko online Anda, kami yang jalankan",
+    "overflowX": false,
+    "bytes": {
+     "lain": {
+      "n": 15,
+      "kb": 226
+     },
+     "hero-poster": {
+      "n": 1,
+      "kb": 46
+     },
+     "sisi-poster": {
+      "n": 6,
+      "kb": 27
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 14
+     },
+     "bellarosa-poster": {
+      "n": 1,
+      "kb": 24
+     }
+    },
+    "motionKbTotal": 111,
+    "errors": []
+   },
+   "layanan": {
+    "proseLive": false,
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cls": 0.0002,
+    "heavy": 0,
+    "errors": []
+   },
+   "studi": {
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "mixIn": true,
+    "babAktif": [
+     "bab-dikerjakan"
+    ],
+    "quoteIn": true,
+    "hiddenReveal": 0,
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "cls": 0.0007,
+    "heavy": 0,
+    "errors": []
+   }
+  }
+ },
+ {
+  "name": "mobile-reduce",
+  "pages": {
+   "home": {
+    "requestsIdle": 17,
+    "heavyIdle": 0,
+    "heavyBeforeLoad": 0,
+    "heroLive": false,
+    "steps": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "proseLive": false,
+    "sisiVideos": 0,
+    "sisiPlaying": 0,
+    "bellarosa": null,
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "hiddenReveal": 0,
+    "jsMotion": "motion-ready",
+    "cls": 0,
+    "h1": "Toko online Anda, kami yang jalankan",
+    "overflowX": false,
+    "bytes": {
+     "lain": {
+      "n": 15,
+      "kb": 220
+     },
+     "hero-poster": {
+      "n": 1,
+      "kb": 30
+     },
+     "sisi-poster": {
+      "n": 6,
+      "kb": 27
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 11
+     },
+     "bellarosa-poster": {
+      "n": 1,
+      "kb": 25
+     }
+    },
+    "motionKbTotal": 93,
+    "errors": []
+   },
+   "layanan": {
+    "proseLive": false,
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cls": 0,
+    "heavy": 0,
+    "errors": []
+   },
+   "studi": {
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "mixIn": true,
+    "babAktif": [
+     "bab-dikerjakan"
+    ],
+    "quoteIn": true,
+    "hiddenReveal": 0,
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "cls": 0,
+    "heavy": 0,
+    "errors": []
+   }
+  }
+ },
+ {
+  "name": "mobile-hematdata",
+  "pages": {
+   "home": {
+    "requestsIdle": 17,
+    "heavyIdle": 0,
+    "heavyBeforeLoad": 0,
+    "heroLive": false,
+    "steps": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "proseLive": false,
+    "sisiVideos": 0,
+    "sisiPlaying": 0,
+    "bellarosa": null,
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "hiddenReveal": 0,
+    "jsMotion": "js-motion motion-ready",
+    "cls": 0,
+    "h1": "Toko online Anda, kami yang jalankan",
+    "overflowX": false,
+    "bytes": {
+     "lain": {
+      "n": 15,
+      "kb": 220
+     },
+     "hero-poster": {
+      "n": 1,
+      "kb": 36
+     },
+     "sisi-poster": {
+      "n": 6,
+      "kb": 27
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 9
+     },
+     "bellarosa-poster": {
+      "n": 1,
+      "kb": 25
+     }
+    },
+    "motionKbTotal": 97,
+    "errors": []
+   },
+   "layanan": {
+    "proseLive": false,
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cls": 0,
+    "heavy": 0,
+    "errors": []
+   },
+   "studi": {
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "mixIn": true,
+    "babAktif": [
+     "bab-dikerjakan"
+    ],
+    "quoteIn": true,
+    "hiddenReveal": 0,
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "cls": 0,
+    "heavy": 0,
+    "errors": []
+   }
+  }
+ },
+ {
+  "name": "tanpa-js",
+  "pages": {
+   "home": {
+    "h1": "Toko online Anda, kami yang jalankan",
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x",
+     "75%"
+    ],
+    "cta": [
+     "Jadwalkan konsultasiKonsultasi",
+     "Jadwalkan konsultasi",
+     "Lihat studi kasus"
+    ],
+    "jsMotion": false
+   },
+   "layanan": {
+    "h1": "Iklan Shopee dan TikTok Shop berbasis data penjualan",
+    "counts": [
+     "21x",
+     "Rp 8,2 miliar"
+    ],
+    "cta": [
+     "Jadwalkan konsultasiKonsultasi",
+     "Jadwalkan konsultasi",
+     "Lihat cara kerja"
+    ],
+    "jsMotion": false
+   },
+   "studi": {
+    "h1": "Bellarosa: dari toko online nol ke GMV Rp 8,2 miliar",
+    "counts": [
+     "Rp 8,2 miliar",
+     "21x"
+    ],
+    "cta": [
+     "Jadwalkan konsultasiKonsultasi",
+     "Kirim dan jadwalkan konsultasi",
+     "Chat tim sales sekarang"
+    ],
+    "jsMotion": false
+   }
+  }
+ }
+]

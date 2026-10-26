@@ -3,7 +3,7 @@
  * Homepage · hero gelap + angka bukti dari studi kasus unggulan.
  *
  * H1, lede, CTA, dan angka selalu HTML. Visual = poster M1 (frame 0, gambar LCP);
- * reduced motion memakai poster akhir. Sequence scroll-scrub dipasang di Fase 4.
+ * reduced motion memakai poster akhir. Sequence scroll-scrub: assets/js/motion.js.
  *
  * @package MEA_Orbit
  */

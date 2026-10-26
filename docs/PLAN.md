@@ -619,3 +619,55 @@ Penerima tiruan di `localhost:8090` memverifikasi signature, timestamp (±300 dt
 - **Cache halaman.** Pastikan `/wp-json/mea-leads/v1/*` dan `admin-post.php` tidak di-cache (respons sudah mengirim `Cache-Control: no-store`). Uji kirim form dari halaman yang sudah di-cache.
 - **Konstanta.** `MEA_LEADS_ENDPOINT` dan `MEA_LEADS_SECRET` diisi di `wp-config.php` staging dengan secret staging (dikirim lewat saluran privat). Tidak ada service-role key di WordPress.
 - **Uji ujung ke ujung dengan penerima CDPS staging** memakai vektor di kontrak bagian 5, lalu satu lead nyata dari form staging.
+
+## 18. Catatan Fase 4 **[baru]**
+
+### 18.1 Yang dibangun
+
+- `assets/js/motion.js` (satu modul, tanpa library, `defer`, hanya di halaman Orbit, 0 dependency baru). three.js tidak dimuat.
+  - **M1 hero dan M3 cara kerja**: satu komponen scroll-scrub (canvas + IntersectionObserver + rAF). Canvas dibuat JS di atas poster dan baru tampil setelah frame pertama tergambar; poster tetap di DOM (alt tetap terbaca). Muat progresif: 0, terakhir, tiap 16, 8, 4, 2, lalu sisanya.
+  - **M2 enam sisi**: `<video>` dibuat setelah `load` saat section ≤ 1 layar. Desktop: hover/focus kartu, selesai satu siklus saat keluar. HP: 60% terlihat.
+  - **M4 Kurva Bellarosa**: diputar sekali saat 60% terlihat, menahan frame akhir.
+  - **Motion kode**: hitung naik (H2, Panel Hasil, bukti layanan), garis orbit tipis di bawah angka hero, foto reveal (mask naik 12 px, 600 ms; mosaik stagger 80 ms), kutipan pimpinan dan judul studi kasus per baris, garis meta, bar komposisi mengisi dari kiri, garis kutipan cerita, penanda bab aktif, hover studi kasus lain (CSS), tampilan terima kasih form (CSS).
+- `inc/assets.php`: enqueue `motion.js` (defer) + `window.meaMotion.base`; skrip inline 1 baris di `<head>` yang menambah kelas `js-motion` (tanpa reduced motion).
+- `inc/orbit.php`: hitung naik juga mengenali pemisah ribuan titik ("3.000").
+- `orbit.css`: bagian "Motion".
+
+### 18.2 Keputusan kecil selama Fase 4
+
+| # | Keputusan | Alasan |
+|---|---|---|
+| a | Keadaan awal reveal diatur CSS di bawah `html.js-motion`, kelas dipasang skrip inline di `<head>` | Konten tidak tampil lalu hilang lagi (tanpa kedip). Tanpa JS kelas tidak ada, semua tampil. Pengaman: bila `motion.js` gagal dimuat, semua tampil setelah 3 detik; bila skrip baru jalan setelah 2,5 detik, semua langsung tampil tanpa animasi |
+| b | Angka yang sudah terlihat saat skrip jalan tidak dihitung ulang dari nol | Tidak berkedip ke 0. Teks asli tetap untuk pembaca layar (`screen-reader-text`), angka berjalan `aria-hidden` |
+| c | Progress M3 diukur dari garis acuan (tengah layar; di HP tengah area di bawah kotak sticky) terhadap blok langkah pertama sampai terakhir | Setara rumus README M3 bila padding 50svh, tetapi tetap sinkron dengan jarak langkah tema (16.2 f). Langkah aktif = `min(4, floor(frame150 / 30))`, juga diperbarui saat reduced motion (tanpa animasi) |
+| d | Interaksi pertama untuk hero (PLAN 9.2) mengabaikan `pointermove` tanpa perpindahan | Chrome mengirim `pointermove` sintetis saat tata letak berubah di bawah kursor yang diam; tanpa filter ini 61 frame ikut dimuat saat halaman diam |
+| e | M4: poster = frame akhir (grafik penuh), video mulai dari grafik kosong. Video baru menggantikan poster saat figure **tidak** terlihat; bila `play()` ditolak, poster kembali | Pengunjung tidak melihat grafik penuh lalu kosong |
+| f | Reveal yang memakai `clip-path` diamati lewat elemen induknya | IntersectionObserver di Chrome menganggap elemen ber-`clip-path: inset(100% …)` tidak terlihat, sehingga foto tidak pernah muncul (ditemukan dan diperbaiki saat uji) |
+| g | Garis kutipan dan bar komposisi hanya di template studi kasus (S2, S4), sesuai peta motion | Kutipan di homepage dan layanan tidak diberi motion |
+
+### 18.3 Hasil uji lokal (`docs/qa/fase-4/`)
+
+| | Desktop 1366 | HP 390 |
+|---|---|---|
+| Request homepage tanpa interaksi | 22 | 17 |
+| Byte motion sebelum `load` | 0 | 0 |
+| Sequence/video tanpa interaksi | 0 | 0 |
+| Frame hero setelah interaksi | 61 (1,17 MB) | 60 (0,73 MB) |
+| Sebelum hero terlewati (poster + frame) | 1,18 MB | 0,76 MB |
+| Total motion homepage, discroll sampai habis | **3,68 MB** (batas 4 MB) | **2,01 MB** |
+| Reduced motion / Hemat Data: sequence atau video diunduh | 0 (hanya poster, 0,09–0,11 MB) | 0 |
+| CLS (homepage, layanan, studi kasus) | ≤ 0,0003 | 0 |
+| Error JS | 0 | 0 |
+
+- LCP dengan throttling mirip Lighthouse mobile (RTT 150 ms, 1,6 Mbps, CPU 4×, server lokal): homepage 1,09 dtk (poster hero), layanan 0,98 dtk, studi kasus 1,07 dtk (H1, +0,14 dtk karena muncul per baris). Angka PageSpeed sebenarnya diukur di staging (Fase 5).
+- Langkah aktif Cara kerja sinkron dengan stasiun di visual (langkah 1–5) di desktop dan HP, juga di template layanan.
+- Tanpa JavaScript: H1, angka, CTA, dan poster tampil.
+- PHPCS bersih, `php -l` bersih.
+
+### 18.4 Dicek di staging
+
+- PageSpeed mobile homepage: LCP < 2,5 dtk, CLS < 0,1, INP < 200 ms, request < 30.
+- Scrub hero dan Cara kerja di iPhone Safari dan Android Chrome (tidak bisa diuji di container ini).
+- M4 di iPhone: Safari bisa mengabaikan `preload="auto"`. Bila `loadeddata` tidak datang, poster (frame akhir) tetap tampil tanpa animasi; itu perilaku yang disengaja, tetapi perlu dilihat.
+- Frame M3 berlatar `#FEFEFE` (palet 256 warna), halaman `#FFFFFF`. Selisih 1 level; di layar biasa tidak terlihat. Bila terlihat di staging, render ulang di Motion Lab (aset tidak diubah di sini).
+- Jumlah langkah di template layanan harus 5 supaya cocok dengan lima stasiun M3.

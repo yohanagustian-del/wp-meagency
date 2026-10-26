@@ -1,0 +1,74 @@
+[
+ {
+  "page": "home",
+  "motion": "no-preference",
+  "lcp": {
+   "t": 1092,
+   "el": "IMG poster-first-720.webp"
+  },
+  "cls": 0,
+  "fcp": 1028,
+  "requests": 11,
+  "kb": 123
+ },
+ {
+  "page": "home",
+  "motion": "reduce",
+  "lcp": {
+   "t": 984,
+   "el": "IMG poster-last-720.webp"
+  },
+  "cls": 0,
+  "fcp": 984,
+  "requests": 11,
+  "kb": 133
+ },
+ {
+  "page": "layanan",
+  "motion": "no-preference",
+  "lcp": {
+   "t": 984,
+   "el": "IMG.attachment-large media-15630-768x512.jpg"
+  },
+  "cls": 0,
+  "fcp": 984,
+  "requests": 10,
+  "kb": 106
+ },
+ {
+  "page": "layanan",
+  "motion": "reduce",
+  "lcp": {
+   "t": 1012,
+   "el": "IMG.attachment-large media-15630-768x512.jpg"
+  },
+  "cls": 0,
+  "fcp": 1012,
+  "requests": 10,
+  "kb": 106
+ },
+ {
+  "page": "studi",
+  "motion": "no-preference",
+  "lcp": {
+   "t": 1068,
+   "el": "H1.is-split"
+  },
+  "cls": 0,
+  "fcp": 896,
+  "requests": 9,
+  "kb": 102
+ },
+ {
+  "page": "studi",
+  "motion": "reduce",
+  "lcp": {
+   "t": 924,
+   "el": "H1.is-in"
+  },
+  "cls": 0,
+  "fcp": 924,
+  "requests": 9,
+  "kb": 103
+ }
+]
