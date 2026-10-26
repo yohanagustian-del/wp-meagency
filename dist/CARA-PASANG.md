@@ -1,5 +1,8 @@
 # Cara pasang mea-orbit dan mea-leads
 
+Pasang langsung di produksi tanpa staging: ikuti `PASANG-PRODUKSI.md` (di paket produksi:
+`README.md`); berkas ini menjadi referensi lengkapnya.
+
 Untuk **staging** meagency.co.id lebih dulu. Produksi hanya setelah staging lolos semua cek
 di bagian 6 dan Yohan menyetujui. Acuan lengkap: `docs/PLAN.md` bagian 14 (strategi aman
 crawl) dan `docs/ELEMENTOR-EXIT.md`.
