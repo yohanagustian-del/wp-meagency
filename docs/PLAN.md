@@ -671,3 +671,33 @@ Penerima tiruan di `localhost:8090` memverifikasi signature, timestamp (±300 dt
 - M4 di iPhone: Safari bisa mengabaikan `preload="auto"`. Bila `loadeddata` tidak datang, poster (frame akhir) tetap tampil tanpa animasi; itu perilaku yang disengaja, tetapi perlu dilihat.
 - Frame M3 berlatar `#FEFEFE` (palet 256 warna), halaman `#FFFFFF`. Selisih 1 level; di layar biasa tidak terlihat. Bila terlihat di staging, render ulang di Motion Lab (aset tidak diubah di sini).
 - Jumlah langkah di template layanan harus 5 supaya cocok dengan lima stasiun M3.
+
+## 19. Catatan Fase 5 **[baru]**
+
+### 19.1 Yang dibangun
+
+- `tools/seo-parity/parity.php` + `README.md`: `snapshot` (dari sitemap atau daftar URL, hanya GET, jeda 500 ms) dan `compare` (status, redirect, title, description, robots, canonical, og:locale, og:image, lang, H1, urutan H2/H3, kemiripan teks, link internal, gambar + alt, tipe JSON-LD). Laporan `ringkasan.md` + `paritas.csv`; exit code 2 bila ada beda. Opsi `--area` (isi artikel saja, untuk Fase 6) dan `--abaikan-sinyal` (beda yang disengaja: `lang,og_locale`).
+- `tools/build-dist.sh` → `dist/mea-orbit.zip` (9,2 MB, termasuk aset motion runtime) dan `dist/mea-leads.zip` (25 KB).
+- `dist/CARA-PASANG.md`: urutan pasang di staging, konstanta `wp-config.php`, cron hPanel, IP di balik CDN, cache, memilih template per halaman + seed REST, menu, Rank Math, uji form/CDPS, uji paritas, cek sebelum produksi, produksi, rollback ke Hello Elementor, pembaruan.
+- `screenshot.png` tema (1200×900).
+- `docs/ELEMENTOR-EXIT.md` bagian 7, `docs/qa/fase-5/QA.md`.
+
+### 19.2 Keputusan kecil selama Fase 5
+
+| # | Keputusan | Alasan |
+|---|---|---|
+| a | Alat paritas dua tahap (snapshot lalu compare), bukan satu perintah langsung | Snapshot produksi **sebelum** tema diganti harus disimpan dan dipakai lagi setelah tema aktif di produksi (PLAN 14.3 langkah 4) |
+| b | Area isi = body tanpa `header`, `footer`, `nav`, header/footer/popup Theme Builder, skip link | Header/footer memang berganti di langkah 1; yang dijaga adalah isi |
+| c | Kemiripan teks: Jaccard shingle 3 kata, ambang 0,98 | Cepat untuk ratusan URL, peka terhadap kalimat yang hilang atau berpindah |
+| d | Gambar pembanding prototipe vs tema diambil dari screenshot viewport yang disambung | Screenshot full-page Playwright memperbesar viewport sehingga unit `svh` dan elemen sticky ikut berubah; mosaik dan visual sticky tidak tergambar walau di browser tampil normal |
+| e | Zip di-commit ke `dist/` | Tim bisa langsung mengunduh dari GitHub tanpa build |
+
+### 19.3 Hasil
+
+Lihat `docs/qa/fase-5/QA.md`. Ketujuh kriteria lulus di lokal; INP, PageSpeed sebenarnya, Rich Results Test, uji paritas produksi vs staging, dan uji di iPhone/Android menunggu staging.
+
+### 19.4 Menunggu staging
+
+1. Pemilik membuat staging di hPanel.
+2. Snapshot produksi (dari komputer tim; container ini tidak bisa menjangkau www.meagency.co.id).
+3. Pasang sesuai `dist/CARA-PASANG.md`, lalu cek bagian 6 di sana, ELEMENTOR-EXIT bagian 6, dan daftar "Dicek di staging" di bagian 16.4, 17.4, dan 18.4.

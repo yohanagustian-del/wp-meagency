@@ -1,6 +1,6 @@
 # Rencana keluar dari Elementor (meagency.co.id)
 
-Draf Fase 1 · 25 Okt 2026 · dilengkapi di Fase 5 setelah dicek di staging.
+Draf Fase 1 · 25 Okt 2026 · Fase 5 · 26 Okt 2026: alat paritas siap (bagian 7). Bagian 1.1, 1.3, dan 6 dilengkapi setelah staging tersedia.
 Acuan: `docs/PLAN.md` bagian 12 dan 14.
 
 Tujuan akhir: Elementor, Elementor Pro, ElementsKit Lite, dan Unlimited Elements dinonaktifkan tanpa mengganggu crawl Google. Caranya dua langkah terpisah: **langkah 1** ganti tema, **langkah 2** pindahkan konten. Setiap langkah dicek dulu dengan uji paritas sebelum langkah berikutnya.
@@ -102,3 +102,17 @@ Tampilan → Tema → aktifkan Hello Elementor. Data field mea-orbit, opsi, dan 
 - Apakah Single Post Template mencetak breadcrumb, kotak penulis, atau artikel terkait. Ini menentukan paritas saat template itu dinonaktifkan di langkah 2.
 - Kit Elementor (warna, font global) dan pengaruhnya ke widget lama tanpa reset Hello Elementor.
 - Daftar widget yang benar-benar dipakai di halaman pemasaran.
+
+---
+
+## 7. Status Fase 5 (26 Okt 2026)
+
+- `tools/seo-parity/parity.php` siap dan sudah diuji di lokal (`docs/qa/fase-5/QA.md`). Perintah
+  untuk langkah 1: `dist/CARA-PASANG.md` bagian 0 (snapshot produksi) dan 5 (staging).
+- Untuk langkah 2 (Fase 6), bandingkan isi artikel saja dengan
+  `--area=elementor-widget-theme-post-content,prose`: sebelum konversi isi artikel ada di widget
+  Post Content milik Single Post Template, sesudah konversi di `.prose` milik `single.php`.
+- Staging belum ada, jadi bagian 6 belum bisa dicek. Container sesi ini juga tidak bisa
+  menjangkau www.meagency.co.id; snapshot produksi dijalankan dari komputer tim atau sesi
+  Claude Code lokal.
+- `dist/mea-orbit.zip` dan `dist/mea-leads.zip` lolos dipasang di WordPress bersih.
