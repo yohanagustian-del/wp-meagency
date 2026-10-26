@@ -1,0 +1,22 @@
+{
+ "formAda": 1,
+ "sumber": "layanan-performance-ads",
+ "pesanKosong": [
+  "Isi nama Anda.",
+  "Nomor WhatsApp diawali 08 dan berisi 10–13 angka.",
+  "Pilih kisaran omzet.",
+  "Centang persetujuan agar tim bisa menghubungi Anda."
+ ],
+ "thanksTampil": true,
+ "waHref": "https://wa.me/6282117932648?text=Halo%20tim%20MEA%20Agency%2C%20saya%20Rina%20Uji.%20Saya%20baru%20isi%20form%20konsultasi%20untuk%20toko%20shopee.co.id%2Frina-uji.",
+ "dataLayer": [
+  {
+   "event": "generate_lead",
+   "form_source": "layanan-performance-ads",
+   "lead_omzet": "250jt-1m"
+  }
+ ],
+ "errorsJs": [],
+ "noJsUrl": "/bellarosa/?mea_terkirim=1#konsultasi",
+ "noJsThanks": true
+}

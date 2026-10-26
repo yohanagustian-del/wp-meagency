@@ -1,0 +1,13 @@
+{
+ "baris": 20,
+ "barisGagal": 2,
+ "statusTampil": [
+  "gagal"
+ ],
+ "csvBaris": 3,
+ "csvHeader": "id,submitted_at,status,nama,whatsapp,link_toko,omzet,layanan,sumber_form,halaman_asal,utm_source,utm_medium,utm_campaign,percobaan,cdps_lead_id,terkirim_at,dianonimkan_at,idempotency_key",
+ "csvNama": "leads-mea-20261026-015222.csv",
+ "riwayatBaris": 1,
+ "notice": "1 lead dijadwalkan untuk dikirim ulang.Dismiss this notice.",
+ "errors": []
+}

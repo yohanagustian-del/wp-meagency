@@ -303,6 +303,12 @@ main p {
 	color: var(--graphite);
 }
 
+.lead-form .err {
+	font-size: .85rem;
+	color: #B3261E;
+	margin: 0;
+}
+
 .lead-form-wa {
 	justify-items: start;
 }

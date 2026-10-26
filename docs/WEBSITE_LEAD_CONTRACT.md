@@ -77,4 +77,34 @@ X-MEA-Signature: sha256=<64 karakter hex huruf kecil>
 
 ## 5. Contoh uji (untuk test di kedua sisi)
 
-Vektor uji tetap dengan secret contoh akan ditambahkan di Fase 3 (`tests/run.php`), lengkap dengan `raw_body`, timestamp, dan signature yang diharapkan, supaya penerima bisa memakai vektor yang sama.
+Vektor tetap, dipakai `tests/run.php` di sisi WordPress. Penerima CDPS sebaiknya memakai vektor yang sama di test-nya. Secret ini hanya contoh dan tidak boleh dipakai di lingkungan mana pun.
+
+| Bagian | Nilai |
+|---|---|
+| Secret | `contoh-rahasia-jangan-dipakai` |
+| `X-MEA-Timestamp` | `1761360900` |
+| `X-MEA-Idempotency-Key` | `3f0c8a52-6c1e-4d8a-9b2f-0c4e2a7d9e11` |
+| `raw_body` | 478 byte, satu baris, UTF-8, tanpa newline di akhir (di bawah) |
+| SHA-256 `raw_body` | `fdfe8e1eab911ebf6d7ec0dd5b15d95ccb15a7e08842f776a52c08b1a9fa55cc` |
+| `X-MEA-Signature` | `sha256=613ec03b112cb1e062b9f8eff5d1a7a4f4fb178bdb8a65e14f6cb60095b0c78d` |
+
+`raw_body`:
+
+```
+{"schema":"mea.website_lead.v1","kanal":"website","idempotency_key":"3f0c8a52-6c1e-4d8a-9b2f-0c4e2a7d9e11","site":"meagency.co.id","submitted_at":"2026-10-19T09:15:00+07:00","nama":"Rina Kusuma","whatsapp":"081234567890","link_toko":"shopee.co.id/namatoko","omzet":"250jt-1m","layanan":"Iklan Shopee dan TikTok Shop","sumber_form":"layanan-performance-ads","halaman_asal":"/jasa-performance-ads/","utm":{"source":null,"medium":null,"campaign":null},"persetujuan_dihubungi":true}
+```
+
+Cek dengan openssl:
+
+```sh
+B='<raw_body di atas>'
+printf '%s' "1761360900.$B" | openssl dgst -sha256 -hmac 'contoh-rahasia-jangan-dipakai'
+# SHA2-256(stdin)= 613ec03b112cb1e062b9f8eff5d1a7a4f4fb178bdb8a65e14f6cb60095b0c78d
+```
+
+Perilaku penerima yang wajib (penerima tiruan lokal di Fase 3 menerapkan yang sama):
+
+- Body berubah satu byte (mis. spasi di akhir) → signature tidak cocok → `401`.
+- Timestamp selisih lebih dari 300 detik dari jam penerima → `401`.
+- Idempotency key di header berbeda dengan `idempotency_key` di body → `400`/`422`.
+- Key yang sama dikirim ulang → hasil pertama dikembalikan (`lead_id` sama), bukan lead baru.

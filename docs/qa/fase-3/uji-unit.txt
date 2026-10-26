@@ -1,0 +1,59 @@
+Payload v1
+  ok   body sama byte demi byte dengan contoh kontrak
+  ok   utm terisi jadi string, kosong jadi null
+  ok   urutan kunci sesuai kontrak
+  ok   unicode dan slash tidak di-escape
+Tanda tangan HMAC
+  ok   vektor openssl
+  ok   timestamp string sama dengan integer
+  ok   body berubah satu byte, tanda tangan berubah
+  ok   format sha256= + 64 hex huruf kecil
+Normalisasi nomor
+  ok   +62 dengan spasi dan strip
+  ok   awalan 62
+  ok   awalan 08 dengan titik
+Validasi (pesan sama dengan prototipe)
+  ok   isian lengkap tanpa galat
+  ok   nama di-trim
+  ok   nomor dinormalisasi
+  ok   isian kosong: empat pesan galat
+  ok   sumber kosong jadi website
+  ok   halaman asal kosong jadi /
+  ok   nomor 9 digit ditolak
+  ok   nomor 14 digit ditolak
+  ok   nomor 13 digit diterima
+  ok   nomor tidak diawali 08 ditolak
+  ok   omzet di luar daftar ditolak
+  ok   layanan di luar daftar dikosongkan
+  ok   halaman asal luar situs ditolak
+  ok   tag HTML di nama dibuang
+  ok   sumber hanya huruf kecil, angka, strip
+Klasifikasi respons
+  ok   HTTP 200 terkirim
+  ok   HTTP 201 terkirim
+  ok   HTTP 204 terkirim
+  ok   HTTP 301 gagal tanpa retry
+  ok   HTTP 400 gagal tanpa retry
+  ok   HTTP 401 gagal tanpa retry
+  ok   HTTP 403 gagal tanpa retry
+  ok   HTTP 404 gagal tanpa retry
+  ok   HTTP 422 gagal tanpa retry
+  ok   HTTP 408 diulang
+  ok   HTTP 409 diulang
+  ok   HTTP 425 diulang
+  ok   HTTP 429 diulang
+  ok   HTTP 500 diulang
+  ok   HTTP 502 diulang
+  ok   HTTP 503 diulang
+  ok   galat jaringan diulang
+Backoff
+  ok   jadwal 1 mnt, 5 mnt, 30 mnt, 2 jam, 12 jam, lalu habis
+Respons penerima
+  ok   lead_id dibaca
+  ok   lead_id salah format diabaikan
+  ok   body bukan JSON diabaikan
+CSV
+  ok   formula diberi awalan kutip
+  ok   teks biasa tidak berubah
+
+49/49 lolos

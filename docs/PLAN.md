@@ -572,3 +572,50 @@ Halaman umum hanya memuat `base.css` + `content.css`. Selama Elementor aktif, at
 - Filter og:image cadangan (`rank_math/opengraph/*/add_additional_images`) dan graph JSON-LD Rank Math yang sebenarnya, lewat Rich Results Test.
 - Title dan meta description 14144 dan 14512 di Rank Math masih memakai teks lama (Google/Bing, "brand baru"). Perlu diperbarui tim di wp-admin.
 - Alt foto produk Bellarosa di `docs/seed/media-alt.json` masih netral; perlu dicek per foto.
+
+## 17. Catatan Fase 3 **[baru]**
+
+### 17.1 Yang dibangun
+
+- Plugin `wp-content/plugins/mea-leads/` (mandiri, tidak bergantung pada tema):
+  - `includes/core.php`: fungsi murni tanpa WordPress (validasi, payload v1, HMAC, klasifikasi respons, backoff, sel CSV aman). Diuji `tests/run.php` tanpa WordPress.
+  - `includes/db.php`: tabel `{prefix}mea_leads` (dbDelta, versi skema `MEA_LEADS_DB_VERSION`).
+  - `includes/form.php` + `assets/js/form.js`: markup form sama dengan prototipe, validasi klien dan server dengan pesan yang sama, tampilan terima kasih + tombol WhatsApp berisi teks, `dataLayer.push({event:'generate_lead', form_source, lead_omzet})`. Tersedia lewat `mea_leads_form()`, shortcode `[mea_lead_form]`, dan blok `mea/lead-form`.
+  - `includes/rest.php`: `GET /wp-json/mea-leads/v1/token`, `POST /wp-json/mea-leads/v1/kirim`, dan `admin-post.php?action=mea_leads_kirim` (form tetap jalan tanpa JavaScript).
+  - `includes/sender.php` + `includes/cron.php`: pengiriman sesuai `docs/WEBSITE_LEAD_CONTRACT.md`, retry 1 mnt / 5 mnt / 30 mnt / 2 jam / 12 jam lalu `gagal`, sapuan per jam, retensi harian.
+  - `includes/admin.php` + `class-mea-leads-list-table.php`: menu **Leads MEA** (filter status, sumber, tanggal; riwayat per lead; kirim ulang per baris dan massal; ekspor CSV mengikuti filter).
+  - `uninstall.php`: hapus jadwal cron. Tabel hanya dihapus bila `MEA_LEADS_HAPUS_SAAT_UNINSTALL` bernilai `true`.
+- Tema: form konsultasi memanggil plugin (sudah sejak Fase 2), ditambah gaya pesan galat di `orbit.css`. Tanpa plugin, tema menampilkan tombol WhatsApp.
+- `docs/WEBSITE_LEAD_CONTRACT.md` bagian 5: vektor uji HMAC tetap (dicek dengan openssl) untuk dipakai test di sisi CDPS.
+
+### 17.2 Keputusan kecil selama Fase 3
+
+| # | Keputusan | Alasan |
+|---|---|---|
+| a | Body JSON dibentuk sekali saat lead disimpan dan disimpan byte demi byte. Setiap percobaan memakai body dan idempotency key yang sama; hanya timestamp dan signature yang baru | Penerima bisa membuang duplikat dengan aman |
+| b | Tanpa konstanta `MEA_LEADS_ENDPOINT`/`MEA_LEADS_SECRET`, lead disimpan dengan status `menunggu` dan tidak ada request keluar. Sapuan per jam mengirimnya setelah konstanta diisi | Plugin aman diaktifkan sebelum CDPS siap |
+| c | Nonce diambil lewat `GET /token` (no-store) tepat sebelum mengirim. Token waktu `mea_t` tetap dari HTML halaman | Halaman yang di-cache (LiteSpeed/CDN) tidak membuat nonce kedaluwarsa. Di halaman yang di-cache, `mea_t` sudah lama sehingga jebakan waktu tidak menyaring apa pun; honeypot, nonce, dan batas laju tetap bekerja. Token waktu sengaja tidak diperbarui saat form disentuh supaya pengunjung yang mengisi cepat dengan autofill tidak dianggap bot dan lead-nya hilang |
+| d | Honeypot `website` dan isian di bawah 3 detik mendapat jawaban sukses tetapi tidak disimpan | Bot tidak belajar dari pesan galat |
+| e | Batas 5 kiriman per 10 menit per IP (`mea_leads_rate_limit`). IP diambil dari `REMOTE_ADDR`, bisa diganti lewat filter `mea_leads_client_ip` | Tidak mempercayai header `X-Forwarded-For` secara default (mudah dipalsukan) |
+| f | Kunci baris 120 detik (`kunci_sampai`) sebelum mengirim | Dua proses cron tidak mengirim lead yang sama |
+| g | Kirim ulang manual mengulang hitungan percobaan dari nol; lead `terkirim` tidak bisa dikirim ulang | Mencegah lead ganda di CDPS |
+| h | Retensi: 90 hari setelah `terkirim`, nama, WA, link toko, UTM, dan body dikosongkan; status, tanggal, sumber, halaman asal, omzet, layanan, dan ID lead CDPS tetap | Sesuai jawaban 6 |
+| i | Ekspor CSV memakai BOM UTF-8 dan sel yang diawali `= + - @` diberi tanda kutip tunggal | Aman dibuka di Excel/Sheets (formula injection) |
+
+### 17.3 Hasil uji lokal
+
+Penerima tiruan di `localhost:8090` memverifikasi signature, timestamp (±300 dtk), skema, dan idempotency key, sama seperti kontrak. Laporan lengkap di `docs/qa/fase-3/`.
+
+- Unit (`php tests/run.php`): 49/49 lolos, termasuk vektor openssl.
+- Browser (`uji-browser.json`): form tampil dengan sumber yang benar; empat pesan galat sama persis dengan prototipe; tampilan terima kasih; tautan WhatsApp terisi; `dataLayer` benar; tanpa error JS; jalur tanpa JavaScript kembali ke halaman asal dengan tampilan terima kasih.
+- Server (`uji-server.txt`): tanpa konstanta tidak ada request; retry 500 dengan jeda 60/300/1800/7200/43200 lalu `gagal` setelah 6 percobaan; kirim ulang manual menghasilkan tepat satu request sukses; 401 langsung `gagal`; idempotensi; kunci; retensi 91 vs 89 hari; nonce, honeypot, jebakan waktu, token palsu, batas laju.
+- Admin (`uji-admin.json`, `admin-*.jpg`): paginasi, filter, ekspor CSV mengikuti filter, riwayat, kirim ulang massal dengan notifikasi.
+- PHPCS (WordPress) bersih untuk tema dan plugin; `php -l` bersih.
+
+### 17.4 Dicek di staging
+
+- **IP pengunjung di balik CDN/proxy Hostinger.** Bila semua request terlihat dari IP yang sama, batas laju akan memblokir semua pengunjung. Cek `REMOTE_ADDR` di staging; bila perlu, tambahkan filter `mea_leads_client_ip` yang membaca header CDN yang tepercaya (mu-plugin kecil, bukan di plugin).
+- **WP-Cron.** Bila staging/produksi memakai `DISABLE_WP_CRON`, pasang cron hPanel ke `wp-cron.php` tiap 5 menit. Tanpa itu, lead baru menunggu sampai cron berjalan.
+- **Cache halaman.** Pastikan `/wp-json/mea-leads/v1/*` dan `admin-post.php` tidak di-cache (respons sudah mengirim `Cache-Control: no-store`). Uji kirim form dari halaman yang sudah di-cache.
+- **Konstanta.** `MEA_LEADS_ENDPOINT` dan `MEA_LEADS_SECRET` diisi di `wp-config.php` staging dengan secret staging (dikirim lewat saluran privat). Tidak ada service-role key di WordPress.
+- **Uji ujung ke ujung dengan penerima CDPS staging** memakai vektor di kontrak bagian 5, lalu satu lead nyata dari form staging.

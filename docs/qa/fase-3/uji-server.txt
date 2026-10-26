@@ -1,0 +1,38 @@
+Lead yang tersimpan saat konstanta belum ada
+  ok   sapu per jam mengirimnya setelah konstanta diisi  (LEAD-202610-0013)
+Respons 500: retry dengan backoff
+  ok   percobaan 1: event cron terjadwal
+  ok   percobaan 2: event cron terjadwal
+  ok   percobaan 3: event cron terjadwal
+  ok   percobaan 4: event cron terjadwal
+  ok   percobaan 5: event cron terjadwal
+  ok   jeda 60, 300, 1800, 7200, 43200 detik  (60,300,1800,7200,43200)
+  ok   setelah percobaan ke-6: gagal
+  ok   riwayat mencatat 6 percobaan dengan kode 500
+Kirim ulang manual setelah gagal
+  ok   mea_leads_resend() menjadwalkan ulang
+  ok   terkirim dengan ID lead CDPS  (LEAD-202610-0034 / hasil panggilan langsung: lewat)
+  ok   tepat satu request sukses ke penerima (kunci mencegah kirim ganda)  (1)
+  ok   lead terkirim tidak bisa dikirim ulang
+Respons 401: gagal tanpa retry
+  ok   status gagal setelah 1 percobaan
+  ok   tidak ada event retry
+Idempotensi: body dan key yang sama dikirim dua kali
+  ok   penerima mengembalikan hasil pertama (lead_id sama)  (LEAD-202610-0035)
+  ok   key di header = key di body = key tersimpan
+Kunci: dua proses tidak mengirim lead yang sama
+  ok   klaim pertama berhasil
+  ok   klaim kedua ditolak
+Retensi 90 hari
+  ok   91 hari: nama, WA, link, UTM, body dihapus
+  ok   91 hari: status, sumber, halaman, omzet, layanan tetap
+  ok   89 hari: data utuh
+Penjaga spam (mea_leads_handle_submission)
+  ok   nonce salah: sesi
+  ok   honeypot terisi: spam
+  ok   isi < 3 detik: spam
+  ok   token waktu palsu: spam
+  ok   spam tidak disimpan
+  ok   5 kiriman per 10 menit, ke-6 dibatasi  (ok,ok,ok,ok,ok,batas)
+
+semua lolos
