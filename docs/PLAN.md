@@ -701,3 +701,14 @@ Lihat `docs/qa/fase-5/QA.md`. Ketujuh kriteria lulus di lokal; INP, PageSpeed se
 1. Pemilik membuat staging di hPanel.
 2. Snapshot produksi (dari komputer tim; container ini tidak bisa menjangkau www.meagency.co.id).
 3. Pasang sesuai `dist/CARA-PASANG.md`, lalu cek bagian 6 di sana, ELEMENTOR-EXIT bagian 6, dan daftar "Dicek di staging" di bagian 16.4, 17.4, dan 18.4.
+
+## 20. Setelah live (27 Okt 2026) **[baru]**
+
+Tema dan plugin dipasang langsung di produksi oleh pemilik (tanpa staging), mengikuti `dist/PASANG-PRODUKSI.md`.
+
+| Versi | Perubahan | Alasan |
+|---|---|---|
+| mea-leads 0.1.1 | Menu Leads MEA bisa dibuka Editor (`edit_others_posts`, filter `mea_leads_capability`) | Permintaan pemilik |
+| mea-orbit 0.1.1 | Section opsional **Layanan terkait** di template layanan, setelah FAQ dan sebelum form: field `mea_layanan_terkait` (repeater `label` + `page_id`), tampil hanya bila ada halaman terbit; label kosong = judul halaman; halaman sendiri dilewati. Gaya kartu memakai `.more` (sama dengan "Studi kasus lain") | Permintaan pemilik: menautkan `/jasa-performance-ads/` ke `/jasa-iklan-shopee/` (7467) dan `/jasa-tiktok-ads/` (16545). Isiannya ditambahkan ke `docs/seed/page-14144-jasa-performance-ads.json` |
+
+Audit tracking (hanya baca): `docs/audit/2026-10-27-tracking.md`, skrip `tools/tracking-audit/audit.sh`.

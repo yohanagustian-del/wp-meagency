@@ -113,6 +113,20 @@ function mea_orbit_field_defs() {
 				),
 			),
 		),
+		'layanan_terkait'  => array(
+			'type'   => 'repeater',
+			'label'  => __( 'Layanan terkait (opsional; kosong = section tidak tampil)', 'mea-orbit' ),
+			'fields' => array(
+				'label'   => array(
+					'type'  => 'text',
+					'label' => __( 'Label (kosong = judul halaman)', 'mea-orbit' ),
+				),
+				'page_id' => array(
+					'type'  => 'page',
+					'label' => __( 'Halaman layanan (ID)', 'mea-orbit' ),
+				),
+			),
+		),
 		'service_type'     => array(
 			'type'  => 'text',
 			'label' => __( 'serviceType di schema Service', 'mea-orbit' ),

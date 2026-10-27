@@ -26,6 +26,7 @@ get_header();
 		get_template_part( 'template-parts/layanan/cara-kerja' );
 		get_template_part( 'template-parts/layanan/bukti' );
 		get_template_part( 'template-parts/layanan/faq' );
+		get_template_part( 'template-parts/layanan/terkait' );
 		get_template_part( 'template-parts/global/konsultasi', null, array( 'sumber' => mea_orbit_form_source( 'layanan-' ) ) );
 	endif;
 	?>

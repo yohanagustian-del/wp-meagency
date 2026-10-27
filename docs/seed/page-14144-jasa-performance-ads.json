@@ -88,6 +88,16 @@
       }
     ],
     "mea_service_type": "Marketplace advertising management",
-    "mea_sumber_form": "layanan-performance-ads"
+    "mea_sumber_form": "layanan-performance-ads",
+    "mea_layanan_terkait": [
+      {
+        "label": "Jasa iklan Shopee",
+        "page_id": 7467
+      },
+      {
+        "label": "Jasa TikTok Ads",
+        "page_id": 16545
+      }
+    ]
   }
 }
