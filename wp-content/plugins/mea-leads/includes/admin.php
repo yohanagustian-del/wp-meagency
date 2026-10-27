@@ -10,12 +10,23 @@ defined( 'ABSPATH' ) || exit;
 require_once MEA_LEADS_DIR . '/includes/class-mea-leads-list-table.php';
 
 /**
+ * Kemampuan yang dibutuhkan untuk membuka Leads MEA (daftar, riwayat, kirim ulang,
+ * ekspor). Default `edit_others_posts`: Editor dan Administrator. Bisa diubah
+ * lewat filter `mea_leads_capability`.
+ *
+ * @return string
+ */
+function mea_leads_capability() {
+	return (string) apply_filters( 'mea_leads_capability', 'edit_others_posts' );
+}
+
+/**
  * Daftarkan menu.
  *
  * @return void
  */
 function mea_leads_admin_menu() {
-	add_menu_page( __( 'Leads MEA', 'mea-leads' ), __( 'Leads MEA', 'mea-leads' ), 'manage_options', 'mea-leads', 'mea_leads_admin_page', 'dashicons-email-alt', 26 );
+	add_menu_page( __( 'Leads MEA', 'mea-leads' ), __( 'Leads MEA', 'mea-leads' ), mea_leads_capability(), 'mea-leads', 'mea_leads_admin_page', 'dashicons-email-alt', 26 );
 }
 add_action( 'admin_menu', 'mea_leads_admin_menu' );
 
@@ -45,7 +56,7 @@ function mea_leads_admin_filters() {
  * @return void
  */
 function mea_leads_admin_page() {
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( mea_leads_capability() ) ) {
 		return;
 	}
 
@@ -154,7 +165,7 @@ function mea_leads_admin_detail( $id ) {
  * @return void
  */
 function mea_leads_admin_resend_one() {
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( mea_leads_capability() ) ) {
 		wp_die( esc_html__( 'Anda tidak punya akses.', 'mea-leads' ), 403 );
 	}
 	check_admin_referer( 'mea_leads_kirim_ulang' );
@@ -170,7 +181,7 @@ add_action( 'admin_post_mea_leads_kirim_ulang', 'mea_leads_admin_resend_one' );
  * @return void
  */
 function mea_leads_admin_bulk() {
-	if ( empty( $_POST['lead'] ) || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce dicek di bawah.
+	if ( empty( $_POST['lead'] ) || ! current_user_can( mea_leads_capability() ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce dicek di bawah.
 		return;
 	}
 	$table = new MEA_Leads_List_Table();
@@ -193,7 +204,7 @@ add_action( 'load-toplevel_page_mea-leads', 'mea_leads_admin_bulk' );
  * @return void
  */
 function mea_leads_admin_export() {
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( mea_leads_capability() ) ) {
 		wp_die( esc_html__( 'Anda tidak punya akses.', 'mea-leads' ), 403 );
 	}
 	check_admin_referer( 'mea_leads_ekspor' );

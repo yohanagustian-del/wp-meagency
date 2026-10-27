@@ -146,7 +146,7 @@ Perbarui di editor halaman → Rank Math. Tema tidak mencetak title, meta, canon
 ## 4. Form dan CDPS
 
 1. Kirim satu form dari homepage dan satu dari `/jasa-performance-ads/`.
-2. wp-admin → **Leads MEA**: lead tampil. Tanpa konstanta statusnya **menunggu**; dengan
+2. wp-admin → **Leads MEA** (Editor dan Administrator; ubah lewat filter `mea_leads_capability`): lead tampil. Tanpa konstanta statusnya **menunggu**; dengan
    konstanta menjadi **terkirim** dan kolom ID lead CDPS (`LEAD-YYYYMM-NNNN`) terisi.
 3. Cek di CDPS staging: lead masuk Pool dengan badge "Lead Website".
 4. Riwayat pengiriman per lead: klik **Riwayat**. Kirim ulang: per baris atau aksi massal.

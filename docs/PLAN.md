@@ -326,7 +326,7 @@ Catatan WP-Cron: di Hostinger WP-Cron jalan saat ada kunjungan. Kalau `DISABLE_W
 
 ### 7.3 Admin "Leads MEA"
 
-Kapabilitas `manage_options`. Kolom: tanggal, nama, WhatsApp, omzet, layanan, sumber form, halaman asal, status, percobaan, ID lead CDPS. Filter status, sumber form, rentang tanggal. Aksi baris dan massal "Kirim ulang". Ekspor CSV sesuai filter aktif (dengan nonce). Detail riwayat percobaan bisa dibuka per baris.
+Kapabilitas `edit_others_posts` (Editor dan Administrator; **[0.1.1]** diubah dari `manage_options` atas permintaan pemilik 27 Okt 2026), bisa diganti lewat filter `mea_leads_capability`. Kolom: tanggal, nama, WhatsApp, omzet, layanan, sumber form, halaman asal, status, percobaan, ID lead CDPS. Filter status, sumber form, rentang tanggal. Aksi baris dan massal "Kirim ulang". Ekspor CSV sesuai filter aktif (dengan nonce). Detail riwayat percobaan bisa dibuka per baris.
 
 ---
 

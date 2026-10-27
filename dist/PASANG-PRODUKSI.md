@@ -47,7 +47,7 @@ WPS Hide Login. Tidak ada plugin cache; cache server diatur di hPanel.
 ## 2. Pasang plugin mea-leads (tidak mengubah tampilan)
 
 1. Plugin → Tambah Baru → Unggah Plugin → `mea-leads.zip` → Pasang Sekarang → **Aktifkan**.
-2. Muncul menu **Leads MEA** di wp-admin. Tampilan situs belum berubah (form baru tampil
+2. Muncul menu **Leads MEA** di wp-admin (bisa dibuka Editor dan Administrator). Tampilan situs belum berubah (form baru tampil
    setelah tema aktif).
 3. **Jangan** isi `MEA_LEADS_ENDPOINT` / `MEA_LEADS_SECRET` dulu. Diisi setelah penerima CDPS
    produksi siap (`CARA-PASANG.md` bagian 2).
