@@ -3,7 +3,8 @@
  * Endpoint form:
  * - GET  /wp-json/mea-leads/v1/token  nonce segar (no-store), supaya
  *   form di halaman yang di-cache tidak kedaluwarsa.
- * - POST /wp-json/mea-leads/v1/kirim  isian form (JavaScript).
+ * - POST /wp-json/mea-leads/v1/kirim  isian form (JavaScript). Sukses membawa event_id
+ *   (idempotency_key lead) untuk dataLayer.
  * - POST /wp-admin/admin-post.php?action=mea_leads_kirim  isian form tanpa JavaScript.
  *
  * @package MEA_Leads
@@ -66,7 +67,13 @@ function mea_leads_rest_submit( $request ) {
 	$result = mea_leads_handle_submission( (array) $request->get_body_params() + (array) $request->get_json_params() );
 
 	$map             = array(
-		'ok'      => array( 200, array( 'ok' => true ) ),
+		'ok'      => array(
+			200,
+			array(
+				'ok'       => true,
+				'event_id' => $result['event_id'] ?? '',
+			),
+		),
 		'spam'    => array( 200, array( 'ok' => true ) ),
 		'invalid' => array(
 			422,

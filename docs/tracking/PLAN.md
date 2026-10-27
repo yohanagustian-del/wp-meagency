@@ -3,6 +3,10 @@
 Fase 0 · 27 Okt 2026. Acuan: `docs/audit/2026-10-27-tracking.md`. Keputusan pemilik: tracking
 dipasang tema, tanpa plugin tracking. Tidak ada yang disentuh di situs live.
 
+**Status: Fase 1 selesai** (tema 0.2.0, mea-leads 0.1.2). Hasil uji: `docs/qa/tracking-fase-1/QA.md`.
+Panduan: `GTM-SETUP.md`, `MIGRASI.md`. Keputusan atas bagian 8 dan penyesuaian kecil saat
+Fase 1 ada di bagian 10.
+
 ## 1. Arsitektur singkat
 
 ```text
@@ -191,3 +195,36 @@ pernah ada saat tanpa tracking atau dengan tracking ganda.
    Code Snippets dan WPCode.
 8. Buat token CAPI dan Events API baru (yang lama pernah tersimpan di snippet), isi ulang
    konstanta, cabut token lama.
+
+## 10. Keputusan Fase 1
+
+1. **Versi Graph API:** `v24.0` (konstanta `MEA_ORBIT_META_API_VERSION`), bisa diganti lewat
+   filter `mea_orbit_meta_api_version` tanpa rilis tema.
+2. **Nama event TikTok:** `Lead`, sama dengan Meta. `GTM-SETUP.md` memakai nama yang sama.
+3. **Pengguna login:** GTM dimuat untuk semua pengunjung front-end. Tema mendorong
+   `{ logged_in: true|false }` ke dataLayer sebelum snippet GTM; GA4 di GTM memakai trigger
+   "bukan login" (perilaku Site Kit tetap), Meta dan TikTok untuk semua pengunjung.
+4. **ttclid:** hanya dari cookie `ttclid`. Form tidak diubah.
+5. **Tanpa JavaScript:** event server tetap terkirim (diuji lewat admin-post).
+
+Penyesuaian kecil terhadap rancangan:
+
+- **Urutan hook.** `mea_leads_lead_saved` dipanggil tepat **sebelum** `mea_leads_queue()`, bukan
+  sesudahnya, supaya event tracking sudah terjadwal saat antrian CDPS memicu WP-Cron. Tema
+  juga memicu WP-Cron di `shutdown` (kunci bawaan WordPress mencegah pemicuan dobel).
+- **Cookie** `_fbp`, `_fbc`, `_ttp`, `ttclid` dibaca tema, bukan plugin, supaya mea-leads tetap
+  tidak tahu soal Meta/TikTok. Konteks dari plugin: `event_id`, `event_time`,
+  `event_source_url`, `nama`, `whatsapp`, `sumber_form`, `omzet`, `layanan`, `ip`, `user_agent`.
+- **Nama** untuk Meta: tanda baca (termasuk tanda hubung) jadi pemisah kata, lalu dibuang;
+  `Nur-Aini` → `nur aini`.
+- **Klasifikasi respons** per platform (`mea_orbit_tracking_classify()`), bukan
+  `mea_leads_classify_response()`: TikTok selalu menjawab HTTP 200 dan menaruh galat di `code`,
+  dan Meta memberi tanda rate limit di body 400. Jadwal backoff sama persis dengan mea-leads
+  (diuji).
+- **Tabel** punya kunci unik `(platform, event_id)` supaya satu lead tidak pernah menghasilkan
+  dua baris untuk platform yang sama.
+- **Filter uji** `mea_orbit_tracking_endpoint` mengganti alamat tujuan, hanya untuk penerima
+  tiruan lokal.
+- **Perilaku yang berubah setelah migrasi:** plugin Meta selama ini juga mengirim PageView lewat
+  Conversions API. Sesudah migrasi, event server hanya Lead (dicatat di `MIGRASI.md` langkah 5).
+

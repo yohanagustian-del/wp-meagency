@@ -712,3 +712,14 @@ Tema dan plugin dipasang langsung di produksi oleh pemilik (tanpa staging), meng
 | mea-orbit 0.1.1 | Section opsional **Layanan terkait** di template layanan, setelah FAQ dan sebelum form: field `mea_layanan_terkait` (repeater `label` + `page_id`), tampil hanya bila ada halaman terbit; label kosong = judul halaman; halaman sendiri dilewati. Gaya kartu memakai `.more` (sama dengan "Studi kasus lain") | Permintaan pemilik: menautkan `/jasa-performance-ads/` ke `/jasa-iklan-shopee/` (7467) dan `/jasa-tiktok-ads/` (16545). Isiannya ditambahkan ke `docs/seed/page-14144-jasa-performance-ads.json` |
 
 Audit tracking (hanya baca): `docs/audit/2026-10-27-tracking.md`, skrip `tools/tracking-audit/audit.sh`.
+
+## 21. Tracking pindah ke tema (27 Okt 2026) **[baru]**
+
+| Versi | Perubahan |
+|---|---|
+| mea-orbit 0.2.0 | `inc/tracking.php` (snippet GTM, antrian + kiriman Meta Conversions API dan TikTok Events API lewat WP-Cron, retensi 90 hari), `inc/tracking-payload.php` (fungsi murni, diuji `tests/run.php`), `inc/tracking-admin.php` (Pengaturan → Tracking MEA). Semua diam tanpa konstanta `MEA_*` |
+| mea-leads 0.1.2 | Hook `mea_leads_lead_saved`, respons REST sukses membawa `event_id`, dataLayer `generate_lead` menambah `event_id` |
+
+Rancangan dan keputusan: `docs/tracking/PLAN.md`. Isi GTM: `docs/tracking/GTM-SETUP.md`. Urutan
+pindah di produksi: `docs/tracking/MIGRASI.md`. QA: `docs/qa/tracking-fase-1/QA.md`.
+

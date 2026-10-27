@@ -1,7 +1,7 @@
 /**
  * MEA Leads · form.js
  * Validasi klien (pesan sama dengan prototipe dan server), kirim lewat REST dengan
- * nonce segar, state terima kasih, dataLayer generate_lead, dan tautan WhatsApp
+ * nonce segar, state terima kasih, dataLayer generate_lead (+ event_id), dan tautan WhatsApp
  * yang terisi otomatis. Tanpa JavaScript, form tetap terkirim lewat admin-post.php.
  */
 ( function () {
@@ -74,7 +74,7 @@
 		}
 	}
 
-	function done( form ) {
+	function done( form, eventId ) {
 		var nama = form.elements.nama.value.trim();
 		var toko = form.elements.link_toko.value.trim();
 		var msg = 'Halo tim MEA Agency, saya ' + nama + '. Saya baru isi form konsultasi' + ( toko ? ' untuk toko ' + toko : '' ) + '.';
@@ -83,11 +83,16 @@
 			wa.href = cfg.wa + '?text=' + encodeURIComponent( msg );
 		}
 		window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push( {
+		var lead = {
 			event: 'generate_lead',
 			form_source: form.elements.sumber_form.value,
 			lead_omzet: form.elements.omzet.value,
-		} );
+		};
+		if ( eventId ) {
+			// Sama dengan event Lead server (Meta/TikTok), untuk deduplikasi.
+			lead.event_id = eventId;
+		}
+		window.dataLayer.push( lead );
 		form.classList.add( 'is-sent' );
 		form.querySelector( '.thanks' ).focus();
 	}
@@ -136,7 +141,7 @@
 				} )
 				.then( function ( result ) {
 					if ( result.body && result.body.ok ) {
-						done( form );
+						done( form, result.body.event_id );
 						return;
 					}
 					showErrors( form, ( result.body && result.body.errors ) || { form: cfg.galat } );

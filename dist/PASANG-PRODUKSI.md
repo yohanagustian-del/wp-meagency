@@ -21,6 +21,8 @@ WPS Hide Login. Tidak ada plugin cache; cache server diatur di hPanel.
 | `WEBSITE_LEAD_CONTRACT.md` | Kontrak pengiriman lead ke CDPS (untuk tim CDPS) |
 | `ELEMENTOR-EXIT.md` | Rencana keluar dari Elementor (Fase 6) |
 | `tools/seo-parity/` | Alat cek SEO sebelum/sesudah (butuh PHP 8 di komputer) |
+| `tracking/` | Pindah tracking ke tema: `MIGRASI.md` (urutan), `GTM-SETUP.md` (isi GTM), `PLAN.md` (rancangan) |
+| `tools/tracking-audit/` | Hitung tag tracking per halaman (`audit.sh`) |
 
 ---
 
@@ -202,3 +204,11 @@ produksi. Langkah 5–8 dirancang untuk menangkapnya:
 - IP pengunjung di balik CDN (langkah 7 nomor 3).
 - Kecepatan nyata (PageSpeed) dan animasi di iPhone Safari / Android Chrome.
 - Penggabungan JSON-LD tema dengan graph Rank Math (Rich Results Test).
+
+## 11. Tracking (tema 0.2.0, plugin 0.1.2)
+
+Tema 0.2.0 bisa mencetak GTM dan mengirim event Lead server ke Meta dan TikTok, tetapi **diam
+sampai konstantanya diisi**. Memasang zip baru tidak mengubah tracking apa pun. Pemindahan dari
+Site Kit, plugin Meta, Code Snippets, dan WPCode dikerjakan per platform mengikuti
+`tracking/MIGRASI.md`.
+

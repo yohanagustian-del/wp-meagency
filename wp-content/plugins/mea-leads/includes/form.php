@@ -152,8 +152,8 @@ function mea_leads_client_ip() {
  * Proses satu isian form.
  *
  * @param array<string, mixed> $input Isian mentah (sudah di-unslash).
- * @return array{status: string, errors?: array<string, string>, id?: int}
- *         status: ok | invalid | spam | sesi | batas
+ * @return array{status: string, errors?: array<string, string>, id?: int, event_id?: string}
+ *         status: ok | invalid | spam | sesi | batas. event_id = idempotency_key lead.
  */
 function mea_leads_handle_submission( $input ) {
 	if ( ! wp_verify_nonce( (string) ( $input['_mea_nonce'] ?? '' ), 'mea_leads_kirim' ) ) {
@@ -194,10 +194,42 @@ function mea_leads_handle_submission( $input ) {
 		);
 	}
 
+	$row      = mea_leads_get( $id );
+	$event_id = $row ? (string) $row->idempotency_key : '';
+	$data     = $checked['data'];
+
+	/**
+	 * Lead tersimpan. Dipakai tema untuk event Lead server (Meta/TikTok) dengan
+	 * event_id yang sama dengan dataLayer, supaya event browser dan server tergabung.
+	 * Dipanggil sebelum lead dijadwalkan ke CDPS, jadi pemicu WP-Cron dari antrian
+	 * CDPS ikut menjalankan kiriman tema.
+	 *
+	 * @param int                  $id      ID baris lead.
+	 * @param array<string, mixed> $context event_id, event_time, event_source_url, nama,
+	 *                                      whatsapp, sumber_form, omzet, layanan, ip, user_agent.
+	 */
+	do_action(
+		'mea_leads_lead_saved',
+		$id,
+		array(
+			'event_id'         => $event_id,
+			'event_time'       => time(),
+			'event_source_url' => home_url( $data['halaman_asal'] ),
+			'nama'             => $data['nama'],
+			'whatsapp'         => $data['whatsapp'],
+			'sumber_form'      => $data['sumber_form'],
+			'omzet'            => $data['omzet'],
+			'layanan'          => $data['layanan'],
+			'ip'               => mea_leads_client_ip(),
+			'user_agent'       => isset( $_SERVER['HTTP_USER_AGENT'] ) ? substr( sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ), 0, 512 ) : '',
+		)
+	);
+
 	mea_leads_queue( $id );
 
 	return array(
-		'status' => 'ok',
-		'id'     => $id,
+		'status'   => 'ok',
+		'id'       => $id,
+		'event_id' => $event_id,
 	);
 }
