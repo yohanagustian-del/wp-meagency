@@ -65,7 +65,7 @@ function mea_orbit_home_defs() {
 		),
 		'partner_resmi'         => array(
 			'type'    => 'repeater',
-			'label'   => __( 'Partner resmi (di bawah hero; kosong = section tidak tampil). Badge PNG tampil apa adanya, foto JPG dalam kartu berbingkai', 'mea-orbit' ),
+			'label'   => __( 'Partner resmi (di bawah hero; kosong = section tidak tampil). Gambar berlatar transparan tampil apa adanya, foto dalam kartu berbingkai', 'mea-orbit' ),
 			'fields'  => array(
 				'media_id' => array(
 					'type'  => 'media',

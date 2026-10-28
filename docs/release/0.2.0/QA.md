@@ -15,7 +15,7 @@ WordPress lokal (WP 7.1.3 + SQLite, `WP_DEBUG` menyala). Situs live tidak disent
 | Tanpa konstanta tracking dan CDPS | Situs dan form jalan, tanpa notice (uji tracking Fase 1 + instal bersih) |
 | Budget motion | Lolos, lihat `dist/DEPLOY-0.2.0.md` bagian 8 dan `motion/laporan.json` |
 | Hero v2 | Poster frame 0 sebagai LCP; frame mulai dimuat setelah `load` + interaksi; desktop 31 frame, mobile 60 frame; reduced motion dan hemat data → poster saja. Screenshot `motion/desktop-home-hero-0.3.png` (sisi TikTok tajam) |
-| Strip Partner resmi | Tampil di bawah hero, gambar utuh, PNG tanpa bingkai, JPG dalam kartu; HP digeser horizontal; CLS desktop 0,0009, HP 0. Screenshot `partner-1366.png`, `partner-390.png` memakai **gambar contoh polos** (bukan badge asli; badge dan plakat asli belum tersedia) |
+| Strip Partner resmi | Tampil di bawah hero, gambar utuh, PNG tanpa bingkai, JPG dalam kartu; HP digeser horizontal; CLS desktop 0,0009, HP 0. Screenshot `partner-1366.png`, `partner-390.png` memakai badge dan plakat asli (WebP dari `motion-src/partner/`): badge transparan tanpa bingkai, plakat dalam kartu; CLS 0,0003 / 0,0005 |
 | Hapus lead | Aksi baris menghapus lead menunggu (konfirmasi muncul). Aksi massal pada 1 terkirim + 1 menunggu: "1 lead dihapus. 1 lead dilewati…", lead terkirim tetap ada. Link Hapus hanya pada lead non-terkirim. Screenshot `leads-hapus-*.png` |
 
 Galat konsol `ERR_TUNNEL_CONNECTION_FAILED` di laporan motion berasal dari `googletagmanager.com` yang diblokir di lingkungan uji (konstanta GTM contoh diisi di lokal), bukan dari tema.

@@ -21,7 +21,7 @@ cp "$plugin_zip" dist/mea-leads.zip
 # Elementor, alat paritas, panduan migrasi tracking.
 tmp=$(mktemp -d)
 pkg="$tmp/paket-produksi-mea-agency"
-mkdir -p "$pkg/seed" "$pkg/tools" "$pkg/tracking"
+mkdir -p "$pkg/seed" "$pkg/tools" "$pkg/tracking" "$pkg/partner"
 cp "$theme_zip" "$plugin_zip" dist/CARA-PASANG.md CHANGELOG.md docs/DECISIONS.md "$pkg/"
 cp dist/PASANG-PRODUKSI.md "$pkg/README.md"
 if [ -f "dist/DEPLOY-$theme_ver.md" ]; then cp "dist/DEPLOY-$theme_ver.md" "$pkg/"; fi
@@ -29,6 +29,7 @@ cp docs/seed/*.json docs/seed/README.md "$pkg/seed/"
 cp docs/WEBSITE_LEAD_CONTRACT.md docs/ELEMENTOR-EXIT.md "$pkg/"
 cp -r tools/seo-parity tools/tracking-audit "$pkg/tools/"
 cp docs/tracking/MIGRASI.md docs/tracking/GTM-SETUP.md docs/tracking/PLAN.md "$pkg/tracking/"
+cp motion-src/partner/*.webp "$pkg/partner/"
 (cd "$tmp" && zip -rqX "$OLDPWD/dist/paket-produksi-mea-agency.zip" paket-produksi-mea-agency)
 rm -r "$tmp"
 ls -l dist/*.zip

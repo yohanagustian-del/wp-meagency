@@ -33,6 +33,34 @@ function mea_orbit_img( $id, $size = 'large', $attr = array() ) {
 }
 
 /**
+ * Apakah gambar lampiran punya kanal transparansi (PNG RGBA / abu-abu+alpha, WebP
+ * dengan alpha). Dibaca dari header berkas, tanpa memuat seluruh gambar.
+ *
+ * @param int $id ID lampiran.
+ * @return bool
+ */
+function mea_orbit_image_has_alpha( $id ) {
+	$file = (string) get_attached_file( (int) $id );
+	if ( '' === $file || ! is_readable( $file ) ) {
+		return false;
+	}
+	$head = (string) file_get_contents( $file, false, null, 0, 32 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- berkas lokal Media Library, 32 byte.
+	if ( 0 === strpos( $head, "\x89PNG" ) ) {
+		return in_array( ord( $head[25] ?? "\0" ), array( 4, 6 ), true );
+	}
+	if ( 0 === strpos( $head, 'RIFF' ) && 'WEBP' === substr( $head, 8, 4 ) ) {
+		$chunk = substr( $head, 12, 4 );
+		if ( 'VP8X' === $chunk ) {
+			return (bool) ( ord( $head[20] ?? "\0" ) & 0x10 );
+		}
+		if ( 'VP8L' === $chunk ) {
+			return (bool) ( ord( $head[24] ?? "\0" ) & 0x10 );
+		}
+	}
+	return false;
+}
+
+/**
  * URL aset motion di tema.
  *
  * @param string $path Path relatif di assets/motion/.

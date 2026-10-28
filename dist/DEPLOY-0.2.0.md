@@ -14,6 +14,7 @@ Lama pengerjaan: ±20 menit untuk langkah 1–4. Langkah tracking (6) bisa diker
 | `mea-leads-0.2.0.zip` | Plugin baru |
 | `mea-orbit-0.1.0.zip`, `mea-leads-0.1.0.zip` | Rollback (versi yang dipasang 26 Okt) |
 | `tracking/MIGRASI.md`, `tracking/GTM-SETUP.md` | Pemindahan tracking (langkah 6) |
+| `partner/*.webp` | Badge Shopee dan foto plakat TikTok Shop untuk strip Partner resmi (langkah 4) |
 
 ## 1. Backup
 
@@ -45,14 +46,14 @@ Penerima CDPS sudah aktif (tabel dan endpoint sudah di produksi, `WEBSITE_LEAD_S
 
 ## 4. Isi konten baru
 
-1. **Partner resmi**: unggah badge Shopee-Certified Enablers Program (PNG) dan foto plakat TikTok Shop Platinum Certified Partner (JPG) ke Media Library, tanpa diedit. Lalu Tampilan → **Homepage MEA** → Partner resmi → Tambah dua baris:
+1. **Partner resmi**: unggah `partner/shopee-certified-enablers-q3-2026.webp` dan `partner/tiktok-shop-platinum-partner-q3-2026.webp` dari paket ini ke Media Library (sudah WebP, utuh tanpa dipotong). Lalu Tampilan → **Homepage MEA** → Partner resmi → Tambah dua baris:
 
    | Gambar | Alt | Label | Periode |
    |---|---|---|---|
    | badge Shopee | Badge Shopee-Certified Enablers Program Q3 2026 untuk MEA | Shopee-Certified Enablers Program | Q3 2026 |
    | plakat TikTok Shop | Plakat TikTok Shop Platinum Certified Partner Q3 2026 untuk PT MEA Digital Marketing | TikTok Shop Platinum Certified Partner | Q3 2026 |
 
-   Simpan, lalu Purge All. Badge PNG tampil apa adanya; foto plakat otomatis dalam kartu berbingkai. Selama daftar kosong, section tidak tampil.
+   Simpan, lalu Purge All. Gambar berlatar transparan (badge) tampil apa adanya; foto tanpa transparansi (plakat) otomatis dalam kartu berbingkai. Selama daftar kosong, section tidak tampil.
 2. **Layanan terkait**: edit `/jasa-performance-ads/` (14144) → Layanan terkait → tambahkan `/jasa-iklan-shopee/` (7467) dan `/jasa-tiktok-ads/` (16545). Lakukan hal yang sama di `/jasa-live-streaming/` → `/jasa-live-streaming-tiktok/`.
 
 Tiap kuartal: unggah badge/plakat baru, ganti gambar dan periode di Homepage MEA → Partner resmi, Purge All.

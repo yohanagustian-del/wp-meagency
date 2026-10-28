@@ -3,8 +3,9 @@
  * Homepage · strip "Partner resmi" di bawah hero (brief bagian 10).
  *
  * Isi dari opsi Homepage `partner_resmi`, diganti tiap kuartal lewat Media Library.
- * Gambar tampil utuh tanpa filter: PNG (badge berlatar transparan) apa adanya,
- * selain itu (foto plakat) dalam kartu berbingkai tipis. Kosong = tidak tampil.
+ * Gambar tampil utuh tanpa filter: gambar berlatar transparan (badge PNG/WebP) apa
+ * adanya, gambar tanpa transparansi (foto plakat) dalam kartu berbingkai tipis.
+ * Kosong = tidak tampil.
  *
  * @package MEA_Orbit
  */
@@ -27,7 +28,7 @@ foreach ( (array) mea_orbit_home( 'partner_resmi' ) as $mea_orbit_partner ) {
 	}
 	$mea_orbit_partners[] = array(
 		'img'     => $mea_orbit_img,
-		'bingkai' => 'image/png' !== get_post_mime_type( $mea_orbit_id ),
+		'bingkai' => ! mea_orbit_image_has_alpha( $mea_orbit_id ),
 		'label'   => (string) ( $mea_orbit_partner['label'] ?? '' ),
 		'periode' => (string) ( $mea_orbit_partner['periode'] ?? '' ),
 		'link'    => mea_orbit_url( (string) ( $mea_orbit_partner['link'] ?? '' ) ),
