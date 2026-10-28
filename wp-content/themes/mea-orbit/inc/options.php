@@ -203,6 +203,40 @@ function mea_orbit_home_defs() {
 				),
 			),
 		),
+		'konten_video'          => array(
+			'type'    => 'repeater',
+			'label'   => __( 'Mockup HP "Konten" setelah Enam layanan (kosong = section tidak tampil; HP menampilkan baris pertama)', 'mea-orbit' ),
+			'fields'  => array(
+				'video_mp4'  => array(
+					'type'    => 'media',
+					'library' => 'video',
+					'label'   => __( 'Video MP4 (H.264, tanpa suara)', 'mea-orbit' ),
+				),
+				'video_webm' => array(
+					'type'    => 'media',
+					'library' => 'video',
+					'label'   => __( 'Video WebM (opsional)', 'mea-orbit' ),
+				),
+				'poster'     => array(
+					'type'  => 'media',
+					'label' => __( 'Poster (wajib, frame pertama video)', 'mea-orbit' ),
+				),
+				'label'      => array(
+					'type'  => 'text',
+					'label' => __( 'Label kategori (mis. Fashion)', 'mea-orbit' ),
+				),
+				'link'       => array(
+					'type'  => 'text',
+					'label' => __( 'Link (kosong = /jasa-konten/)', 'mea-orbit' ),
+				),
+			),
+			'default' => array(),
+		),
+		'konten_keterangan'     => array(
+			'type'    => 'text',
+			'label'   => __( 'Keterangan di bawah mockup (kosongkan bila sudah memakai video asli klien berizin)', 'mea-orbit' ),
+			'default' => 'Ilustrasi format konten, dibuat dengan AI',
+		),
 		'cara_kerja_kutipan_id' => array(
 			'type'    => 'quote',
 			'label'   => __( 'Kutipan setelah Cara kerja', 'mea-orbit' ),
@@ -299,7 +333,10 @@ function mea_orbit_sanitize_home( $value ) {
 	$value = is_array( $value ) ? $value : array();
 	$out   = array();
 	foreach ( mea_orbit_home_defs() as $key => $def ) {
-		$raw = $value[ $key ] ?? mea_orbit_field_empty( $def );
+		// Kunci yang tidak dikirim (mis. field baru, atau pembaruan lewat REST/skrip) memakai
+		// default, bukan kosong. Repeater tetap kosong: form tanpa baris berarti dikosongkan.
+		$fallback = 'repeater' === $def['type'] ? mea_orbit_field_empty( $def ) : ( $def['default'] ?? mea_orbit_field_empty( $def ) );
+		$raw      = array_key_exists( $key, $value ) ? $value[ $key ] : $fallback;
 		if ( 'repeater' === $def['type'] && is_array( $raw ) ) {
 			unset( $raw['__i__'] );
 		}

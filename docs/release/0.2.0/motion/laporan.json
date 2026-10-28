@@ -3,6 +3,26 @@
   "name": "desktop",
   "pages": {
    "home": {
+    "konten": [
+     {
+      "video": true,
+      "t": 4.9,
+      "paused": false,
+      "src": "fashion.webm"
+     },
+     {
+      "video": true,
+      "t": 4.92,
+      "paused": false,
+      "src": "skincare.webm"
+     },
+     {
+      "video": true,
+      "t": 4.89,
+      "paused": false,
+      "src": "live-shopping.webm"
+     }
+    ],
     "requestsIdle": 24,
     "heavyIdle": 0,
     "heavyBeforeLoad": 0,
@@ -30,13 +50,13 @@
     ],
     "hiddenReveal": 0,
     "jsMotion": "js-motion motion-ready",
-    "cls": 0.0009,
+    "cls": 0.0003,
     "h1": "Toko online Anda, kami yang jalankan",
     "overflowX": false,
     "bytes": {
      "lain": {
       "n": 17,
-      "kb": 239
+      "kb": 263
      },
      "hero-poster": {
       "n": 1,
@@ -50,13 +70,17 @@
       "n": 31,
       "kb": 800
      },
-     "proses-poster": {
-      "n": 1,
-      "kb": 12
+     "konten-poster": {
+      "n": 4,
+      "kb": 77
      },
      "sisi-video": {
       "n": 6,
       "kb": 193
+     },
+     "proses-poster": {
+      "n": 1,
+      "kb": 12
      },
      "bellarosa-poster": {
       "n": 1,
@@ -66,12 +90,16 @@
       "n": 150,
       "kb": 2009
      },
+     "konten-video": {
+      "n": 3,
+      "kb": 981
+     },
      "bellarosa-video": {
       "n": 1,
       "kb": 234
      }
     },
-    "motionKbTotal": 3349,
+    "motionKbTotal": 4407,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]
@@ -82,7 +110,7 @@
      "21x",
      "Rp 8,2 miliar"
     ],
-    "cls": 0,
+    "cls": 0.0002,
     "heavy": 150,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
@@ -112,6 +140,22 @@
   "name": "mobile",
   "pages": {
    "home": {
+    "konten": [
+     {
+      "video": true,
+      "t": 4.26,
+      "paused": false,
+      "src": "fashion.webm"
+     },
+     {
+      "video": false,
+      "visible": false
+     },
+     {
+      "video": false,
+      "visible": false
+     }
+    ],
     "requestsIdle": 18,
     "heavyIdle": 0,
     "heavyBeforeLoad": 0,
@@ -145,7 +189,7 @@
     "bytes": {
      "lain": {
       "n": 17,
-      "kb": 242
+      "kb": 295
      },
      "hero-poster": {
       "n": 1,
@@ -163,6 +207,10 @@
       "n": 6,
       "kb": 193
      },
+     "konten-poster": {
+      "n": 1,
+      "kb": 28
+     },
      "proses-poster": {
       "n": 1,
       "kb": 9
@@ -172,15 +220,19 @@
       "kb": 25
      },
      "proses-frames": {
-      "n": 75,
-      "kb": 769
+      "n": 38,
+      "kb": 389
+     },
+     "konten-video": {
+      "n": 1,
+      "kb": 353
      },
      "bellarosa-video": {
       "n": 1,
       "kb": 230
      }
     },
-    "motionKbTotal": 2340,
+    "motionKbTotal": 2341,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]
@@ -192,7 +244,7 @@
      "Rp 8,2 miliar"
     ],
     "cls": 0,
-    "heavy": 75,
+    "heavy": 38,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]
@@ -221,6 +273,20 @@
   "name": "desktop-reduce",
   "pages": {
    "home": {
+    "konten": [
+     {
+      "video": false,
+      "visible": true
+     },
+     {
+      "video": false,
+      "visible": true
+     },
+     {
+      "video": false,
+      "visible": true
+     }
+    ],
     "requestsIdle": 24,
     "heavyIdle": 0,
     "heavyBeforeLoad": 0,
@@ -243,13 +309,13 @@
     ],
     "hiddenReveal": 0,
     "jsMotion": "motion-ready",
-    "cls": 0.0003,
+    "cls": 0,
     "h1": "Toko online Anda, kami yang jalankan",
     "overflowX": false,
     "bytes": {
      "lain": {
       "n": 17,
-      "kb": 239
+      "kb": 263
      },
      "hero-poster": {
       "n": 1,
@@ -258,6 +324,10 @@
      "sisi-poster": {
       "n": 6,
       "kb": 27
+     },
+     "konten-poster": {
+      "n": 3,
+      "kb": 60
      },
      "proses-poster": {
       "n": 1,
@@ -268,7 +338,7 @@
       "kb": 24
      }
     },
-    "motionKbTotal": 111,
+    "motionKbTotal": 171,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]
@@ -309,6 +379,20 @@
   "name": "mobile-reduce",
   "pages": {
    "home": {
+    "konten": [
+     {
+      "video": false,
+      "visible": true
+     },
+     {
+      "video": false,
+      "visible": false
+     },
+     {
+      "video": false,
+      "visible": false
+     }
+    ],
     "requestsIdle": 18,
     "heavyIdle": 0,
     "heavyBeforeLoad": 0,
@@ -337,7 +421,7 @@
     "bytes": {
      "lain": {
       "n": 17,
-      "kb": 242
+      "kb": 295
      },
      "hero-poster": {
       "n": 1,
@@ -346,6 +430,10 @@
      "sisi-poster": {
       "n": 6,
       "kb": 27
+     },
+     "konten-poster": {
+      "n": 1,
+      "kb": 28
      },
      "proses-poster": {
       "n": 1,
@@ -356,7 +444,7 @@
       "kb": 25
      }
     },
-    "motionKbTotal": 89,
+    "motionKbTotal": 117,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]
@@ -397,6 +485,20 @@
   "name": "mobile-hematdata",
   "pages": {
    "home": {
+    "konten": [
+     {
+      "video": false,
+      "visible": true
+     },
+     {
+      "video": false,
+      "visible": false
+     },
+     {
+      "video": false,
+      "visible": false
+     }
+    ],
     "requestsIdle": 18,
     "heavyIdle": 0,
     "heavyBeforeLoad": 0,
@@ -425,7 +527,7 @@
     "bytes": {
      "lain": {
       "n": 17,
-      "kb": 242
+      "kb": 295
      },
      "hero-poster": {
       "n": 1,
@@ -434,6 +536,10 @@
      "sisi-poster": {
       "n": 6,
       "kb": 27
+     },
+     "konten-poster": {
+      "n": 1,
+      "kb": 28
      },
      "proses-poster": {
       "n": 1,
@@ -444,7 +550,7 @@
       "kb": 25
      }
     },
-    "motionKbTotal": 87,
+    "motionKbTotal": 115,
     "errors": [
      "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
     ]

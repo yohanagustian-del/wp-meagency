@@ -3,6 +3,7 @@
  *
  * Satu modul tanpa library, dimuat dengan defer hanya di halaman Orbit.
  * - M1 hero dan M3 cara kerja: satu komponen scroll-scrub (canvas + rAF).
+ * - Mockup HP "Konten": video bisu diputar saat terlihat.
  * - M2 enam sisi: loop video per kartu layanan.
  * - M4 Kurva Bellarosa: diputar sekali saat 60% terlihat, menahan frame akhir.
  * - Motion kode: hitung naik, reveal, teks per baris, garis, penanda bab.
@@ -346,7 +347,9 @@
 				dir: cfg.base + 'proses/frames/' + ( mobile ? 'mobile/' : 'desktop/' ),
 				count: mobile ? 75 : 150,
 				size: mobile ? 800 : 1200,
-				stride: 1,
+				// HP: tiap frame kedua supaya total homepage ≤ 2,5 MB setelah mockup
+				// Konten ditambahkan (docs/motion/03: "mobile may use every second frame").
+				stride: mobile ? 2 : 1,
 				progress: progress,
 			} );
 			afterLoad( function () {
@@ -439,6 +442,65 @@
 					card.addEventListener( 'blur', function () {
 						finish( video );
 					} );
+				} );
+			} );
+		} );
+	}
+
+	/**
+	 * Mockup HP "Konten". Poster di HTML; saat section mendekati layar, poster
+	 * yang tampil diganti video bisu (preload none, jadi belum mengunduh apa pun).
+	 * Video diputar saat 50% terlihat dan berhenti saat keluar layar. Mockup yang
+	 * disembunyikan CSS (HP: hanya yang pertama) tidak pernah diganti.
+	 */
+	function konten() {
+		var screens = document.querySelectorAll( '[data-motion="konten"]' );
+		if ( ! screens.length || lite || ! ( 'IntersectionObserver' in window ) ) {
+			return;
+		}
+		var io = new IntersectionObserver( function ( entries ) {
+			entries.forEach( function ( e ) {
+				if ( e.isIntersecting ) {
+					var p = e.target.play();
+					if ( p ) {
+						p.catch( function () {} );
+					}
+				} else {
+					e.target.pause();
+				}
+			} );
+		}, { threshold: 0.5 } );
+
+		afterLoad( function () {
+			whenNear( screens[ 0 ].closest( 'section' ) || screens[ 0 ], function () {
+				each( screens, function ( screen ) {
+					var img = screen.querySelector( 'img' );
+					if ( ! img || null === screen.offsetParent ) {
+						return;
+					}
+					var video = document.createElement( 'video' );
+					video.muted = true;
+					video.loop = true;
+					video.playsInline = true;
+					video.preload = 'none';
+					video.width = img.width;
+					video.height = img.height;
+					video.poster = img.currentSrc || img.src;
+					[ 'muted', 'loop', 'playsinline', 'disablepictureinpicture', 'disableremoteplayback' ].forEach( function ( name ) {
+						video.setAttribute( name, '' );
+					} );
+					video.setAttribute( 'aria-hidden', 'true' );
+					[ [ 'data-webm', 'video/webm' ], [ 'data-mp4', 'video/mp4' ] ].forEach( function ( type ) {
+						var url = screen.getAttribute( type[ 0 ] );
+						if ( url ) {
+							var source = document.createElement( 'source' );
+							source.src = url;
+							source.type = type[ 1 ];
+							video.appendChild( source );
+						}
+					} );
+					screen.replaceChild( video, img );
+					io.observe( video );
 				} );
 			} );
 		} );
@@ -710,5 +772,6 @@
 	hero();
 	proses();
 	sisi();
+	konten();
 	bellarosa();
 }() );

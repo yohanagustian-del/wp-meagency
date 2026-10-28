@@ -15,6 +15,7 @@ Lama pengerjaan: ±20 menit untuk langkah 1–4. Langkah tracking (6) bisa diker
 | `mea-orbit-0.1.0.zip`, `mea-leads-0.1.0.zip` | Rollback (versi yang dipasang 26 Okt) |
 | `tracking/MIGRASI.md`, `tracking/GTM-SETUP.md` | Pemindahan tracking (langkah 6) |
 | `partner/*.webp` | Badge Shopee dan foto plakat TikTok Shop untuk strip Partner resmi (langkah 4) |
+| `konten/*` | Tiga video ilustrasi AI (MP4 + WebM) dan posternya untuk mockup HP "Konten" (langkah 4) |
 
 ## 1. Backup
 
@@ -54,7 +55,16 @@ Penerima CDPS sudah aktif (tabel dan endpoint sudah di produksi, `WEBSITE_LEAD_S
    | plakat TikTok Shop | Plakat TikTok Shop Platinum Certified Partner Q3 2026 untuk PT MEA Digital Marketing | TikTok Shop Platinum Certified Partner | Q3 2026 |
 
    Simpan, lalu Purge All. Gambar berlatar transparan (badge) tampil apa adanya; foto tanpa transparansi (plakat) otomatis dalam kartu berbingkai. Selama daftar kosong, section tidak tampil.
-2. **Layanan terkait**: edit `/jasa-performance-ads/` (14144) → Layanan terkait → tambahkan `/jasa-iklan-shopee/` (7467) dan `/jasa-tiktok-ads/` (16545). Lakukan hal yang sama di `/jasa-live-streaming/` → `/jasa-live-streaming-tiktok/`.
+2. **Mockup HP "Konten"**: unggah kesembilan berkas di folder `konten/` (fashion, skincare, live-shopping: `.mp4`, `.webm`, `.webp`) ke Media Library. Tampilan → **Homepage MEA** → Mockup HP "Konten" → Tambah tiga baris, urutan ini (HP hanya menampilkan baris pertama):
+
+   | Video MP4 | Video WebM | Poster | Label |
+   |---|---|---|---|
+   | fashion.mp4 | fashion.webm | fashion.webp | Fashion |
+   | skincare.mp4 | skincare.webm | skincare.webp | Skincare |
+   | live-shopping.mp4 | live-shopping.webm | live-shopping.webp | Live shopping |
+
+   Link boleh kosong (otomatis `/jasa-konten/`). Keterangan "Ilustrasi format konten, dibuat dengan AI" tampil di bawah section; kosongkan hanya setelah video diganti video asli klien yang berizin. Simpan, lalu Purge All.
+3. **Layanan terkait**: edit `/jasa-performance-ads/` (14144) → Layanan terkait → tambahkan `/jasa-iklan-shopee/` (7467) dan `/jasa-tiktok-ads/` (16545). Lakukan hal yang sama di `/jasa-live-streaming/` → `/jasa-live-streaming-tiktok/`.
 
 Tiap kuartal: unggah badge/plakat baru, ganti gambar dan periode di Homepage MEA → Partner resmi, Purge All.
 
@@ -62,6 +72,7 @@ Tiap kuartal: unggah badge/plakat baru, ganti gambar dan periode di Homepage MEA
 
 - [ ] Homepage 1366 px dan HP: hero kubus v2 tampil (Shopee di atas, dua sisi video), bergerak saat di-scroll.
 - [ ] Strip "Partner resmi" tampil di bawah hero (setelah langkah 4.1), gambar utuh.
+- [ ] Section "Konten yang dijual, bukan sekadar ditonton" tampil setelah Enam layanan; video bergerak saat terlihat (desktop tiga, HP satu); keterangan AI tampil di bawahnya.
 - [ ] Footer: "© 2026 PT MEA Digital Marketing". Rich Results Test homepage: `legalName` = PT MEA Digital Marketing.
 - [ ] `/jasa-performance-ads/` menampilkan section "Layanan terkait".
 - [ ] Form: satu lead uji masuk Leads MEA dan CDPS (langkah 3.4).
@@ -91,14 +102,16 @@ Status tiap konstanta dan log kiriman: Pengaturan → **Tracking MEA**.
 
 Data yang ditambahkan rilis ini dan aman ditinggal saat rollback: tabel `wp_mea_orbit_tracking`, opsi `partner_resmi` di Homepage MEA.
 
-## 8. Angka byte homepage (diukur di WordPress lokal, 28 Okt 2026)
+## 8. Angka byte homepage (diukur di WordPress lokal, 28 Okt 2026, dengan Partner resmi dan mockup Konten terisi)
 
 | | Desktop 1366 px | HP 390 px | Batas |
 |---|---|---|---|
 | Motion sebelum `load` | 0 | 0 | 0 |
 | Sebelum hero terlewati (poster + frame hero) | 850 KB (poster 50 + 31 frame 800) | 1.087 KB (poster 26 + 60 frame 1.061) | ≤ 1,5 MB |
-| Total motion homepage | 3.349 KB | 2.340 KB | ≤ 5 MB / ≤ 2,5 MB |
-| CLS | 0,0009 | 0 | — |
-| Reduced motion / hemat data | hanya poster (111 KB) | hanya poster (87–89 KB) | — |
+| Mockup Konten (video + poster) | 981 + 77 KB (tiga) | 353 + 28 KB (satu) | ≤ 1,5 MB per video |
+| Cara kerja (M3) | 150 frame, 2.009 KB | 38 frame (tiap frame kedua), 389 KB | — |
+| Total motion homepage | 4.407 KB (4,51 MB) | 2.341 KB (2,40 MB) | ≤ 5 MB / ≤ 2,5 MB |
+| CLS | 0,0003 | 0 | — |
+| Reduced motion / hemat data | hanya poster (171 KB) | hanya poster (115–117 KB) | — |
 
 Desktop memuat hero sampai tiap frame keempat supaya tetap di bawah 1,5 MB sebelum hero terlewati. Pada tiap frame kedua angkanya 1,66 MB. Itu melewati batas, jadi butuh izin pemilik dulu (`docs/DECISIONS.md` 2026-10-28).

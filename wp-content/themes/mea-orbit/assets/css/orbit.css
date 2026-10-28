@@ -1128,6 +1128,101 @@ a.partner-inner:focus-visible .partner-label {
 	}
 }
 
+/* Mockup HP "Konten" (rilis 0.2.0) ------------------------------------------- */
+.phones {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 260px));
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.phone-card {
+	display: grid;
+	justify-items: center;
+	gap: 14px;
+	color: inherit;
+	text-decoration: none;
+}
+
+.phone {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 260px;
+	padding: 10px;
+	background: #161619;
+	border: 1px solid #4E4E54;
+	border-radius: 40px;
+}
+
+.phone::before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 18px;
+	left: 50%;
+	width: 30%;
+	height: 18px;
+	border-radius: 999px;
+	background: #161619;
+	transform: translateX(-50%);
+}
+
+.phone-screen {
+	display: flex;
+	align-items: center;
+	aspect-ratio: 9 / 16;
+	overflow: hidden;
+	border-radius: 30px;
+	background: var(--ink);
+}
+
+.phone-screen img,
+.phone-screen video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.phone-screen.is-contain img,
+.phone-screen.is-contain video {
+	height: auto;
+	object-fit: contain;
+}
+
+.phone-label {
+	font-size: .95rem;
+	font-weight: 500;
+}
+
+a.phone-card:hover .phone-label,
+a.phone-card:focus-visible .phone-label {
+	text-decoration: underline;
+}
+
+.phones-note {
+	margin: 28px 0 0;
+}
+
+@media (max-width: 767.98px) {
+	.phones {
+		grid-template-columns: minmax(0, 240px);
+		justify-content: center;
+	}
+
+	.phones li:nth-child(n + 2) {
+		display: none;
+	}
+
+	.phones-note {
+		text-align: center;
+	}
+}
+
 /* Motion (Fase 4, assets/js/motion.js) ------------------------------------- */
 
 :root {

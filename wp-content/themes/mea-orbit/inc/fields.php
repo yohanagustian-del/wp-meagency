@@ -606,14 +606,19 @@ function mea_orbit_render_field( $name, $def, $value ) {
 			}
 			break;
 		case 'media':
-			$thumb = $value ? wp_get_attachment_image( (int) $value, 'thumbnail' ) : '';
+			$library = $def['library'] ?? 'image';
+			$thumb   = $value ? wp_get_attachment_image( (int) $value, 'thumbnail' ) : '';
+			if ( $value && 'image' !== $library ) {
+				$thumb = esc_html( wp_basename( (string) get_attached_file( (int) $value ) ) );
+			}
 			printf(
-				'<span class="mea-media"><input id="%1$s" type="number" min="0" name="%2$s" value="%3$s" class="small-text mea-media-id"> <button type="button" class="button mea-media-pick">%4$s</button> <span class="mea-media-thumb">%5$s</span></span>',
+				'<span class="mea-media"><input id="%1$s" type="number" min="0" name="%2$s" value="%3$s" class="small-text mea-media-id"> <button type="button" class="button mea-media-pick" data-library="%6$s">%4$s</button> <span class="mea-media-thumb">%5$s</span></span>',
 				esc_attr( $id ),
 				esc_attr( $name ),
 				esc_attr( (string) absint( $value ) ),
-				esc_html__( 'Pilih gambar', 'mea-orbit' ),
-				wp_kses_post( $thumb )
+				'video' === $library ? esc_html__( 'Pilih video', 'mea-orbit' ) : esc_html__( 'Pilih gambar', 'mea-orbit' ),
+				wp_kses_post( $thumb ),
+				esc_attr( $library )
 			);
 			break;
 		case 'bool':

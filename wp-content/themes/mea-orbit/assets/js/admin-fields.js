@@ -56,7 +56,7 @@
 		var wrap = button.closest( '.mea-media' );
 		var frame = window.wp.media( {
 			title: button.textContent,
-			library: { type: 'image' },
+			library: { type: button.getAttribute( 'data-library' ) || 'image' },
 			multiple: false,
 		} );
 		frame.on( 'select', function () {
@@ -65,6 +65,10 @@
 			var size = item.sizes && item.sizes.thumbnail ? item.sizes.thumbnail : item;
 			var thumb = wrap.querySelector( '.mea-media-thumb' );
 			thumb.innerHTML = '';
+			if ( 'image' !== item.type ) {
+				thumb.textContent = item.filename || '';
+				return;
+			}
 			var img = document.createElement( 'img' );
 			img.src = size.url;
 			img.alt = '';
