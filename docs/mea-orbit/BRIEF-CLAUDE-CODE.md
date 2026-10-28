@@ -164,3 +164,10 @@ Nilai `omzet`: `<100jt`, `100-250jt`, `250jt-1m`, `>1m`. Data pribadi: retensi d
 - Hasil: GMV April 2023 Rp 8,2 miliar (75% organik & affiliate, 25% iklan); kontribusi iklan sekitar Rp 2 miliar dari modal Rp 97 juta (ROAS 21). Halaman lama juga menampilkan "Organic Traffic 1.200%" tanpa penjelasan dasar perhitungan; **jangan dipakai** sampai tim menjelaskan angkanya.
 - Angka 75% adalah porsi **GMV/omzet**, bukan trafik.
 - Foto produk Bellarosa di Media Library: 14489–14495, 14503–14508 (alt masih kosong).
+
+## 10. Keputusan tambahan (27 Okt 2026)
+- **Nama badan hukum di situs: "PT MEA Digital Marketing"** (bukan PT MEA Agensi Digital). Berlaku untuk footer, JSON-LD `Organization.legalName`, halaman kebijakan, dan teks lain di tema maupun plugin.
+- **Kubus hero memakai logo platform permanen** (Shopee, TikTok, Tokopedia, Meta, MEA, satu sisi polos untuk Google). Badge dan sertifikat yang berlaku per kuartal **tidak** dimasukkan ke animasi.
+- **Strip "Partner resmi"** tepat di bawah hero: badge Shopee-Certified Enablers Program dan foto plakat TikTok Shop Platinum Certified Partner, sebagai gambar biasa dari Media Library, diganti setiap kuartal lewat opsi Homepage.
+- Tracking dipasang dari tema (GTM + event server), tanpa plugin tracking.
+- `/jasa-performance-ads/` = induk iklan (Shopee + TikTok Shop); `/jasa-iklan-shopee/` dan `/jasa-tiktok-ads/` = anak. `/jasa-live-streaming/` = induk; `/jasa-live-streaming-tiktok/` = anak. Hubungan lewat section "Layanan terkait", URL tidak diubah.

@@ -12,6 +12,7 @@ get_header();
 <main id="konten">
 	<?php
 	get_template_part( 'template-parts/home/hero' );
+	get_template_part( 'template-parts/home/partner' );
 	get_template_part( 'template-parts/home/tim' );
 	get_template_part( 'template-parts/home/layanan' );
 	get_template_part( 'template-parts/home/cara-kerja' );

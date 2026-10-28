@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEA hero cube v2 · scroll test</title>
+<style>
+  :root { color-scheme: dark; --bg: #1A1A1A; --fg: #FAFAFA; --o1: #EC7832; --o2: #F69541; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .bar { position: fixed; z-index: 10; top: 0; left: 0; right: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 16px; background: rgba(26,26,26,.9); border-bottom: 1px solid #2a2a2a; font-size: 13px; }
+  .bar button { background: #242424; color: var(--fg); border: 1px solid #3a3a3a; border-radius: 6px; padding: 6px 10px; font: inherit; cursor: pointer; }
+  .bar button[aria-pressed="true"] { border-color: var(--o2); color: var(--o2); }
+  .bar output { margin-left: auto; opacity: .65; font-variant-numeric: tabular-nums; }
+  .track { position: relative; }
+  .hero { box-sizing: border-box; min-height: 100vh; max-width: 1200px; margin: 0 auto; padding: 88px 24px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .hero h1 { margin: 0 0 16px; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.08; letter-spacing: -0.01em; }
+  .hero p { margin: 0; max-width: 36ch; opacity: .7; line-height: 1.5; }
+  .cta { display: inline-block; margin-top: 24px; padding: 12px 20px; border-radius: 999px; background: linear-gradient(135deg, var(--o1), var(--o2)); color: #1A1A1A; font-weight: 600; text-decoration: none; }
+  .square { position: relative; width: 100%; aspect-ratio: 1 / 1; }
+  .square > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .square canvas, .square video { visibility: hidden; }
+  .square[data-show="canvas"] canvas, .square[data-show="video"] video { visibility: visible; }
+  .square[data-show="canvas"] img, .square[data-show="video"] img { visibility: hidden; }
+  .next { max-width: 1200px; margin: 0 auto; padding: 40px 24px 140vh; opacity: .45; }
+  body.pinned .track { height: 280vh; }
+  body.pinned .hero { position: sticky; top: 0; }
+  @media (max-width: 767px) { .hero { grid-template-columns: 1fr; padding-top: 72px; } }
+</style></head>
+<body>
+<div class="bar">
+  <button data-mode="scroll" aria-pressed="true">Scroll away</button>
+  <button data-mode="pinned" aria-pressed="false">Pinned</button>
+  <button data-mode="video" aria-pressed="false">Video fallback</button>
+  <output id="info">loading</output>
+</div>
+<div class="track" id="track">
+  <section class="hero" id="hero">
+    <div>
+      <h1>Toko online Anda, kami yang jalankan</h1>
+      <p>Test page for the hero sequence. Scroll to scrub it; the last frame lands at 60% of the hero height.</p>
+      <a class="cta" href="#">Konsultasi gratis</a>
+    </div>
+    <div class="square" id="square" data-show="poster">
+      <img id="poster" alt="" fetchpriority="high" decoding="async">
+      <canvas id="canvas"></canvas>
+      <video id="video" muted playsinline preload="auto"></video>
+    </div>
+  </section>
+</div>
+<div class="next">Next section</div>
+<script>
+(() => {
+  const small = matchMedia('(max-width: 767px)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SET = small ? { dir: '../frames/mobile/', count: 60, size: 720 } : { dir: '../frames/desktop/', count: 120, size: 1200 };
+  const $ = id => document.getElementById(id);
+  const square = $('square'), poster = $('poster'), canvas = $('canvas'), video = $('video'), info = $('info'), hero = $('hero'), track = $('track');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.height = SET.size;
+  poster.width = poster.height = SET.size;
+  poster.src = `../posters/poster-${reduce ? 'last' : 'first'}-${SET.size}.webp`;
+  if (reduce) { info.textContent = 'prefers-reduced-motion: poster-last only'; return; }
+
+  const frames = new Array(SET.count).fill(null);
+  let loaded = 0, shown = 0, drawn = -1, mode = 'scroll', inView = true, queued = false;
+  const pad = i => String(i).padStart(3, '0');
+  const order = n => { const o = [0, n - 1], seen = new Set(o); for (const step of [16, 8, 4, 2, 1]) for (let i = 0; i < n; i += step) if (!seen.has(i)) { seen.add(i); o.push(i); } return o; };
+
+  function load() {                       // 0, last, every 16th, 8th, 4th, 2nd, then the rest; 6 requests at a time
+    const q = order(SET.count); let k = 0, busy = 0;
+    const pump = () => {
+      while (busy < 6 && k < q.length) {
+        const i = q[k++], im = new Image(); busy++;
+        im.decoding = 'async';
+        im.onload = () => { frames[i] = im; loaded++; busy--; drawn = -1; schedule(); pump(); };
+        im.onerror = () => { busy--; pump(); };
+        im.src = SET.dir + pad(i) + '.webp';
+      }
+    };
+    pump();
+  }
+  const nearest = i => { if (frames[i]) return i; for (let d = 1; d < SET.count; d++) { if (frames[i - d]) return i - d; if (frames[i + d]) return i + d; } return -1; };
+  const progress = () => {                // last frame at 60% of the hero height (pinned: across the whole sticky span)
+    const span = document.body.classList.contains('pinned') ? track.offsetHeight - innerHeight : track.offsetTop + 0.6 * hero.offsetHeight;
+    return Math.min(1, Math.max(0, scrollY / Math.max(1, span)));
+  };
+  function tick() {
+    queued = false;
+    const target = progress() * (SET.count - 1);
+    shown += (target - shown) * 0.22; if (Math.abs(target - shown) < 0.02) shown = target;
+    if (mode === 'video') {
+      if (video.readyState >= 1 && video.duration) {
+        const t = (shown / (SET.count - 1)) * video.duration;
+        if (!video.seeking && Math.abs(video.currentTime - t) > 0.02) video.currentTime = t;
+        square.dataset.show = 'video';
+      }
+    } else {
+      const i = nearest(Math.round(shown));
+      if (i >= 0) {
+        if (i !== drawn) { ctx.clearRect(0, 0, SET.size, SET.size); ctx.drawImage(frames[i], 0, 0); drawn = i; }
+        square.dataset.show = 'canvas';
+      }
+    }
+    info.textContent = `${small ? 'mobile 720' : 'desktop 1200'} · frame ${Math.round(shown)}/${SET.count - 1} · loaded ${loaded}/${SET.count} · ${mode}`;
+    if (inView && shown !== target) schedule();
+  }
+  function schedule() { if (!queued) { queued = true; requestAnimationFrame(tick); } }
+
+  new IntersectionObserver(e => { inView = e[0].isIntersecting; if (inView) schedule(); }).observe(square);
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  document.querySelectorAll('.bar button').forEach(b => b.addEventListener('click', () => {
+    mode = b.dataset.mode;
+    document.querySelectorAll('.bar button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    document.body.classList.toggle('pinned', mode === 'pinned');
+    if (mode === 'video' && !video.src) { video.src = video.canPlayType('video/webm; codecs="vp9"') ? '../video/hero-cube.webm' : '../video/hero-cube.mp4'; video.load(); }
+    drawn = -1; schedule();
+  }));
+  video.addEventListener('loadedmetadata', schedule);
+  video.addEventListener('seeked', schedule);
+  addEventListener('load', () => { load(); schedule(); });
+})();
+</script>
+</body></html>

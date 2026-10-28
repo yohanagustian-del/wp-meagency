@@ -265,8 +265,10 @@
 	}
 
 	/**
-	 * M1 · hero. Tidak di-pin. progress = scrollY / (tinggi hero × 0,6) (PLAN 9.9).
-	 * Desktop berhenti di tier "tiap frame kedua", 61 frame (PLAN 9.1).
+	 * M1 · hero (kubus v2). Tidak di-pin.
+	 * progress = scrollY / (heroTop + 0,6 × tinggi hero) (README paket hero v2).
+	 * Desktop berhenti di tier "tiap frame keempat", 31 frame ±0,82 MB, supaya
+	 * poster + frame tetap ≤ 1,5 MB sebelum hero terlewati (PLAN 9.1, rilis 0.2.0).
 	 */
 	function hero() {
 		var box = document.querySelector( '[data-motion="hero"]' );
@@ -279,9 +281,9 @@
 			dir: cfg.base + 'hero/frames/' + ( mobile ? 'mobile/' : 'desktop/' ),
 			count: mobile ? 60 : 120,
 			size: mobile ? 720 : 1200,
-			stride: mobile ? 1 : 2,
+			stride: mobile ? 1 : 4,
 			progress: function () {
-				return clamp( window.scrollY / ( section.offsetHeight * 0.6 ), 0, 1 );
+				return clamp( window.scrollY / ( section.offsetTop + section.offsetHeight * 0.6 ), 0, 1 );
 			},
 		} );
 		afterLoad( function () {

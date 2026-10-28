@@ -1,0 +1,382 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>MEA hero cube v2</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}#gl{position:absolute;left:-99999px;top:0}</style>
+</head><body>
+<canvas id="gl"></canvas><canvas id="out"></canvas>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+/* MEA Agency hero cube v2 (three.js r170, loaded locally).
+   window.seek(p) renders progress p in [0,1] and returns a PNG data URL.
+   Every transform is a pure function of p: no timers, no CSS animation, no state between frames. */
+
+const Q = new URLSearchParams(location.search);
+const SIZE = +(Q.get('size') || 1200), SAMPLES = +(Q.get('samples') || 16);
+const D2R = Math.PI / 180;
+
+// ---- style lock (world units, cube edge = 2.0) ----
+const H = 1.0, BR = 0.12, AA = H - BR, TD = 0.14, NB = 10, INSET = 0.02;
+const EXT = AA + BR * Math.SQRT1_2;                 // tile half-extent at the mitre
+const ELEV = 35 * D2R, FOV = 28, APERTURE = 0.05;
+const PLATE_SQ = 1.24, PLATE_R = 0.15, LOGO_SQ = 0.90, META_W = 1.40, META_PLATE = [1.60, 0.86];
+const HEX_R = 2.45, CORE_R = 0.42;
+const WINDOW = 1.60, WIN_R = 0.16;   // photo window on faces 5 and 6 (80% of the face)
+
+// ---- easing: critically damped step (starts from rest, exponential tail, no overshoot) ----
+const cd = (t, k) => { t = Math.min(1, Math.max(0, t)); return (1 - (1 + k * t) * Math.exp(-k * t)) / (1 - (1 + k) * Math.exp(-k)); };
+const mv = (f, f0, f1, k = 4.5) => cd((f - f0) / (f1 - f0), k);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// ---- renderer ----
+const glc = document.getElementById('gl'), outc = document.getElementById('out');
+glc.width = glc.height = outc.width = outc.height = SIZE;
+const renderer = new THREE.WebGLRenderer({ canvas: glc, alpha: true, antialias: false, premultipliedAlpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(SIZE, SIZE, false);
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.autoClear = false;
+renderer.setClearColor(0x000000, 0);
+const rtS = new THREE.WebGLRenderTarget(SIZE, SIZE, { type: THREE.HalfFloatType, depthBuffer: true });
+const rtA = new THREE.WebGLRenderTarget(SIZE, SIZE, { type: THREE.HalfFloatType, depthBuffer: false });
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(FOV, 1, 0.5, 80);
+const CB = new THREE.Vector3(0, Math.sin(ELEV), Math.cos(ELEV));   // toward camera
+const CR = new THREE.Vector3(1, 0, 0);                               // screen right
+const CU = new THREE.Vector3(0, Math.cos(ELEV), -Math.sin(ELEV));  // screen up
+
+// ---- environment for satin reflections (never rendered as background) ----
+{
+  const es = new THREE.Scene();
+  es.add(new THREE.Mesh(new THREE.SphereGeometry(20, 48, 24), new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite: false,
+    vertexShader: 'varying vec3 vP; void main(){ vP=normalize(position); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }',
+    fragmentShader: 'varying vec3 vP; void main(){ float y=vP.y; vec3 top=vec3(0.045,0.045,0.050); vec3 hor=vec3(0.020,0.020,0.022); vec3 bot=vec3(0.006); vec3 c = y>0. ? mix(hor,top,pow(y,0.7)) : mix(hor,bot,pow(-y,0.6)); gl_FragColor=vec4(c,1.); }'
+  })));
+  const panel = (w, h, rgb, pos) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color().setRGB(...rgb, THREE.LinearSRGBColorSpace), side: THREE.DoubleSide })); m.position.set(...pos); m.lookAt(0, 0, 0); es.add(m); };
+  panel(9, 6, [1.6, 1.55, 1.5], [-8, 11, 7]);        // soft key box, top-left-front
+  panel(8, 3, [0.32, 0.32, 0.34], [0, 9, -12]);       // faint overhead-back box: top-face sheen
+  panel(2.2, 10, [1.25, 0.40, 0.07], [5.75, -7.3, -10.5]); // orange strip on the rim direction: widens the bevel rim into a #EC7832 -> #F69541 gradient
+  panel(10, 1.4, [0.55, 0.18, 0.04], [4, -1, -14]);     // low warm bounce behind
+  const pm = new THREE.PMREMGenerator(renderer);
+  scene.environment = pm.fromScene(es, 0.03).texture; pm.dispose();
+}
+
+// ---- lights ----
+const addDir = (rgb, intensity, pos) => { const l = new THREE.DirectionalLight(new THREE.Color().setRGB(...rgb, THREE.LinearSRGBColorSpace), intensity); l.position.set(...pos); scene.add(l); return l; };
+addDir([1.0, 0.97, 0.94], 5.0, [-6.5, 7, 2.5]);         // soft key, top-left (lateral, so camera-facing tiles stay graphite)
+addDir([0.82, 0.88, 1.0], 2.6, [8, 0.5, 1]);             // cool lateral fill from the right (keeps the shadow side off the page colour)
+addDir([0.922, 0.296, 0.054], 0.7, [3.7, -4.7, -6.7]);   // orange rim (#F69541), back-right: with the camera 35 deg up it must sit below the horizon to reach the silhouette bevels
+
+// ---- geometry helpers ----
+function bevelCoords() { const c = []; for (let k = NB; k >= 0; k--) c.push(-(AA + BR * Math.tan(Math.PI / 4 * k / NB))); for (let k = 0; k <= NB; k++) c.push(AA + BR * Math.tan(Math.PI / 4 * k / NB)); return c; }
+function rmap(gx, gy) {   // grid point on face z=H -> rounded-cube surface (cube coords)
+  const qx = Math.max(-AA, Math.min(AA, gx)), qy = Math.max(-AA, Math.min(AA, gy)), qz = AA;
+  let dx = gx - qx, dy = gy - qy, dz = H - qz; const L = Math.hypot(dx, dy, dz); dx /= L; dy /= L; dz /= L;
+  return { p: [qx + BR * dx, qy + BR * dy, qz + BR * dz], n: [dx, dy, dz] };
+}
+function rrPoints(w, h, r, segs = 14) {   // rounded rectangle, counter-clockwise
+  const pts = [], hw = w / 2, hh = h / 2;
+  for (const [cx, cy, a0] of [[hw - r, hh - r, 0], [-hw + r, hh - r, 90], [-hw + r, -hh + r, 180], [hw - r, -hh + r, 270]])
+    for (let i = 0; i <= segs; i++) { const a = (a0 + 90 * i / segs) * D2R; pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); }
+  return pts;
+}
+function shapeFrom(pts) { const s = new THREE.Shape(); s.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) s.lineTo(pts[i][0], pts[i][1]); s.closePath(); return s; }
+function buf(P, N, I) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(N, 3)); if (I) g.setIndex(I); return g; }
+function merge(lists) {   // one material group per list: 0 polished bevel, 1 satin face + pocket walls, 2 matte mitre walls + back
+  const P = [], N = [], starts = [];
+  for (const list of lists) { starts.push(P.length / 3); for (let g of list) { if (g.index) g = g.toNonIndexed(); P.push(...g.attributes.position.array); N.push(...g.attributes.normal.array); } }
+  const out = buf(P, N); starts.push(P.length / 3);
+  for (let i = 0; i < lists.length; i++) out.addGroup(starts[i], starts[i + 1] - starts[i], i);
+  return out;
+}
+const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+
+function tileGeometry(pocket) {   // tile frame: outer flat face at z=0, back at z=-TD
+  const bevelParts = [], parts = [], backParts = [], C = bevelCoords(), n = C.length;
+  { // bevel band (face grid minus the flat interior cell)
+    const P = [], N = [], I = [], id = (i, j) => i * n + j;
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const m = rmap(C[i], C[j]); P.push(m.p[0], m.p[1], m.p[2] - H); N.push(...m.n); }
+    for (let i = 0; i < n - 1; i++) for (let j = 0; j < n - 1; j++) { if (i === NB && j === NB) continue; const a = id(i, j), b = id(i + 1, j), c = id(i + 1, j + 1), d = id(i, j + 1); I.push(a, b, c, a, c, d); }
+    bevelParts.push(buf(P, N, I));
+  }
+  { // flat face, with the plate pocket cut out
+    const s = shapeFrom([[-AA, -AA], [AA, -AA], [AA, AA], [-AA, AA]]);
+    if (pocket) { const pts = rrPoints(pocket.w, pocket.h, pocket.r).reverse(), hole = new THREE.Path(); hole.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) hole.lineTo(pts[i][0], pts[i][1]); hole.closePath(); s.holes.push(hole); }
+    parts.push(new THREE.ShapeGeometry(s));
+  }
+  if (pocket) { // pocket walls, facing into the pocket
+    const pts = rrPoints(pocket.w, pocket.h, pocket.r), P = [], N = [];
+    const nrm = i => { const a = pts[(i - 1 + pts.length) % pts.length], b = pts[(i + 1) % pts.length]; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy); return [-dy / L, dx / L]; };
+    for (let i = 0; i < pts.length; i++) {
+      const j = (i + 1) % pts.length, a = pts[i], b = pts[j], na = nrm(i), nb = nrm(j);
+      const v = [[a[0], a[1], 0, na], [b[0], b[1], 0, nb], [b[0], b[1], -INSET, nb], [a[0], a[1], -INSET, na]];
+      for (const k of [0, 1, 2, 0, 2, 3]) { P.push(v[k][0], v[k][1], v[k][2]); N.push(v[k][3][0], v[k][3][1], 0); }
+    }
+    parts.push(buf(P, N));
+  }
+  { // 45-degree mitre walls (seams to the neighbouring tiles; visible once the tiles separate)
+    const loop = [];
+    for (let i = 0; i < n; i++) loop.push([C[i], C[0]]);
+    for (let j = 1; j < n; j++) loop.push([C[n - 1], C[j]]);
+    for (let i = n - 2; i >= 0; i--) loop.push([C[i], C[n - 1]]);
+    for (let j = n - 2; j > 0; j--) loop.push([C[0], C[j]]);
+    const P = [], N = [], k = H - TD;
+    const outer = loop.map(([x, y]) => rmap(x, y).p), inner = outer.map(p => p.map(v => v * k / p[2]));
+    for (let i = 0; i < loop.length; i++) {
+      const j = (i + 1) % loop.length, a = outer[i], b = outer[j], c = inner[j], d = inner[i];
+      let g = cross(sub(b, a), sub(c, a)); const L = Math.hypot(...g) || 1; g = g.map(v => v / L);
+      let tri = [a, b, c, a, c, d];
+      const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+      if (g[0] * mx + g[1] * my < 0) { g = g.map(v => -v); tri = [a, c, b, a, d, c]; }
+      for (const v of tri) { P.push(v[0], v[1], v[2] - H); N.push(...g); }
+    }
+    backParts.push(buf(P, N));
+  }
+  { const b = new THREE.PlaneGeometry(2 * (H - TD), 2 * (H - TD)); b.rotateY(Math.PI); b.translate(0, 0, -TD); backParts.push(b); }
+  return merge([bevelParts, parts, backParts]);
+}
+
+// ---- materials ----
+const lin = (r, g, b) => new THREE.Color().setRGB(r, g, b, THREE.LinearSRGBColorSpace);
+// polished chamfer + satin face: the bevel catches the rim and key as crisp lines, the face only takes a soft sheen
+const matBevel = new THREE.MeshPhysicalMaterial({ color: '#202022', roughness: 0.28, metalness: 0, clearcoat: 0.40, clearcoatRoughness: 0.25, envMapIntensity: 1.0 });
+const matFace = new THREE.MeshPhysicalMaterial({ color: '#202022', roughness: 0.50, metalness: 0, specularIntensity: 0.50, clearcoat: 0.12, clearcoatRoughness: 0.45, envMapIntensity: 0.9 });
+const matBack = new THREE.MeshPhysicalMaterial({ color: '#1C1C1E', roughness: 0.85, metalness: 0, specularIntensity: 0.3, envMapIntensity: 0.4 });
+const matPlate = new THREE.MeshPhysicalMaterial({ color: lin(0.02, 0.02, 0.02), emissive: '#FAFAFA', emissiveIntensity: 0.99, roughness: 0.55, envMapIntensity: 0.15 });
+const matCore = new THREE.MeshPhysicalMaterial({ color: lin(0.06, 0.075, 0.016), emissive: '#EC7832', emissiveIntensity: 1.0, roughness: 0.5, specularIntensity: 0.5, envMapIntensity: 0.35 });
+
+// ---- logo textures (used exactly as supplied) ----
+const loadTex = url => new Promise(res => new THREE.TextureLoader().load(url, t => {
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; res(t);
+}, undefined, () => res(null)));
+const exists = async url => { try { return (await fetch(url, { method: 'HEAD' })).ok; } catch (e) { return false; } };
+async function loadMEA() {
+  for (const u of ['./logos/mea.png', './logos/mea.webp']) if (await exists(u)) return { tex: await loadTex(u), src: u };
+  if (await exists('./logos/mea.svg')) {   // rasterise the supplied SVG as-is at 1024 px
+    const img = new Image(); img.src = './logos/mea.svg'; await img.decode();
+    const w0 = img.naturalWidth || 1024, h0 = img.naturalHeight || 1024, k = 1024 / Math.max(w0, h0);
+    const cv = document.createElement('canvas'); cv.width = Math.round(w0 * k); cv.height = Math.round(h0 * k);
+    cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    return { tex: t, src: './logos/mea.svg' };
+  }
+  return { tex: null, src: null };
+}
+
+// ---- the six faces (cube-local normal + logo up) ----
+const FACES = [   // closed cube at frame 0: Shopee lid, content and live on the two front faces
+  { key: 'shopee', n: [0, 1, 0], up: [-1, 0, 0], file: './logos/shopee.png' },
+  { key: 'content', n: [1, 0, 0], up: [0, 1, 0], photo: { still: './photos/content.jpg', seq: './seq/content/', param: 's5' } },
+  { key: 'live', n: [0, 0, 1], up: [0, 1, 0], photo: { still: './photos/live.jpg', seq: './seq/live/', param: 's6' } },
+  { key: 'tiktok', n: [-1, 0, 0], up: [0, 1, 0], file: './logos/tiktok.png' },
+  { key: 'meta', n: [0, 0, -1], up: [0, 1, 0], file: './logos/meta.png', wide: true },
+  { key: 'tokopedia', n: [0, -1, 0], up: [0, 0, -1], file: './logos/tokopedia.png' },
+];
+const used = {}, tiles = [], seqFaces = [];
+const basisQuat = (n, up) => { const z = new THREE.Vector3(...n).normalize(), y = new THREE.Vector3(...up).normalize(), x = new THREE.Vector3().crossVectors(y, z); return new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); };
+
+async function buildTiles() {
+  const mea = await loadMEA();
+  for (const F of FACES) {
+    let tex = null, src = null;
+    if (F.photo) {   // photo window: one still, or one image per frame when seq/<face>/000.jpg exists
+      src = Q.get(F.photo.param) ? `./photos/${Q.get(F.photo.param)}.jpg` : F.photo.still;
+      tex = await loadTex(src);
+      const seq = Q.get('seq') !== '0' && tex && await exists(F.photo.seq + '000.jpg');
+      if (seq) seqFaces.push({ key: F.key, dir: F.photo.seq, tex, idx: -1 });
+      used[F.key] = !tex ? 'missing photo' : seq ? `${F.photo.seq.replace('./', 'source/')}000-119.jpg (one per frame)` : src.replace('./', 'source/');
+    } else if (F.file === 'MEA') { tex = mea.tex; src = mea.src; } else if (F.file) { tex = await loadTex(F.file); src = tex ? F.file : null; }
+    if (!used[F.key]) used[F.key] = src ? src.replace('./', 'source/') : 'none: plain graphite face';
+    let pocket = null;
+    if (tex) pocket = F.photo ? { w: WINDOW, h: WINDOW, r: WIN_R } : { w: F.wide ? META_PLATE[0] : PLATE_SQ, h: F.wide ? META_PLATE[1] : PLATE_SQ, r: PLATE_R };
+    const g = new THREE.Group();
+    g.add(new THREE.Mesh(tileGeometry(pocket), [matBevel, matFace, matBack]));
+    if (pocket && F.photo) {   // unlit like a screen, inset 0.018 u so the pocket wall frames it
+      const wg = new THREE.ShapeGeometry(shapeFrom(rrPoints(WINDOW, WINDOW, WIN_R)));
+      const pos = wg.attributes.position, uv = wg.attributes.uv;
+      for (let i = 0; i < pos.count; i++) uv.setXY(i, pos.getX(i) / WINDOW + 0.5, pos.getY(i) / WINDOW + 0.5);
+      wg.translate(0, 0, -INSET + 0.002);
+      g.add(new THREE.Mesh(wg, new THREE.MeshBasicMaterial({ map: tex, toneMapped: false })));
+      F.logoSize = [WINDOW, WINDOW]; F.window = WINDOW;
+    } else if (pocket) {
+      const pg = new THREE.ShapeGeometry(shapeFrom(rrPoints(pocket.w, pocket.h, pocket.r))); pg.translate(0, 0, -INSET);
+      g.add(new THREE.Mesh(pg, matPlate));
+      const iw = tex.image.width, ih = tex.image.height;
+      let lw, lh; if (F.wide) { lw = META_W; lh = META_W * ih / iw; } else { const k = LOGO_SQ / Math.max(iw, ih); lw = iw * k; lh = ih * k; }
+      const lm = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+      const logo = new THREE.Mesh(new THREE.PlaneGeometry(lw, lh), lm); logo.position.z = -INSET + 0.002; g.add(logo);
+      F.logoSize = [lw, lh]; F.plate = [pocket.w, pocket.h];
+    }
+    F.q = basisQuat(F.n, F.up);
+    g.userData.F = F; scene.add(g); tiles.push(g);
+  }
+}
+
+// ---- core + contact shadow ----
+const core = new THREE.Mesh(new THREE.SphereGeometry(CORE_R, 64, 48), matCore); scene.add(core);
+const shadowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'); const g = x.createRadialGradient(128, 128, 0, 128, 128, 128); g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(0.45, 'rgba(0,0,0,0.55)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(c); })();
+const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTex, color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false, toneMapped: false });
+const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 3.2), shadowMat); shadow.rotation.x = -Math.PI / 2; shadow.position.y = -2.0; scene.add(shadow);
+
+// ---- motion ----
+const axY = new THREE.Vector3(0, 1, 0), axFL = new THREE.Vector3(-Math.SQRT1_2, 0, Math.SQRT1_2), axFR = new THREE.Vector3(Math.SQRT1_2, 0, Math.SQRT1_2), axZ = new THREE.Vector3(0, 0, 1);
+const qa = (ax, deg) => new THREE.Quaternion().setFromAxisAngle(ax, deg * D2R);
+const qIso = qa(axY, -45);
+const MOVES = [{ ax: axY, deg: 90, f0: 30, f1: 50 }, { ax: axY, deg: 90, f0: 42, f1: 64 }, { ax: axFR, deg: -90, f0: 50, f1: 76 }];   // world-axis quarter turns
+const DRIFT0 = -8;   // 3/4 view of the closed cube: yaw offset at frame 0, eased out by frame 34 in the direction of the first turn
+function cubeQuat(f) {
+  let q = qa(axY, DRIFT0 * (1 - mv(f, 0, 34, 3))).multiply(qIso);
+  for (const M of MOVES) q = qa(M.ax, M.deg * mv(f, M.f0, M.f1)).multiply(q);
+  return q;
+}
+const toCam = v => new THREE.Vector3(v.dot(CR), v.dot(CU), v.dot(CB));
+const fromCam = (x, y, z) => new THREE.Vector3().addScaledVector(CR, x).addScaledVector(CU, y).addScaledVector(CB, z);
+const HEXA = [90, 30, -30, -90, -150, 150];
+const SLOT = { content: 90, meta: 30, shopee: -30, live: -90, tiktok: -150, tokopedia: 150 };   // final hexagon, as in the M1 layout
+const wrap = a => { while (a > 180) a -= 360; while (a < -180) a += 360; return a; };
+let plan = null;
+function makePlan() {   // hexagon slots derived from the settled cube pose
+  const q80 = cubeQuat(80), qUp = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(CR, CU, CB));
+  plan = tiles.map(g => {
+    const F = g.userData.F, c = toCam(new THREE.Vector3(...F.n).applyQuaternion(q80));
+    const a0 = Math.atan2(c.y, c.x) / D2R;
+    const snap = HEXA.reduce((b, h) => Math.abs(wrap(h - a0)) < Math.abs(wrap(b - a0)) ? h : b, 90);
+    const qT80 = q80.clone().multiply(F.q);
+    let qFin = qUp.clone();
+    if (!F.logoSize) { let bd = 9; for (let k = 0; k < 4; k++) { const qq = qUp.clone().multiply(qa(axZ, 90 * k)); const d = qq.angleTo(qT80); if (d < bd) { bd = d; qFin = qq; } } }
+    return { g, slot: (F.key in SLOT) ? SLOT[F.key] : wrap(snap + 60), qFin, turn: qT80.angleTo(qFin) / D2R };
+  });
+}
+const D_EXP = 2.05;   // explode distance: neighbours 2.90 u apart, more than a tile's turning reach (2 x 1.37 u)
+const camDist = f => lerp(11.8 * (1 - 0.025 * mv(f, 0, 76, 3)), 16.0, mv(f, 80, 119, 4));
+function pose(f) {
+  const qc = cubeQuat(Math.min(f, 80));
+  // 1) tiles move out along their own normals, 2) then turn to the camera, 3) then glide into the hexagon plane
+  const eExp = mv(f, 78, 96, 4.2), eRot = mv(f, 84, 112, 4.2), eHex = mv(f, 88, 118, 4.0);
+  const D = lerp(H, D_EXP, eExp);
+  for (const P of plan) {
+    const qT = qc.clone().multiply(P.g.userData.F.q), pos = new THREE.Vector3(0, 0, D).applyQuaternion(qT);
+    if (f <= 78) { P.g.position.copy(pos); P.g.quaternion.copy(qT); continue; }
+    const c = toCam(pos), rho0 = Math.hypot(c.x, c.y), th0 = Math.atan2(c.y, c.x) / D2R;
+    const th = th0 + wrap(P.slot - th0) * eHex, rho = lerp(rho0, HEX_R, eHex), z = c.z * (1 - eHex);
+    P.g.position.copy(fromCam(rho * Math.cos(th * D2R), rho * Math.sin(th * D2R), z));
+    P.g.quaternion.copy(qT).slerp(P.qFin, eRot);
+  }
+  const eS = mv(f, 78, 112, 4);
+  core.scale.setScalar(lerp(0.85, 1.0, eS));
+  shadowMat.opacity = 0.35 * (1 - mv(f, 78, 100, 4));
+  const d = camDist(f);
+  return { dist: d, focus: lerp(d - 0.85, d, eS) };
+}
+
+// ---- orbit rings: 2D, always behind the 3D layer ----
+function ringsAt(f) {
+  const e = mv(f, 84, 119, 3.8), ed = mv(f, 0, 119, 2.2);
+  return [
+    { r: lerp(0.98, 1.05, e), asp: lerp(0.44, 0.36, e), rot: lerp(-10, 0, e), a: 0.30, dot: null },
+    { r: lerp(2.20, 2.66, e), asp: lerp(0.33, 0.36, e), rot: lerp(14, 0, e), a: 0.20, dot: lerp(200, 180, ed) },
+    { r: lerp(2.72, 3.70, e), asp: lerp(0.27, 0.36, e), rot: lerp(-17, 0, e), a: 0.12, dot: lerp(-30, 0, ed) },
+  ];
+}
+function drawRings(ctx, f, dist) {
+  const ppu = (SIZE / 2) / (dist * Math.tan(FOV / 2 * D2R)), cx = SIZE / 2, cy = SIZE / 2, dotR = SIZE >= 1000 ? 4 : 3;
+  for (const R of ringsAt(f)) {
+    const a = R.r * ppu, b = a * R.asp;
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(-R.rot * D2R);
+    ctx.beginPath(); ctx.ellipse(0, 0, a, b, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(246,149,65,${R.a})`; ctx.lineWidth = 1; ctx.stroke();
+    if (R.dot !== null) { const t = R.dot * D2R; ctx.beginPath(); ctx.arc(a * Math.cos(t), -b * Math.sin(t), dotR, 0, Math.PI * 2); ctx.fillStyle = '#F69541'; ctx.fill(); }
+    ctx.restore();
+  }
+}
+
+// ---- accumulation: jittered AA + thin-lens depth of field ----
+const quadCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), quadGeo = new THREE.PlaneGeometry(2, 2);
+const VS = 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }';
+const accMat = new THREE.ShaderMaterial({ uniforms: { t: { value: null }, w: { value: 1 } }, depthTest: false, depthWrite: false, transparent: true,
+  blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.OneFactor, blendDst: THREE.OneFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneFactor,
+  vertexShader: VS,
+  // hue-preserving clip per sample: an orange highlight stays orange instead of clipping to yellow-white
+  fragmentShader: 'uniform sampler2D t; uniform float w; varying vec2 vUv; void main(){ vec4 c=texture2D(t,vUv); float a=c.a; vec3 rgb = a>1e-6 ? c.rgb/a : vec3(0.); float m=max(rgb.r,max(rgb.g,rgb.b)); if(m>1.) rgb/=m; gl_FragColor=vec4(rgb*a,a)*w; }' });
+const outMat = new THREE.ShaderMaterial({ uniforms: { t: { value: null } }, depthTest: false, depthWrite: false, blending: THREE.NoBlending, vertexShader: VS,
+  fragmentShader: `uniform sampler2D t; varying vec2 vUv;
+    vec3 toS(vec3 c){ c=clamp(c,0.,1.); return mix(c*12.92, 1.055*pow(c,vec3(1./2.4))-0.055, step(vec3(0.0031308),c)); }
+    void main(){ vec4 c=texture2D(t,vUv); float a=clamp(c.a,0.,1.); vec3 s = a>1e-6 ? toS(c.rgb/a) : vec3(0.); gl_FragColor=vec4(s*a,a); }` });
+const accS = new THREE.Scene(); accS.add(new THREE.Mesh(quadGeo, accMat));
+const outS = new THREE.Scene(); outS.add(new THREE.Mesh(quadGeo, outMat));
+const frac = x => x - Math.floor(x);
+
+function setCam(pos, target, jx, jy) {
+  camera.position.copy(pos); camera.up.copy(CU); camera.lookAt(target);
+  if (jx || jy) camera.setViewOffset(SIZE, SIZE, jx, jy, SIZE, SIZE); else camera.clearViewOffset();
+  camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+}
+const BOXC = []; for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const sz of [0, -TD]) BOXC.push(new THREE.Vector3(sx * EXT, sy * EXT, sz));
+const _v = new THREE.Vector3();
+function contentRect() {   // pixel rect holding all 3D content for the current base camera (scissor = speed only)
+  let x0 = 1, x1 = -1, y0 = 1, y1 = -1;
+  const add = v => { v.project(camera); x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); };
+  for (const g of tiles) for (const c of BOXC) add(_v.copy(c).applyMatrix4(g.matrixWorld));
+  if (shadowMat.opacity > 0.001) for (const [x, z] of [[-1.6, -1.6], [1.6, -1.6], [-1.6, 1.6], [1.6, 1.6]]) add(_v.set(x, shadow.position.y, z));
+  const r = CORE_R * core.scale.x; for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const sz of [-1, 1]) add(_v.set(sx * r, sy * r, sz * r));
+  const pad = 16;
+  const px0 = Math.max(0, Math.floor((x0 * 0.5 + 0.5) * SIZE) - pad), px1 = Math.min(SIZE, Math.ceil((x1 * 0.5 + 0.5) * SIZE) + pad);
+  const py0 = Math.max(0, Math.floor((y0 * 0.5 + 0.5) * SIZE) - pad), py1 = Math.min(SIZE, Math.ceil((y1 * 0.5 + 0.5) * SIZE) + pad);
+  return { x: px0, y: py0, w: Math.max(1, px1 - px0), h: Math.max(1, py1 - py0) };
+}
+
+function renderFrame(f) {
+  const { dist, focus } = pose(f);
+  scene.updateMatrixWorld(true);
+  const base = CB.clone().multiplyScalar(dist), fp = CB.clone().multiplyScalar(dist - focus);
+  setCam(base, fp, 0, 0);
+  const R = contentRect();
+  rtA.scissorTest = false; renderer.setRenderTarget(rtA); renderer.clear();
+  rtA.scissor.set(R.x, R.y, R.w, R.h); rtA.scissorTest = true;
+  rtS.scissor.set(R.x, R.y, R.w, R.h); rtS.scissorTest = true;
+  for (let i = 0; i < SAMPLES; i++) {
+    const rr = APERTURE * Math.sqrt((i + 0.5) / SAMPLES), th = i * 2.399963;
+    const jx = frac(0.5 + i * 0.7548776662) - 0.5, jy = frac(0.5 + i * 0.5698402910) - 0.5;
+    setCam(base.clone().addScaledVector(CR, rr * Math.cos(th)).addScaledVector(CU, rr * Math.sin(th)), fp, jx, jy);
+    renderer.setRenderTarget(rtS); renderer.clear(); renderer.render(scene, camera);
+    accMat.uniforms.t.value = rtS.texture; accMat.uniforms.w.value = 1 / SAMPLES;
+    renderer.setRenderTarget(rtA); renderer.render(accS, quadCam);
+  }
+  outMat.uniforms.t.value = rtA.texture;
+  renderer.setRenderTarget(null); renderer.setScissorTest(false); renderer.clear(); renderer.render(outS, quadCam);
+  const ctx = outc.getContext('2d'); ctx.clearRect(0, 0, SIZE, SIZE);
+  drawRings(ctx, f, dist); ctx.drawImage(glc, 0, 0);
+  return { rect: R };
+}
+
+await buildTiles(); makePlan();
+async function setSeq(f) {   // the frame's own image on every sequenced face: a pure function of p
+  const idx = Math.max(0, Math.min(119, Math.round(f)));
+  for (const S of seqFaces) {
+    if (S.idx === idx) continue;
+    const img = new Image(); img.src = `${S.dir}${String(idx).padStart(3, '0')}.jpg`; await img.decode();
+    S.tex.image = img; S.tex.needsUpdate = true; S.idx = idx;
+  }
+}
+window.seek = async p => { const f = Math.max(0, Math.min(1, p)) * 119; await setSeq(f); const t0 = performance.now(); const r = renderFrame(f); window.LAST = { f, ms: performance.now() - t0, rect: r.rect, seq: seqFaces.map(S => [S.key, S.idx]) }; return outc.toDataURL('image/png'); };
+window.probe = f => {   // motion checks without rendering pixels
+  const { dist, focus } = pose(f); scene.updateMatrixWorld(true);
+  setCam(CB.clone().multiplyScalar(dist), new THREE.Vector3(), 0, 0);
+  const res = { f, dist, focus, rect: contentRect(), tiles: [] };
+  for (const g of tiles) {
+    const F = g.userData.F, m = g.matrixWorld;
+    const c0 = new THREE.Vector3().applyMatrix4(m), nrm = new THREE.Vector3(0, 0, 1).transformDirection(m);
+    const facing = nrm.dot(camera.position.clone().sub(c0).normalize());
+    const pc = c0.clone().project(camera), pu = new THREE.Vector3(0, 0.3, 0).applyMatrix4(m).project(camera), pr = new THREE.Vector3(0.3, 0, 0).applyMatrix4(m).project(camera);
+    const ux = pu.x - pc.x, uy = pu.y - pc.y, rx = pr.x - pc.x, ry = pr.y - pc.y;
+    let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
+    for (const c of BOXC) { const v = c.clone().applyMatrix4(m).project(camera); x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); }
+    res.tiles.push({ key: F.key, logo: !!F.logoSize, m: Array.from(m.elements), facing, roll: Math.atan2(ux, uy) / D2R, handed: rx * uy - ry * ux, ndc: [x0, x1, y0, y1] });
+  }
+  return res;
+};
+window.INFO = { three: THREE.REVISION, size: SIZE, samples: SAMPLES, used, faces: FACES.map(F => ({ key: F.key, logo: F.logoSize || null, plate: F.plate || null })), plan: plan.map(P => ({ key: P.g.userData.F.key, slot: P.slot, turn: P.turn })) };
+window.READY = true;
+</script></body></html>

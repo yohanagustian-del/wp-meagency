@@ -2,10 +2,10 @@
 /**
  * Plugin Name: MEA Leads
  * Description: Form konsultasi MEA Agency. Lead disimpan di tabel lokal, tampil di menu "Leads MEA", lalu dikirim ke CDPS dengan tanda tangan HMAC (kontrak mea.website_lead.v1). Endpoint dan secret diatur lewat konstanta MEA_LEADS_ENDPOINT dan MEA_LEADS_SECRET di wp-config.php.
- * Version: 0.1.2
+ * Version: 0.2.0
  * Requires at least: 6.4
  * Requires PHP: 8.0
- * Author: PT MEA Agensi Digital
+ * Author: PT MEA Digital Marketing
  * License: GPL-2.0-or-later
  * Text Domain: mea-leads
  *
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MEA_LEADS_VERSION', '0.1.2' );
+define( 'MEA_LEADS_VERSION', '0.2.0' );
 define( 'MEA_LEADS_DB_VERSION', '1' );
 define( 'MEA_LEADS_FILE', __FILE__ );
 define( 'MEA_LEADS_DIR', __DIR__ );

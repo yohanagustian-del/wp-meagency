@@ -63,7 +63,10 @@ class MEA_Leads_List_Table extends WP_List_Table {
 	 * @return array<string, string>
 	 */
 	protected function get_bulk_actions() {
-		return array( 'kirim-ulang' => __( 'Kirim ulang', 'mea-leads' ) );
+		return array(
+			'kirim-ulang' => __( 'Kirim ulang', 'mea-leads' ),
+			'hapus'       => __( 'Hapus (hanya menunggu/gagal)', 'mea-leads' ),
+		);
 	}
 
 	/**
@@ -114,6 +117,11 @@ class MEA_Leads_List_Table extends WP_List_Table {
 		if ( 'terkirim' !== $item->status && '' !== (string) $item->body ) {
 			$url                    = wp_nonce_url( admin_url( 'admin-post.php?action=mea_leads_kirim_ulang&lead=' . (int) $item->id ), 'mea_leads_kirim_ulang' );
 			$actions['kirim-ulang'] = '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Kirim ulang', 'mea-leads' ) . '</a>';
+		}
+		if ( 'terkirim' !== $item->status ) {
+			$url              = wp_nonce_url( admin_url( 'admin-post.php?action=mea_leads_hapus&lead=' . (int) $item->id ), 'mea_leads_hapus' );
+			$confirm          = __( 'Hapus lead ini secara permanen? Lead yang sudah dihapus tidak akan dikirim ke CDPS.', 'mea-leads' );
+			$actions['trash'] = '<a class="submitdelete" href="' . esc_url( $url ) . '" onclick="return confirm(' . esc_attr( wp_json_encode( $confirm ) ) . ');">' . esc_html__( 'Hapus', 'mea-leads' ) . '</a>';
 		}
 		return esc_html( $local->format( 'd-m-Y H:i' ) . ' WIB' ) . $this->row_actions( $actions );
 	}

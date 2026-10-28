@@ -2,7 +2,7 @@
 /**
  * Homepage · hero gelap + angka bukti dari studi kasus unggulan.
  *
- * H1, lede, CTA, dan angka selalu HTML. Visual = poster M1 (frame 0, gambar LCP);
+ * H1, lede, CTA, dan angka selalu HTML. Visual = poster kubus v2 (frame 0, gambar LCP);
  * reduced motion memakai poster akhir. Sequence scroll-scrub: assets/js/motion.js.
  *
  * @package MEA_Orbit
@@ -33,7 +33,7 @@ $mea_orbit_case    = $mea_orbit_case_id && get_post( $mea_orbit_case_id ) ? get_
 				<source media="(prefers-reduced-motion: reduce) and (max-width: 767px)" srcset="<?php echo esc_url( mea_orbit_motion_url( 'hero/posters/poster-last-720.webp' ) ); ?>" width="720" height="720">
 				<source media="(prefers-reduced-motion: reduce)" srcset="<?php echo esc_url( mea_orbit_motion_url( 'hero/posters/poster-last-1200.webp' ) ); ?>" width="1200" height="1200">
 				<source media="(max-width: 767px)" srcset="<?php echo esc_url( mea_orbit_motion_url( 'hero/posters/poster-first-720.webp' ) ); ?>" width="720" height="720">
-				<img src="<?php echo esc_url( mea_orbit_motion_url( 'hero/posters/poster-first-1200.webp' ) ); ?>" width="1200" height="1200" fetchpriority="high" decoding="async" alt="<?php esc_attr_e( 'Kubus enam layanan MEA Agency: Shopee, TikTok Shop, Iklan, Live, Affiliate, dan Konten, dikelilingi lintasan orbit', 'mea-orbit' ); ?>">
+				<img src="<?php echo esc_url( mea_orbit_motion_url( 'hero/posters/poster-first-1200.webp' ) ); ?>" width="1200" height="1200" fetchpriority="high" decoding="async" alt="<?php esc_attr_e( 'Kubus MEA Agency dengan logo Shopee, TikTok, Tokopedia, dan Meta, serta dua sisi video ilustrasi buatan AI: ulasan kreator dan live shopping, dikelilingi lintasan orbit', 'mea-orbit' ); ?>">
 			</picture>
 		</div>
 	</div>

@@ -63,6 +63,33 @@ function mea_orbit_home_defs() {
 			'label'   => __( 'Studi kasus unggulan (ID halaman)', 'mea-orbit' ),
 			'default' => 14512,
 		),
+		'partner_resmi'         => array(
+			'type'    => 'repeater',
+			'label'   => __( 'Partner resmi (di bawah hero; kosong = section tidak tampil). Badge PNG tampil apa adanya, foto JPG dalam kartu berbingkai', 'mea-orbit' ),
+			'fields'  => array(
+				'media_id' => array(
+					'type'  => 'media',
+					'label' => __( 'Gambar badge atau plakat', 'mea-orbit' ),
+				),
+				'alt'      => array(
+					'type'  => 'text',
+					'label' => __( 'Alt', 'mea-orbit' ),
+				),
+				'label'    => array(
+					'type'  => 'text',
+					'label' => __( 'Label (mis. Shopee-Certified Enablers Program)', 'mea-orbit' ),
+				),
+				'periode'  => array(
+					'type'  => 'text',
+					'label' => __( 'Periode (mis. Q3 2026)', 'mea-orbit' ),
+				),
+				'link'     => array(
+					'type'  => 'text',
+					'label' => __( 'Link (opsional)', 'mea-orbit' ),
+				),
+			),
+			'default' => array(),
+		),
 		'pimpinan_foto_id'      => array(
 			'type'    => 'media',
 			'label'   => __( 'Foto pimpinan', 'mea-orbit' ),

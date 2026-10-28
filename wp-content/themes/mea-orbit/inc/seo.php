@@ -32,7 +32,7 @@ function mea_orbit_rank_math_schema_active() {
 function mea_orbit_org_props() {
 	return array(
 		'name'         => 'MEA Agency',
-		'legalName'    => 'PT MEA Agensi Digital',
+		'legalName'    => 'PT MEA Digital Marketing',
 		'url'          => home_url( '/' ),
 		'telephone'    => '+6282117932648',
 		'address'      => array(

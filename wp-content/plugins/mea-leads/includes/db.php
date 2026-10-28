@@ -193,6 +193,26 @@ function mea_leads_claim( $id ) {
 }
 
 /**
+ * Hapus satu lead yang belum diterima CDPS (status menunggu atau gagal), beserta
+ * jadwal kirimnya. Lead terkirim tidak bisa dihapus dari sini: datanya sudah ada
+ * di CDPS. Baris yang sedang dikirim (terkunci) juga dilewati.
+ *
+ * @param int $id ID baris.
+ * @return bool True bila baris terhapus.
+ */
+function mea_leads_delete( $id ) {
+	global $wpdb;
+	$table = mea_leads_table();
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- tabel milik plugin.
+	$deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE id = %d AND status <> 'terkirim' AND (kunci_sampai IS NULL OR kunci_sampai < %s)", $id, mea_leads_now() ) );
+	if ( 1 !== (int) $deleted ) {
+		return false;
+	}
+	wp_clear_scheduled_hook( 'mea_leads_kirim', array( (int) $id ) );
+	return true;
+}
+
+/**
  * ID lead menunggu yang sudah waktunya dikirim.
  *
  * @param int $limit Batas jumlah.

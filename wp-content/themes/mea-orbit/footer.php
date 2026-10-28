@@ -36,7 +36,7 @@ $mea_orbit_sales = mea_orbit_sales();
 			</div>
 		</div>
 		<div class="legal">
-			<span>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> PT MEA Agensi Digital</span>
+			<span>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> PT MEA Digital Marketing</span>
 			<span><?php esc_html_e( 'Bagian dari MEA Grup', 'mea-orbit' ); ?></span>
 		</div>
 	</div>

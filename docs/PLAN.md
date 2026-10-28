@@ -723,3 +723,9 @@ Audit tracking (hanya baca): `docs/audit/2026-10-27-tracking.md`, skrip `tools/t
 Rancangan dan keputusan: `docs/tracking/PLAN.md`. Isi GTM: `docs/tracking/GTM-SETUP.md`. Urutan
 pindah di produksi: `docs/tracking/MIGRASI.md`. QA: `docs/qa/tracking-fase-1/QA.md`.
 
+## 22. Rilis 0.2.0 (28 Okt 2026) **[baru]**
+
+Tema 0.2.0 + mea-leads 0.2.0: hero kubus v2, strip Partner resmi, nama PT MEA Digital Marketing,
+tracking dari tema, tombol hapus lead. Keputusan: `docs/DECISIONS.md`. Catatan rilis: `CHANGELOG.md`.
+Panduan: `dist/DEPLOY-0.2.0.md`. QA: `docs/release/0.2.0/QA.md`.
+

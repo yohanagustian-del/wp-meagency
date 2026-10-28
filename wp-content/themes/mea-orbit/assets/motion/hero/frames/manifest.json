@@ -1,18 +1,166 @@
 {
-  "desktop": {
-    "files": "frames/desktop/000.webp to 119.webp",
-    "count": 120,
-    "size": 1200,
-    "bytes": 2350682,
-    "webp": "lossless, 256-colour palette"
+  "name": "mea-hero-cube",
+  "version": "2 (platform logos)",
+  "generated": "2026-10-28",
+  "pathsRelativeTo": "this file (frames/manifest.json)",
+  "background": "#1A1A1A",
+  "transparent": true,
+  "scroll": {
+    "frame0": "top of page",
+    "progress": "clamp(scrollY / (heroTop + 0.6 * heroHeight), 0, 1)",
+    "frame": "round(progress * (count - 1))",
+    "note": "last frame at 60% of the hero height; ease the drawn frame toward the target inside requestAnimationFrame"
   },
-  "mobile": {
-    "files": "frames/mobile/000.webp to 059.webp",
-    "count": 60,
-    "size": 720,
-    "bytes": 742018,
-    "webp": "lossless, 256-colour palette"
+  "loadOrder": "0, last, every 16th, every 8th, every 4th, every 2nd, then the rest",
+  "sets": {
+    "desktop": {
+      "pattern": "desktop/%03d.webp",
+      "count": 120,
+      "width": 1200,
+      "height": 1200,
+      "use": "viewport >= 768 px",
+      "frameProgress": "i / 119",
+      "bytes": 3163206,
+      "webp": {
+        "quality": 52,
+        "alphaQuality": 50,
+        "alphaLevels": 12,
+        "method": 6,
+        "bytes": 3163206,
+        "psnrMean": 39.9,
+        "psnrMin": 38.7,
+        "preprocess": "source/prep.py: alpha bleeding + soft-shadow alpha quantisation (at most 2/255 change on #1A1A1A)"
+      }
+    },
+    "mobile": {
+      "pattern": "mobile/%03d.webp",
+      "count": 60,
+      "width": 720,
+      "height": 720,
+      "use": "viewport < 768 px",
+      "frameProgress": "i / 59",
+      "bytes": 1086366,
+      "webp": {
+        "quality": 75,
+        "alphaQuality": 100,
+        "alphaLevels": "lossless",
+        "method": 6,
+        "bytes": 1086366,
+        "psnrMean": 39.4,
+        "psnrMin": 38.5,
+        "preprocess": "source/prep.py: alpha bleeding + soft-shadow alpha quantisation (at most 2/255 change on #1A1A1A)"
+      }
+    }
   },
-  "scroll": "progress = scrollY / (heroTop + heroHeight), clamped 0..1; frame = round(progress * (count - 1))",
-  "breakpoint": "mobile set below 768 px viewport width"
+  "posters": {
+    "poster-first-1200": {
+      "path": "../posters/poster-first-1200.webp",
+      "quality": 90,
+      "bytes": 51480
+    },
+    "poster-first-720": {
+      "path": "../posters/poster-first-720.webp",
+      "quality": 90,
+      "bytes": 26766
+    },
+    "poster-last-1200": {
+      "path": "../posters/poster-last-1200.webp",
+      "quality": 90,
+      "bytes": 47560
+    },
+    "poster-last-720": {
+      "path": "../posters/poster-last-720.webp",
+      "quality": 90,
+      "bytes": 26956
+    }
+  },
+  "video": {
+    "mp4": {
+      "path": "../video/hero-cube.mp4",
+      "codec": "H.264 High, yuv420p, BT.709",
+      "crf": 24,
+      "bytes": 767686,
+      "cornerRGB": [
+        25,
+        25,
+        25
+      ]
+    },
+    "webm": {
+      "path": "../video/hero-cube.webm",
+      "codec": "VP9, yuv420p, BT.709",
+      "crf": 34,
+      "bytes": 811655,
+      "cornerRGB": [
+        25,
+        25,
+        25
+      ]
+    },
+    "width": 1200,
+    "height": 1200,
+    "fps": 20,
+    "frames": 120,
+    "durationSeconds": 6.0,
+    "keyframeEvery": 20,
+    "audio": false,
+    "background": "#1A1A1A",
+    "scrub": "video.currentTime = progress * duration"
+  },
+  "faces": [
+    {
+      "frame0": "lid",
+      "final": "lower-right",
+      "name": "Shopee",
+      "file": "source/logos/shopee.png",
+      "size": "600x600",
+      "note": "logo file as supplied"
+    },
+    {
+      "frame0": "front-right",
+      "final": "top-centre",
+      "name": "Content: two creator reviews",
+      "file": "source/seq/content/000-119.jpg",
+      "size": "1024x1024 per frame",
+      "note": "grok-klip-5A (fashion, left phone) + grok-klip-5B (skincare, right phone), seconds 0-5, whole 9:16 frames, no crop, silent"
+    },
+    {
+      "frame0": "front-left",
+      "final": "bottom-centre",
+      "name": "Live shopping",
+      "file": "source/seq/live/000-119.jpg",
+      "size": "1024x1024 per frame",
+      "note": "grok-klip-6, seconds 4.5-9.5, whole 1:1 frame, silent"
+    },
+    {
+      "frame0": "hidden (back-left)",
+      "final": "lower-left",
+      "name": "TikTok",
+      "file": "source/logos/tiktok.png",
+      "size": "600x600",
+      "note": "logo file as supplied"
+    },
+    {
+      "frame0": "hidden (back-right)",
+      "final": "upper-right",
+      "name": "Meta",
+      "file": "source/logos/meta.png",
+      "size": "677x233",
+      "note": "logo file as supplied, fitted by width"
+    },
+    {
+      "frame0": "hidden (bottom)",
+      "final": "upper-left",
+      "name": "Tokopedia",
+      "file": "source/logos/tokopedia.png",
+      "size": "600x600",
+      "note": "logo file as supplied"
+    }
+  ],
+  "audio": "none: clips decoded video-only (ffmpeg -map 0:v:0 -an); no audio track in any file",
+  "source": {
+    "scene": "../source/cube.html",
+    "three": "r170 (source/vendor/three.module.min.js)",
+    "seek": "window.seek(p), p in [0, 1]"
+  }
 }

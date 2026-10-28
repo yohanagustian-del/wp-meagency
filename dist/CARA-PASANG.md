@@ -9,8 +9,8 @@ crawl) dan `docs/ELEMENTOR-EXIT.md`.
 
 | Berkas | Isi |
 |---|---|
-| `mea-orbit.zip` | Tema mandiri (bukan child theme). Versi 0.1.0, WordPress ≥ 6.4, PHP ≥ 8.0 |
-| `mea-leads.zip` | Plugin form konsultasi → CDPS. Versi 0.1.0, WordPress ≥ 6.4, PHP ≥ 8.0 |
+| `mea-orbit.zip` | Tema mandiri (bukan child theme). Versi terbaru (sama dengan `mea-orbit-<versi>.zip`), WordPress ≥ 6.4, PHP ≥ 8.0 |
+| `mea-leads.zip` | Plugin form konsultasi → CDPS. Versi terbaru (sama dengan `mea-leads-<versi>.zip`), WordPress ≥ 6.4, PHP ≥ 8.0 |
 
 Zip dibangun ulang dengan `tools/build-dist.sh`.
 

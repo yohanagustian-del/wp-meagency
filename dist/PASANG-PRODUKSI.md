@@ -212,3 +212,8 @@ sampai konstantanya diisi**. Memasang zip baru tidak mengubah tracking apa pun. 
 Site Kit, plugin Meta, Code Snippets, dan WPCode dikerjakan per platform mengikuti
 `tracking/MIGRASI.md`.
 
+## 12. Rilis 0.2.0
+
+Untuk memperbarui situs yang sudah memakai 0.1.x ke 0.2.0, ikuti `DEPLOY-0.2.0.md` (backup, upload
+dengan "Ganti yang terpasang", hapus lead uji, sambungan CDPS, Partner resmi, rollback).
+

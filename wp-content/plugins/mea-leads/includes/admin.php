@@ -92,9 +92,14 @@ function mea_leads_admin_page() {
 	submit_button( __( 'Saring', 'mea-leads' ), '', '', false );
 	echo '</div></div></form>';
 
-	echo '<form method="post">';
+	echo '<form method="post" id="mea-leads-list">';
 	$table->display();
 	echo '</form></div>';
+	// Konfirmasi sebelum aksi massal Hapus (aksi baris punya konfirmasi sendiri).
+	printf(
+		'<script>document.getElementById("mea-leads-list").addEventListener("submit",function(e){var a=this.querySelector("#bulk-action-selector-top"),b=this.querySelector("#bulk-action-selector-bottom");if(((a&&a.value)==="hapus"||(b&&b.value)==="hapus")&&!window.confirm(%s)){e.preventDefault();}});</script>',
+		wp_json_encode( __( 'Hapus lead terpilih secara permanen? Lead yang sudah terkirim ke CDPS akan dilewati.', 'mea-leads' ) )
+	);
 }
 
 /**
@@ -111,6 +116,19 @@ function mea_leads_admin_notices() {
 	if ( null !== $done ) {
 		/* translators: %d: jumlah lead. */
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( __( '%d lead dijadwalkan untuk dikirim ulang.', 'mea-leads' ), $done ) ) . '</p></div>';
+	}
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- hanya pesan hasil.
+	if ( isset( $_GET['dihapus'] ) ) {
+		$deleted = absint( $_GET['dihapus'] );
+		$skipped = isset( $_GET['dilewati'] ) ? absint( $_GET['dilewati'] ) : 0;
+		// phpcs:enable
+		/* translators: %d: jumlah lead. */
+		$message = sprintf( __( '%d lead dihapus.', 'mea-leads' ), $deleted );
+		if ( $skipped ) {
+			/* translators: %d: jumlah lead. */
+			$message .= ' ' . sprintf( __( '%d lead dilewati karena sudah terkirim ke CDPS atau sedang dikirim.', 'mea-leads' ), $skipped );
+		}
+		echo '<div class="notice ' . ( $skipped ? 'notice-warning' : 'notice-success' ) . ' is-dismissible"><p>' . esc_html( $message ) . '</p></div>';
 	}
 }
 
@@ -176,7 +194,23 @@ function mea_leads_admin_resend_one() {
 add_action( 'admin_post_mea_leads_kirim_ulang', 'mea_leads_admin_resend_one' );
 
 /**
- * Aksi massal "Kirim ulang" dari tabel daftar (nonce bawaan WP_List_Table).
+ * Hapus satu lead dari aksi baris (hanya menunggu atau gagal).
+ *
+ * @return void
+ */
+function mea_leads_admin_delete_one() {
+	if ( ! current_user_can( mea_leads_capability() ) ) {
+		wp_die( esc_html__( 'Anda tidak punya akses.', 'mea-leads' ), 403 );
+	}
+	check_admin_referer( 'mea_leads_hapus' );
+	$done = mea_leads_delete( isset( $_GET['lead'] ) ? absint( $_GET['lead'] ) : 0 ) ? 1 : 0;
+	wp_safe_redirect( admin_url( 'admin.php?page=mea-leads&dihapus=' . $done . '&dilewati=' . ( 1 - $done ) ) );
+	exit;
+}
+add_action( 'admin_post_mea_leads_hapus', 'mea_leads_admin_delete_one' );
+
+/**
+ * Aksi massal "Kirim ulang" dan "Hapus" dari tabel daftar (nonce bawaan WP_List_Table).
  *
  * @return void
  */
@@ -184,16 +218,19 @@ function mea_leads_admin_bulk() {
 	if ( empty( $_POST['lead'] ) || ! current_user_can( mea_leads_capability() ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce dicek di bawah.
 		return;
 	}
-	$table = new MEA_Leads_List_Table();
-	if ( 'kirim-ulang' !== $table->current_action() ) {
+	$table  = new MEA_Leads_List_Table();
+	$action = $table->current_action();
+	if ( ! in_array( $action, array( 'kirim-ulang', 'hapus' ), true ) ) {
 		return;
 	}
 	check_admin_referer( 'bulk-leads' );
+	$ids  = array_map( 'absint', (array) wp_unslash( $_POST['lead'] ) );
 	$done = 0;
-	foreach ( array_map( 'absint', (array) wp_unslash( $_POST['lead'] ) ) as $id ) {
-		$done += mea_leads_resend( $id ) ? 1 : 0;
+	foreach ( $ids as $id ) {
+		$done += ( 'hapus' === $action ? mea_leads_delete( $id ) : mea_leads_resend( $id ) ) ? 1 : 0;
 	}
-	wp_safe_redirect( admin_url( 'admin.php?page=mea-leads&dijadwalkan=' . $done ) );
+	$query = 'hapus' === $action ? 'dihapus=' . $done . '&dilewati=' . ( count( $ids ) - $done ) : 'dijadwalkan=' . $done;
+	wp_safe_redirect( admin_url( 'admin.php?page=mea-leads&' . $query ) );
 	exit;
 }
 add_action( 'load-toplevel_page_mea-leads', 'mea_leads_admin_bulk' );
