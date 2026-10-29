@@ -1,6 +1,6 @@
 <?php
 /**
- * Kutipan Yohan. Argumen: id (k1…k5), gaya (pull | pimpinan).
+ * Kutipan perusahaan (atas nama MEA Agency). Argumen: id (k1…k5), gaya (pull | pimpinan).
  *
  * @package MEA_Orbit
  */

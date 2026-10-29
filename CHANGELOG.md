@@ -5,6 +5,7 @@ Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 ## mea-orbit 0.6.0 · 29 Okt 2026
 - **33 studi kasus pindah dari Elementor ke template Orbit** (data live; seed di `docs/seed/studi-kasus/`, rollback di `ROLLBACK.md` folder itu). Teks dan angka diambil dari halaman lama; bila counter dan teks Result bertentangan, angka teks yang dipakai. Denuber (isi salinan Allora) tidak dimigrasi, diberi noindex.
 - **Foto cadangan samping cerita**: studi kasus tanpa foto kasus memakai lima foto realis proses kerja tim MEA (sama dengan "Cara kami bekerja"), berganti saat scroll, judul langkah sebagai keterangan. Sumber satu: `mea_orbit_proses_foto()` (juga dipakai homepage).
+- **Kutipan jadi kutipan perusahaan**: lima kutipan (homepage, layanan, studi kasus) ditulis ulang dengan bahasa formal atas nama MEA Agency (atribusi "MEA Agency", bukan Yohan). Data live sudah diperbarui; default tema ikut.
 - **Header**: link **Studi kasus** setelah empat pilar (aktif di halaman studi kasus). Label pilar tidak pecah baris; header pindah ke menu HP di ≤1180 px.
 
 ## mea-orbit 0.5.2 · 29 Okt 2026
