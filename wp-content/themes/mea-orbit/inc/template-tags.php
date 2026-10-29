@@ -82,12 +82,16 @@ function mea_orbit_current_url() {
 	if ( is_home() ) {
 		return (string) get_permalink( (int) get_option( 'page_for_posts' ) );
 	}
+	// Halaman studi kasus menandai link "Studi kasus" di header.
+	if ( is_page_template( 'page-templates/template-studi-kasus.php' ) ) {
+		return home_url( '/study-case/' );
+	}
 	return is_singular() ? (string) get_permalink() : '';
 }
 
 /**
  * Cetak empat pilar sebagai daftar bertingkat (ul.menu > li > a + ul.sub-menu),
- * markup yang sama dengan wp_nav_menu kedalaman 2.
+ * markup yang sama dengan wp_nav_menu kedalaman 2, ditutup link Studi kasus.
  *
  * Dropdown header tanpa JavaScript: terbuka saat hover dan saat fokus keyboard
  * ada di dalam pilar (:focus-within), jadi Tab menelusuri pilar lalu anaknya.
@@ -114,6 +118,8 @@ function mea_orbit_pilar_menu() {
 		}
 		echo '</ul></li>';
 	}
+	// Bukti hasil di samping pilar: link biasa tanpa dropdown.
+	echo '<li class="menu-item menu-item-studi">' . $link( __( 'Studi kasus', 'mea-orbit' ), '/study-case/' ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
 	echo '</ul>';
 }
 

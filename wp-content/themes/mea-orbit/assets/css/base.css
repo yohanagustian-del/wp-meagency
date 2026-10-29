@@ -208,6 +208,10 @@ a {
 	position: relative;
 }
 
+.nav .menu > li > a {
+	white-space: nowrap;
+}
+
 .nav .menu-item-has-children > a {
 	display: inline-flex;
 	align-items: center;
@@ -365,7 +369,7 @@ a {
 	font-size: .9rem;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
 	.nav {
 		display: none;
 	}
