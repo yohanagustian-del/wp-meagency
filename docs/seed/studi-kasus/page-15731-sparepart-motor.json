@@ -105,7 +105,11 @@
         "alt": "Dokumentasi Sparepart Motor"
       }
     ],
-    "mea_kasus_lain": [],
+    "mea_kasus_lain": [
+      16144,
+      16160,
+      17555
+    ],
     "mea_cdps_client_id": "",
     "mea_izin_publikasi": true,
     "mea_sumber_form": "studi-kasus-sparepart-motor"

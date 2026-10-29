@@ -105,7 +105,11 @@
         "alt": "Skynet: produk laptop Lenovo V14 G3 di Shopee"
       }
     ],
-    "mea_kasus_lain": [],
+    "mea_kasus_lain": [
+      17555,
+      17563,
+      18639
+    ],
     "mea_cdps_client_id": "",
     "mea_izin_publikasi": true,
     "mea_sumber_form": "studi-kasus-skynet"

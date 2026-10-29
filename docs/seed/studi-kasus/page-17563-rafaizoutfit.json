@@ -58,7 +58,11 @@
     "mea_kutipan_id": "k2",
     "mea_foto_proses": [],
     "mea_galeri": [],
-    "mea_kasus_lain": [],
+    "mea_kasus_lain": [
+      18639,
+      18640,
+      18653
+    ],
     "mea_izin_publikasi": true,
     "mea_sumber_form": "studi-kasus-rafaizoutfit",
     "mea_cdps_client_id": ""

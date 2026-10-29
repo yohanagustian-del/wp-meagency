@@ -51,7 +51,11 @@
     "mea_kutipan_id": "k2",
     "mea_foto_proses": [],
     "mea_galeri": [],
-    "mea_kasus_lain": [],
+    "mea_kasus_lain": [
+      18738,
+      19926,
+      19936
+    ],
     "mea_izin_publikasi": true,
     "mea_sumber_form": "studi-kasus-feyrely",
     "mea_cdps_client_id": ""
