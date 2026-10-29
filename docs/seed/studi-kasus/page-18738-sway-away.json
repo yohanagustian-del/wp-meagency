@@ -1,0 +1,66 @@
+{
+  "page_id": 18738,
+  "url": "/sway-away/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Sway Away",
+    "mea_h1": "Sway Away: omzet naik 195% dari satu produk",
+    "mea_kartu_judul": "Sway Away: omzet naik 195% dari satu produk",
+    "mea_kartu_lede": "Toko fashion wanita ini hanya punya satu produk yang diiklankan di Shopee. Dengan iklan otomatis dan manual yang dipantau ketat, omzet naik 195% dan traffic naik 382%.",
+    "mea_kategori": "Fashion wanita",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "195%",
+        "label": "Kenaikan omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "382%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "20x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Sway Away (swayaway.id) adalah toko fashion wanita online dengan koleksi pakaian kasual hingga semi-formal berdesain simpel dan elegan, dalam warna netral hingga soft tone, untuk wanita aktif di seluruh Indonesia.</p><p>Performa iklan Sway Away sudah sangat baik dari sisi efisiensi biaya dan rasio konversi: ROAS tinggi, CPC rendah, dan funnel toko yang sehat. Tantangan utamanya adalah jumlah produk yang terbatas. Saat itu hanya ada satu produk yang diiklankan, sehingga potensi traffic, variasi targeting, dan peluang upselling lewat iklan toko, bundling, atau strategi basket size ikut terbatas.</p><p>MEA perlu tetap menaikkan volume penjualan meski SKU terbatas, sambil mendorong klien menambah produk sejenis untuk memperluas traffic dan memperkuat branding di pasar yang kompetitif.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Dua pendekatan iklan.</strong> Iklan otomatis untuk jangkauan luas, dan iklan manual dengan pemantauan ketat berbasis performa untuk memaksimalkan efisiensi biaya dan ROAS.</li><li><strong>Funnel toko.</strong> Funnel dari add to cart hingga checkout diperkuat dengan broadcast chat dan affiliate agar minat beli berubah menjadi transaksi.</li><li><strong>Fitur promo Shopee.</strong> Gratis ongkir, cashback, dan voucher untuk mendorong pembelian impulsif, ditambah Shopee Live dan campaign Payday untuk menjaring pembeli baru dan lama.</li><li><strong>Penambahan SKU.</strong> Menyarankan penambahan produk agar iklan toko bisa dijalankan, jangkauan traffic meluas, dan basket size naik.</li></ul>",
+    "mea_hasil": "<ul><li>ROAS meningkat dan stabil.</li><li>Omzet naik signifikan di beberapa pekan, meski sempat fluktuatif karena stok terbatas dan momen pasca-event besar seperti 9.9.</li><li>Produk terjual naik konsisten, dengan klik iklan tumbuh hingga hampir 2.000 per minggu dan funnel dari add to cart ke checkout yang sangat sehat.</li></ul><p>Dengan pendekatan bertahap dan fokus pada efisiensi, performa iklan tetap tinggi meski hanya satu produk aktif, sambil menyiapkan perluasan katalog.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-sway-away",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "ROAS tidak konsisten: counter atas \"20X\", counter bawah \"10X\"; teks hanya menyebut \"ROAS meningkat dan stabil\". Ditulis 20x (counter pertama) dan sengaja tidak dipakai di h1; mohon pemilik memastikan angka yang benar.",
+    "Counter \"Omset 195%\" dan \"Traffic 382%\" tidak dijelaskan di teks sebagai kenaikan; label dibaca sebagai \"Kenaikan omzet\" dan \"Kenaikan traffic\". Perlu konfirmasi.",
+    "Nama brand: judul halaman \"Sway Away\" (berisi karakter zero-width, sudah dibuang); teks memakai \"swayaway.id\" / \"Swayaway\".",
+    "Periode pendampingan tidak disebut. Layanan dari daftar Services: \"Jasa iklan Shopee\" -> Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "page_id": 19937,
+  "url": "/elhasnahijab/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Elhasna Hijab",
+    "mea_h1": "Elhasna Hijab: omzet naik 730% dengan ROAS 8x",
+    "mea_kartu_judul": "Elhasna Hijab: omzet naik 730% dengan ROAS 8x",
+    "mea_kartu_lede": "Toko hijab instan di Shopee ini ramai traffic, tetapi penjualannya bergantung pada momen promo. Iklan pada produk terlaris, broadcast chat, live, dan affiliate membawa omzet naik 730% dengan ROAS 8x.",
+    "mea_kategori": "Hijab instan",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "730%",
+        "label": "Kenaikan omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "8x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "513%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Elhasna Hijab adalah toko online yang menjual hijab instan berdesain modern, praktis, dan nyaman dipakai sehari-hari, untuk perempuan yang ingin tampil syar'i namun tetap modis. Toko ini aktif memakai fitur Shopee seperti Shopee Live, affiliate, dan iklan.</p><p>Traffic toko sudah tinggi dan omzet serta produk terjual naik signifikan, tetapi rasio klik (CTR) sedikit menurun. Artinya, daya tarik visual atau relevansi iklan perlu ditingkatkan. Momen besar dan kampanye Shopee menjadi penggerak utama penjualan, sehingga toko perlu cara menjaga pesanan tetap stabil di luar periode promo. Konsistensi konten dan kanal organik seperti Shopee Live, affiliate, dan Shopee Video juga perlu dikembangkan agar toko tidak sepenuhnya bergantung pada iklan berbayar.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Iklan pada produk potensial.</strong> Fokus pada SKU berperforma terbaik yang konsisten menyumbang omzet, sehingga ROAS tetap efisien walau traffic berfluktuasi.</li><li><strong>Maksimalisasi fitur Shopee.</strong> Voucher toko, cashback extra, dan gratis ongkir extra sebagai daya tarik tambahan untuk mendorong konversi.</li><li><strong>Broadcast chat untuk retargeting.</strong> Menyasar pembeli yang sudah add to cart agar menyelesaikan pembelian, terutama di jam efektif seperti jam istirahat kerja.</li><li><strong>Live streaming dan affiliate.</strong> Live streaming diaktifkan secara konsisten dan kerja sama affiliate diperluas untuk menaikkan exposure dan penjualan organik.</li><li><strong>Evaluasi mingguan.</strong> Performa iklan dievaluasi setiap minggu; iklan yang kurang efektif dimatikan dan yang berkinerja baik ditingkatkan bila ROAS, traffic, atau pesanan turun.</li></ul>",
+    "mea_hasil": "<p>Dengan optimalisasi iklan dan aktivasi fitur Shopee, Elhasna Hijab mencatat peningkatan signifikan:</p><ul><li>ROAS meningkat sampai 8x dibanding periode sebelumnya.</li><li>Omzet melonjak hingga 730%.</li><li>Produk terjual naik hingga 513%, berkat kombinasi broadcast chat, promo toko, dan live streaming.</li></ul><p>Kontribusi kanal organik seperti Shopee Live dan affiliate juga makin terasa, sehingga toko tidak hanya mengandalkan iklan berbayar. Anggaran tetap efisien, jangkauan pembeli meluas, dan performa toko lebih stabil di berbagai kanal.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-elhasnahijab",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Counter ketiga berlabel \"TRAFFIC 513%\" dan counter kedua \"GMV 730%\", sedangkan teks hasil menyebut 730% sebagai kenaikan omzet dan 513% sebagai kenaikan produk terjual; dipakai label dari teks.",
+    "Bagian APPROACH di halaman berupa tabel; diubah menjadi daftar <ul> tanpa mengubah isi.",
+    "Periode pendampingan tidak disebut. Layanan: \"Shopee Ads\" -> Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

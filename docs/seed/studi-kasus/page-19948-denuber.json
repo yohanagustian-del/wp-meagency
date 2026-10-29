@@ -1,0 +1,37 @@
+{
+  "page_id": 19948,
+  "url": "/denuber/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Denuber",
+    "mea_h1": "Denuber",
+    "mea_kartu_judul": "Denuber",
+    "mea_kartu_lede": "",
+    "mea_kategori": "",
+    "mea_kanal": "",
+    "mea_periode": "",
+    "mea_layanan": [],
+    "mea_angka": [],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "",
+    "mea_dikerjakan": "",
+    "mea_hasil": "",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-denuber",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "PENTING: konten Elementor halaman ini adalah salinan persis halaman Alloraboutiqueofficial (19926): H1 di halaman tertulis \"Alloraboutiqueofficial\", dan deskripsi, CHALLENGE, Services (Ads Content, Tiktok Ads, TSPro), APPROACH, RESULT, serta counter (ROAS 9X, GMV 312%, TRAFFIC 289%) identik. Tidak ada data milik Denuber.",
+    "Agar tidak mengatribusikan hasil Allora ke Denuber, semua field isi dikosongkan (lede, kategori, kanal, layanan, angka, tantangan, dikerjakan, hasil). Pemilik perlu menyediakan data kasus Denuber yang asli, atau halaman ini sebaiknya tidak dimigrasi/diterbitkan dulu.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "page_id": 19936,
+  "url": "/erlitadwina/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Erlitadwina",
+    "mea_h1": "Erlitadwina: ROAS iklan Shopee 17x",
+    "mea_kartu_judul": "Erlitadwina: ROAS iklan Shopee 17x",
+    "mea_kartu_lede": "Toko minuman pelangsing di Shopee ini menghadapi omzet yang fluktuatif. Iklan yang difokuskan pada produk terlaris dan fitur pendukung Shopee membawa ROAS ke lebih dari 17x.",
+    "mea_kategori": "Minuman pelangsing",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "17x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "161x",
+        "label": "GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "164x",
+        "label": "Traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Erlitadwina adalah toko online di Shopee yang berfokus pada produk minuman pelangsing dengan harga bersaing. Konsumennya tersebar luas, terutama di Sumatra Utara yang menunjukkan minat tinggi. Toko ini memadukan iklan, affiliate, dan konten video dalam pemasarannya.</p><p>Tantangannya adalah menjaga stabilitas omzet yang berfluktuasi dalam tiga bulan terakhir. Optimasi iklan perlu diperkuat agar traffic ke produk best seller, kontributor penjualan tertinggi, tetap konsisten, mengingat kampanye sebelumnya sudah berdampak positif pada penjualan. Tantangan lainnya adalah menjaga daya saing harga dan memperkaya variasi produk berdasarkan kata kunci dan kondisi persaingan di pasar.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Iklan pada produk potensial.</strong> Iklan diarahkan secara konsisten ke produk dengan performa dan konversi terbaik untuk menjaga efisiensi ROAS sekaligus menaikkan volume pesanan.</li><li><strong>Efisiensi anggaran.</strong> Anggaran iklan diatur agar biaya tetap rendah sambil mendorong pertumbuhan omzet dan produk terjual.</li><li><strong>Fitur pendukung Shopee.</strong> Live streaming, affiliate, voucher toko, cashback extra, dan gratis ongkir extra dimanfaatkan untuk menarik pembeli dan memperkuat daya saing produk.</li><li><strong>Evaluasi mingguan.</strong> Performa iklan dan produk dievaluasi setiap minggu, dan strategi diatur ulang bila performa turun.</li></ul>",
+    "mea_hasil": "<p>ROAS melonjak hingga lebih dari 17x, menandakan efisiensi biaya iklan yang sangat baik. GMV toko tumbuh pesat, dan volume produk terjual meningkat tajam, menunjukkan traffic berhasil dikonversi menjadi penjualan.</p><p>Penguatan kanal organik seperti affiliate dan Shopee Live ikut mendorong pertumbuhan pesanan. Dengan evaluasi mingguan, performa toko tetap terjaga sepanjang periode kerja sama.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-erlitadwina",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Counter \"GMV 161X\" dan \"TRAFFIC 164X\" tidak disebut angkanya di teks (hanya \"tumbuh pesat\" / \"meningkat tajam\"); satuan X untuk nilai sebesar ini meragukan (mungkin %). Ditulis apa adanya \"161x\" dan \"164x\"; mohon dicek pemilik sebelum terbit.",
+    "Teks menyebut produk \"diklaim dapat membantu menjaga berat badan secara alami\"; klaim kesehatan ini sengaja tidak disalin ke seed.",
+    "Periode pendampingan tidak disebut (hanya \"tiga bulan terakhir\" untuk fluktuasi omzet sebelum kerja sama). Layanan: \"Shopee Ads\" -> Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

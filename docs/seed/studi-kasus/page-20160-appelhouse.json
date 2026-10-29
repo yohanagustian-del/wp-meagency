@@ -1,0 +1,80 @@
+{
+  "page_id": 20160,
+  "url": "/appelhouse/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Appelhouse (RBS Gadget)",
+    "mea_h1": "Appelhouse (RBS Gadget): GMV live naik 455% dengan tambahan budget iklan 55%",
+    "mea_kartu_judul": "Appelhouse (RBS Gadget): GMV live naik 455% dengan tambahan budget iklan 55%",
+    "mea_kartu_lede": "Toko produk Apple di Semarang ini mengaktifkan GMV-Max Live dan menggandakan sesi live bersama affiliator. Dengan budget iklan naik 55%, GMV self livestreaming naik 455% dibanding bulan sebelumnya.",
+    "mea_kategori": "Gadget dan produk Apple",
+    "mea_kanal": "TikTok Shop",
+    "mea_periode": "Januari ke Februari 2026",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "Live",
+        "page_id": 15567
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "455%",
+        "label": "Kenaikan GMV self livestreaming",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "55%",
+        "label": "Kenaikan budget iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "US$ 197.684,64",
+        "label": "GMV live Februari 2026",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "27 sesi",
+        "label": "Sesi live Februari, naik dari 13 sesi",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Appel House Store adalah Official/Local Exclusive Apple Partner di Semarang yang menjual produk Apple original seperti iPhone, MacBook, iPad, Apple Watch, dan aksesoris resmi. Toko ini punya pelanggan loyal dan performa yang solid di momen besar seperti harbolnas, payday, atau peluncuran produk Apple terbaru.</p><p>Di luar periode tersebut, konversi dan GMV kerap turun meski traffic toko tetap tinggi. Artinya minat beli pelanggan belum cukup kuat untuk mendorong keputusan checkout.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Optimasi GMV-Max Live.</strong> Fitur GMV-Max Live diaktifkan dengan budget iklan lebih dari US$ 900 di Februari 2026 untuk menaikkan visibilitas sesi live dan konversi secara real-time, menghasilkan GMV live hingga US$ 197.684,64.</li><li><strong>Scaling ad spend berbasis performa.</strong> Total ad spend dinaikkan dari US$ 1.333,97 di Januari menjadi US$ 2.065,57 di Februari, sekitar 55%, dan difokuskan pada produk serta sesi live dengan performa terbaik.</li><li><strong>Ekspansi live streaming.</strong> Frekuensi live dilipatgandakan dari 13 sesi di Januari menjadi 27 sesi di Februari, termasuk sesi tambahan oleh para affiliator.</li><li><strong>XBP Voucher Premium.</strong> Toko didaftarkan ke XBP Voucher Premium untuk menambah daya tarik promosi dan mempercepat pembelian, khususnya bagi pelanggan premium.</li></ul>",
+    "mea_hasil": "<p>Dengan tambahan budget iklan yang tidak terlalu besar (+55%), GMV self livestreaming melonjak 455,24% dibandingkan bulan sebelumnya.</p><p>Kenaikan ini datang dari kombinasi strategi: aktivasi GMV-Max Live, penggandaan sesi live oleh seller dan affiliator, serta pendaftaran XBP Voucher Premium yang mendorong konversi lebih cepat. Appel House Store berhasil mengubah minat pelanggan menjadi penjualan secara konsisten, bahkan di luar momen event besar.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-appelhouse"
+  },
+  "catatan": [
+    "Nama brand: judul halaman 'Appelhouse (RBS Gadget) - Affiliator' (heading H1 bahkan diawali ': '), sedangkan teks menulis 'Appel House Store'. mea_brand memakai 'Appelhouse (RBS Gadget)' tanpa akhiran '- Affiliator'; mohon konfirmasi penulisan resmi dan apakah sudut 'Affiliator' perlu disebut di judul.",
+    "Nilai uang di halaman dalam dolar (US$), mis. GMV live $197.684,64 dan ad spend $1.333,97 ke $2.065,57; ditulis apa adanya, tidak dikonversi ke rupiah. Mohon pastikan satuannya memang USD.",
+    "mea_kanal 'TikTok Shop' disimpulkan dari istilah GMV-Max Live (produk iklan TikTok Shop); platform tidak disebut eksplisit. 'XBP Voucher Premium' juga tidak dijelaskan platformnya.",
+    "mea_periode 'Januari ke Februari 2026' berasal dari perbandingan data Januari vs Februari 2026; lama pendampingan tidak disebut.",
+    "Services hanya 'GMV Max Live Optimization', dipetakan ke Iklan (14144) dan Live (15567). Affiliate (14662) tidak dimasukkan meski affiliator ikut live; mohon dicek.",
+    "Kalimat penutup RESULT tentang 'ekosistem MEA Digital Marketing ... platform yang sangat powerful bagi para affiliator' dibuang karena bersifat promosi umum, bukan fakta kasus.",
+    "Halaman tidak memuat foto/video kasus (grid galeri Elementor kosong). Satu-satunya gambar adalah 15633 'KOKO & CICI-18' di blok CTA umum 'Hubungi Kami' yang sama di semua halaman studi kasus, jadi tidak dimasukkan; mea_foto_proses dan mea_galeri kosong, perlu foto dari pemilik.",
+    "Teks CTA umum 'Hubungi Kami / Partner terbaik yang menghubungkan bisnismu...' tidak disalin."
+  ]
+}

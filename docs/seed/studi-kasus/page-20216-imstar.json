@@ -1,0 +1,66 @@
+{
+  "page_id": 20216,
+  "url": "/imstar/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Imstar",
+    "mea_h1": "Imstar: ROAS 13x dan GMV naik 285%",
+    "mea_kartu_judul": "Imstar: ROAS 13x dan GMV naik 285%",
+    "mea_kartu_lede": "Brand pakaian keluarga dan anak ini belum memaksimalkan iklan berbayar dan konten. Lewat TikTok Ads yang lebih terstruktur dan campaign berbasis produk unggulan, ROAS-nya mencapai 13x dan GMV naik 285%.",
+    "mea_kategori": "Fashion keluarga dan anak",
+    "mea_kanal": "TikTok",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "13x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "285%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "410%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>IMSTAR adalah brand fashion yang menyediakan pakaian keluarga dan anak, seperti kaos anak, baju couple keluarga, dan outfit kasual, dengan harga terjangkau dan motif yang beragam.</p><p>Kategori ini punya permintaan yang stabil di marketplace, tetapi potensinya belum dimanfaatkan maksimal. Toko belum mengoptimalkan iklan berbayar dan belum didukung konten yang menarik dan persuasif, sehingga peluang menjangkau audiens yang lebih luas dan mendorong konversi belum optimal.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>TikTok Ads yang lebih terarah.</strong> Menyusun strategi iklan yang lebih terstruktur berdasarkan performa campaign yang sudah berjalan, dengan fokus pada kualitas traffic dan efisiensi biaya lewat pengaturan budget, objective yang tepat, dan pengujian materi iklan secara berkala.</li><li><strong>Campaign berbasis produk unggulan.</strong> Mengembangkan campaign baru yang menitikberatkan kategori dengan penjualan terbaik, khususnya t-shirt karakter dan family set, untuk menemukan winning product berikutnya lewat variasi materi iklan dan segmentasi audiens yang lebih spesifik.</li><li><strong>Traffic organik lewat konten dan affiliate.</strong> Memperkuat konten akun toko yang relevan dengan tren pasar dan melibatkan affiliate untuk memperluas jangkauan produk di luar iklan berbayar.</li><li><strong>TSPro untuk iklan dan keamanan akun.</strong> Menggunakan TSPro untuk pengelolaan akun, distribusi konten, whitelist, dan perlindungan akun, agar operasional stabil, risiko pembatasan akun berkurang, dan campaign berjalan lebih aman.</li></ul>",
+    "mea_hasil": "<p>Dengan strategi yang terarah, ROAS IMSTAR mencapai 13x, GMV tumbuh 285%, dan jumlah produk terjual naik 410%. Hasil ini didorong oleh pengelolaan TikTok Ads yang lebih terstruktur, campaign berbasis produk unggulan, serta penguatan traffic lewat konten dan affiliate.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-imstar",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Nama brand: judul halaman 'Imstar', teks memakai 'IMSTAR' (huruf kapital). mea_brand diisi 'Imstar'; ganti ke 'IMSTAR' bila itu penulisan resmi brand.",
+    "Kanal: halaman hanya menyebut 'marketplace' dan TikTok Ads, tanpa nama platform toko. mea_kanal diisi 'TikTok'.",
+    "Layanan 'Tiktok Ads' dipetakan ke Iklan. Strategi menyebut konten dan affiliate, tetapi tidak tercantum di daftar Services sehingga tidak dimasukkan. Layanan 'TSPro' di daftar Services tidak punya padanan di label baku, jadi tidak dipetakan.",
+    "Periode pendampingan tidak disebut.",
+    "Satu-satunya gambar di halaman adalah media 15633 (KOKO-CICI-18.jpg, judul 'KOKO & CICI-18') di blok CTA 'Hubungi Kami' yang sama di semua halaman studi kasus; tidak dimasukkan ke foto_proses/galeri karena bukan dokumentasi kasus ini. Grid galeri (container 9a02e50) kosong. Perlu foto/aset kasus dari pemilik."
+  ]
+}

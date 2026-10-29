@@ -1,0 +1,75 @@
+{
+  "page_id": 20030,
+  "url": "/toko-tekstil/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Toko Tekstil",
+    "mea_h1": "Toko Tekstil: GMV naik 14x dengan ROAS 12x",
+    "mea_kartu_judul": "Toko Tekstil: GMV naik 14x dengan ROAS 12x",
+    "mea_kartu_lede": "Toko kain online di Shopee ini menaikkan budget iklan secara bertahap dan fokus pada produk dengan konversi tertinggi. Produk terjual naik lebih dari 100% dan ROAS ikut membaik.",
+    "mea_kategori": "Kain dan tekstil",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "12x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "14x",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "13x",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": ">100%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>toko.tekstil adalah toko online di Shopee yang menjual berbagai jenis kain, mulai dari satin velvet hingga kain katun, untuk kebutuhan fashion maupun rumah tangga. Penjualannya perlu lebih stabil, terutama saat budget iklan menurun, karena toko cukup bergantung pada traffic berbayar.</p><p>Sumber traffic organik seperti Shopee Live dan Shopee Video belum dimaksimalkan. Toko juga perlu lebih disiplin menjaga saldo iklan agar distribusi tidak terputus, serta aktif memakai Flash Sale, voucher toko, dan bundling untuk mendorong konversi, khususnya saat periode low traffic.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Skalasi budget secara terukur.</strong> Biaya iklan dinaikkan bertahap untuk mendorong traffic dan memperluas jangkauan tanpa mengorbankan efisiensi ROAS.</li><li><strong>Fokus pada produk potensial.</strong> Iklan dijalankan khusus untuk produk dengan konversi dan minat tertinggi agar biaya dialokasikan pada SKU yang efektif.</li><li><strong>Optimasi konversi lewat funnel retargeting.</strong> Memaksimalkan broadcast chat untuk calon pembeli yang sudah memasukkan produk ke keranjang (ATC) agar menyelesaikan pembelian.</li><li><strong>Penguatan promosi toko.</strong> Voucher, diskon, dan promo toko diaktifkan secara konsisten untuk mendorong impulse buying dan menaikkan nilai pesanan per transaksi.</li><li><strong>Evaluasi kata kunci berkala.</strong> Kata kunci yang tidak efektif dipantau dan disaring setiap minggu agar budget tetap efisien.</li></ul>",
+    "mea_hasil": "<p>Dengan kenaikan anggaran yang terukur dan fokus pada produk berpotensi konversi tinggi, toko.tekstil mencatat lonjakan penjualan. Biaya iklan dinaikkan lebih dari 19 kali lipat dan mendorong jumlah produk terjual naik lebih dari 100% dibandingkan periode sebelumnya, sementara ROAS ikut membaik.</p><p>Funnel retargeting dan promosi toko yang konsisten membantu mengoptimalkan konversi dari traffic yang ada, sehingga performa toko menjadi lebih stabil dan bertumbuh.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-toko-tekstil"
+  },
+  "catatan": [
+    "Nama brand: judul halaman 'Toko Tekstil', sedangkan teks menulis 'toko.tekstil' (kemungkinan nama toko Shopee). mea_brand memakai 'Toko Tekstil'; teks bagian tetap memakai 'toko.tekstil'. Mohon pilih penulisan resmi.",
+    "Counter 'GMV 14X' dan 'TRAFFIC 13X' dilabeli 'Kenaikan GMV' dan 'Kenaikan traffic' dengan asumsi kelipatan pertumbuhan; periode pembanding tidak disebut.",
+    "Teks RESULT asli terduplikasi (paragraf yang sama tertulis dua kali); hanya diambil sekali.",
+    "Kenaikan biaya iklan lebih dari 19 kali lipat tidak dimasukkan ke mea_angka (bukan hasil).",
+    "Services: 'Shopee Ads' saja, dipetakan ke Iklan (14144). mea_periode tidak disebut.",
+    "Halaman tidak memuat foto/video kasus (grid galeri Elementor kosong). Satu-satunya gambar adalah 15633 'KOKO & CICI-18' di blok CTA umum 'Hubungi Kami' yang sama di semua halaman studi kasus, jadi tidak dimasukkan; mea_foto_proses dan mea_galeri kosong, perlu foto dari pemilik.",
+    "Teks CTA umum 'Hubungi Kami / Partner terbaik yang menghubungkan bisnismu...' tidak disalin."
+  ]
+}

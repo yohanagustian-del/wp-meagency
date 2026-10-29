@@ -1,0 +1,71 @@
+{
+  "page_id": 20210,
+  "url": "/zola/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Zola",
+    "mea_h1": "Zola: ROAS 10x dan GMV naik 442%",
+    "mea_kartu_judul": "Zola: ROAS 10x dan GMV naik 442%",
+    "mea_kartu_lede": "Brand fashion wanita daily wear ini belum pernah menjalankan iklan berbayar. Lewat TikTok Ads dan konten yang lebih kuat, ROAS-nya mencapai 10x dan GMV naik 442%.",
+    "mea_kategori": "Fashion wanita daily wear",
+    "mea_kanal": "TikTok",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "Konten",
+        "page_id": 15559
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "10x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "442%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "490%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Zola Official Store adalah brand fashion wanita yang berfokus pada busana harian, seperti atasan basic, tunik, dan busana kasual muslimah, dengan potongan modest, warna variatif, dan ukuran yang ramah untuk beragam bentuk tubuh.</p><p>Potensinya besar, tetapi brand ini belum pernah menjalankan iklan berbayar, sehingga awareness dan penjualan bergantung pada jangkauan organik yang terbatas. Visual kontennya, baik thumbnail, konsistensi tampilan, maupun penyajian produk, belum cukup kuat menarik perhatian audiens. Positioning brand dan fokus produk unggulan juga belum tegas, sementara trust dan konversi masih perlu diperkuat lewat testimoni, bukti sosial, dan konten yang menonjolkan kualitas produk.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Optimalisasi TikTok Ads.</strong> Menjalankan TikTok Ads secara terarah untuk menjangkau audiens yang relevan, memperbesar visibilitas produk, dan mendorong traffic yang berpotensi konversi, lewat objective yang sesuai, budget yang efisien, dan fokus pada produk dengan peluang jual tertinggi.</li><li><strong>Konten TikTok yang menarik dan konsisten.</strong> Menyusun konten yang sesuai karakter brand daily wear, tidak hanya menampilkan produk tetapi juga nilai pakai, detail bahan, pilihan warna, styling, dan kecocokan untuk berbagai kebutuhan harian.</li><li><strong>Monitoring dan optimasi rutin.</strong> Mengevaluasi reach, engagement, traffic, dan penjualan secara rutin, lalu menyesuaikan materi konten, alokasi budget, dan fokus produk dengan cepat.</li><li><strong>TSPro untuk stabilitas dan keamanan.</strong> Memanfaatkan TSPro untuk pengelolaan aset, whitelist, dan perlindungan akun selama promosi berjalan di TikTok, agar campaign lebih aman dan stabil.</li><li><strong>Trust dan nilai produk lewat konten.</strong> Menghadirkan konten yang membangun kepercayaan, seperti detail bahan, potongan pakaian, panduan ukuran, testimoni, dan visual yang menegaskan kenyamanan produk saat dipakai.</li></ul>",
+    "mea_hasil": "<p>Lewat TikTok Ads yang lebih terarah, konten yang lebih konsisten, penguatan trust lewat materi visual, dan dukungan TSPro, Zola Official Store mencatat ROAS 10x, pertumbuhan GMV 442%, dan kenaikan produk terjual 490%. Strategi ini memperluas jangkauan audiens, meningkatkan kualitas traffic, dan berdampak nyata pada penjualan.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-zola",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Konflik angka produk terjual: counter baris pertama 480%, sedangkan counter baris kedua dan teks RESULT 490%. Dipakai 490%; mohon konfirmasi.",
+    "Nama brand: judul halaman 'Zola', teks memakai 'Zola Official Store'. mea_brand diisi 'Zola'.",
+    "Kanal: halaman hanya menyebut TikTok/TikTok Ads, tanpa menyebut TikTok Shop atau marketplace lain. mea_kanal diisi 'TikTok'.",
+    "Layanan 'Tiktok Ads' dipetakan ke Iklan, 'Tiktok Content' ke Konten. Layanan 'TSPro' di daftar Services tidak punya padanan di label baku, jadi tidak dipetakan.",
+    "Periode pendampingan tidak disebut.",
+    "Satu-satunya gambar di halaman adalah media 15633 (KOKO-CICI-18.jpg, judul 'KOKO & CICI-18') di blok CTA 'Hubungi Kami' yang sama di semua halaman studi kasus; tidak dimasukkan ke foto_proses/galeri karena bukan dokumentasi kasus ini. Grid galeri (container 9a02e50) kosong. Perlu foto/aset kasus dari pemilik."
+  ]
+}
