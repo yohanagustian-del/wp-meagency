@@ -53,6 +53,13 @@
         "tampil_beranda": true,
         "nilai_beranda": "75%",
         "label_beranda": "Porsi GMV Bellarosa dari organik dan affiliate"
+      },
+      {
+        "nilai": "1.200%",
+        "label": "Kenaikan traffic organik TikTok",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
       }
     ],
     "mea_komposisi": {
@@ -74,64 +81,69 @@
     ],
     "mea_galeri": [
       {
-        "media_id": 14490,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14491,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14489,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14492,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14494,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14495,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14493,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14503,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
         "media_id": 14508,
         "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14504,
-        "keterangan": "",
-        "alt": ""
-      },
-      {
-        "media_id": 14505,
-        "keterangan": "",
-        "alt": ""
+        "alt": "Konten TikTok Bellarosa: close-up kue cokelat renyah di tangan"
       },
       {
         "media_id": 14506,
         "keterangan": "",
-        "alt": ""
+        "alt": "Konten TikTok Bellarosa: kreator menikmati camilan cokelat Bellarosa"
+      },
+      {
+        "media_id": 14505,
+        "keterangan": "",
+        "alt": "Konten TikTok Bellarosa: kreator berhijab memegang toples cokelat, teks Harganya affordable banget"
+      },
+      {
+        "media_id": 14504,
+        "keterangan": "",
+        "alt": "Konten TikTok Bellarosa: deretan toples cokelat di meja, teks Mugiwara dari Bellarosa ini"
+      },
+      {
+        "media_id": 14503,
+        "keterangan": "",
+        "alt": "Konten TikTok Bellarosa: kreator berhijab mencicipi cokelat, teks untuk ice cream dan cemilan lainnya"
+      },
+      {
+        "media_id": 14496,
+        "keterangan": "",
+        "alt": "Video konten Bellarosa"
+      },
+      {
+        "media_id": 14495,
+        "keterangan": "",
+        "alt": "Materi iklan Bellarosa: Manjakan lidah dengan cemilan manis"
+      },
+      {
+        "media_id": 14494,
+        "keterangan": "",
+        "alt": "Materi iklan Bellarosa: toples Cullens dengan latar oranye"
+      },
+      {
+        "media_id": 14493,
+        "keterangan": "",
+        "alt": "Materi iklan Bellarosa: Bingung mau nyari camilan di rumah, dengan toples Cullens"
+      },
+      {
+        "media_id": 14492,
+        "keterangan": "",
+        "alt": "Desain SKU Cullens, pasta cokelat dengan malt krispi"
+      },
+      {
+        "media_id": 14491,
+        "keterangan": "",
+        "alt": "Desain SKU Cullens choco malt crunchy, total 1 kg"
+      },
+      {
+        "media_id": 14490,
+        "keterangan": "",
+        "alt": "Desain SKU Haicoklat cokelat pasta crunchy, total 1 kg"
+      },
+      {
+        "media_id": 14489,
+        "keterangan": "",
+        "alt": "Desain SKU combo duo Haicoklat dan Cullens"
       }
     ],
     "mea_kasus_lain": [

@@ -2,6 +2,10 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.5.1 · 29 Okt 2026
+- Galeri studi kasus mendukung **video** dari Media Library (kontrol putar, tanpa autoplay, frame pertama sebagai pratinjau). Video SC18 Bellarosa tampil di Galeri.
+- Panel Hasil studi kasus: jumlah kolom angka mengikuti jumlah angka (maks. 4; tablet 2; HP 1). Bellarosa kini 4 angka, termasuk **1.200% kenaikan traffic organik TikTok** (data TikTok, dikembalikan dari halaman Elementor lama).
+
 ## mea-orbit 0.5.0 · 29 Okt 2026
 - **Studi kasus keluar dari Elementor**: section **Galeri** baru (field `galeri`: foto, keterangan, alt) setelah cerita, untuk foto yang dulu hanya ada di grid Elementor. Tersembunyi bila kosong. Bellarosa (14512): mode builder Elementor dimatikan; 12 foto lama siap diisi ke Galeri (`docs/seed/page-14512-bellarosa.json`).
 - Termasuk semua isi 0.3.0 dan 0.4.0. mea-leads tetap 0.2.0.

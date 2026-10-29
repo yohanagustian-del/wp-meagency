@@ -806,6 +806,14 @@ main p {
 	margin: 0;
 }
 
+.galeri video {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+	background: var(--ink);
+}
+
 @media (max-width: 900px) {
 	.galeri {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -991,6 +999,17 @@ main p {
 
 .case-results {
 	padding: clamp(56px, 8vw, 96px) 0;
+}
+
+/* Jumlah kolom angka mengikuti jumlah angka (maks. 4); tablet 2 kolom. */
+.case-results .figures {
+	grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+}
+
+@media (max-width: 1000px) {
+	.case-results .figures {
+		grid-template-columns: repeat(min(var(--n, 3), 2), minmax(0, 1fr));
+	}
 }
 
 .mix {

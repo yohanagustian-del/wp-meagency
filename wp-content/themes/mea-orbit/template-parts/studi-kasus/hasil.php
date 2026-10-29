@@ -19,7 +19,7 @@ $mea_orbit_b   = (int) ( $mea_orbit_mix['persen_b'] ?? 0 );
 ?>
 <section class="dark case-results" aria-label="<?php esc_attr_e( 'Hasil', 'mea-orbit' ); ?>" data-panel-hasil>
 	<div class="wrap">
-		<div class="figures">
+		<div class="figures" style="--n:<?php echo (int) min( 4, count( $mea_orbit_numbers ) ); ?>">
 			<?php foreach ( $mea_orbit_numbers as $mea_orbit_number ) : ?>
 				<div><div class="figure"<?php echo mea_orbit_attrs( mea_orbit_count_attrs( $mea_orbit_number['nilai'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di mea_orbit_attrs(). ?>><?php echo esc_html( $mea_orbit_number['nilai'] ); ?></div><p class="figure-label"><?php echo esc_html( $mea_orbit_number['label'] ); ?></p></div>
 			<?php endforeach; ?>

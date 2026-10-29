@@ -38,4 +38,5 @@ Teks tampilan "4.9 / 5.0 ★ Berdasarkan 312+ ulasan" dan "4.9★ Rating klien" 
 
 ## Bellarosa (14512)
 - `_elementor_edit_mode`: builder → "". `_elementor_data` tidak dihapus.
-- Galeri diisi setelah tema 0.5.0 aktif (field `mea_galeri` baru terdaftar oleh tema 0.5.0).
+- Setelah tema 0.5.0 aktif: `mea_galeri` diisi 13 item (12 gambar 14508, 14506, 14505, 14504, 14503, 14495, 14494, 14493, 14492, 14491, 14490, 14489 + video 14496) dengan alt deskriptif dari isi gambar; video tampil mulai tema 0.5.1.
+- `mea_angka` ditambah baris ke-4: "1.200%" · "Kenaikan traffic organik TikTok" (tidak tampil di beranda). Sumber: data TikTok (konfirmasi pemilik), angka dari counter halaman Elementor lama.
