@@ -73,6 +73,17 @@ function mea_orbit_motion_url( $path ) {
 }
 
 /**
+ * URL foto statis di tema, dengan versi tema sebagai query (alasan sama dengan
+ * mea_orbit_motion_url(): foto bisa diganti dengan nama berkas yang sama).
+ *
+ * @param string $path Path relatif di assets/foto/.
+ * @return string
+ */
+function mea_orbit_foto_url( $path ) {
+	return add_query_arg( 'v', MEA_ORBIT_VERSION, MEA_ORBIT_URI . '/assets/foto/' . ltrim( $path, '/' ) );
+}
+
+/**
  * URL dari field: path relatif (/affiliate/) jadi URL situs, URL penuh dibiarkan.
  *
  * @param string $url URL atau path.

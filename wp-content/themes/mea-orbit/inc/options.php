@@ -160,7 +160,7 @@ function mea_orbit_home_defs() {
 				),
 				'motion'    => array(
 					'type'    => 'select',
-					'label'   => __( 'Loop Enam Sisi', 'mea-orbit' ),
+					'label'   => __( 'Foto layanan', 'mea-orbit' ),
 					'options' => array( 'iklan', 'tiktok-shop', 'shopee', 'live', 'affiliate', 'konten' ),
 				),
 			),

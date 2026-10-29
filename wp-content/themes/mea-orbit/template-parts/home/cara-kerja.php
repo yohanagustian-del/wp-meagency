@@ -40,6 +40,28 @@ defined( 'ABSPATH' ) || exit;
 						'deskripsi' => __( 'Hasil minggu lalu dan langkah berikutnya dilaporkan setiap pekan.', 'mea-orbit' ),
 					),
 				),
+				'foto'    => array(
+					array(
+						'file' => 'langkah-1',
+						'alt'  => __( 'Tim MEA Agency membaca laporan toko klien saat riset awal', 'mea-orbit' ),
+					),
+					array(
+						'file' => 'langkah-2',
+						'alt'  => __( 'Pemilik bisnis menyetujui strategi tertulis bersama strategist MEA Agency', 'mea-orbit' ),
+					),
+					array(
+						'file' => 'langkah-3',
+						'alt'  => __( 'Tim menyusun rencana kerja bulanan dengan target mingguan', 'mea-orbit' ),
+					),
+					array(
+						'file' => 'langkah-4',
+						'alt'  => __( 'Operator live dan host menjalankan siaran langsung di studio', 'mea-orbit' ),
+					),
+					array(
+						'file' => 'langkah-5',
+						'alt'  => __( 'Account manager melaporkan rekap mingguan kepada klien', 'mea-orbit' ),
+					),
+				),
 			)
 		);
 		get_template_part( 'template-parts/global/kutipan', null, array( 'id' => mea_orbit_home( 'cara_kerja_kutipan_id' ) ) );

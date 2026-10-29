@@ -2,6 +2,15 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.3.0 · 29 Okt 2026
+- **Foto realis menggantikan motion di dua section** (disetujui Yohan, brief `paket-mea-orbit-0.3.0`):
+  - Kartu "Enam sisi operasional, satu tim": foto 4:3 selebar kartu (`assets/foto/layanan/`, 600w + 1200w), statis, zoom 3% saat hover di desktop. Loop video M2 dihapus.
+  - "Cara kami bekerja" (homepage dan semua halaman layanan): lima foto 1:1 bertumpuk (`assets/foto/proses/`) yang berganti dengan crossfade saat langkah aktif pindah; tanpa fade saat reduced motion / Hemat Data. Scroll-scrub 150 frame M3 dihapus. Homepage memakai alt per langkah; halaman layanan `alt=""`, foto berulang bila lebih dari lima langkah.
+- Opsi Homepage: label field kartu layanan "Loop Enam Sisi" → **"Foto layanan"**. Nilai tersimpan tidak berubah (slug sama).
+- Aset `assets/motion/sisi/` dan `assets/motion/proses/` dihapus dari tema (tetap di riwayat git). Zip tema turun dari 10,7 MB ke 8,0 MB.
+- Hero kubus, mockup HP Konten, dan kurva Bellarosa tidak berubah.
+- mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.2.1 · 29 Okt 2026
 - **Perbaikan cache motion**: semua URL aset motion (poster, frame hero dan Cara kerja, video Enam sisi dan Bellarosa) membawa versi tema (`?v=0.2.1`). Setelah 0.2.0 dipasang, pengunjung lama masih melihat kubus hero versi lama, karena nama berkas hero v2 sama dengan v1 sehingga browser/CDN menyajikan salinan cache.
 - mea-leads tetap 0.2.0.
