@@ -1069,6 +1069,40 @@ main p {
 	gap: 16px;
 }
 
+/* Foto samping cerita: satu foto, atau tumpukan yang berganti saat scroll. */
+.story-single .photo,
+.story-stack {
+	aspect-ratio: 4 / 5;
+}
+
+.story-single .photo {
+	margin: 0;
+}
+
+.story-stack {
+	position: relative;
+	border-radius: var(--r);
+	overflow: hidden;
+}
+
+.story-stack .photo {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	opacity: 0;
+	transition: opacity .6s var(--ease-out);
+}
+
+.story-stack .photo.is-active {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.story-stack .photo {
+		transition: none;
+	}
+}
+
 @media (max-width: 900px) {
 	.story {
 		grid-template-columns: 1fr;
@@ -1076,6 +1110,23 @@ main p {
 
 	.story-side {
 		position: static;
+	}
+
+	/* HP: kolom samping turun ke bawah teks, jadi semua foto tampil sebagai grid. */
+	.story-stack {
+		aspect-ratio: auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		border-radius: 0;
+		overflow: visible;
+	}
+
+	.story-stack .photo {
+		position: relative;
+		inset: auto;
+		aspect-ratio: 4 / 5;
+		opacity: 1;
 	}
 }
 

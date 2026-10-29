@@ -2,6 +2,10 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.5.2 · 29 Okt 2026
+- **Foto samping cerita studi kasus berganti saat scroll** (seperti "Cara kami bekerja" di homepage): dua foto atau lebih di "Foto proses kerja tim" menjadi tumpukan sticky dengan crossfade, foto aktif mengikuti bagian cerita yang sedang dibaca; tanpa fade saat reduced motion. HP: semua foto tampil sebagai grid 2 kolom. Satu foto: tetap statis seperti sebelumnya.
+- Bellarosa: 4 foto samping (produk, konten kreator affiliate, produksi konten di studio, materi iklan).
+
 ## mea-orbit 0.5.1 · 29 Okt 2026
 - Galeri studi kasus mendukung **video** dari Media Library (kontrol putar, tanpa autoplay, frame pertama sebagai pratinjau). Video SC18 Bellarosa tampil di Galeri.
 - Panel Hasil studi kasus: jumlah kolom angka mengikuti jumlah angka (maks. 4; tablet 2; HP 1). Bellarosa kini 4 angka, termasuk **1.200% kenaikan traffic organik TikTok** (data TikTok, dikembalikan dari halaman Elementor lama).

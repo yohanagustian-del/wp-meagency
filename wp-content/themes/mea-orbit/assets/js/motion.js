@@ -4,6 +4,7 @@
  * Satu modul tanpa library, dimuat dengan defer hanya di halaman Orbit.
  * - M1 hero: komponen scroll-scrub (canvas + rAF).
  * - M3 cara kerja: crossfade foto mengikuti langkah aktif.
+ * - Studi kasus: foto samping cerita berganti mengikuti bagian yang dibaca.
  * - Mockup HP "Konten": video bisu diputar saat terlihat.
  * - M4 Kurva Bellarosa: diputar sekali saat 60% terlihat, menahan frame akhir.
  * - Motion kode: hitung naik, reveal, teks per baris, garis, penanda bab.
@@ -696,9 +697,47 @@
 		mark();
 	}
 
+	/**
+	 * Studi kasus · foto samping cerita. Foto aktif = bagian cerita yang sedang
+	 * dibaca: progress garis tengah layar terhadap .story-body dibagi rata per
+	 * foto. Juga berjalan saat lite (hanya class yang pindah; fade dimatikan CSS).
+	 * Di HP semua foto tampil sebagai grid, class tidak berpengaruh.
+	 */
+	function ceritaFoto() {
+		each( document.querySelectorAll( '[data-motion="cerita-foto"]' ), function ( side ) {
+			var story = side.closest( '.story' );
+			var body = story && story.querySelector( '.story-body' );
+			var figs = side.querySelectorAll( '.story-stack > .photo' );
+			if ( ! body || figs.length < 2 ) {
+				return;
+			}
+			var active = 0;
+			var raf = 0;
+			var mark = function () {
+				raf = 0;
+				var rect = body.getBoundingClientRect();
+				var progress = clamp( ( window.innerHeight / 2 - rect.top ) / Math.max( 1, rect.height ), 0, 1 );
+				var k = Math.min( figs.length - 1, Math.floor( progress * figs.length ) );
+				if ( k !== active ) {
+					each( figs, function ( fig, i ) {
+						fig.classList.toggle( 'is-active', i === k );
+					} );
+					active = k;
+				}
+			};
+			window.addEventListener( 'scroll', function () {
+				if ( ! raf ) {
+					raf = window.requestAnimationFrame( mark );
+				}
+			}, { passive: true } );
+			mark();
+		} );
+	}
+
 	reveals();
 	counters();
 	chapters();
+	ceritaFoto();
 	hero();
 	proses();
 	konten();

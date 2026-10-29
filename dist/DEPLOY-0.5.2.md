@@ -1,15 +1,15 @@
-# DEPLOY 0.5.1 · meagency.co.id
+# DEPLOY 0.5.2 · meagency.co.id
 
 Tema saja (mea-leads tetap 0.2.0). Berisi semua perubahan 0.3.0 dan 0.4.0, ditambah section
-**Galeri** untuk studi kasus. Versi 0.5.1 menambah video di Galeri dan 4 angka di panel Hasil studi kasus. Langsung pasang 0.5.1.
+**Galeri** untuk studi kasus. Versi 0.5.2: foto samping cerita studi kasus berganti saat scroll (0.5.1: video di Galeri, 4 angka di panel Hasil). Langsung pasang 0.5.2.
 
 ---
 
 ## A. Pasang tema (±10 menit)
 
-1. wp-admin → Tampilan → Tema. Catat versi MEA Orbit yang aktif (saat ini 0.5.0) untuk rollback;
-   zip-nya ada di repo: `dist/mea-orbit-0.5.0.zip`.
-2. Tampilan → Tema → **Tambah Baru** → **Unggah Tema** → pilih `mea-orbit-0.5.1.zip` → **Install Now**.
+1. wp-admin → Tampilan → Tema. Catat versi MEA Orbit yang aktif (saat ini 0.5.1) untuk rollback;
+   zip-nya ada di repo: `dist/mea-orbit-0.5.1.zip`.
+2. Tampilan → Tema → **Tambah Baru** → **Unggah Tema** → pilih `mea-orbit-0.5.2.zip` → **Install Now**.
 3. WordPress menanyakan tema yang sudah ada → klik **Ganti yang terpasang dengan yang diunggah**.
 4. hPanel → Websites → meagency.co.id → **Cache Manager** → **Purge All**. Bila CDN aktif:
    hPanel → **CDN** → **Purge cache**.
@@ -17,7 +17,7 @@ Tema saja (mea-leads tetap 0.2.0). Berisi semua perubahan 0.3.0 dan 0.4.0, ditam
    (supaya sitemap dibangun ulang).
 6. Galeri Bellarosa sudah terisi (12 gambar + 1 video); buka /bellarosa/ dan cek.
 
-Rollback: unggah `mea-orbit-0.5.0.zip` dengan **Ganti yang terpasang**, lalu Purge All.
+Rollback: unggah `mea-orbit-0.5.1.zip` dengan **Ganti yang terpasang**, lalu Purge All.
 
 ---
 
@@ -117,4 +117,4 @@ curl.exe -s https://www.meagency.co.id/jasa-iklan-shopee/ | findstr /i "robots"
   Cara kami bekerja berganti foto saat di-scroll.
 - Header: 4 pilar, dropdown saat hover dan saat Tab. HP: Menu → anak terindentasi.
 - Footer: kolom Layanan (4 pilar) dan Perusahaan.
-- /bellarosa/: panel Hasil 4 angka (termasuk 1.200% traffic organik TikTok), Galeri 12 gambar + video SC18.
+- /bellarosa/: panel Hasil 4 angka (termasuk 1.200% traffic organik TikTok); foto di samping cerita berganti 4 kali saat scroll (desktop); Galeri 12 gambar + video SC18.

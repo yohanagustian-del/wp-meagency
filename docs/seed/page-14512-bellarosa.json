@@ -74,9 +74,24 @@
     "mea_kutipan_id": "k2",
     "mea_foto_proses": [
       {
+        "media_id": 14504,
+        "keterangan": "Produk Bellarosa",
+        "alt": "Deretan toples cokelat Bellarosa di meja"
+      },
+      {
+        "media_id": 14505,
+        "keterangan": "Konten kreator affiliate",
+        "alt": "Kreator affiliate berhijab mempromosikan toples cokelat Bellarosa"
+      },
+      {
         "media_id": 16519,
-        "keterangan": "",
+        "keterangan": "Produksi konten di studio MEA",
         "alt": "Produksi konten di studio MEA Agency"
+      },
+      {
+        "media_id": 14495,
+        "keterangan": "Materi iklan",
+        "alt": "Materi iklan Bellarosa: Manjakan lidah dengan cemilan manis"
       }
     ],
     "mea_galeri": [
