@@ -61,13 +61,15 @@ function mea_orbit_image_has_alpha( $id ) {
 }
 
 /**
- * URL aset motion di tema.
+ * URL aset motion di tema, dengan versi tema sebagai query. Nama berkas motion tetap
+ * sama antar rilis (mis. hero v2 menggantikan v1), jadi tanpa versi browser dan CDN
+ * bisa terus menyajikan berkas lama dari cache.
  *
  * @param string $path Path relatif di assets/motion/.
  * @return string
  */
 function mea_orbit_motion_url( $path ) {
-	return MEA_ORBIT_URI . '/assets/motion/' . ltrim( $path, '/' );
+	return add_query_arg( 'v', MEA_ORBIT_VERSION, MEA_ORBIT_URI . '/assets/motion/' . ltrim( $path, '/' ) );
 }
 
 /**

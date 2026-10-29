@@ -2,6 +2,10 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.2.1 · 29 Okt 2026
+- **Perbaikan cache motion**: semua URL aset motion (poster, frame hero dan Cara kerja, video Enam sisi dan Bellarosa) membawa versi tema (`?v=0.2.1`). Setelah 0.2.0 dipasang, pengunjung lama masih melihat kubus hero versi lama, karena nama berkas hero v2 sama dengan v1 sehingga browser/CDN menyajikan salinan cache.
+- mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.2.0 + mea-leads 0.2.0 · 28 Okt 2026
 
 ### Tema mea-orbit 0.2.0

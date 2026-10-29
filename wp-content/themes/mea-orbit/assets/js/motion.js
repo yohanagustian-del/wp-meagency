@@ -20,6 +20,9 @@
 	'use strict';
 
 	var cfg = window.meaMotion || {};
+	// Versi tema sebagai query: nama berkas motion tetap sama antar rilis, jadi tanpa
+	// ini browser dan CDN bisa terus menyajikan frame lama dari cache.
+	var bust = cfg.ver ? '?v=' + encodeURIComponent( cfg.ver ) : '';
 	var root = document.documentElement;
 	var media = function ( query ) {
 		return window.matchMedia( query ).matches;
@@ -256,7 +259,7 @@
 							busy--;
 							pump();
 						};
-						img.src = opt.dir + ( '00' + i ).slice( -3 ) + '.webp';
+						img.src = opt.dir + ( '00' + i ).slice( -3 ) + '.webp' + bust;
 					}( queue[ next++ ] ) );
 				}
 			}() );
@@ -379,7 +382,7 @@
 		video.setAttribute( 'aria-hidden', 'true' );
 		[ [ 'webm', 'video/webm' ], [ 'mp4', 'video/mp4' ] ].forEach( function ( type ) {
 			var source = document.createElement( 'source' );
-			source.src = src + '.' + type[ 0 ];
+			source.src = src + '.' + type[ 0 ] + bust;
 			source.type = type[ 1 ];
 			video.appendChild( source );
 		} );

@@ -42,7 +42,11 @@ function mea_orbit_enqueue_assets() {
 				'in_footer' => false,
 			)
 		);
-		wp_add_inline_script( 'mea-orbit-motion', 'window.meaMotion=' . wp_json_encode( array( 'base' => MEA_ORBIT_URI . '/assets/motion/' ) ) . ';', 'before' );
+		$motion = array(
+			'base' => MEA_ORBIT_URI . '/assets/motion/',
+			'ver'  => MEA_ORBIT_VERSION,
+		);
+		wp_add_inline_script( 'mea-orbit-motion', 'window.meaMotion=' . wp_json_encode( $motion ) . ';', 'before' );
 		return;
 	}
 
