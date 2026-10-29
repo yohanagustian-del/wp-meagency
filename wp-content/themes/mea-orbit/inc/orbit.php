@@ -84,6 +84,43 @@ function mea_orbit_foto_url( $path ) {
 }
 
 /**
+ * Lima foto realis proses kerja tim MEA (assets/foto/proses/), urut langkah:
+ * dipakai "Cara kami bekerja" di homepage dan sebagai foto cadangan samping
+ * cerita studi kasus yang belum punya foto sendiri.
+ *
+ * @return array<int, array{file:string, judul:string, alt:string}>
+ */
+function mea_orbit_proses_foto() {
+	return array(
+		array(
+			'file'  => 'langkah-1',
+			'judul' => __( 'Riset awal toko', 'mea-orbit' ),
+			'alt'   => __( 'Tim MEA Agency membaca laporan toko klien saat riset awal', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-2',
+			'judul' => __( 'Strategi tertulis', 'mea-orbit' ),
+			'alt'   => __( 'Pemilik bisnis menyetujui strategi tertulis bersama strategist MEA Agency', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-3',
+			'judul' => __( 'Rencana per periode', 'mea-orbit' ),
+			'alt'   => __( 'Tim menyusun rencana kerja bulanan dengan target mingguan', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-4',
+			'judul' => __( 'Eksekusi tim', 'mea-orbit' ),
+			'alt'   => __( 'Operator live dan host menjalankan siaran langsung di studio', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-5',
+			'judul' => __( 'Rekap mingguan', 'mea-orbit' ),
+			'alt'   => __( 'Account manager melaporkan rekap mingguan kepada klien', 'mea-orbit' ),
+		),
+	);
+}
+
+/**
  * URL dari field: path relatif (/affiliate/) jadi URL situs, URL penuh dibiarkan.
  *
  * @param string $url URL atau path.

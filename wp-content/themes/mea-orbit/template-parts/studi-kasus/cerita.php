@@ -3,7 +3,8 @@
  * Studi kasus · cerita: Tantangannya, Yang kami kerjakan, Hasilnya, kutipan,
  * dan foto proses kerja tim di samping. Dua foto atau lebih: tumpukan sticky yang
  * berganti (crossfade) mengikuti posisi scroll di cerita, lewat assets/js/motion.js.
- * Di HP (≤900 px) semua foto tampil sebagai grid.
+ * Di HP (≤900 px) semua foto tampil sebagai grid. Tanpa foto kasus: lima foto proses
+ * kerja tim MEA dari tema (mea_orbit_proses_foto()).
  *
  * @package MEA_Orbit
  */
@@ -47,13 +48,27 @@ $mea_orbit_photos = (array) mea_orbit_meta( 'foto_proses' );
 				$mea_orbit_figs[] = array( $mea_orbit_img, (string) $mea_orbit_photo['keterangan'] );
 			}
 		}
+		// Belum ada foto kasus: foto proses kerja tim MEA dari tema, judul langkah sebagai keterangan.
+		if ( ! $mea_orbit_figs ) {
+			foreach ( mea_orbit_proses_foto() as $mea_orbit_step ) {
+				$mea_orbit_figs[] = array(
+					sprintf(
+						'<img src="%1$s" srcset="%2$s 800w, %1$s 1024w" sizes="(max-width: 900px) 50vw, 360px" width="1024" height="1024" alt="%3$s" loading="lazy" decoding="async">',
+						esc_url( mea_orbit_foto_url( 'proses/' . $mea_orbit_step['file'] . '-1024.webp' ) ),
+						esc_url( mea_orbit_foto_url( 'proses/' . $mea_orbit_step['file'] . '-800.webp' ) ),
+						esc_attr( $mea_orbit_step['alt'] )
+					),
+					$mea_orbit_step['judul'],
+				);
+			}
+		}
 		$mea_orbit_stack = count( $mea_orbit_figs ) > 1;
 		?>
 		<?php if ( $mea_orbit_figs ) : ?>
 			<aside class="story-side"<?php echo $mea_orbit_stack ? ' data-motion="cerita-foto"' : ''; ?>>
 				<div class="<?php echo $mea_orbit_stack ? 'story-stack' : 'story-single'; ?>" data-reveal>
 					<?php foreach ( $mea_orbit_figs as $mea_orbit_i => $mea_orbit_fig ) : ?>
-						<figure class="photo<?php echo 0 === $mea_orbit_i ? ' is-active' : ''; ?>"><?php echo $mea_orbit_fig[0]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- dari wp_get_attachment_image(). ?>
+						<figure class="photo<?php echo 0 === $mea_orbit_i ? ' is-active' : ''; ?>"><?php echo $mea_orbit_fig[0]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- dari wp_get_attachment_image() atau di-escape di atas. ?>
 							<?php if ( '' !== $mea_orbit_fig[1] ) : ?>
 								<figcaption><?php echo esc_html( $mea_orbit_fig[1] ); ?></figcaption>
 							<?php endif; ?>

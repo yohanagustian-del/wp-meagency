@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MEA_ORBIT_VERSION', '0.5.2' );
+define( 'MEA_ORBIT_VERSION', '0.6.0' );
 define( 'MEA_ORBIT_DIR', get_template_directory() );
 define( 'MEA_ORBIT_URI', get_template_directory_uri() );
 
