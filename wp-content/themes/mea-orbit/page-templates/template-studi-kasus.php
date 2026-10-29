@@ -24,6 +24,7 @@ get_header();
 			get_template_part( 'template-parts/studi-kasus/head' );
 			get_template_part( 'template-parts/studi-kasus/hasil' );
 			get_template_part( 'template-parts/studi-kasus/cerita' );
+			get_template_part( 'template-parts/studi-kasus/galeri' );
 			?>
 		</article>
 		<?php

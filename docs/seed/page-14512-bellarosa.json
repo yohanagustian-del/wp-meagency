@@ -72,6 +72,68 @@
         "alt": "Produksi konten di studio MEA Agency"
       }
     ],
+    "mea_galeri": [
+      {
+        "media_id": 14490,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14491,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14489,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14492,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14494,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14495,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14493,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14503,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14508,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14504,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14505,
+        "keterangan": "",
+        "alt": ""
+      },
+      {
+        "media_id": 14506,
+        "keterangan": "",
+        "alt": ""
+      }
+    ],
     "mea_kasus_lain": [
       18653,
       16160,

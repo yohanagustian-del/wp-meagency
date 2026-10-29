@@ -794,6 +794,31 @@ main p {
 	text-underline-offset: 3px;
 }
 
+/* Studi kasus: galeri (foto produk, toko, hasil) */
+.galeri {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.galeri .photo {
+	aspect-ratio: 1 / 1;
+	margin: 0;
+}
+
+@media (max-width: 900px) {
+	.galeri {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 560px) {
+	.galeri {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 8px;
+	}
+}
+
 /* Homepage: studi kasus unggulan + slot M4 (PLAN 9.7) */
 .case-feature {
 	display: grid;

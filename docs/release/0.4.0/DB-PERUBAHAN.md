@@ -30,3 +30,12 @@ Potongan yang dihapus (byte persis di DB, untuk rollback disisipkan kembali tepa
 ```
 
 Teks tampilan "4.9 / 5.0 ★ Berdasarkan 312+ ulasan" dan "4.9★ Rating klien" juga ada di data Elementor 7467 (tidak dirender template tema, tidak diubah).
+
+## Laporan klien terbuka (permintaan pemilik, 29 Okt 2026)
+- 37 Weekly Report tanpa password → diberi password tim (sama dengan laporan lain) + `rank_math_robots` = noindex, nofollow: 35615, 35360, 35317, 34810, 34243, 33768, 33561, 32794, 31896, 31790, 31420, 28746, 28541, 27705, 27717, 27153, 26361, 26358, 25529, 25143, 25000, 24987, 24423, 24009, 23798, 23135, 22947, 22830, 22821, 22191, 22048, 21383, 21361, 21332, 21315, 20852, 20776.
+- 6 monthly/test report tanpa password → `rank_math_robots` = noindex, nofollow (password tidak diubah): 30928, 30755, 25796, 23732, 21359, 21357.
+- Semua sebelumnya `rank_math_robots` kosong (= index). Terverifikasi lewat REST setelah perubahan.
+
+## Bellarosa (14512)
+- `_elementor_edit_mode`: builder → "". `_elementor_data` tidak dihapus.
+- Galeri diisi setelah tema 0.5.0 aktif (field `mea_galeri` baru terdaftar oleh tema 0.5.0).

@@ -2,6 +2,10 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.5.0 · 29 Okt 2026
+- **Studi kasus keluar dari Elementor**: section **Galeri** baru (field `galeri`: foto, keterangan, alt) setelah cerita, untuk foto yang dulu hanya ada di grid Elementor. Tersembunyi bila kosong. Bellarosa (14512): mode builder Elementor dimatikan; 12 foto lama siap diisi ke Galeri (`docs/seed/page-14512-bellarosa.json`).
+- Termasuk semua isi 0.3.0 dan 0.4.0. mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.4.0 · 29 Okt 2026
 - **Noindex otomatis untuk konten berpassword** (`inc/robots.php`): semua post/page dengan password mendapat `noindex, nofollow` (filter `rank_math/frontend/robots`) dan dikeluarkan dari sitemap Rank Math (filter `rank_math/sitemap/entry`). Halaman tanpa password tidak berubah.
 - **Navigasi 4 pilar layanan**: header berisi E-commerce Service, Performance Ads, Social Media Management, SEO, dengan dropdown anak layanan (hover dan keyboard lewat `:focus-within`, tanpa JavaScript). Menu HP menampilkan anak terindentasi. Header pindah ke menu HP di ≤1080 px.
