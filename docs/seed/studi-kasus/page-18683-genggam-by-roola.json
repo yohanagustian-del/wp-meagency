@@ -1,0 +1,73 @@
+{
+  "page_id": 18683,
+  "url": "/genggam-by-roola/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Genggam by Roola",
+    "mea_h1": "Genggam by Roola: ROAS stabil di atas 4x, sempat mencapai 8x",
+    "mea_kartu_judul": "Genggam by Roola: ROAS stabil di atas 4x, sempat mencapai 8x",
+    "mea_kartu_lede": "Iklan brand skincare dan bodycare ini sudah punya CTR di atas rata-rata, tetapi konversinya rendah. Evaluasi iklan per SKU dan fitur promosi Shopee membuat ROAS stabil di atas 4x dan sempat mencapai 8x.",
+    "mea_kategori": "Skincare dan bodycare",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "5x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "227%",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "60%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "8x",
+        "label": "ROAS tertinggi",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Genggam by Roola adalah brand perawatan diri dan tubuh yang berdiri sejak 2022, dengan produk skincare dan bodycare yang travel-friendly, lembut di kulit, dan cocok untuk pemakaian sehari-hari.</p><p>Performa tokonya sudah menarik, baik organik maupun iklan, dan iklannya menghasilkan CTR di atas rata-rata. Namun konversi pembelian masih rendah: banyak pengunjung belum cukup terdorong untuk menyelesaikan transaksi.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Evaluasi iklan per SKU.</strong> Menonaktifkan iklan yang boros biaya dan menaikkan anggaran untuk produk yang hasilnya baik.</li><li><strong>Fitur pendorong konversi.</strong> Mengaktifkan voucher toko, cashback, gratis ongkir, flash sale, dan live streaming.</li><li><strong>Perluasan exposure.</strong> Mendorong penggunaan broadcast chat, program affiliate, dan potensi kerja sama dengan KOL.</li><li><strong>Penyesuaian mingguan.</strong> Mengatur ulang fokus iklan dan waktu penayangan agar lebih efektif berdasarkan hasil mingguan.</li></ul>",
+    "mea_hasil": "<ul><li><strong>ROAS stabil dan efisien.</strong> ROAS sempat naik hingga 8x dan tetap stabil di atas 4x, meski biaya iklan bertambah.</li><li><strong>Omset dan traffic meningkat.</strong> Omset dan jumlah pengunjung toko naik dari minggu ke minggu setelah strategi iklan dan fitur dijalankan secara konsisten.</li><li><strong>Performa toko lebih terkelola.</strong> Meski sempat fluktuatif, performa toko tetap terkendali berkat fondasi iklan dan fitur yang sudah dioptimalkan.</li></ul>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-genggam-by-roola"
+  },
+  "catatan": [
+    "Counter menampilkan ROAS 5X, sedangkan teks RESULT menyebut ROAS sempat 8x dan stabil di atas 4x; keduanya dimasukkan (\"5x\" dan \"8x\" ROAS tertinggi). H1 memakai angka dari teks.",
+    "Counter \"60% Traffic\" dan \"227% Pesanan\" tidak dibahas di teks; diasumsikan kenaikan. Konfirmasi.",
+    "Kanal: teks hanya menyebut \"berbagai platform marketplace\"; \"Shopee\" diambil dari daftar Services (Jasa iklan Shopee). Periode tidak disebut.",
+    "Daftar Services di halaman hanya \"Jasa iklan Shopee\" sehingga mea_layanan hanya Iklan; teks strategi juga menyebut voucher, cashback, gratis ongkir, flash sale, live streaming, broadcast chat, affiliate, dan KOL (sebagian berupa dorongan/rekomendasi). Cek apakah layanan lain ikut dikerjakan MEA.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", KOKO-CICI-18.jpg) di blok CTA generik \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu aset dari pemilik."
+  ]
+}

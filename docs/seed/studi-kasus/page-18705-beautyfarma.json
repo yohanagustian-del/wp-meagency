@@ -1,0 +1,73 @@
+{
+  "page_id": 18705,
+  "url": "/beautyfarma/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Beautyfarma",
+    "mea_h1": "Beautyfarma: omset naik 148% dengan ROAS 14x",
+    "mea_kartu_judul": "Beautyfarma: omset naik 148% dengan ROAS 14x",
+    "mea_kartu_lede": "Iklan toko kecantikan ini sempat berhenti karena saldo iklan habis. Dengan pemantauan rutin dan fitur Shopee yang dimaksimalkan, omset naik 148% dan traffic naik 142%.",
+    "mea_kategori": "Kecantikan dan perawatan tubuh",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "148%",
+        "label": "Kenaikan omset",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "14x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "142%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "Hampir 2x",
+        "label": "Produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Beautyfarma24 adalah toko resmi di Shopee yang menjual produk kecantikan dan perawatan tubuh seperti skincare, kosmetik, dan perlengkapan kecantikan lainnya, dengan fokus pada kualitas dan harga yang kompetitif.</p><p>Produknya berpotensi meraih penjualan maksimal, tetapi pengelolaan iklan sebelumnya belum konsisten dan belum optimal, terutama saat campaign besar, sehingga traffic yang tinggi belum terkonversi maksimal. Keterbatasan anggaran dan saldo iklan yang sempat habis juga membuat iklan berhenti sementara, padahal performanya sudah bagus. Beautyfarma bekerja sama dengan MEA untuk memaksimalkan iklan dan fitur Shopee seperti live, affiliate, dan voucher, sekaligus menyusun alokasi anggaran yang efisien agar performa tetap stabil dan terus berkembang.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Pemantauan harian dan mingguan.</strong> Menganalisis performa iklan untuk mengidentifikasi dan mengatasi kendala operasional.</li><li><strong>Saldo iklan terjaga.</strong> Memastikan saldo iklan selalu cukup agar iklan berjalan konsisten, terutama pada periode event penting.</li><li><strong>Fitur Shopee.</strong> Memaksimalkan video produk, affiliate, live streaming, voucher, dan broadcast chat untuk meningkatkan traffic dan konversi.</li><li><strong>Promo terbatas dan live terjadwal.</strong> Membuat promo berdurasi terbatas dan jadwal live streaming teratur untuk mendorong urgensi pembelian dan engagement toko.</li></ul>",
+    "mea_hasil": "<p>Dengan pengelolaan anggaran yang lebih efisien dan strategi iklan yang tepat, Beautyfarma mencatat peningkatan performa yang signifikan:</p><ul><li>Traffic naik hingga 142%.</li><li>Omset naik 148% dibanding periode sebelumnya.</li><li>Jumlah produk terjual hampir dua kali lipat.</li></ul><p>Peningkatan ini didukung pemanfaatan video produk, affiliate, live streaming, dan voucher Shopee secara konsisten, sehingga biaya iklan tetap efisien sementara jangkauan dan penjualan terus bertumbuh.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-beautyfarma"
+  },
+  "catatan": [
+    "Nama brand: judul halaman \"Beautyfarma\", teks memakai \"Beautyfarma24\", \"Beautyfarma\", dan \"Beauty Farma\". mea_brand diisi \"Beautyfarma\" sesuai judul; konfirmasi nama resmi.",
+    "ROAS 14x hanya ada di counter, tidak dibahas di teks.",
+    "Periode tidak disebut (hanya \"dibandingkan periode sebelumnya\").",
+    "Daftar Services di halaman hanya \"Jasa iklan Shopee\" sehingga mea_layanan hanya Iklan; teks strategi juga menyebut video produk, affiliate, live streaming, voucher, dan broadcast chat. Cek apakah layanan lain ikut dikerjakan MEA.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", KOKO-CICI-18.jpg) di blok CTA generik \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu aset dari pemilik."
+  ]
+}

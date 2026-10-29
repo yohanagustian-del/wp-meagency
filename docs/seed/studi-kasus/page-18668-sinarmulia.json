@@ -1,0 +1,66 @@
+{
+  "page_id": 18668,
+  "url": "/sinarmulia/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Sinarmulia",
+    "mea_h1": "Sinarmulia: GMV Rp 3,4 miliar dengan ROAS 54x",
+    "mea_kartu_judul": "Sinarmulia: GMV Rp 3,4 miliar dengan ROAS 54x",
+    "mea_kartu_lede": "Toko elektronik asal Jakarta ini kami dampingi hampir dua tahun lewat Shopee Ads dan pengelolaan Shopee Mall. GMV toko mencapai Rp 3,4 miliar dengan ROAS 54x.",
+    "mea_kategori": "Elektronik, komputer, dan laptop",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Hampir dua tahun",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "Rp 3,4 miliar",
+        "label": "GMV toko",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "54x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "58%",
+        "label": "Traffic organik",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Sinar Mulia adalah toko elektronik offline dan online asal Jakarta yang berdiri sejak 2000 dan menjadi authorized dealer berbagai brand komputer dan laptop seperti HP, ASUS, dan Lenovo. Toko ini sudah bergabung dengan MEA hampir dua tahun, awalnya untuk layanan Shopee Ads lalu berlanjut ke pengelolaan Shopee Mall.</p><p>Iklan sudah berkontribusi besar terhadap penjualan, dan traffic serta pesanan meningkat, tetapi masih banyak pelanggan yang tidak menyelesaikan pembayaran, misalnya karena berubah pikiran atau terlambat checkout. Tantangannya adalah mendorong setiap pengunjung yang sudah berminat sampai transaksinya tuntas.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Evaluasi iklan.</strong> Mengevaluasi kata kunci, menonaktifkan iklan atau produk yang tidak efektif, serta mengubah metode iklan menjadi lebih spesifik (manual atau GMV Max) untuk efisiensi biaya dan hasil yang optimal.</li><li><strong>Stok dan produk.</strong> Memastikan produk best-seller tidak kehabisan stok, serta mengganti atau menambah produk baru agar traffic tetap tinggi.</li><li><strong>Fokus produk unggulan.</strong> Produk berperforma tinggi dijadikan fokus utama dengan menaikkan anggaran iklan dan menjaga stoknya agar penjualan tidak terganggu.</li><li><strong>Fitur promosi Shopee.</strong> Aktif memanfaatkan Shopee Live, Flash Sale, Voucher Toko, dan jadwal chat broadcast untuk mendorong pembeli dari keranjang ke transaksi.</li><li><strong>Persiapan event.</strong> Menyesuaikan anggaran iklan dan strategi campaign menjelang event penting (tanggal kembar, payday sale), termasuk mengunggah konten promo dan video produk untuk meningkatkan awareness.</li><li><strong>Pemantauan tren.</strong> Memantau tren produk, proporsi penjualan, dan pengaruh tiap SKU terhadap total GMV toko agar strategi iklan selaras dengan kebutuhan pasar dan waktu.</li></ul>",
+    "mea_hasil": "<p>Dalam hampir dua tahun kerja sama, pengelolaan Shopee Ads yang terfokus, optimalisasi stok produk unggulan, dan pemanfaatan fitur promosi Shopee seperti Live, Flash Sale, dan Voucher membawa hasil berikut:</p><ul><li>ROAS mencapai 54x.</li><li>GMV toko mencapai Rp 3,4 miliar.</li><li>Traffic organik mencapai 58%.</li><li>Traffic dan pesanan meningkat signifikan berkat strategi iklan yang terukur dan pengelolaan produk yang tepat.</li><li>Konversi dari pengunjung yang berminat hingga pembayaran selesai terus didorong lewat fitur promosi dan broadcast chat.</li></ul><p>Masih ada pelanggan yang batal checkout, sehingga MEA terus mengevaluasi dan menyesuaikan strategi agar traffic yang sudah masuk dapat dikonversi menjadi transaksi.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-sinarmulia"
+  },
+  "catatan": [
+    "Nama brand: judul halaman \"Sinarmulia\", teks memakai \"Sinar Mulia\" dan \"Sinarmulia\". mea_brand dibiarkan \"Sinarmulia\" sesuai judul; konfirmasi penulisan resmi.",
+    "Angka \"58%\" dari counter \"TRAFFIC\" dan teks \"Organic traffic mencapai 58%\": tidak jelas apakah porsi traffic organik atau kenaikan; label dibiarkan netral \"Traffic organik\". Tidak dijadikan mea_komposisi karena porsi pembandingnya tidak disebut.",
+    "GMV Rp 3,4 miliar diambil dari teks RESULT (\"3,4 miliar Rupiah\"); counter menampilkan \"3.4 M\" berjudul \"Omset\". Periode GMV (total selama kerja sama atau per periode tertentu) tidak disebut.",
+    "Daftar Services di halaman hanya \"Jasa iklan Shopee\" sehingga mea_layanan hanya Iklan; teks strategi juga menyebut pengelolaan Shopee Mall (bisa jadi layanan Toko, page 14637) serta Shopee Live, Flash Sale, Voucher, dan broadcast chat. Cek apakah layanan lain ikut dikerjakan MEA.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", KOKO-CICI-18.jpg) di blok CTA generik \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu aset dari pemilik."
+  ]
+}
