@@ -1,0 +1,71 @@
+{
+  "page_id": 17555,
+  "url": "/quinsi-bags/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Quinsi Bags",
+    "mea_h1": "Quinsi Bags: ROAS 20x meski budget iklan lebih rendah",
+    "mea_kartu_judul": "Quinsi Bags: ROAS 20x meski budget iklan lebih rendah",
+    "mea_kartu_lede": "Produsen grosir tas souvenir asal Bandung yang berjualan sejak 2017. Hampir setahun bersama MEA, ROAS dan omzet dari iklan Shopee tetap naik meski budget iklan lebih rendah.",
+    "mea_kategori": "Tas souvenir (tote bag dan sling bag)",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Hampir satu tahun",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "20x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "163%",
+        "label": "Kenaikan omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "189%",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "40–50%",
+        "label": "Kontribusi iklan terhadap total pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Quinsi Bags asal Bandung adalah produsen grosir tas untuk kebutuhan souvenir, seperti tote bag, mini tote bag, dan sling bag, yang juga cocok dipakai sehari-hari atau dijadikan hadiah. Quinsi Bags berjualan sejak 2017 dengan kualitas bahan dan sablon yang baik.</p><p>Dengan reputasi produk yang sudah baik, Quinsi Bags ingin meningkatkan traffic dan awareness agar pengunjung bertambah dan konversi ikut naik. Katalognya cukup musiman, misalnya souvenir untuk negara tertentu atau desain yang sedang viral seperti Labubu, sehingga terus membutuhkan awareness dan traffic dari banyak pengunjung.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Riset dan analisis awal.</strong> Meninjau status toko, sumber traffic, dan daya saing harga untuk memproyeksikan persaingan dan memaksimalkan performa iklan.</li><li><strong>Analisis 10 produk terlaris.</strong> Mempelajari 10 produk terlaris di kategori yang sama, lalu menyusun strategi untuk meningkatkan performa produk dan rekomendasi pasar dari kategori terlaris.</li><li><strong>Analisis demografi target market.</strong> Untuk mengoptimalkan iklan yang dijalankan.</li></ul>",
+    "mea_hasil": "<p>Quinsi Bags sudah hampir satu tahun bekerja sama dengan MEA sebagai partner jasa iklan Shopee. Selama kerja sama, biaya iklan lebih rendah dibanding periode sebelumnya sehingga jangkauan dan traffic turun, tetapi tim berhasil mengoptimalkan performa sehingga ROAS dan omzet dari iklan tetap meningkat. Iklan juga stabil menyumbang 40–50% dari total pesanan Quinsi Bags meski budget iklannya berkurang.</p><p>Iklan tidak hanya mendorong penjualan langsung, tetapi juga menarik traffic. MEA membantu menjaga jumlah pengunjung tetap stabil untuk membangun kesadaran terhadap produk dan brand, yang berpotensi meningkatkan konversi di periode berikutnya.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-quinsi-bags"
+  },
+  "catatan": [
+    "Counter 'Omset 163%' tidak menjelaskan apakah itu omzet total atau omzet dari iklan; teks RESULT hanya menyebut 'omset dari iklan tetap meningkat'. Label dibuat netral 'Kenaikan omzet'; mohon dicek.",
+    "Kontribusi iklan 40–50% dari total pesanan berupa rentang, bukan porsi eksplisit dua bagian, sehingga mea_komposisi dikosongkan.",
+    "Tidak ada gambar dokumentasi kasus di halaman (grid galeri kosong); satu-satunya gambar adalah KOKO & CICI-18 (15633) di bagian Hubungi Kami, dilewati. mea_foto_proses dan mea_galeri kosong."
+  ]
+}

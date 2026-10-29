@@ -1,0 +1,121 @@
+{
+  "page_id": 16160,
+  "url": "/skynet/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Skynet",
+    "mea_h1": "Skynet: GMV naik 45% di Shopee",
+    "mea_kartu_judul": "Skynet: GMV naik 45% di Shopee",
+    "mea_kartu_lede": "Toko komputer sejak 2018 yang menjual laptop Advan, Asus, Acer, dan Lenovo di Shopee. Lewat iklan Shopee berbasis data, GMV naik 45% dan total order naik 41% dibanding tahun sebelumnya.",
+    "mea_kategori": "Komputer dan laptop",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "45%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "41%",
+        "label": "Kenaikan total order",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "35%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "5.693",
+        "label": "Order",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Skynet Computer adalah toko komputer yang berdiri sejak 2018 dan menjual produk dari brand seperti Advan, Asus, Acer, dan Lenovo.</p><p><strong>1. Persaingan ketat dengan distributor lain dan brand resmi.</strong> Sebagai distributor produk elektronik, Skynet bersaing dengan:</p><ul><li><strong>Toko lain</strong> yang menjual produk serupa dengan harga bersaing.</li><li><strong>Brand resmi</strong> yang menjual langsung lewat toko official di Shopee.</li><li><strong>Importir dan seller non-resmi</strong> yang menawarkan harga lebih murah meski tanpa garansi resmi.</li></ul><p>Tantangan utamanya adalah <strong>membangun kepercayaan pelanggan</strong> bahwa membeli di Skynet lebih aman dan terjamin dibanding toko lain.</p><p><strong>2. Margin terbatas, sehingga iklan harus efektif.</strong> Produk elektronik distribusi resmi sering kali bermargin tipis. Skynet perlu:</p><ul><li>Mengoptimalkan <strong>Shopee Ads</strong> agar budget iklan tidak terbuang tanpa hasil.</li><li>Menentukan <strong>produk yang tepat untuk diiklankan</strong> agar profit optimal.</li><li>Meningkatkan <strong>nilai transaksi per pelanggan</strong>, misalnya dengan cross-selling atau bundling.</li></ul><p>Jika iklan tidak dikelola dengan baik, biaya pemasaran bisa lebih besar daripada keuntungan.</p><p><strong>3. Tim fokus ke pelayanan pelanggan dan packing.</strong> Tim Skynet lebih banyak menangani <strong>customer service</strong> dan <strong>packing produk</strong>, sehingga:</p><ul><li>Tidak ada cukup waktu untuk <strong>menjalankan strategi marketing</strong> yang lebih agresif.</li><li>Belum bisa <strong>menerapkan content marketing</strong> untuk meningkatkan awareness di luar Shopee.</li></ul>",
+    "mea_dikerjakan": "<ul><li><strong>Riset pasar dan buyer potensial.</strong> Analisis kompetitor dan riset tren pencarian untuk memahami pola belanja pelanggan serta menentukan strategi harga yang kompetitif.</li><li><strong>Kategorisasi dan optimasi produk unggulan.</strong> Produk dengan permintaan tinggi diidentifikasi lalu dioptimalkan dengan judul SEO-friendly, foto berkualitas, dan deskripsi lengkap untuk meningkatkan peringkat pencarian.</li><li><strong>Strategi iklan berbasis data.</strong> Iklan Shopee dengan targeting yang tepat, optimasi kata kunci, dan evaluasi ROAS berkala untuk meningkatkan efektivitas campaign.</li><li><strong>Evaluasi kinerja iklan.</strong> Kinerja iklan dievaluasi setiap hari untuk memastikan efektivitas dan mencari peluang penjualan yang lebih tinggi.</li></ul>",
+    "mea_hasil": "<p>Setelah masa testing, tim MEA menemukan dan menerapkan strategi yang tepat untuk toko Skynet. Dibandingkan tahun sebelumnya, sebelum bekerja sama dengan MEA:</p><ul><li><strong>GMV naik 45%</strong></li><li><strong>Total order naik 41%</strong></li><li><strong>Traffic naik 35%</strong></li></ul><p>Strategi yang terukur dan evaluasi berkelanjutan membantu Skynet mempercepat pertumbuhan bisnisnya di Shopee.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [
+      {
+        "media_id": 16162,
+        "keterangan": "",
+        "alt": "Skynet: halaman toko Shopee Skynet Computer"
+      },
+      {
+        "media_id": 16164,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop Advan Soulmate Tbook di Shopee"
+      },
+      {
+        "media_id": 16165,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop HP 14S di Shopee"
+      },
+      {
+        "media_id": 16166,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop ASUS Vivobook A1400KA di Shopee"
+      }
+    ],
+    "mea_galeri": [
+      {
+        "media_id": 16162,
+        "keterangan": "",
+        "alt": "Skynet: halaman toko Shopee Skynet Computer"
+      },
+      {
+        "media_id": 16164,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop Advan Soulmate Tbook di Shopee"
+      },
+      {
+        "media_id": 16165,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop HP 14S di Shopee"
+      },
+      {
+        "media_id": 16166,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop ASUS Vivobook A1400KA di Shopee"
+      },
+      {
+        "media_id": 16167,
+        "keterangan": "",
+        "alt": "Skynet: produk laptop Lenovo V14 G3 di Shopee"
+      }
+    ],
+    "mea_kasus_lain": [],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-skynet"
+  },
+  "catatan": [
+    "Counter ROAS di bagian atas tidak punya ending_number (hanya suffix X), jadi di situs tampil nilai default Elementor. Angka ROAS tidak dimasukkan; minta nilai ROAS sebenarnya ke pemilik bila ingin ditampilkan.",
+    "Counter atas juga menyebut Traffic 669K (absolut); tidak dimasukkan karena batas 4 angka. Angka 5.693 order juga absolut, tanpa periode yang jelas.",
+    "Periode pendampingan tidak disebut (hanya 'setelah masa testing', pembanding 'tahun sebelumnya'); mea_periode dikosongkan.",
+    "Alt gambar disusun dari tujuan link gambar (halaman toko dan halaman produk Shopee), bukan dari isi gambar; semua alt_text Media Library kosong dan judul lampiran hanya 'Screenshot ...'. Mohon dicek.",
+    "Gambar KOKO & CICI-18 (15633) di bagian Hubungi Kami dilewati karena bagian CTA umum agency, bukan dokumentasi kasus.",
+    "Teks CTA umum ('Partner terbaik yang menghubungkan bisnismu...') tidak disalin."
+  ]
+}

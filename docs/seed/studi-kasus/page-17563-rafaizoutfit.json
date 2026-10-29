@@ -1,0 +1,76 @@
+{
+  "page_id": 17563,
+  "url": "/rafaizoutfit/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Rafaiz Outfit",
+    "mea_h1": "Rafaiz Outfit: ROAS 22x dan omzet naik hingga tiga kali lipat",
+    "mea_kartu_judul": "Rafaiz Outfit: ROAS 22x dan omzet naik hingga tiga kali lipat",
+    "mea_kartu_lede": "Brand fashion asal Kabupaten Bandung dengan toko offline dan online ini ingin iklan digitalnya lebih efektif dengan anggaran terbatas. Dengan kenaikan budget iklan sekitar 15%, omzet naik hingga tiga kali lipat dan traffic toko naik sekitar 250%.",
+    "mea_kategori": "Fashion",
+    "mea_kanal": "Shopee dan TikTok",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "22x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "257%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "250%",
+        "label": "Kenaikan traffic toko",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": ">230%",
+        "label": "Kenaikan jumlah pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Rafaiz Outfit adalah brand fashion di Kabupaten Bandung yang menyediakan pakaian stylish dan nyaman untuk kebutuhan sehari-hari, dengan toko offline yang kuat dan pelanggan setia di platform online. Saat mencoba meningkatkan penjualan lewat iklan digital dengan anggaran terbatas, hasilnya belum maksimal.</p><p>Selama pengelolaan iklan, trafik dan interaksi sudah meningkat: jumlah klik iklan naik pesat dan iklan menyumbang hampir setengah dari total penjualan. Meski begitu, performa iklan masih bisa dioptimalkan agar lebih sejalan dengan kekuatan brand.</p><p>Tantangan utamanya adalah mengubah awareness dan traffic yang sudah terbentuk menjadi penjualan yang lebih signifikan, dengan strategi iklan yang terarah, pemanfaatan fitur marketplace secara maksimal, dan pengelolaan anggaran yang lebih efisien.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Riset kompetitor dan tren.</strong> Analisis kompetitor dan tren pencarian untuk memahami perilaku konsumen serta menyesuaikan strategi harga yang kompetitif.</li><li><strong>Optimasi produk unggulan.</strong> Produk berperforma baik diidentifikasi, lalu dioptimalkan dengan judul yang menarik, foto berkualitas, dan deskripsi lengkap untuk meningkatkan daya tarik dan peringkat pencarian.</li><li><strong>Iklan Shopee dan TikTok.</strong> Kombinasi Shopee Ads dan TikTok Ads dengan targeting yang tepat serta optimasi bid untuk meningkatkan trafik dan konversi.</li></ul>",
+    "mea_hasil": "<p>Dengan peningkatan budget iklan sekitar 15%, Rafaiz Outfit mencatat perubahan signifikan dalam waktu singkat:</p><ul><li>ROAS naik hampir 80%.</li><li>Omzet naik hingga tiga kali lipat.</li><li>Jumlah pesanan meningkat lebih dari 230%.</li><li>Traffic toko naik sekitar 250%, memperluas jangkauan pelanggan.</li></ul><p>Strategi iklan yang terfokus serta optimasi kata kunci dan produk unggulan membantu meningkatkan performa iklan dan penjualan secara menyeluruh dengan penggunaan budget yang efisien.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-rafaizoutfit",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Judul halaman \"Rafaizoutfit\", teks halaman menulis \"Rafaiz Outfit\"; mea_brand memakai \"Rafaiz Outfit\". Mohon konfirmasi penulisan resmi.",
+    "Counter ROAS 22x, sedangkan teks Result menyebut \"ROAS naik hampir 80%\". Keduanya bisa sama-sama benar (nilai akhir vs kenaikan) tetapi perlu dicek.",
+    "Counter GMV 257% (tanpa konteks), teks menyebut \"omset naik hingga 3 kali lipat\". Label angka ditulis \"Kenaikan GMV\"; mohon pastikan 257% adalah kenaikan, bukan persentase dari nilai awal.",
+    "Bagian Approach di sumber berisi poin \"Shopee Ads dan TikTok Ads\" dua kali (duplikat); hanya ditulis sekali.",
+    "mea_kanal \"Shopee dan TikTok\" karena Approach menyebut TikTok Ads, sementara Services hanya \"Jasa iklan Shopee\". Mohon konfirmasi apakah TikTok (Shop/Ads) memang dikelola.",
+    "Daftar Services di halaman hanya berisi \"Jasa iklan Shopee\", jadi mea_layanan hanya Iklan.",
+    "Periode pendampingan tidak disebut (hanya \"dalam waktu singkat\").",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "page_id": 18715,
+  "url": "/lindahijab-id/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Lindahijab.id",
+    "mea_h1": "Lindahijab.id: ROAS 12x dan omzet iklan naik lebih dari 60 kali lipat",
+    "mea_kartu_judul": "Lindahijab.id: ROAS 12x dan omzet iklan naik lebih dari 60 kali lipat",
+    "mea_kartu_lede": "Toko hijab dan fashion muslimah ini laris saat event besar, tetapi pesanannya turun di luar peak season. Lewat iklan berbasis performa, promo, dan affiliate, ROAS mencapai 12x dan omzet iklan naik lebih dari 60 kali lipat.",
+    "mea_kategori": "Fashion muslimah",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "12x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "61x",
+        "label": "Kenaikan omzet iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "57x",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Lindahijab.id adalah toko fashion muslimah yang menghadirkan hijab, inner, dan aksesoris wanita dengan desain simpel dan elegan dalam pilihan warna netral hingga earth-tone. Performa tokonya bagus: traffic dan ROAS iklan stabil di beberapa periode event besar.</p><p>Namun konversinya belum konsisten di luar event besar. Pesanan, add to cart, dan penjualan sering turun walaupun traffic toko dan iklan tetap tinggi, tanda bahwa minat pelanggan belum cukup kuat untuk checkout. Lindahijab.id juga perlu menjaga performa chat, ketersediaan stok, dan pemanfaatan fitur Shopee agar performa toko tetap baik di luar peak season.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Budget berbasis performa.</strong> Budget iklan ditambah dan diatur untuk produk berperforma bagus, sementara iklan pada produk yang tidak efektif dihentikan agar pengeluaran tetap efisien.</li><li><strong>Promo di momen penting.</strong> Voucher toko, flash sale, dan bundling produk diaktifkan untuk mendorong pembelian cepat dan meningkatkan Average Order Value, khususnya saat Ramadan dan Payday.</li><li><strong>Affiliate.</strong> Komisi affiliate dinaikkan untuk menarik lebih banyak kreator dan memperluas jangkauan promosi di luar marketplace, sambil menjaga efisiensi biaya.</li><li><strong>Broadcast chat dan Shopee Live.</strong> Chat broadcast dipakai rutin sebagai pengingat promo dan jadwal live, ditambah Shopee Live untuk interaksi langsung dan penjualan real-time.</li><li><strong>Pemulihan dari penalti.</strong> Saat toko terkena penalti Shopee, strategi pemasaran diatur ulang dengan fokus pada traffic organik, promosi internal, dan pembenahan manajemen operasional agar toko kembali memenuhi syarat mengikuti program Shopee.</li></ul>",
+    "mea_hasil": "<p>Dengan strategi yang berfokus pada penguatan performa iklan dan aktivasi promosi di momen penting seperti Ramadan dan Payday, Lindahijab.id mencapai hasil yang signifikan:</p><ul><li>ROAS 12x.</li><li>Omzet iklan melonjak lebih dari 60 kali lipat dibanding periode sebelumnya.</li><li>Produk terjual meningkat drastis.</li></ul><p>Kenaikan ini didorong manajemen iklan berbasis performa, peningkatan komisi affiliate, serta aktivasi broadcast chat dan flash sale. Lindahijab.id tidak hanya memaksimalkan traffic yang sudah tinggi, tetapi juga mengubah minat pelanggan menjadi pembelian secara konsisten, bahkan di luar peak season.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-lindahijab-id",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Judul halaman mengandung karakter tak terlihat (U+200B); sudah dibuang.",
+    "Counter ketiga berlabel \"Produk Terjual\" (atas) dan \"Pesanan\" (bawah) dengan nilai 57x; teks hanya menyebut \"produk terjual meningkat drastis\". Label ditulis \"Kenaikan produk terjual\"; mohon konfirmasi.",
+    "Counter omzet 61x, teks \"lebih dari 60x lipat\"; konsisten.",
+    "Approach menyebut toko pernah terkena penalti Shopee; dipertahankan karena tertulis di halaman, tetapi mohon pastikan klien setuju hal ini dipublikasikan.",
+    "Approach juga mencakup affiliate, Shopee Live, dan promo toko, namun Services hanya \"Jasa iklan Shopee\"; mea_layanan hanya Iklan.",
+    "Periode pendampingan tidak disebut (hanya momen Ramadan dan Payday).",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}

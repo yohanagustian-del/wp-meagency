@@ -1,0 +1,76 @@
+{
+  "page_id": 18728,
+  "url": "/tokodanty/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Tokodanty",
+    "mea_h1": "Tokodanty: ROAS naik hampir 5 kali lipat dan omzet lebih dari 31 kali lipat",
+    "mea_kartu_judul": "Tokodanty: ROAS naik hampir 5 kali lipat dan omzet lebih dari 31 kali lipat",
+    "mea_kartu_lede": "Toko Shopee penjual perlengkapan rumah tangga ini sudah beriklan enam bulan, tetapi ROAS-nya belum efisien dan omzet turun 34,81% setelah peak season. Strategi iklan yang lebih terukur menaikkan ROAS hampir 5 kali lipat dan omzet lebih dari 31 kali lipat.",
+    "mea_kategori": "Perlengkapan rumah tangga dan kebutuhan sehari-hari",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "5x",
+        "label": "Kenaikan ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "31x",
+        "label": "Kenaikan omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "±300x",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "41%",
+        "label": "Kontribusi iklan terhadap total penjualan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Tokodanty adalah toko online di Shopee yang menjual produk rumah tangga dan kebutuhan sehari-hari, dengan toko yang rapi, kategori yang tertata, respons chat cepat, dan pengiriman tepat waktu.</p><p>Setelah product research, Tokodanty sudah menjalankan iklan selama enam bulan, tetapi efektivitasnya (ROAS) perlu ditingkatkan agar iklan tidak hanya mendatangkan traffic, tetapi juga penjualan yang efisien. Setelah omzet tumbuh stabil dari September hingga Desember 2023, omzet turun drastis 34,81% pada Januari, tanda strategi pemasaran belum berlanjut setelah peak season.</p><p>Produk terjual juga belum naik seimbang dengan traffic yang masuk, menandakan celah di funnel konversi. Tantangannya: meningkatkan ROAS secara signifikan dengan strategi iklan yang lebih terukur, menjaga pertumbuhan omzet sepanjang tahun (tidak hanya saat tanggal kembar dan payday), serta mendorong volume produk terjual lewat fitur Shopee seperti Live dan Video serta optimasi listing produk.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Iklan berbasis performa.</strong> Budget harian disesuaikan dan difokuskan pada produk dengan potensi konversi tinggi untuk mencapai ROAS ideal.</li><li><strong>Retargeting lewat broadcast chat.</strong> Data add to cart dimanfaatkan dengan mengaktifkan broadcast chat agar pengunjung yang sudah tertarik terdorong menyelesaikan pembelian.</li><li><strong>Kombo Hemat dan Paket Diskon.</strong> Fitur ini didorong untuk meningkatkan nilai per transaksi dan mendorong konsumen membeli lebih dari satu produk.</li><li><strong>Funnel dan anggaran seimbang.</strong> Dengan pendekatan funnel yang seimbang dan pengaturan anggaran yang tepat, iklan menyumbang 41% dari total penjualan toko.</li></ul>",
+    "mea_hasil": "<p>Dengan strategi yang lebih terukur, performa iklan Tokodanty meningkat signifikan:</p><ul><li>ROAS melonjak hampir 5 kali lipat.</li><li>Omzet meningkat lebih dari 31 kali lipat dari sebelumnya; iklan tidak hanya mendatangkan traffic, tetapi juga mendorong transaksi secara konsisten.</li><li>Jumlah produk terjual tumbuh sekitar 300 kali lipat, tanda konversi yang sehat dari traffic ke pembelian.</li></ul><p>Dengan performa yang membaik secara menyeluruh, Tokodanty kini berada di jalur pertumbuhan yang lebih berkelanjutan.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-tokodanty",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Judul halaman mengandung karakter tak terlihat (U+200B); sudah dibuang.",
+    "PENTING: counter Omset 334x tidak cocok dengan teks \"lebih dari 31x lipat\"; mea_angka memakai 31x dari teks. Mohon cek apakah counter seharusnya 33,4x atau 3.340%.",
+    "Counter Pesanan 280x, teks menyebut produk terjual \"sekitar 300 kali lipat\"; mea_angka memakai \"±300x\" (produk terjual) dari teks. Mohon konfirmasi angka yang benar.",
+    "Counter ROAS 5x; teks menyebut ROAS \"melonjak hampir 5x lipat\" (kenaikan), jadi label ditulis \"Kenaikan ROAS\".",
+    "Iklan menyumbang 41% dari total penjualan (dari Approach); mea_komposisi dibiarkan kosong karena porsi sisi lain tidak disebut eksplisit. Bisa diisi Iklan 41 / non-iklan 59 bila pemilik setuju.",
+    "Periode pendampingan MEA tidak disebut; teks hanya menyebut data September 2023 sampai Januari (2024).",
+    "Daftar Services di halaman hanya berisi \"Jasa iklan Shopee\", jadi mea_layanan hanya Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}
