@@ -36,5 +36,11 @@ if ( ! $mea_orbit_services ) {
 				</a></li>
 			<?php endforeach; ?>
 		</ul>
+		<p class="svc-more">
+			<?php esc_html_e( 'Juga tersedia:', 'mea-orbit' ); ?>
+			<a href="<?php echo esc_url( home_url( '/social-media-management/' ) ); ?>"><?php esc_html_e( 'Social Media Management', 'mea-orbit' ); ?></a>
+			<span aria-hidden="true">·</span>
+			<a href="<?php echo esc_url( home_url( '/seo/' ) ); ?>"><?php esc_html_e( 'SEO', 'mea-orbit' ); ?></a>
+		</p>
 	</div>
 </section>

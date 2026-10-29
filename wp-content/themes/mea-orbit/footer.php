@@ -19,15 +19,19 @@ $mea_orbit_sales = mea_orbit_sales();
 			<div>
 				<p class="foot-h" id="foot-layanan"><?php esc_html_e( 'Layanan', 'mea-orbit' ); ?></p>
 				<nav aria-labelledby="foot-layanan">
+					<?php mea_orbit_pilar_footer(); ?>
+				</nav>
+			</div>
+			<div>
+				<p class="foot-h" id="foot-perusahaan"><?php esc_html_e( 'Perusahaan', 'mea-orbit' ); ?></p>
+				<nav aria-labelledby="foot-perusahaan">
 					<?php mea_orbit_menu( 'mea-orbit-footer' ); ?>
 				</nav>
 			</div>
 			<div>
 				<p class="foot-h"><?php esc_html_e( 'Kantor', 'mea-orbit' ); ?></p>
 				<p>Jl. Rajawali Barat No.77A<br>Kota Bandung 40184</p>
-			</div>
-			<div>
-				<p class="foot-h"><?php esc_html_e( 'Hubungi', 'mea-orbit' ); ?></p>
+				<p class="foot-h foot-h-next"><?php esc_html_e( 'Hubungi', 'mea-orbit' ); ?></p>
 				<ul>
 					<li><a href="<?php echo esc_url( $mea_orbit_sales['wa'] ); ?>"><?php echo esc_html( $mea_orbit_sales['tampil'] ); ?></a></li>
 					<li><a href="https://www.instagram.com/yohanagustian/">Instagram</a></li>

@@ -783,6 +783,17 @@ main p {
 	}
 }
 
+.svc-more {
+	margin-top: 20px;
+	font-size: .95rem;
+	color: var(--graphite);
+}
+
+.svc-more a {
+	color: var(--ink);
+	text-underline-offset: 3px;
+}
+
 /* Homepage: studi kasus unggulan + slot M4 (PLAN 9.7) */
 .case-feature {
 	display: grid;

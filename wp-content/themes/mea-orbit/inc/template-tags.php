@@ -30,75 +30,164 @@ function mea_orbit_consult_url() {
 }
 
 /**
- * Isi menu cadangan bila lokasi menu belum diatur di wp-admin.
+ * Empat pilar layanan: satu sumber untuk navigasi header dan kolom Layanan footer.
  *
- * @param string $location Lokasi menu.
- * @return array<int, array{0:string, 1:string}> Pasangan [label, URL].
+ * @return array<int, array{0:string, 1:string, 2:array<int, array{0:string, 1:string}>}> [label, path, anak].
  */
-function mea_orbit_fallback_menu_items( $location ) {
-	$blog_id  = (int) get_option( 'page_for_posts' );
-	$blog_url = $blog_id ? get_permalink( $blog_id ) : home_url( '/blog/' );
-
-	if ( 'mea-orbit-footer' === $location ) {
-		return array(
-			array( __( 'Iklan Shopee dan TikTok Shop', 'mea-orbit' ), home_url( '/jasa-performance-ads/' ) ),
-			array( __( 'Kelola TikTok Shop', 'mea-orbit' ), home_url( '/jasa-kelola-tiktok-shop/' ) ),
-			array( __( 'Kelola Shopee', 'mea-orbit' ), home_url( '/ecommerce-service/' ) ),
-			array( __( 'Live streaming', 'mea-orbit' ), home_url( '/jasa-live-streaming/' ) ),
-			array( __( 'Affiliate', 'mea-orbit' ), home_url( '/affiliate/' ) ),
-			array( __( 'Konten', 'mea-orbit' ), home_url( '/jasa-konten/' ) ),
-			array( __( 'Studi kasus', 'mea-orbit' ), home_url( '/study-case/' ) ),
-			array( __( 'Blog', 'mea-orbit' ), $blog_url ),
-		);
-	}
-
+function mea_orbit_pilar() {
 	return array(
-		array( __( 'Layanan', 'mea-orbit' ), home_url( '/#layanan' ) ),
-		array( __( 'Studi kasus', 'mea-orbit' ), home_url( '/study-case/' ) ),
-		array( __( 'Tim', 'mea-orbit' ), home_url( '/#tim' ) ),
-		array( __( 'Cara kerja', 'mea-orbit' ), home_url( '/#cara-kerja' ) ),
+		array(
+			__( 'E-commerce Service', 'mea-orbit' ),
+			'/ecommerce-service/',
+			array(
+				array( __( 'Kelola Toko Shopee', 'mea-orbit' ), '/jasa-management-marketplace/' ),
+				array( __( 'Optimasi Shopee', 'mea-orbit' ), '/jasa-optimasi-shopee/' ),
+				array( __( 'Upgrade Shopee Mall', 'mea-orbit' ), '/jasa-upgrade-shopee-mall/' ),
+				array( __( 'Kelola TikTok Shop', 'mea-orbit' ), '/jasa-kelola-tiktok-shop/' ),
+				array( __( 'Live Streaming', 'mea-orbit' ), '/jasa-live-streaming/' ),
+				array( __( 'Affiliate', 'mea-orbit' ), '/affiliate/' ),
+			),
+		),
+		array(
+			__( 'Performance Ads', 'mea-orbit' ),
+			'/jasa-performance-ads/',
+			array(
+				array( __( 'Iklan Shopee', 'mea-orbit' ), '/jasa-iklan-shopee/' ),
+				array( __( 'TikTok Ads', 'mea-orbit' ), '/jasa-tiktok-ads/' ),
+				array( __( 'Meta Ads', 'mea-orbit' ), '/jasa-meta-ads/' ),
+				array( __( 'Iklan Marketplace', 'mea-orbit' ), '/jasa-iklan-marketplace/' ),
+			),
+		),
+		array(
+			__( 'Social Media Management', 'mea-orbit' ),
+			'/social-media-management/',
+			array(
+				array( __( 'Jasa Konten', 'mea-orbit' ), '/jasa-konten/' ),
+				array( __( 'Konten TikTok', 'mea-orbit' ), '/jasa-konten-tiktok/' ),
+			),
+		),
+		array( __( 'SEO', 'mea-orbit' ), '/seo/', array() ),
 	);
 }
 
 /**
- * Cetak menu: menu WordPress bila diatur, cadangan bila belum.
+ * URL halaman yang sedang dibuka (untuk aria-current di menu tema).
  *
- * Markup cadangan sama dengan markup wp_nav_menu (ul > li > a), jadi gaya
- * dan struktur link tidak berubah saat tim mulai mengatur menu.
+ * @return string
+ */
+function mea_orbit_current_url() {
+	if ( is_front_page() ) {
+		return home_url( '/' );
+	}
+	if ( is_home() ) {
+		return (string) get_permalink( (int) get_option( 'page_for_posts' ) );
+	}
+	return is_singular() ? (string) get_permalink() : '';
+}
+
+/**
+ * Cetak empat pilar sebagai daftar bertingkat (ul.menu > li > a + ul.sub-menu),
+ * markup yang sama dengan wp_nav_menu kedalaman 2.
+ *
+ * Dropdown header tanpa JavaScript: terbuka saat hover dan saat fokus keyboard
+ * ada di dalam pilar (:focus-within), jadi Tab menelusuri pilar lalu anaknya.
+ * Di menu HP anak selalu tampil terindentasi.
+ *
+ * @return void
+ */
+function mea_orbit_pilar_menu() {
+	$current = mea_orbit_current_url();
+	$link    = function ( $label, $path ) use ( $current ) {
+		$url = home_url( $path );
+		return sprintf( '<a href="%1$s"%3$s>%2$s</a>', esc_url( $url ), esc_html( $label ), $current === $url ? ' aria-current="page"' : '' );
+	};
+
+	echo '<ul class="menu">';
+	foreach ( mea_orbit_pilar() as $pilar ) {
+		if ( ! $pilar[2] ) {
+			echo '<li class="menu-item">' . $link( $pilar[0], $pilar[1] ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
+			continue;
+		}
+		echo '<li class="menu-item menu-item-has-children">' . $link( $pilar[0], $pilar[1] ) . '<ul class="sub-menu">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
+		foreach ( $pilar[2] as $anak ) {
+			echo '<li class="menu-item">' . $link( $anak[0], $anak[1] ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
+		}
+		echo '</ul></li>';
+	}
+	echo '</ul>';
+}
+
+/**
+ * Isi menu cadangan kolom Perusahaan di footer bila lokasinya belum diatur.
+ *
+ * @return array<int, array{0:string, 1:string}> Pasangan [label, URL].
+ */
+function mea_orbit_fallback_menu_items() {
+	$blog_id = (int) get_option( 'page_for_posts' );
+	return array(
+		array( __( 'Studi kasus', 'mea-orbit' ), home_url( '/study-case/' ) ),
+		array( __( 'Blog', 'mea-orbit' ), $blog_id ? get_permalink( $blog_id ) : home_url( '/blog/' ) ),
+	);
+}
+
+/**
+ * Cetak menu lokasi tema.
+ *
+ * - Header (`mea-orbit-utama`): menu WordPress kedalaman 2 bila diatur di
+ *   wp-admin, kalau tidak empat pilar layanan dari mea_orbit_pilar().
+ * - Footer (`mea-orbit-footer`, kolom Perusahaan): menu WordPress kedalaman 1,
+ *   kalau tidak daftar cadangan.
  *
  * @param string $location Lokasi menu.
  * @return void
  */
 function mea_orbit_menu( $location ) {
+	$header = 'mea-orbit-utama' === $location;
 	if ( has_nav_menu( $location ) ) {
 		wp_nav_menu(
 			array(
 				'theme_location' => $location,
 				'container'      => false,
 				'menu_class'     => 'menu',
-				'depth'          => 1,
+				'depth'          => $header ? 2 : 1,
 				'fallback_cb'    => false,
 			)
 		);
 		return;
 	}
 
-	// Penanda halaman aktif di menu cadangan, sama dengan prototipe:
-	// template layanan menandai "Layanan", template studi kasus menandai "Studi kasus".
-	$current = '';
-	if ( is_page_template( 'page-templates/template-layanan.php' ) ) {
-		$current = home_url( '/#layanan' );
-	} elseif ( is_page_template( 'page-templates/template-studi-kasus.php' ) ) {
-		$current = home_url( '/study-case/' );
-	} elseif ( is_singular() || is_home() ) {
-		$current = is_home() ? get_permalink( (int) get_option( 'page_for_posts' ) ) : get_permalink();
+	if ( $header ) {
+		mea_orbit_pilar_menu();
+		return;
 	}
 
+	$current = mea_orbit_current_url();
 	echo '<ul class="menu">';
-	foreach ( mea_orbit_fallback_menu_items( $location ) as $item ) {
+	foreach ( mea_orbit_fallback_menu_items() as $item ) {
 		printf( '<li><a href="%1$s"%3$s>%2$s</a></li>', esc_url( $item[1] ), esc_html( $item[0] ), $current === $item[1] ? ' aria-current="page"' : '' );
 	}
 	echo '</ul>';
+}
+
+/**
+ * Kolom Layanan footer: empat pilar dengan anaknya, struktur sama dengan header.
+ *
+ * @return void
+ */
+function mea_orbit_pilar_footer() {
+	echo '<div class="foot-pilar">';
+	foreach ( mea_orbit_pilar() as $pilar ) {
+		echo '<div><a class="foot-pilar-h" href="' . esc_url( home_url( $pilar[1] ) ) . '">' . esc_html( $pilar[0] ) . '</a>';
+		if ( $pilar[2] ) {
+			echo '<ul>';
+			foreach ( $pilar[2] as $anak ) {
+				echo '<li><a href="' . esc_url( home_url( $anak[1] ) ) . '">' . esc_html( $anak[0] ) . '</a></li>';
+			}
+			echo '</ul>';
+		}
+		echo '</div>';
+	}
+	echo '</div>';
 }
 
 /**

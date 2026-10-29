@@ -26,8 +26,8 @@ function mea_orbit_setup() {
 
 	register_nav_menus(
 		array(
-			'mea-orbit-utama'  => __( 'Menu utama (header)', 'mea-orbit' ),
-			'mea-orbit-footer' => __( 'Menu footer (kolom Layanan)', 'mea-orbit' ),
+			'mea-orbit-utama'  => __( 'Menu utama (header; kosong = empat pilar layanan)', 'mea-orbit' ),
+			'mea-orbit-footer' => __( 'Menu footer (kolom Perusahaan)', 'mea-orbit' ),
 		)
 	);
 }

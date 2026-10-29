@@ -167,7 +167,7 @@ function mea_orbit_home_defs() {
 			'default' => array(
 				array(
 					'nama'      => 'Iklan',
-					'deskripsi' => 'Shopee Ads dan TikTok Shop Ads yang diatur dari data penjualan, bukan dari tebakan.',
+					'deskripsi' => 'Shopee Ads, TikTok Shop Ads, dan Meta Ads yang diatur dari data penjualan, bukan dari tebakan.',
 					'url'       => '/jasa-performance-ads/',
 					'motion'    => 'iklan',
 				),
@@ -180,7 +180,7 @@ function mea_orbit_home_defs() {
 				array(
 					'nama'      => 'Shopee',
 					'deskripsi' => 'Optimasi toko, produk, dan program Shopee untuk menaikkan konversi.',
-					'url'       => '/ecommerce-service/',
+					'url'       => '/jasa-management-marketplace/',
 					'motion'    => 'shopee',
 				),
 				array(

@@ -2,6 +2,13 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.4.0 · 29 Okt 2026
+- **Noindex otomatis untuk konten berpassword** (`inc/robots.php`): semua post/page dengan password mendapat `noindex, nofollow` (filter `rank_math/frontend/robots`) dan dikeluarkan dari sitemap Rank Math (filter `rank_math/sitemap/entry`). Halaman tanpa password tidak berubah.
+- **Navigasi 4 pilar layanan**: header berisi E-commerce Service, Performance Ads, Social Media Management, SEO, dengan dropdown anak layanan (hover dan keyboard lewat `:focus-within`, tanpa JavaScript). Menu HP menampilkan anak terindentasi. Header pindah ke menu HP di ≤1080 px.
+- **Footer**: kolom Layanan berisi struktur 4 pilar yang sama (satu sumber, `mea_orbit_pilar()`); menu WordPress lokasi footer (sekarang "Single Menu") pindah ke kolom baru **Perusahaan**; Hubungi digabung di bawah Kantor.
+- **Homepage, Enam sisi**: baris "Juga tersedia: Social Media Management · SEO". Default kartu Shopee → `/jasa-management-marketplace/`, deskripsi Iklan menyebut Meta Ads (isian live diubah lewat opsi Homepage).
+- mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.3.0 · 29 Okt 2026
 - **Foto realis menggantikan motion di dua section** (disetujui Yohan, brief `paket-mea-orbit-0.3.0`):
   - Kartu "Enam sisi operasional, satu tim": foto 4:3 selebar kartu (`assets/foto/layanan/`, 600w + 1200w), statis, zoom 3% saat hover di desktop. Loop video M2 dihapus.
