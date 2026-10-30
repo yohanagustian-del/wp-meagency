@@ -121,6 +121,47 @@ function mea_orbit_proses_foto() {
 }
 
 /**
+ * Klip siap tampil dari repeater video opsi Homepage. Baris tanpa poster atau
+ * tanpa video dilewati.
+ *
+ * @param array<int, array<string, mixed>> $rows     Baris repeater.
+ * @param string                           $alt_with Pola alt dengan %s untuk label.
+ * @param string                           $alt_none Alt bila label kosong.
+ * @return array<int, array<string, mixed>>
+ */
+function mea_orbit_konten_clips( $rows, $alt_with, $alt_none ) {
+	$clips = array();
+	foreach ( (array) $rows as $clip ) {
+		$poster_id = (int) ( $clip['poster'] ?? 0 );
+		$mp4       = (int) ( $clip['video_mp4'] ?? 0 ) ? (string) wp_get_attachment_url( (int) $clip['video_mp4'] ) : '';
+		$webm      = (int) ( $clip['video_webm'] ?? 0 ) ? (string) wp_get_attachment_url( (int) $clip['video_webm'] ) : '';
+		$label     = (string) ( $clip['label'] ?? '' );
+		$poster    = mea_orbit_img(
+			$poster_id,
+			'full',
+			array(
+				'alt'   => '' !== $label ? sprintf( $alt_with, $label ) : $alt_none,
+				'sizes' => '(max-width: 767px) 240px, 260px',
+			)
+		);
+		if ( '' === $poster || ( '' === $mp4 && '' === $webm ) ) {
+			continue;
+		}
+		$meta    = wp_get_attachment_metadata( $poster_id );
+		$link    = trim( (string) ( $clip['link'] ?? '' ) );
+		$clips[] = array(
+			'poster' => $poster,
+			'mp4'    => $mp4,
+			'webm'   => $webm,
+			'tall'   => ! empty( $meta['width'] ) && $meta['height'] / $meta['width'] > 1.5,
+			'label'  => $label,
+			'link'   => mea_orbit_url( '' !== $link ? $link : '/jasa-konten/' ),
+		);
+	}
+	return $clips;
+}
+
+/**
  * URL dari field: path relatif (/affiliate/) jadi URL situs, URL penuh dibiarkan.
  *
  * @param string $url URL atau path.

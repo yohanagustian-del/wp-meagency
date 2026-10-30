@@ -2,6 +2,11 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.7.0 · 30 Okt 2026
+- **Homepage, section Konten: blok kedua "Hasil produksi tim kreatif MEA"** di bawah ilustrasi AI. Diisi di Tampilan → Homepage MEA (Konten · blok 2): judul, video (MP4 + poster, WebM opsional, label, link), keterangan (default "Diproduksi oleh tim kreatif MEA Agency"). Blok kosong tidak tampil; keterangan kosong tidak tampil. Desktop grid 3 kolom; HP semua video dalam baris yang bisa digeser (blok AI tetap 1 video di HP).
+- Label opsi blok AI diperjelas ("Konten · blok 1"). Helper `mea_orbit_konten_clips()` dipakai kedua blok.
+- Termasuk semua isi 0.6.0. mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.6.0 · 29 Okt 2026
 - **33 studi kasus pindah dari Elementor ke template Orbit** (data live; seed di `docs/seed/studi-kasus/`, rollback di `ROLLBACK.md` folder itu). Teks dan angka diambil dari halaman lama; bila counter dan teks Result bertentangan, angka teks yang dipakai. Denuber (isi salinan Allora) tidak dimigrasi, diberi noindex.
 - **Foto cadangan samping cerita**: studi kasus tanpa foto kasus memakai lima foto realis proses kerja tim MEA (sama dengan "Cara kami bekerja"), berganti saat scroll, judul langkah sebagai keterangan. Sumber satu: `mea_orbit_proses_foto()` (juga dipakai homepage).

@@ -1339,6 +1339,18 @@ a.phone-card:focus-visible .phone-label {
 	margin: 28px 0 0;
 }
 
+/* Blok kedua (portofolio tim kreatif) di bawah blok ilustrasi AI. */
+.phones-block + .phones-block {
+	margin-top: clamp(56px, 8vw, 96px);
+	padding-top: clamp(40px, 6vw, 64px);
+	border-top: 1px solid var(--line);
+}
+
+.phones-title {
+	font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+	margin: 0 0 32px;
+}
+
 @media (max-width: 767.98px) {
 	.phones {
 		grid-template-columns: minmax(0, 240px);
@@ -1347,6 +1359,37 @@ a.phone-card:focus-visible .phone-label {
 
 	.phones li:nth-child(n + 2) {
 		display: none;
+	}
+
+	/* Portofolio: semua video tampil dalam baris yang bisa digeser. */
+	.phones.is-scroll {
+		grid-auto-flow: column;
+		grid-template-columns: none;
+		grid-auto-columns: min(240px, 72vw);
+		justify-content: start;
+		gap: 16px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		margin-inline: -24px;
+		padding: 0 24px 8px;
+		scroll-padding-inline: 24px;
+		scrollbar-width: none;
+	}
+
+	.phones.is-scroll::-webkit-scrollbar {
+		display: none;
+	}
+
+	.phones.is-scroll li {
+		scroll-snap-align: center;
+	}
+
+	.phones.is-scroll li:nth-child(n + 2) {
+		display: list-item;
+	}
+
+	.phones-title {
+		text-align: center;
 	}
 
 	.phones-note {

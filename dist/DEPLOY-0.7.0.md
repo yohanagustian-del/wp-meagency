@@ -1,7 +1,7 @@
-# DEPLOY 0.6.0 · meagency.co.id
+# DEPLOY 0.7.0 · meagency.co.id
 
 Tema saja (mea-leads tetap 0.2.0). Berisi semua perubahan 0.3.0 dan 0.4.0, ditambah section
-**Galeri** untuk studi kasus. Versi 0.6.0: link Studi kasus di header dan foto proses tim MEA sebagai foto samping studi kasus yang belum punya foto. Langsung pasang 0.6.0.
+**Galeri** untuk studi kasus. Versi 0.7.0: blok portofolio tim kreatif di section Konten homepage (0.6.0: link Studi kasus di header, foto proses tim untuk studi kasus, kutipan formal). Langsung pasang 0.7.0.
 
 ---
 
@@ -9,7 +9,7 @@ Tema saja (mea-leads tetap 0.2.0). Berisi semua perubahan 0.3.0 dan 0.4.0, ditam
 
 1. wp-admin → Tampilan → Tema. Catat versi MEA Orbit yang aktif (saat ini 0.5.2) untuk rollback;
    zip-nya ada di repo: `dist/mea-orbit-0.5.2.zip`.
-2. Tampilan → Tema → **Tambah Baru** → **Unggah Tema** → pilih `mea-orbit-0.6.0.zip` → **Install Now**.
+2. Tampilan → Tema → **Tambah Baru** → **Unggah Tema** → pilih `mea-orbit-0.7.0.zip` → **Install Now**.
 3. WordPress menanyakan tema yang sudah ada → klik **Ganti yang terpasang dengan yang diunggah**.
 4. hPanel → Websites → meagency.co.id → **Cache Manager** → **Purge All**. Bila CDN aktif:
    hPanel → **CDN** → **Purge cache**.

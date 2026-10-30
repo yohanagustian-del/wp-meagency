@@ -17,6 +17,31 @@ defined( 'ABSPATH' ) || exit;
  * @return array<string, array<string, mixed>>
  */
 function mea_orbit_home_defs() {
+	$video = array(
+		'video_mp4'  => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Video MP4 (H.264, tanpa suara)', 'mea-orbit' ),
+		),
+		'video_webm' => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Video WebM (opsional)', 'mea-orbit' ),
+		),
+		'poster'     => array(
+			'type'  => 'media',
+			'label' => __( 'Poster (wajib, frame pertama video)', 'mea-orbit' ),
+		),
+		'label'      => array(
+			'type'  => 'text',
+			'label' => __( 'Label kategori (mis. Fashion)', 'mea-orbit' ),
+		),
+		'link'       => array(
+			'type'  => 'text',
+			'label' => __( 'Link (kosong = /jasa-konten/)', 'mea-orbit' ),
+		),
+	);
+
 	$foto = array(
 		'media_id'   => array(
 			'type'  => 'media',
@@ -205,37 +230,30 @@ function mea_orbit_home_defs() {
 		),
 		'konten_video'          => array(
 			'type'    => 'repeater',
-			'label'   => __( 'Mockup HP "Konten" setelah Enam layanan (kosong = section tidak tampil; HP menampilkan baris pertama)', 'mea-orbit' ),
-			'fields'  => array(
-				'video_mp4'  => array(
-					'type'    => 'media',
-					'library' => 'video',
-					'label'   => __( 'Video MP4 (H.264, tanpa suara)', 'mea-orbit' ),
-				),
-				'video_webm' => array(
-					'type'    => 'media',
-					'library' => 'video',
-					'label'   => __( 'Video WebM (opsional)', 'mea-orbit' ),
-				),
-				'poster'     => array(
-					'type'  => 'media',
-					'label' => __( 'Poster (wajib, frame pertama video)', 'mea-orbit' ),
-				),
-				'label'      => array(
-					'type'  => 'text',
-					'label' => __( 'Label kategori (mis. Fashion)', 'mea-orbit' ),
-				),
-				'link'       => array(
-					'type'  => 'text',
-					'label' => __( 'Link (kosong = /jasa-konten/)', 'mea-orbit' ),
-				),
-			),
+			'label'   => __( 'Konten · blok 1: ilustrasi AI (kosong = blok tidak tampil; HP menampilkan baris pertama)', 'mea-orbit' ),
+			'fields'  => $video,
 			'default' => array(),
 		),
 		'konten_keterangan'     => array(
 			'type'    => 'text',
-			'label'   => __( 'Keterangan di bawah mockup (kosongkan bila sudah memakai video asli klien berizin)', 'mea-orbit' ),
+			'label'   => __( 'Konten · blok 1: keterangan di bawah mockup (kosong = tidak tampil)', 'mea-orbit' ),
 			'default' => 'Ilustrasi format konten, dibuat dengan AI',
+		),
+		'portofolio_judul'      => array(
+			'type'    => 'text',
+			'label'   => __( 'Konten · blok 2: judul portofolio tim kreatif (kosong = tanpa judul)', 'mea-orbit' ),
+			'default' => 'Hasil produksi tim kreatif MEA',
+		),
+		'portofolio_video'      => array(
+			'type'    => 'repeater',
+			'label'   => __( 'Konten · blok 2: video hasil produksi tim kreatif (kosong = blok tidak tampil; HP bisa digeser)', 'mea-orbit' ),
+			'fields'  => $video,
+			'default' => array(),
+		),
+		'portofolio_keterangan' => array(
+			'type'    => 'text',
+			'label'   => __( 'Konten · blok 2: keterangan di bawah mockup (kosong = tidak tampil)', 'mea-orbit' ),
+			'default' => 'Diproduksi oleh tim kreatif MEA Agency',
 		),
 		'cara_kerja_kutipan_id' => array(
 			'type'    => 'quote',
