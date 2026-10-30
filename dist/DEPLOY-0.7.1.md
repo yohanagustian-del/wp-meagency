@@ -118,3 +118,23 @@ curl.exe -s https://www.meagency.co.id/jasa-iklan-shopee/ | findstr /i "robots"
 - Header: 4 pilar, dropdown saat hover dan saat Tab. HP: Menu → anak terindentasi.
 - Footer: kolom Layanan (4 pilar) dan Perusahaan.
 - /bellarosa/: panel Hasil 4 angka (termasuk 1.200% traffic organik TikTok); foto di samping cerita berganti 4 kali saat scroll (desktop); Galeri 12 gambar + video SC18.
+
+## Kalau upload di wp-admin gagal ("some files could not be copied")
+
+Penyebab di meagency.co.id (Site Health, 30 Okt 2026): folder `wp-content/themes`
+dan `wp-content/plugins` **not writable** untuk user PHP-FPM, sementara `uploads`
+writable. Zip berhasil dibongkar, tapi tidak bisa disalin ke folder tema. Tema lama
+tetap utuh.
+
+Pasang lewat SSH dengan `dist/pasang-mea-orbit.sh` (tanpa WP-CLI):
+
+```bash
+curl -fsSL -o /tmp/pasang-mea-orbit.sh https://raw.githubusercontent.com/yohanagustian-del/wp-meagency/HEAD/dist/pasang-mea-orbit.sh
+sudo bash /tmp/pasang-mea-orbit.sh /home/mea/app/meagency.co.id
+sudo bash /tmp/pasang-mea-orbit.sh /home/mea/app/meagency.co.id --pasang
+```
+
+Perintah pertama hanya diagnosis. `--pasang` membuat backup tar di `/root`, mengunduh
+zip 0.7.1, mencocokkan SHA-256, menimpa folder tema di tempat, menyamakan pemilik
+`themes` dan `upgrade` dengan pemilik `uploads`, lalu reload PHP-FPM. Tambah
+`--juga-plugins` agar plugin juga bisa diupdate dari wp-admin.
