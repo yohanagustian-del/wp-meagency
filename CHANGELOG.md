@@ -2,6 +2,10 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.7.1 · 30 Okt 2026
+- **Update tema dari WordPress/konektor**: `inc/update.php` + header `Update URI`. WordPress membaca manifest `dist/mea-orbit-update.json` di branch utama repo; bila versinya lebih baru, "Update now" muncul (juga bisa dijalankan lewat konektor). Paket zip diverifikasi SHA-256 dari manifest; paket tidak cocok atau dari URL lain ditolak. Manifest dibuat dengan `tools/release-manifest.sh <commit>`.
+- Termasuk semua isi 0.7.0.
+
 ## mea-orbit 0.7.0 · 30 Okt 2026
 - **Homepage, section Konten: blok kedua "Hasil produksi tim kreatif MEA"** di bawah ilustrasi AI. Diisi di Tampilan → Homepage MEA (Konten · blok 2): judul, video (MP4 + poster, WebM opsional, label, link), keterangan (default "Diproduksi oleh tim kreatif MEA Agency"). Blok kosong tidak tampil; keterangan kosong tidak tampil. Desktop grid 3 kolom; HP semua video dalam baris yang bisa digeser (blok AI tetap 1 video di HP).
 - Label opsi blok AI diperjelas ("Konten · blok 1"). Helper `mea_orbit_konten_clips()` dipakai kedua blok.
