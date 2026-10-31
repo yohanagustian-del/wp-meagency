@@ -1,0 +1,125 @@
+{
+  "page_id": 15731,
+  "url": "/sparepart-motor/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Sparepart Motor",
+    "mea_h1": "Sparepart Motor: GMV naik 249% dalam dua bulan",
+    "mea_kartu_judul": "Sparepart Motor: GMV naik 249% dalam dua bulan",
+    "mea_kartu_lede": "Distributor sparepart variasi motor yang baru membuka toko di Shopee. Dalam dua bulan, GMV naik 249%, total order naik 264%, dan traffic naik 164%.",
+    "mea_kategori": "Sparepart variasi motor",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Dua bulan",
+    "mea_layanan": [
+      {
+        "label": "Toko",
+        "page_id": 14637
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "249%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "264%",
+        "label": "Kenaikan total order",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "Rp 7,8 miliar",
+        "label": "GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "11,4x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Klien ini adalah distributor sparepart variasi motor yang baru membuka toko di Shopee. Produknya cukup spesifik, seperti rangkaian body motor bagian atas dan bawah untuk variasi maupun perbaikan. Saat ini toko memiliki 352 produk dan telah menjual lebih dari 50 ribu produk.</p><p>Sebagai toko baru di e-commerce, tantangannya antara lain:</p><ul><li><strong>Persaingan dengan seller lama.</strong> Shopee sudah dipenuhi seller besar dengan reputasi tinggi dan ulasan positif, sehingga toko baru harus bekerja keras membangun kredibilitas.</li><li><strong>Sulit mendapatkan kepercayaan pembeli.</strong> Pembeli cenderung memilih toko dengan banyak ulasan dan rating tinggi, sehingga perlu strategi untuk menambah review positif dan engagement.</li><li><strong>Traffic dan order minim di awal.</strong> Tanpa strategi pemasaran yang tepat, produk sulit ditemukan calon pembeli. Dibutuhkan optimasi SEO Shopee, iklan, dan promosi.</li><li><strong>Harga dan margin.</strong> Persaingan harga sangat ketat, sehingga harga harus kompetitif tanpa mengorbankan margin.</li><li><strong>Optimasi iklan berbayar.</strong> Shopee Ads dan promosi lain butuh strategi yang tepat agar investasi tidak sia-sia dan konversi meningkat.</li></ul>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Riset pasar dan buyer potensial.</strong> Analisis kompetitor dan riset tren pencarian untuk memahami pola belanja pelanggan serta menentukan strategi harga yang kompetitif.</li><li><strong>Kategorisasi dan optimasi produk unggulan.</strong> Produk dengan permintaan tinggi diidentifikasi lalu dioptimalkan dengan judul SEO-friendly, foto berkualitas, dan deskripsi lengkap untuk meningkatkan peringkat pencarian.</li><li><strong>Strategi iklan berbasis data.</strong> Iklan Shopee dengan targeting yang tepat, optimasi kata kunci, dan evaluasi ROAS berkala untuk meningkatkan efektivitas campaign.</li><li><strong>Evaluasi kinerja iklan.</strong> Kinerja iklan dievaluasi setiap hari untuk memastikan efektivitas dan mencari peluang penjualan yang lebih tinggi.</li><li><strong>Promosi dan branding toko.</strong> Memastikan toko mengikuti voucher, campaign Shopee, dan peluang lain untuk meningkatkan engagement serta mendorong konversi.</li></ul>",
+    "mea_hasil": "<p>Dalam waktu <strong>hanya dua bulan</strong>, tim MEA menemukan dan menerapkan strategi yang tepat untuk toko ini. Dibandingkan tahun sebelumnya, sebelum bekerja sama dengan MEA:</p><ul><li><strong>GMV naik 249%</strong></li><li><strong>Total order naik 264%</strong></li><li><strong>Traffic naik 164%</strong></li></ul><p>Strategi yang terukur dan evaluasi berkelanjutan membantu toko ini mempercepat pertumbuhan bisnisnya di Shopee.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [
+      {
+        "media_id": 15738,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15733,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15736,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15737,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      }
+    ],
+    "mea_galeri": [
+      {
+        "media_id": 15738,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15733,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15736,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15737,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      },
+      {
+        "media_id": 15739,
+        "keterangan": "",
+        "alt": "Dokumentasi Sparepart Motor"
+      }
+    ],
+    "mea_kasus_lain": [
+      16144,
+      16160,
+      17555
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-sparepart-motor"
+  },
+  "catatan": [
+    "Nama brand: judul halaman 'Sparepart Motor' dan teks pembuka menyebut klien secara anonim, tetapi teks RESULT menyebut 'FIM Motor'. mea_brand dibiarkan 'Sparepart Motor' dan nama FIM Motor dihapus dari mea_hasil; pemilik perlu memutuskan apakah nama klien boleh ditampilkan.",
+    "GMV 'Rp 7,8 miliar' berasal dari counter 7.8 bersufiks 'Miliar' berjudul GMV; periode GMV ini tidak disebut. Counter traffic 1,15 juta dan kenaikan traffic 164% tidak dimasukkan karena batas 4 angka.",
+    "Periode 'Dua bulan' dari teks RESULT ('dalam waktu hanya 2 bulan'), tetapi teks yang sama membandingkan dengan 'tahun sebelumnya'; pembandingnya rancu, mohon dicek.",
+    "Daftar Services: Jasa Buka Toko Baru dan Optimasi Toko Shopee dipetakan ke Toko. 'Jasa Launching Produk' dan 'Jasa Traffic Shopee' tidak punya label baku sehingga tidak dimasukkan. Halaman juga menampilkan ROAS 11,4x dan bagian APPROACH membahas iklan Shopee, tetapi 'Jasa iklan' tidak ada di daftar Services; pertimbangkan menambah Iklan.",
+    "Semua gambar adalah screenshot tanpa alt_text, judul lampiran, atau link yang bermakna, sehingga alt diisi 'Dokumentasi Sparepart Motor'.",
+    "Gambar KOKO & CICI-18 (15633) di bagian Hubungi Kami dilewati karena bagian CTA umum agency."
+  ]
+}

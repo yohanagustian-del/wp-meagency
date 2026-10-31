@@ -73,6 +73,95 @@ function mea_orbit_motion_url( $path ) {
 }
 
 /**
+ * URL foto statis di tema, dengan versi tema sebagai query (alasan sama dengan
+ * mea_orbit_motion_url(): foto bisa diganti dengan nama berkas yang sama).
+ *
+ * @param string $path Path relatif di assets/foto/.
+ * @return string
+ */
+function mea_orbit_foto_url( $path ) {
+	return add_query_arg( 'v', MEA_ORBIT_VERSION, MEA_ORBIT_URI . '/assets/foto/' . ltrim( $path, '/' ) );
+}
+
+/**
+ * Lima foto realis proses kerja tim MEA (assets/foto/proses/), urut langkah:
+ * dipakai "Cara kami bekerja" di homepage dan sebagai foto cadangan samping
+ * cerita studi kasus yang belum punya foto sendiri.
+ *
+ * @return array<int, array{file:string, judul:string, alt:string}>
+ */
+function mea_orbit_proses_foto() {
+	return array(
+		array(
+			'file'  => 'langkah-1',
+			'judul' => __( 'Riset awal toko', 'mea-orbit' ),
+			'alt'   => __( 'Tim MEA Agency membaca laporan toko klien saat riset awal', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-2',
+			'judul' => __( 'Strategi tertulis', 'mea-orbit' ),
+			'alt'   => __( 'Pemilik bisnis menyetujui strategi tertulis bersama strategist MEA Agency', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-3',
+			'judul' => __( 'Rencana per periode', 'mea-orbit' ),
+			'alt'   => __( 'Tim menyusun rencana kerja bulanan dengan target mingguan', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-4',
+			'judul' => __( 'Eksekusi tim', 'mea-orbit' ),
+			'alt'   => __( 'Operator live dan host menjalankan siaran langsung di studio', 'mea-orbit' ),
+		),
+		array(
+			'file'  => 'langkah-5',
+			'judul' => __( 'Rekap mingguan', 'mea-orbit' ),
+			'alt'   => __( 'Account manager melaporkan rekap mingguan kepada klien', 'mea-orbit' ),
+		),
+	);
+}
+
+/**
+ * Klip siap tampil dari repeater video opsi Homepage. Baris tanpa poster atau
+ * tanpa video dilewati.
+ *
+ * @param array<int, array<string, mixed>> $rows     Baris repeater.
+ * @param string                           $alt_with Pola alt dengan %s untuk label.
+ * @param string                           $alt_none Alt bila label kosong.
+ * @return array<int, array<string, mixed>>
+ */
+function mea_orbit_konten_clips( $rows, $alt_with, $alt_none ) {
+	$clips = array();
+	foreach ( (array) $rows as $clip ) {
+		$poster_id = (int) ( $clip['poster'] ?? 0 );
+		$mp4       = (int) ( $clip['video_mp4'] ?? 0 ) ? (string) wp_get_attachment_url( (int) $clip['video_mp4'] ) : '';
+		$webm      = (int) ( $clip['video_webm'] ?? 0 ) ? (string) wp_get_attachment_url( (int) $clip['video_webm'] ) : '';
+		$label     = (string) ( $clip['label'] ?? '' );
+		$poster    = mea_orbit_img(
+			$poster_id,
+			'full',
+			array(
+				'alt'   => '' !== $label ? sprintf( $alt_with, $label ) : $alt_none,
+				'sizes' => '(max-width: 767px) 240px, 260px',
+			)
+		);
+		if ( '' === $poster || ( '' === $mp4 && '' === $webm ) ) {
+			continue;
+		}
+		$meta    = wp_get_attachment_metadata( $poster_id );
+		$link    = trim( (string) ( $clip['link'] ?? '' ) );
+		$clips[] = array(
+			'poster' => $poster,
+			'mp4'    => $mp4,
+			'webm'   => $webm,
+			'tall'   => ! empty( $meta['width'] ) && $meta['height'] / $meta['width'] > 1.5,
+			'label'  => $label,
+			'link'   => mea_orbit_url( '' !== $link ? $link : '/jasa-konten/' ),
+		);
+	}
+	return $clips;
+}
+
+/**
  * URL dari field: path relatif (/affiliate/) jadi URL situs, URL penuh dibiarkan.
  *
  * @param string $url URL atau path.

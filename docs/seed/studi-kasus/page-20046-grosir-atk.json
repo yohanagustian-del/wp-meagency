@@ -1,0 +1,72 @@
+{
+  "page_id": 20046,
+  "url": "/grosir-atk/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Grosir ATK Murah Bandung",
+    "mea_h1": "Grosir ATK Murah Bandung: GMV naik 10x dengan ROAS 32x",
+    "mea_kartu_judul": "Grosir ATK Murah Bandung: GMV naik 10x dengan ROAS 32x",
+    "mea_kartu_lede": "Pusat grosir alat tulis dan perlengkapan kantor di Bandung ini kami dampingi lewat iklan, bundling produk, dan momentum back to school. Hasilnya ROAS 32x, GMV naik 10x, dan pesanan naik 17x.",
+    "mea_kategori": "Alat tulis dan perlengkapan kantor",
+    "mea_kanal": "TikTok",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "32x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "10x",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "17x",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Pusat Grosir ATK 88 adalah toko alat tulis dan perlengkapan kantor/sekolah yang besar di Bandung. Selain toko fisik, toko ini hadir di Shopee dan Tokopedia dengan produk seperti buku tulis, pensil, cutter, hingga kertas foto dengan harga grosir.</p><p>Potensi produk dan permintaannya tinggi, tetapi ada beberapa tantangan. Meski iklan menyumbang lebih dari 60% omzet selama periode manajemen, conversion rate dari pengunjung ke pembelian masih rendah, sekitar 1,8%. Banyak pengunjung datang, tetapi belum cukup terdorong untuk menyelesaikan transaksi. Ketergantungan pada iklan berbayar juga masih sangat tinggi, sementara performa organik dari toko dan affiliate belum maksimal.</p><p>Karena itu, diperlukan funnel pembelian yang lebih efisien agar conversion rate membaik, sumber traffic organik yang lebih kuat lewat konten akun toko dan aktivasi affiliate, serta performa yang stabil dengan biaya per klik yang tetap efisien.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Manajemen budget yang adaptif.</strong> Menyesuaikan anggaran iklan secara fleksibel berdasarkan performa harian dan momen musiman seperti back to school agar budget terserap efektif.</li><li><strong>Optimalisasi produk unggulan.</strong> Fokus pada produk best seller seperti buku tulis dan alat tulis sekolah dengan kampanye yang disesuaikan, termasuk produk bundling untuk mendorong pembelian dalam jumlah lebih besar.</li><li><strong>Konten dan campaign TikTok.</strong> Memproduksi dan mengoptimalkan konten TikTok, baik internal maupun dari affiliate, untuk memperluas jangkauan organik dan memperkuat daya tarik visual produk.</li><li><strong>Bundling dan back to school.</strong> Menyusun paket bundling ekonomis dan premium sesuai kebutuhan konsumen sekolah, didukung visual dan promo toko yang relevan dengan momen back to school.</li><li><strong>Efisiensi bidding dan kata kunci.</strong> Mengevaluasi bidding secara berkala agar tetap kompetitif dan mengutamakan keyword yang berkonversi, dengan CPC yang terkendali.</li><li><strong>Aktivasi promo dan live.</strong> Mengaktifkan promo toko, affiliate, dan live secara konsisten untuk memperluas sumber traffic di luar iklan berbayar dan meningkatkan konversi.</li></ul>",
+    "mea_hasil": "<p>Dengan pendekatan yang terukur, performa toko meningkat signifikan. ROAS tumbuh berkali lipat dibanding periode sebelumnya, sehingga setiap biaya iklan menghasilkan omzet yang lebih maksimal. GMV meningkat drastis berkat strategi bundling produk dan momentum musiman seperti back to school, dan volume transaksi melonjak tajam lewat aktivasi iklan, optimasi konten, dan pemanfaatan fitur promosi.</p><p>Pendekatan yang konsisten dan adaptif tidak hanya meningkatkan performa iklan, tetapi juga memperkuat traffic organik dan daya saing toko di marketplace.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20160,
+      20176,
+      20204
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-grosir-atk",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Nama brand: judul halaman 'Grosir ATK Murah Bandung' (H1 lama salah ketik 'Grosik'), sedangkan paragraf pembuka menyebut nama toko 'Pusat Grosir ATK 88' / 'ATK 88'. mea_brand dibiarkan sesuai judul; pemilik perlu memilih nama yang dipakai.",
+    "Angka hanya dari counter (ROAS 32X, GMV 10X, PESANAN 17X; dua baris counter sama). Teks RESULT tidak menyebut angka. ROAS 32X sama persis dengan counter halaman Gogo Fashion, jadi mohon konfirmasi bukan sisa template.",
+    "Kanal: paragraf pembuka menyebut Shopee dan Tokopedia, tetapi layanan yang tercantum hanya 'Tiktok Ads' dan strategi menyebut konten TikTok. mea_kanal diisi 'TikTok'; cek apakah yang dikelola TikTok Shop, Shopee, atau keduanya.",
+    "Teks menyebut iklan menyumbang 'lebih dari 60%' omzet. Ini bukan porsi pasti, jadi mea_komposisi dibiarkan kosong.",
+    "Layanan 'Tiktok Ads' dipetakan ke Iklan. Strategi juga menyebut konten, affiliate, dan live, tetapi tidak tercantum di daftar Services sehingga tidak dimasukkan.",
+    "Periode pendampingan tidak disebut.",
+    "Satu-satunya gambar di halaman adalah media 15633 (KOKO-CICI-18.jpg, judul 'KOKO & CICI-18') di blok CTA 'Hubungi Kami' yang sama di semua halaman studi kasus; tidak dimasukkan ke foto_proses/galeri karena bukan dokumentasi kasus ini. Grid galeri (container 9a02e50) kosong. Perlu foto/aset kasus dari pemilik."
+  ]
+}

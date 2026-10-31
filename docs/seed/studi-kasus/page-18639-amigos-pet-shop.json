@@ -1,0 +1,78 @@
+{
+  "page_id": 18639,
+  "url": "/amigos-pet-shop/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Amigos Pet Shop",
+    "mea_h1": "Amigos Pet Shop: ROAS 19x dan GMV dari iklan naik 98%",
+    "mea_kartu_judul": "Amigos Pet Shop: ROAS 19x dan GMV dari iklan naik 98%",
+    "mea_kartu_lede": "Pet shop asal Makassar yang berdiri sejak 2008 ini punya lebih dari 5.000 produk dan budget iklan terbatas. Dengan kenaikan budget iklan Shopee 15%, ROAS mencapai 19x dan GMV dari iklan naik 98%.",
+    "mea_kategori": "Hewan peliharaan dan perlengkapannya",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "19x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "98%",
+        "label": "Kenaikan GMV dari iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "43,3%",
+        "label": "Kontribusi iklan terhadap total pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "69,4%",
+        "label": "Kenaikan rasio add to cart ke pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Amigos Pet Shop adalah toko online dan offline di Makassar yang berdiri sejak 2008, menjual hewan peliharaan beserta perlengkapannya dengan lebih dari 5.000 produk. Setelah lama berjualan offline, Amigos Pet Shop ingin meningkatkan visibilitas toko di marketplace, menjangkau pelanggan lama, dan mendapatkan pelanggan baru.</p><p>Dengan katalog sebesar itu, tantangannya adalah menambah jumlah item per pesanan (Average Order Value dan add to cart) agar menjadi pilihan utama untuk setiap kebutuhan hewan di Makassar, dengan budget iklan yang terbatas tetapi tetap bisa scale up.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Riset kompetitor dan tren.</strong> Analisis kompetitor dan riset tren pencarian untuk memahami pola belanja pelanggan serta menentukan strategi harga yang kompetitif.</li><li><strong>Optimasi produk.</strong> Produk dengan permintaan tinggi diidentifikasi dan dioptimalkan dengan judul SEO-friendly, foto berkualitas, dan deskripsi lengkap untuk meningkatkan peringkat pencarian.</li><li><strong>Iklan Shopee terarah.</strong> Iklan Shopee dengan targeting yang tepat, optimasi kata kunci, dan evaluasi ROAS berkala untuk meningkatkan efektivitas kampanye.</li><li><strong>Evaluasi harian.</strong> Kinerja iklan dievaluasi setiap hari untuk memastikan efektivitas dan mencari peluang penjualan yang lebih tinggi.</li></ul>",
+    "mea_hasil": "<p>Dengan budget yang terbatas, MEA menyarankan kenaikan budget iklan Shopee sebesar 15%, dan hasilnya sangat signifikan:</p><ul><li>ROAS 19x.</li><li>GMV melalui iklan naik 98%.</li><li>Iklan menyumbang 43,3% dari total pesanan (dibanding organik, live, dan affiliate).</li><li>Rasio add to cart ke pesanan naik 69,4%, menunjukkan kategorisasi dan optimasi produk unggulan berhasil menaikkan performa iklan dan toko secara keseluruhan.</li></ul><p>Dengan strategi yang terukur, Amigos Pet Shop bisa scale up dan meningkatkan visibilitas dengan budget yang terbatas.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18640,
+      18653,
+      18659
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-amigos-pet-shop",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Teks halaman menulis \"Amigos Petshop\", judul halaman \"Amigos Pet Shop\"; mea_brand memakai judul halaman.",
+    "Counter TRAFFIC 75% tidak dijelaskan di teks Result; tidak dimasukkan ke mea_angka (diganti 43,3% dan 69,4% yang ada di teks). Tambahkan bila perlu.",
+    "Kalimat sumber \"Memberikan kontribusi 43,3% dari seluruh total pesanan (organik, live dan affiliate) melalui iklan\" agak ambigu; ditafsirkan sebagai porsi iklan 43,3% dari total pesanan. mea_komposisi dibiarkan kosong karena porsi sisi lain tidak disebut eksplisit; bisa diisi Iklan 43 / lainnya 57 bila pemilik setuju.",
+    "Daftar Services di halaman hanya berisi \"Jasa iklan Shopee\", jadi mea_layanan hanya Iklan.",
+    "Periode pendampingan tidak disebut.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}

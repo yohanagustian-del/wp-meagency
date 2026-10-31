@@ -1,0 +1,71 @@
+{
+  "page_id": 18733,
+  "url": "/feyrely/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Feyrely",
+    "mea_h1": "Feyrely: ROAS iklan Shopee 13x",
+    "mea_kartu_judul": "Feyrely: ROAS iklan Shopee 13x",
+    "mea_kartu_lede": "Brand kosmetik dan skincare bersertifikat BPOM dan Halal ini mengandalkan iklan Shopee yang dikelola bertahap. ROAS naik lebih dari 10x dan omzet dari iklan hampir tiga kali lipat.",
+    "mea_kategori": "Kosmetik dan skincare",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "13x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "203x",
+        "label": "Omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "407x",
+        "label": "Pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Feyrely adalah brand kosmetik dan skincare bersertifikat BPOM dan Halal dengan tagline \"super lightweight, super comfy\". Sejak berdiri pada 2021, Feyrely membuat produk yang ringan dan nyaman untuk iklim tropis. Produk terlarisnya, Fresh Dew Tint dan Ultimate Lip Cream, sudah terjual lebih dari 7.000 pcs dengan rating 4,9 di Shopee, dari lebih dari 47.000 penilaian untuk seluruh produknya.</p><p>Sebagai brand yang memproduksi sendiri, Feyrely unggul dalam kontrol kualitas dan identitas produk. Tantangan utamanya adalah mengubah tingginya traffic dari iklan menjadi penjualan yang lebih stabil. Sebagian besar calon pembeli masih membutuhkan edukasi produk sebelum membeli.</p><p>Karena Feyrely adalah private label, brand awareness sangat penting untuk membangun kepercayaan konsumen. MEA perlu menjaga konsistensi konten di Shopee Video dan Live sebagai saluran edukasi, serta memadukan promosi di luar marketplace seperti iklan Meta/Facebook untuk menjangkau audiens yang lebih luas dan tertarget. Strategi jangka panjangnya adalah memperkuat funnel edukasi hingga pembelian, agar pertumbuhan tidak hanya bergantung pada iklan berbayar.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Iklan bertahap.</strong> Dimulai dari peningkatan traffic lewat iklan pencarian dan iklan serupa, lalu fokus ke konversi melalui pemilihan kata kunci spesifik dan evaluasi ROAS setiap minggu.</li><li><strong>Efisiensi anggaran.</strong> Produk berperforma baik dipertahankan dan dinaikkan budgetnya, sementara produk dan kata kunci dengan ROAS rendah dinonaktifkan.</li><li><strong>Persiapan event besar.</strong> Menjelang 9.9 dan payday sale, fitur live streaming, chat broadcast, dan flash sale diaktifkan untuk menangkap traffic tinggi.</li><li><strong>Konten dan traffic eksternal.</strong> Promosi didukung konten di Shopee Video dan media sosial, serta traffic eksternal dari TikTok untuk memperluas eksposur brand.</li><li><strong>Evaluasi mingguan.</strong> Perbaikan deskripsi produk, pemantauan stok, dan tanggapan terhadap ulasan untuk menjaga rating toko dan kepercayaan pelanggan.</li></ul>",
+    "mea_hasil": "<p>Dengan funnel yang terstruktur dan pengelolaan iklan yang terukur:</p><ul><li>ROAS meningkat lebih dari 10x.</li><li>Omzet dari iklan naik hampir tiga kali lipat dibanding periode sebelumnya.</li><li>Jumlah produk terjual naik drastis, sejalan dengan peningkatan klik dan konversi.</li></ul><p>Investasi iklan Feyrely tidak hanya menaikkan traffic, tetapi berdampak langsung pada penjualan dan efisiensi anggaran.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18738,
+      19926,
+      19936
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-feyrely",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Angka counter tidak konsisten dengan teks: counter \"Omset 203X\", sedangkan teks hasil menyebut omzet dari iklan naik \"hampir 3 kali lipat\". Kemungkinan maksudnya 203% (bukan 203x). Ditulis apa adanya \"203x\"; mohon dicek pemilik sebelum terbit.",
+    "Counter 407X berlabel \"Pesanan\" di blok atas tetapi \"Traffic\" di blok bawah; dipakai label \"Pesanan\". Satuan X juga meragukan (mungkin %). Perlu dicek.",
+    "ROAS 13x dari counter; teks hanya menyebut \"meningkat lebih dari 10x\". h1 memakai 13x.",
+    "Periode pendampingan tidak disebut. Kanal utama Shopee; teks juga menyebut traffic eksternal dari TikTok dan rencana iklan Meta/Facebook, tetapi tidak sebagai kanal toko.",
+    "Layanan dari daftar Services: \"Jasa iklan Shopee\" -> Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "page_id": 18640,
+  "url": "/mister-cable/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Mister Cable",
+    "mea_h1": "Mister Cable: ROAS 12x dalam tiga bulan",
+    "mea_kartu_judul": "Mister Cable: ROAS 12x dalam tiga bulan",
+    "mea_kartu_lede": "Toko kabel dan aksesoris elektronik di Shopee dengan nilai belanja per pembeli yang kecil. Dalam tiga bulan pengelolaan iklan yang lebih fokus, ROAS naik menjadi 12x dan omzet dari iklan naik dua kali lipat.",
+    "mea_kategori": "Kabel dan aksesoris elektronik",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Tiga bulan",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "12x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "2x",
+        "label": "Kenaikan omzet dari iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "108%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "114%",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Mister Cable adalah toko online yang menyediakan kabel dan aksesoris elektronik berkualitas, seperti kabel data, kabel charger, konektor, dan adaptor, dengan koleksi lengkap dan harga terjangkau.</p><p>Performa iklannya sudah bagus, tetapi kategori kabel dan aksesoris elektronik sangat ramai dan kompetitif; banyak toko lain menawarkan produk serupa dengan harga lebih murah. Dibutuhkan strategi agar Mister Cable tetap menjadi pilihan utama saat orang mencari produk ini.</p><p>Karena harga produk relatif rendah, nilai belanja per pembeli juga kecil. Tantangannya adalah mendorong pembeli menambah lebih banyak produk ke keranjang agar penjualan naik, sambil menjaga iklan tetap efisien. Promosi dan awareness juga perlu terus berjalan agar traffic dan konversi tetap stabil.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Riset pasar.</strong> Riset volume dan tren kata kunci untuk melihat persaingan di kategori dengan pencarian tertinggi di Shopee, riset produk terlaris di kategori untuk memaksimalkan kuantitas saat iklan berjalan, riset rentang harga dibanding kompetitor, serta riset kata kunci dengan penjualan tertinggi untuk merumuskan rekomendasi keyword bagi Mister Cable.</li><li><strong>Optimasi dan penyesuaian tipe iklan.</strong> Menonaktifkan iklan produk yang performanya kurang dan mengganti metode iklan menjadi manual agar biaya lebih efisien dan hasil lebih maksimal.</li><li><strong>Aktivasi fitur pendukung.</strong> Voucher toko, voucher follow, dan chat broadcast untuk mendorong pembelian, meningkatkan loyalitas, dan menjaga interaksi dengan calon pembeli.</li></ul>",
+    "mea_hasil": "<p>Dalam tiga bulan sejak penerapan manajemen iklan yang lebih fokus dan metode manual pada produk yang kurang optimal, Mister Cable menunjukkan peningkatan signifikan:</p><ul><li>ROAS meningkat menjadi 12x</li><li>Omzet dari iklan naik dua kali lipat</li><li>Pesanan naik lebih dari 76%</li></ul><p>Lewat Shopee Ads bersama MEA, performa Mister Cable tetap stabil dan bertumbuh, dengan iklan yang tetap efisien meski nilai transaksi per pembeli cenderung kecil.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18653,
+      18659,
+      18668
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-mister-cable"
+  },
+  "catatan": [
+    "Angka pesanan tidak konsisten: counter menampilkan Pesanan 114%, sedangkan teks RESULT menyebut 'pesanan naik lebih dari 76%'. Keduanya dipertahankan apa adanya (114% di mea_angka, 76% di mea_hasil); pemilik perlu memastikan angka yang benar.",
+    "Angka '2x' berasal dari teks 'omset dari iklan naik dua kali lipat'.",
+    "Tidak ada gambar dokumentasi kasus di halaman (grid galeri kosong); satu-satunya gambar adalah KOKO & CICI-18 (15633) di bagian Hubungi Kami, dilewati. mea_foto_proses dan mea_galeri kosong.",
+    "Teks APPROACH asli berakhir dengan potongan rusak ('interaksi dengan calon pembeli.\" dijalani nantinya'); bagian duplikat itu dibuang."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "page_id": 18659,
+  "url": "/nuna-the-label/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Nuna The Label",
+    "mea_h1": "Nuna The Label: iklan menyumbang lebih dari separuh penjualan",
+    "mea_kartu_judul": "Nuna The Label: iklan menyumbang lebih dari separuh penjualan",
+    "mea_kartu_lede": "Brand fashion lokal ini ingin menumbuhkan penjualan marketplace lewat iklan berbayar. Dalam kurang dari dua tahun, iklan menyumbang lebih dari separuh penjualan dengan ROAS stabil di atas 3x.",
+    "mea_kategori": "Fashion wanita",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Kurang dari dua tahun",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": ">50%",
+        "label": "Kontribusi iklan terhadap penjualan dan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": ">3x",
+        "label": "ROAS stabil",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "40%",
+        "label": "Kenaikan traffic toko",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "13x",
+        "label": "Pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Nuna The Label adalah merek fashion lokal dengan koleksi gaun musim panas klasik yang feminin dan elegan, tersedia dalam berbagai ukuran termasuk plus size dan custom size.</p><p>Performa organik dan KOL-nya sudah cukup baik, dan brand ingin mendorong penjualan di marketplace lewat iklan berbayar. Sebelumnya iklan berjalan dengan anggaran terbatas dan konversi yang belum optimal, sehingga dibutuhkan strategi iklan yang lebih terarah dan efisien agar setiap anggaran memberi hasil maksimal di tengah ketatnya kompetisi pasar fashion.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Fokus produk laris.</strong> Anggaran iklan dimaksimalkan untuk produk yang terbukti laris, dan produk yang kurang perform diganti agar iklan lebih efektif.</li><li><strong>Evaluasi mingguan.</strong> Kata kunci dan pengaturan iklan dievaluasi setiap minggu, dan strategi disesuaikan dengan hasil serta tren yang muncul.</li><li><strong>Alokasi anggaran.</strong> Anggaran dialihkan ke jenis iklan yang paling banyak menghasilkan penjualan.</li><li><strong>Promo pendukung.</strong> Iklan dilengkapi promo seperti voucher dan bundling agar calon pembeli terdorong checkout.</li><li><strong>Traffic dari luar Shopee.</strong> Brand didorong aktif di media sosial dengan konten video dan affiliate.</li></ul>",
+    "mea_hasil": "<ul><li><strong>Traffic toko naik hingga 40%.</strong> Selama kerja sama kurang dari dua tahun, traffic toko naik secara konsisten lewat strategi iklan dan optimasi konten.</li><li><strong>Iklan menyumbang lebih dari 50% penjualan dan pesanan.</strong> Iklan menjadi pendorong utama, dengan kontribusi lebih dari separuh total omzet dan pesanan toko.</li><li><strong>ROAS stabil di atas 3x.</strong> Setiap rupiah iklan menghasilkan lebih dari tiga kali lipat pendapatan.</li><li><strong>Produk unggulan tumbuh pesat.</strong> Produk seperti LEAH Dress dan Soe Dress mencatat konversi tinggi dan kenaikan signifikan di keranjang.</li></ul>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18668,
+      18678,
+      18683
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-nuna-the-label"
+  },
+  "catatan": [
+    "PENTING, angka di halaman saling bertentangan: counter atas ROAS 9X, counter bawah ROAS 29X, teks RESULT \"ROAS stabil di atas 3x\". Counter 209% berjudul \"Omset\" di atas dan \"Traffic\" di bawah, sedangkan teks menyebut traffic naik hingga 40%. mea_angka memakai angka dari teks (>3x, 40%, >50%); konfirmasi angka yang benar ke pemilik.",
+    "\"13x Pesanan\" diambil dari counter (konsisten di kedua blok) tetapi tidak dibahas di teks; maknanya (kenaikan pesanan?) perlu dikonfirmasi.",
+    "Judul halaman mengandung karakter tak terlihat (zero-width space) setelah \"Label\"; sudah dibuang di mea_brand.",
+    "Kontribusi iklan \"lebih dari 50%\" tidak dijadikan mea_komposisi karena porsinya tidak eksak.",
+    "Poin RESULT \"Rutin evaluasi berkala\" (evaluasi mingguan) dipindah ke mea_dikerjakan karena berupa proses, bukan hasil.",
+    "Daftar Services di halaman hanya \"Jasa iklan Shopee\" sehingga mea_layanan hanya Iklan; teks strategi juga menyebut voucher, bundling, konten video, media sosial, dan affiliate (sebagai dorongan ke brand). Cek apakah layanan lain ikut dikerjakan MEA.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", KOKO-CICI-18.jpg) di blok CTA generik \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu aset dari pemilik."
+  ]
+}

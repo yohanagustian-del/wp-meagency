@@ -202,6 +202,87 @@ a {
 	color: var(--ink);
 }
 
+/* Dropdown pilar layanan (desktop). Tanpa JavaScript: terbuka saat hover dan
+   saat fokus keyboard berada di dalam pilar (:focus-within). */
+.nav .menu > li {
+	position: relative;
+}
+
+.nav .menu > li > a {
+	white-space: nowrap;
+}
+
+.nav .menu-item-has-children > a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.nav .menu-item-has-children > a::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: translateY(-2px) rotate(45deg);
+}
+
+.nav .sub-menu {
+	position: absolute;
+	left: -14px;
+	top: calc(100% + 14px);
+	z-index: 30;
+	min-width: 240px;
+	list-style: none;
+	margin: 0;
+	padding: 8px;
+	display: grid;
+	background: var(--white);
+	border: 1px solid var(--line);
+	border-radius: 14px;
+	box-shadow: 0 12px 32px rgba(26, 26, 26, .08);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(4px);
+	transition: opacity .15s ease, transform .15s ease, visibility 0s linear .15s;
+}
+
+/* Jembatan hover antara pilar dan panel. */
+.nav .sub-menu::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -16px;
+	height: 16px;
+}
+
+.nav .menu > li:hover > .sub-menu,
+.nav .menu > li:focus-within > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition-delay: 0s;
+}
+
+.nav .sub-menu a {
+	display: block;
+	padding: 9px 12px;
+	border-radius: 8px;
+	white-space: nowrap;
+}
+
+.nav .sub-menu a:hover,
+.nav .sub-menu a:focus-visible {
+	background: var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nav .sub-menu {
+		transition: none;
+	}
+}
+
 .head-actions {
 	display: flex;
 	align-items: center;
@@ -245,7 +326,9 @@ a {
 	position: absolute;
 	right: 0;
 	top: calc(100% + 12px);
-	min-width: 220px;
+	min-width: 260px;
+	max-height: calc(100svh - 110px);
+	overflow-y: auto;
 	background: var(--white);
 	border: 1px solid var(--line);
 	border-radius: 14px;
@@ -268,7 +351,25 @@ a {
 	background: var(--paper);
 }
 
-@media (max-width: 900px) {
+/* Menu HP: anak pilar selalu tampil, terindentasi di bawah pilarnya. */
+.nav-sm .menu-item-has-children > a {
+	font-weight: 600;
+	color: var(--ink);
+}
+
+.nav-sm .sub-menu {
+	list-style: none;
+	margin: 0 0 6px;
+	padding: 0 0 0 12px;
+	display: grid;
+}
+
+.nav-sm .sub-menu a {
+	padding-block: 8px;
+	font-size: .9rem;
+}
+
+@media (max-width: 1180px) {
 	.nav {
 		display: none;
 	}
@@ -310,8 +411,26 @@ a {
 
 .site-foot .cols {
 	display: grid;
-	grid-template-columns: 1.3fr 1fr 1fr 1fr;
+	grid-template-columns: 1.2fr 2fr 1fr 1fr;
 	gap: 40px;
+}
+
+/* Kolom Layanan: empat pilar dengan anaknya (struktur sama dengan header). */
+.foot-pilar {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px 32px;
+}
+
+.site-foot .foot-pilar-h {
+	display: inline-block;
+	color: var(--paper);
+	font-weight: 500;
+	margin-bottom: 8px;
+}
+
+.site-foot .foot-h-next {
+	margin-top: 24px;
 }
 
 .site-foot .brand {

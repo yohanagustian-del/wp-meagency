@@ -1,0 +1,70 @@
+{
+  "page_id": 18710,
+  "url": "/nuku-id/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Nuku.id",
+    "mea_h1": "Nuku.id: ROAS 9,1x dan omzet iklan naik 185% dalam sebulan",
+    "mea_kartu_judul": "Nuku.id: ROAS 9,1x dan omzet iklan naik 185% dalam sebulan",
+    "mea_kartu_lede": "Brand fashion muslim ini punya trafik tinggi di Shopee, tetapi konversi klik ke pembelian masih di bawah 2%. Dalam satu bulan, ROAS naik ke 9,1x dan omzet dari iklan naik 185%.",
+    "mea_kategori": "Fashion muslim",
+    "mea_kanal": "Shopee",
+    "mea_periode": "Satu bulan",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "9,1x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "185%",
+        "label": "Kenaikan omzet dari iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "193%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Nuku.id adalah brand fashion muslim yang menawarkan pakaian modest dengan desain kasual dan modern, tersedia di platform online seperti Shopee dengan koleksi variatif dan harga kompetitif.</p><p>Meski trafik dan visibilitasnya tinggi, tingkat konversi dari klik ke pembelian masih di bawah 2%, sehingga banyak pengunjung belum terdorong untuk checkout. Tantangan lainnya adalah menjaga efisiensi biaya iklan dan memaksimalkan ROAS, sambil mendorong Average Order Value (AOV) dan mengoptimalkan momen besar seperti event Shopee. Konsistensi stok dan konten promosi juga penting agar potensi pembelian tidak hilang.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Penyesuaian kata kunci.</strong> Hanya menarget kata kunci yang efektif menghasilkan penjualan untuk menghindari pemborosan.</li><li><strong>Budget ke produk unggulan.</strong> Produk dengan ROAS tinggi dan kontribusi signifikan terhadap GMV mendapat tambahan budget.</li><li><strong>GMV Max dan Ads Manager.</strong> Gabungan iklan GMV Max untuk produk unggulan dan Ads Manager (manual) untuk kontrol lebih presisi dan testing.</li><li><strong>Seleksi kampanye.</strong> Kampanye yang stagnan dihentikan, sedangkan yang performanya meningkat dioptimalkan lebih lanjut.</li><li><strong>Fokus efisiensi.</strong> Setelah traffic stabil, strategi diarahkan untuk meningkatkan ROAS dengan mengutamakan efisiensi biaya per penjualan.</li></ul>",
+    "mea_hasil": "<p>Dengan pendekatan terukur selama satu bulan:</p><ul><li>ROAS naik ke 9,1x, menandakan efisiensi biaya iklan yang sangat baik.</li><li>Omzet dari iklan meningkat 185% dibanding sebelum kerja sama dengan MEA.</li><li>Produk terjual naik signifikan, seiring pertumbuhan klik dengan biaya per klik (CPC) yang sangat rendah.</li></ul><p>Strategi iklan ini tidak hanya mendatangkan traffic berkualitas, tetapi juga mengubah minat menjadi penjualan nyata secara efisien.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18715,
+      18723,
+      18728
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-nuku-id",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Counter ROAS 9x, teks Result 9.10x; mea_angka memakai \"9,1x\".",
+    "Angka 193% (produk terjual) hanya ada di counter; teks Result hanya menyebut \"naik signifikan\".",
+    "mea_periode \"Satu bulan\" dari kalimat \"selama satu bulan terakhir\"; bulan/tahun tidak disebut.",
+    "Daftar Services di halaman hanya berisi \"Jasa iklan Shopee\", jadi mea_layanan hanya Iklan.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}

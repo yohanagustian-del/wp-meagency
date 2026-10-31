@@ -263,6 +263,24 @@ function mea_orbit_field_defs() {
 				),
 			),
 		),
+		'galeri'         => array(
+			'type'   => 'repeater',
+			'label'  => __( 'Galeri (foto produk, toko, hasil; kosong = section tidak tampil)', 'mea-orbit' ),
+			'fields' => array(
+				'media_id'   => array(
+					'type'  => 'media',
+					'label' => __( 'Foto', 'mea-orbit' ),
+				),
+				'keterangan' => array(
+					'type'  => 'text',
+					'label' => __( 'Keterangan', 'mea-orbit' ),
+				),
+				'alt'        => array(
+					'type'  => 'text',
+					'label' => __( 'Alt (kosong = alt di Media Library)', 'mea-orbit' ),
+				),
+			),
+		),
 		'kasus_lain'     => array(
 			'type'  => 'pages',
 			'label' => __( 'Studi kasus lain (ID halaman, dipisah koma)', 'mea-orbit' ),

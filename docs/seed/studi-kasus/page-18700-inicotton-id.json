@@ -1,0 +1,79 @@
+{
+  "page_id": 18700,
+  "url": "/inicotton-id/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "iniCotton",
+    "mea_h1": "iniCotton: omset naik lebih dari 14x dengan ROAS 9x",
+    "mea_kartu_judul": "iniCotton: omset naik lebih dari 14x dengan ROAS 9x",
+    "mea_kartu_lede": "Brand tisu wajah dari kapas murni ini perlu mengubah traffic yang tinggi menjadi pembelian. Dalam waktu singkat, traffic naik hampir 15x dan omset toko naik lebih dari 14x.",
+    "mea_kategori": "Tisu wajah kapas sekali pakai",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "14x",
+        "label": "Kenaikan omset",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "9x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "1.492%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "12x",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>iniCotton adalah brand tisu wajah sekali pakai dari 100% kapas murni yang menyebut dirinya yang pertama di Indonesia, dirancang sebagai pengganti handuk. Lewat kolaborasi dengan selebriti dan ratusan influencer, iniCotton menjadi brand nomor satu di kategorinya.</p><p>Volume pencarian dan traffic untuk produk sejenis tinggi, sehingga fokusnya adalah mengubah pengunjung menjadi pembeli: meningkatkan efektivitas iklan, mengantisipasi penurunan performa setelah event besar, dan mempersiapkan momentum penjualan seperti Natal, Tahun Baru, dan Lebaran.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Evaluasi awal.</strong> Mengevaluasi performa toko, tren pasar, dan kompetitor untuk melihat potensi dan tantangan utama.</li><li><strong>Optimasi listing.</strong> Judul, foto, dan deskripsi produk berpotensi tinggi dioptimalkan agar lebih menarik dan muncul di hasil pencarian.</li><li><strong>Iklan berbasis data.</strong> Targeting fokus pada keyword potensial, dengan evaluasi rutin untuk menjaga efisiensi dan ROAS tetap tinggi.</li><li><strong>Iklan, live, dan affiliate.</strong> Ketiganya dikombinasikan untuk menjaga arus pengunjung dan mengubahnya menjadi pembelian, terutama di momen penjualan besar.</li></ul>",
+    "mea_hasil": "<p>Setelah berkolaborasi dengan MEA, iniCotton mencatat peningkatan performa yang signifikan dalam waktu singkat:</p><ul><li>Traffic naik hampir 15x lipat.</li><li>Produk terjual naik lebih dari 12x lipat.</li><li>Omset toko naik lebih dari 14x, berkat strategi optimasi, pemilihan produk unggulan, dan pendekatan kreatif dalam iklan.</li><li>Biaya iklan tetap terkendali meski performa naik tajam, sehingga konversi traffic menjadi pembelian jauh lebih efisien.</li></ul><p>Fondasi ini menjadi bekal untuk menyambut momen besar seperti Lebaran dan Natal dengan skala pertumbuhan yang lebih tinggi.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18705,
+      18710,
+      18715
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-inicotton-id"
+  },
+  "catatan": [
+    "Nama brand: judul halaman \"inicotton.id\", teks memakai \"iniCotton\". mea_brand diisi \"iniCotton\"; konfirmasi bila ingin memakai \"inicotton.id\".",
+    "Counter \"14X\" berjudul \"Lebih banyak untuk produk terjual\", sedangkan teks menyebut produk terjual naik lebih dari 12x dan omset naik lebih dari 14x. mea_angka mengikuti teks (omset 14x, produk terjual 12x); konfirmasi.",
+    "Counter traffic 1492% (ditulis \"1.492%\") selaras dengan teks \"hampir 15x lipat\".",
+    "Kanal: teks tidak menyebut marketplace; \"Shopee\" diambil dari daftar Services (Jasa iklan Shopee). Periode hanya \"dalam waktu singkat\", jadi mea_periode kosong.",
+    "Klaim \"pertama di Indonesia\" dan \"nomor satu di kategorinya\" berasal dari halaman (klaim brand); cek apakah layak dipertahankan.",
+    "Daftar Services di halaman hanya \"Jasa iklan Shopee\" sehingga mea_layanan hanya Iklan; teks strategi juga menyebut optimasi listing (judul, foto, deskripsi), live, dan affiliate. Cek apakah layanan lain ikut dikerjakan MEA.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", KOKO-CICI-18.jpg) di blok CTA generik \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu aset dari pemilik."
+  ]
+}

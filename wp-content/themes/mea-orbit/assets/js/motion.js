@@ -2,9 +2,10 @@
  * Motion MEA Orbit (docs/motion/00-peta-motion.md, PLAN bagian 8 dan 9).
  *
  * Satu modul tanpa library, dimuat dengan defer hanya di halaman Orbit.
- * - M1 hero dan M3 cara kerja: satu komponen scroll-scrub (canvas + rAF).
+ * - M1 hero: komponen scroll-scrub (canvas + rAF).
+ * - M3 cara kerja: crossfade foto mengikuti langkah aktif.
+ * - Studi kasus: foto samping cerita berganti mengikuti bagian yang dibaca.
  * - Mockup HP "Konten": video bisu diputar saat terlihat.
- * - M2 enam sisi: loop video per kartu layanan.
  * - M4 Kurva Bellarosa: diputar sekali saat 60% terlihat, menahan frame akhir.
  * - Motion kode: hitung naik, reveal, teks per baris, garis, penanda bab.
  *
@@ -132,7 +133,7 @@
 	}
 
 	/**
-	 * Komponen scroll-scrub tunggal untuk M1 dan M3.
+	 * Komponen scroll-scrub (dipakai M1).
 	 *
 	 * Canvas diletakkan di atas poster dan baru terlihat setelah frame pertama
 	 * tergambar, jadi poster (gambar LCP) tidak pernah diganti layar kosong.
@@ -298,17 +299,18 @@
 	}
 
 	/**
-	 * M3 · cara kerja. Kotak sticky + lima langkah.
+	 * M3 · cara kerja. Kotak sticky berisi satu foto per langkah; foto langkah
+	 * aktif tampil (crossfade di CSS, tanpa fade saat reduced motion).
 	 *
 	 * progress diukur dari garis acuan (tengah layar; di HP tengah area di bawah
-	 * kotak sticky) terhadap blok langkah pertama sampai terakhir. Dengan
-	 * padding-block 50svh ini sama persis dengan rumus README M3; dengan padding
-	 * tema, langkah k tetap berada di garis acuan saat frame 15 + 30k.
+	 * kotak sticky) terhadap blok langkah pertama sampai terakhir. Pergantian
+	 * juga berjalan saat lite (reduced motion, Hemat Data): hanya class yang pindah.
 	 */
 	function proses() {
 		each( document.querySelectorAll( '[data-motion="proses"]' ), function ( wrap ) {
 			var box = wrap.querySelector( '.proses-visual' );
 			var steps = wrap.querySelectorAll( '.steps > li' );
+			var pics = box ? box.querySelectorAll( '.proses-stack picture' ) : [];
 			if ( ! box || ! steps.length ) {
 				return;
 			}
@@ -322,7 +324,8 @@
 				return clamp( ( line - first.top ) / Math.max( 1, last.bottom - first.top ), 0, 1 );
 			};
 
-			// Langkah aktif = min(4, floor(frame150 / 30)), juga saat reduced motion (tanpa animasi).
+			// Langkah aktif: blok progress dibagi rata per langkah (rumus 150 frame lama
+			// dipertahankan supaya titik ganti langkah tidak bergeser).
 			var active = -1;
 			var stepRaf = 0;
 			var mark = function () {
@@ -331,6 +334,9 @@
 				if ( k !== active ) {
 					each( steps, function ( li, i ) {
 						li.classList.toggle( 'is-active', i === k );
+					} );
+					each( pics, function ( pic, i ) {
+						pic.classList.toggle( 'is-active', i === k );
 					} );
 					active = k;
 				}
@@ -341,23 +347,6 @@
 				}
 			}, { passive: true } );
 			mark();
-
-			if ( lite ) {
-				return;
-			}
-			var player = scrub( {
-				box: box,
-				dir: cfg.base + 'proses/frames/' + ( mobile ? 'mobile/' : 'desktop/' ),
-				count: mobile ? 75 : 150,
-				size: mobile ? 800 : 1200,
-				// HP: tiap frame kedua supaya total homepage ≤ 2,5 MB setelah mockup
-				// Konten ditambahkan (docs/motion/03: "mobile may use every second frame").
-				stride: mobile ? 2 : 1,
-				progress: progress,
-			} );
-			afterLoad( function () {
-				whenNear( wrap, player.load );
-			} );
 		} );
 	}
 
@@ -387,67 +376,6 @@
 			video.appendChild( source );
 		} );
 		return video;
-	}
-
-	/**
-	 * M2 · enam sisi. Desktop: putar saat hover/focus kartu, selesaikan satu
-	 * siklus saat keluar. HP: putar saat 60% terlihat. currentTime tidak pernah
-	 * direset: frame akhir sama dengan poster.
-	 */
-	function sisi() {
-		var tiles = document.querySelectorAll( '[data-motion="sisi"]' );
-		if ( ! tiles.length || lite ) {
-			return;
-		}
-		var hover = media( '(hover: hover) and (pointer: fine)' );
-		var start = function ( video ) {
-			video.loop = true;
-			var p = video.play();
-			if ( p ) {
-				p.catch( function () {} );
-			}
-		};
-		var finish = function ( video ) {
-			video.loop = false;
-		};
-		var io = hover ? null : new IntersectionObserver( function ( entries ) {
-			entries.forEach( function ( e ) {
-				( e.isIntersecting ? start : finish )( e.target );
-			} );
-		}, { threshold: 0.6 } );
-
-		afterLoad( function () {
-			whenNear( tiles[ 0 ].closest( 'section' ) || tiles[ 0 ], function () {
-				each( tiles, function ( tile ) {
-					var name = tile.getAttribute( 'data-loop' ) || '';
-					var img = tile.querySelector( 'img' );
-					if ( ! /^[a-z0-9-]+$/.test( name ) || ! img ) {
-						return;
-					}
-					var video = silentVideo( cfg.base + 'sisi/' + name, 480, 480 );
-					video.poster = img.currentSrc || img.src;
-					tile.replaceChild( video, img );
-
-					if ( io ) {
-						io.observe( video );
-						return;
-					}
-					var card = tile.closest( 'a' ) || tile;
-					card.addEventListener( 'pointerenter', function () {
-						start( video );
-					} );
-					card.addEventListener( 'pointerleave', function () {
-						finish( video );
-					} );
-					card.addEventListener( 'focus', function () {
-						start( video );
-					} );
-					card.addEventListener( 'blur', function () {
-						finish( video );
-					} );
-				} );
-			} );
-		} );
 	}
 
 	/**
@@ -769,12 +697,49 @@
 		mark();
 	}
 
+	/**
+	 * Studi kasus · foto samping cerita. Foto aktif = bagian cerita yang sedang
+	 * dibaca: progress garis tengah layar terhadap .story-body dibagi rata per
+	 * foto. Juga berjalan saat lite (hanya class yang pindah; fade dimatikan CSS).
+	 * Di HP semua foto tampil sebagai grid, class tidak berpengaruh.
+	 */
+	function ceritaFoto() {
+		each( document.querySelectorAll( '[data-motion="cerita-foto"]' ), function ( side ) {
+			var story = side.closest( '.story' );
+			var body = story && story.querySelector( '.story-body' );
+			var figs = side.querySelectorAll( '.story-stack > .photo' );
+			if ( ! body || figs.length < 2 ) {
+				return;
+			}
+			var active = 0;
+			var raf = 0;
+			var mark = function () {
+				raf = 0;
+				var rect = body.getBoundingClientRect();
+				var progress = clamp( ( window.innerHeight / 2 - rect.top ) / Math.max( 1, rect.height ), 0, 1 );
+				var k = Math.min( figs.length - 1, Math.floor( progress * figs.length ) );
+				if ( k !== active ) {
+					each( figs, function ( fig, i ) {
+						fig.classList.toggle( 'is-active', i === k );
+					} );
+					active = k;
+				}
+			};
+			window.addEventListener( 'scroll', function () {
+				if ( ! raf ) {
+					raf = window.requestAnimationFrame( mark );
+				}
+			}, { passive: true } );
+			mark();
+		} );
+	}
+
 	reveals();
 	counters();
 	chapters();
+	ceritaFoto();
 	hero();
 	proses();
-	sisi();
 	konten();
 	bellarosa();
 }() );

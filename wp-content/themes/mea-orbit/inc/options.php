@@ -1,6 +1,6 @@
 <?php
 /**
- * Opsi "Homepage MEA" dan daftar kutipan Yohan (Tampilan → Homepage MEA).
+ * Opsi "Homepage MEA" dan daftar kutipan perusahaan (Tampilan → Homepage MEA).
  *
  * Default berisi copy prototipe dan teks kutipan final dari brief 3.4.
  * Kedua opsi terdaftar dengan show_in_rest, jadi bisa dibaca dan diisi lewat
@@ -17,6 +17,31 @@ defined( 'ABSPATH' ) || exit;
  * @return array<string, array<string, mixed>>
  */
 function mea_orbit_home_defs() {
+	$video = array(
+		'video_mp4'  => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Video MP4 (H.264, tanpa suara)', 'mea-orbit' ),
+		),
+		'video_webm' => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Video WebM (opsional)', 'mea-orbit' ),
+		),
+		'poster'     => array(
+			'type'  => 'media',
+			'label' => __( 'Poster (wajib, frame pertama video)', 'mea-orbit' ),
+		),
+		'label'      => array(
+			'type'  => 'text',
+			'label' => __( 'Label kategori (mis. Fashion)', 'mea-orbit' ),
+		),
+		'link'       => array(
+			'type'  => 'text',
+			'label' => __( 'Link (kosong = /jasa-konten/)', 'mea-orbit' ),
+		),
+	);
+
 	$foto = array(
 		'media_id'   => array(
 			'type'  => 'media',
@@ -160,14 +185,14 @@ function mea_orbit_home_defs() {
 				),
 				'motion'    => array(
 					'type'    => 'select',
-					'label'   => __( 'Loop Enam Sisi', 'mea-orbit' ),
+					'label'   => __( 'Foto layanan', 'mea-orbit' ),
 					'options' => array( 'iklan', 'tiktok-shop', 'shopee', 'live', 'affiliate', 'konten' ),
 				),
 			),
 			'default' => array(
 				array(
 					'nama'      => 'Iklan',
-					'deskripsi' => 'Shopee Ads dan TikTok Shop Ads yang diatur dari data penjualan, bukan dari tebakan.',
+					'deskripsi' => 'Shopee Ads, TikTok Shop Ads, dan Meta Ads yang diatur dari data penjualan, bukan dari tebakan.',
 					'url'       => '/jasa-performance-ads/',
 					'motion'    => 'iklan',
 				),
@@ -180,7 +205,7 @@ function mea_orbit_home_defs() {
 				array(
 					'nama'      => 'Shopee',
 					'deskripsi' => 'Optimasi toko, produk, dan program Shopee untuk menaikkan konversi.',
-					'url'       => '/ecommerce-service/',
+					'url'       => '/jasa-management-marketplace/',
 					'motion'    => 'shopee',
 				),
 				array(
@@ -205,37 +230,30 @@ function mea_orbit_home_defs() {
 		),
 		'konten_video'          => array(
 			'type'    => 'repeater',
-			'label'   => __( 'Mockup HP "Konten" setelah Enam layanan (kosong = section tidak tampil; HP menampilkan baris pertama)', 'mea-orbit' ),
-			'fields'  => array(
-				'video_mp4'  => array(
-					'type'    => 'media',
-					'library' => 'video',
-					'label'   => __( 'Video MP4 (H.264, tanpa suara)', 'mea-orbit' ),
-				),
-				'video_webm' => array(
-					'type'    => 'media',
-					'library' => 'video',
-					'label'   => __( 'Video WebM (opsional)', 'mea-orbit' ),
-				),
-				'poster'     => array(
-					'type'  => 'media',
-					'label' => __( 'Poster (wajib, frame pertama video)', 'mea-orbit' ),
-				),
-				'label'      => array(
-					'type'  => 'text',
-					'label' => __( 'Label kategori (mis. Fashion)', 'mea-orbit' ),
-				),
-				'link'       => array(
-					'type'  => 'text',
-					'label' => __( 'Link (kosong = /jasa-konten/)', 'mea-orbit' ),
-				),
-			),
+			'label'   => __( 'Konten · blok 1: ilustrasi AI (kosong = blok tidak tampil; HP menampilkan baris pertama)', 'mea-orbit' ),
+			'fields'  => $video,
 			'default' => array(),
 		),
 		'konten_keterangan'     => array(
 			'type'    => 'text',
-			'label'   => __( 'Keterangan di bawah mockup (kosongkan bila sudah memakai video asli klien berizin)', 'mea-orbit' ),
+			'label'   => __( 'Konten · blok 1: keterangan di bawah mockup (kosong = tidak tampil)', 'mea-orbit' ),
 			'default' => 'Ilustrasi format konten, dibuat dengan AI',
+		),
+		'portofolio_judul'      => array(
+			'type'    => 'text',
+			'label'   => __( 'Konten · blok 2: judul portofolio tim kreatif (kosong = tanpa judul)', 'mea-orbit' ),
+			'default' => 'Hasil produksi tim kreatif MEA',
+		),
+		'portofolio_video'      => array(
+			'type'    => 'repeater',
+			'label'   => __( 'Konten · blok 2: video hasil produksi tim kreatif (kosong = blok tidak tampil; HP bisa digeser)', 'mea-orbit' ),
+			'fields'  => $video,
+			'default' => array(),
+		),
+		'portofolio_keterangan' => array(
+			'type'    => 'text',
+			'label'   => __( 'Konten · blok 2: keterangan di bawah mockup (kosong = tidak tampil)', 'mea-orbit' ),
+			'default' => 'Diproduksi oleh tim kreatif MEA Agency',
 		),
 		'cara_kerja_kutipan_id' => array(
 			'type'    => 'quote',
@@ -251,11 +269,11 @@ function mea_orbit_home_defs() {
  * @return array<string, mixed>
  */
 function mea_orbit_quote_def() {
-	$atribusi = 'Yohan Agustian, CEO MEA Agency';
+	$atribusi = 'MEA Agency';
 
 	return array(
 		'type'    => 'repeater',
-		'label'   => __( 'Kutipan Yohan (teks final, jangan diedit selain typo)', 'mea-orbit' ),
+		'label'   => __( 'Kutipan perusahaan (bahasa formal, atas nama MEA Agency)', 'mea-orbit' ),
 		'fields'  => array(
 			'id'         => array(
 				'type'    => 'select',
@@ -278,19 +296,19 @@ function mea_orbit_quote_def() {
 		'default' => array(
 			array(
 				'id'         => 'k1',
-				'teks'       => 'Gw mulai jualan online 2013, di zaman orang belum ngeuh masuk ke situ. MEA Agency lahir dari pengalaman itu: pemilik bisnis harusnya memimpin, bukan ngerjain semua kerjaan receh.',
+				'teks'       => 'Pendiri kami mulai berjualan online sejak 2013, saat belum banyak bisnis melirik kanal ini. MEA Agency lahir dari pengalaman itu: pemilik bisnis sebaiknya fokus memimpin, sementara pekerjaan operasional harian kami tangani.',
 				'atribusi'   => $atribusi,
 				'penempatan' => 'Homepage, blok pimpinan',
 			),
 			array(
 				'id'         => 'k2',
-				'teks'       => 'Pernah gak kepikiran, kalau lu cuma laku karena perang harga, gimana kalau harganya udah gak bisa turun lagi? Yang kami bangun growth yang tetep ada untungnya.',
+				'teks'       => 'Bisnis yang hanya laku karena perang harga akan berhenti tumbuh saat harga tidak bisa turun lagi. Karena itu, kami membangun pertumbuhan yang tetap menghasilkan keuntungan.',
 				'atribusi'   => $atribusi,
 				'penempatan' => 'Template studi kasus, setelah bagian Hasil',
 			),
 			array(
 				'id'         => 'k3',
-				'teks'       => 'MEA lahir di masa pandemi, saat banyak bisnis harus pindah ke online dalam hitungan minggu. Tugas kami sejak itu sama: bantuin kamu jualan online tanpa harus urusin sendiri.',
+				'teks'       => 'MEA Agency lahir di masa pandemi, saat banyak bisnis harus beralih ke online dalam hitungan minggu. Sejak itu tugas kami tetap sama: membantu Anda berjualan online tanpa harus mengurus semuanya sendiri.',
 				'atribusi'   => $atribusi,
 				'penempatan' => 'Halaman About Us (template berikutnya)',
 			),
@@ -302,7 +320,7 @@ function mea_orbit_quote_def() {
 			),
 			array(
 				'id'         => 'k5',
-				'teks'       => 'Gw dan tim sudah mendampingi lebih dari 3.000 UMKM. Pelajarannya selalu sama: yang bertahan adalah yang tumbuh sehat, bukan yang paling pengen ngebut.',
+				'teks'       => 'Kami telah mendampingi lebih dari 3.000 UMKM. Pelajarannya selalu sama: bisnis yang bertahan adalah yang tumbuh sehat, bukan yang paling terburu-buru.',
 				'atribusi'   => $atribusi,
 				'penempatan' => 'Homepage, setelah Cara kerja',
 			),

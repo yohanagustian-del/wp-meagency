@@ -1,0 +1,73 @@
+{
+  "page_id": 20204,
+  "url": "/gold-pigeon/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Gold Pigeon",
+    "mea_h1": "Gold Pigeon: GMV naik 10x dan produk terjual naik 784%",
+    "mea_kartu_judul": "Gold Pigeon: GMV naik 10x dan produk terjual naik 784%",
+    "mea_kartu_lede": "Brand sandal premium ini sebelumnya belum pernah memakai iklan berbayar. Lewat GMV Max, konten TikTok, dan Shopee Ads, GMV-nya naik 10x dan produk terjual naik 784%.",
+    "mea_kategori": "Sandal premium",
+    "mea_kanal": "Shopee dan TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "Konten",
+        "page_id": 15559
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "17x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "10x",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "784%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Gold Pigeon adalah brand sandal premium untuk pria, wanita, dan anak-anak yang berasal dari Amerika Serikat dan Taiwan. Produknya dikenal ergonomis, ringan, tahan air, dan tangguh untuk aktivitas harian maupun luar ruangan, dengan teknologi seperti Tri-Density Sole, Adjustable Strap, dan insole anti-slip.</p><p>Posisi produknya cukup kuat, tetapi brand ini belum memiliki riwayat iklan berbayar untuk mendorong awareness dan penjualan. Ekosistem Shopee juga belum dimanfaatkan maksimal karena fitur campaign, promo, dan optimasi toko belum dijalankan menyeluruh. Akibatnya, peluang meningkatkan visibilitas produk, traffic, dan konversi belum tergarap optimal.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Optimalisasi GMV Max.</strong> Memanfaatkan GMV Max untuk meningkatkan penjualan di TikTok Shop secara lebih efisien, dengan distribusi budget yang adaptif, dorongan pada produk potensial, dan perluasan jangkauan ke audiens yang relevan.</li><li><strong>Konten TikTok yang konsisten.</strong> Mengembangkan konten yang selaras dengan karakter produk, seperti review produk, demonstrasi kenyamanan, detail fitur sandal, hingga penggunaan dalam aktivitas harian dan outdoor, agar keunggulan produk mudah dipahami dan minat beli menguat.</li><li><strong>Monitoring dan optimasi rutin.</strong> Memantau traffic, engagement, dan penjualan di setiap channel secara berkala, lalu menyesuaikan konten, alokasi budget, dan iklan dengan cepat.</li><li><strong>TSPro untuk aset dan keamanan akun.</strong> Menggunakan TSPro untuk pengelolaan aset, whitelist, dan perlindungan akun di TikTok. Dengan dukungan official partnership, kendala akun maupun campaign bisa ditangani lebih cepat.</li><li><strong>Optimalisasi Shopee Ads.</strong> Menangkap demand di dalam marketplace lewat pemilihan produk prioritas, kata kunci yang relevan, penempatan iklan yang tepat, dan evaluasi performa berkala.</li></ul>",
+    "mea_hasil": "<p>Lewat GMV Max, penguatan konten TikTok, TSPro, optimalisasi Shopee Ads, dan evaluasi campaign berkala, GMV Gold Pigeon tumbuh hingga 10 kali lipat dan penjualan produk naik 784%. Kombinasi iklan yang terarah, konten yang relevan, dan optimasi marketplace yang konsisten memperkuat daya saing brand sekaligus mendorong konversi.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20210,
+      20216,
+      14512
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-gold-pigeon",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Konflik angka ROAS: kedua baris counter menulis 17X, tetapi teks RESULT menulis 'ROAS mencapai 32x'. mea_angka memakai 17x (counter); angka ROAS sengaja tidak dicantumkan di mea_hasil. Mohon konfirmasi angka yang benar.",
+    "Layanan: 'GMV Max' dan 'Shopee Ads' dipetakan ke Iklan, 'Tiktok Content' ke Konten. Layanan 'TSPro' di daftar Services tidak punya padanan di label baku, jadi tidak dipetakan.",
+    "Periode pendampingan tidak disebut.",
+    "Satu-satunya gambar di halaman adalah media 15633 (KOKO-CICI-18.jpg, judul 'KOKO & CICI-18') di blok CTA 'Hubungi Kami' yang sama di semua halaman studi kasus; tidak dimasukkan ke foto_proses/galeri karena bukan dokumentasi kasus ini. Grid galeri (container 9a02e50) kosong. Perlu foto/aset kasus dari pemilik."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "page_id": 18653,
+  "url": "/eleven-basic/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Eleven Basic",
+    "mea_h1": "Eleven Basic: omzet naik 221% dan traffic naik 377%",
+    "mea_kartu_judul": "Eleven Basic: omzet naik 221% dan traffic naik 377%",
+    "mea_kartu_lede": "Brand fashion lokal untuk pakaian wanita yang basic, minimalis, dan timeless. Lewat iklan lintas platform, promo toko, serta konten live dan affiliate, traffic naik 377% dan omzet naik lebih dari 221%.",
+    "mea_kategori": "Fashion wanita",
+    "mea_kanal": "Shopee dan TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "221%",
+        "label": "Kenaikan omzet",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "377%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "198%",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "13,77x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Eleven Basic adalah brand fashion lokal yang menawarkan koleksi pakaian wanita yang basic, minimalis, dan timeless, untuk kegiatan santai maupun semi-formal.</p><p>Brand ini sudah punya fondasi kuat dengan produk yang relevan dan respons pasar yang positif, terutama di kategori seperti “One Set” yang volume pencariannya sangat tinggi. Tantangan utamanya adalah mengubah potensi traffic yang tinggi menjadi konversi penjualan yang konsisten, sementara beberapa jenis iklan sebelumnya belum optimal.</p><p>Selain itu, peningkatan jumlah pengikut, variasi produk, serta kualitas performa toko seperti respons chat dan rating juga menjadi fokus, dengan memanfaatkan momentum menjelang peak season.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Optimasi anggaran iklan.</strong> Berdasarkan performa iklan sebelumnya, MEA melakukan testing awal, lalu rutin mengevaluasi iklan dan mengalihkan budget ke produk dengan performa lebih tinggi agar biaya lebih efisien dan hasil lebih maksimal.</li><li><strong>Menggabungkan iklan dengan promo toko.</strong> Selain produk dan harga yang bersaing, MEA mengaktifkan voucher, flash sale, dan broadcast chat untuk mendorong konversi dari traffic yang sudah tinggi, termasuk menjelang event besar seperti tanggal kembar dan payday.</li><li><strong>Mendorong traffic organik lewat affiliate dan konten.</strong> Iklan di dua marketplace menuntut strategi yang disesuaikan per platform, sehingga dioptimalkan juga dengan konten video, live streaming, dan kurasi affiliator. Saat budget dan performa iklan sempat turun, traffic organik justru naik, menandakan awareness brand makin kuat.</li></ul>",
+    "mea_hasil": "<p>Melalui iklan lintas platform (Shopee Ads, TikTok Ads, Meta Ads), optimasi produk unggulan, serta strategi konten live dan affiliate, Eleven Basic mencatat lonjakan performa:</p><ul><li>Traffic naik 377%</li><li>Pesanan naik hingga 198%</li><li>Omzet naik lebih dari 221%</li><li>Konversi dari add to cart ke pesanan ikut meningkat signifikan, menunjukkan efektivitas pemilihan kategori dan produk yang diiklankan</li></ul><p>ROAS sedikit turun dari 13,96 menjadi 13,77, tetapi tetap sangat efisien mengingat volume traffic dan omzet yang naik agresif. Dengan strategi terukur dan penyesuaian budget, MEA membantu Eleven Basic meningkatkan penjualan dan visibilitas toko dalam waktu yang relatif singkat.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18659,
+      18668,
+      18678
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-eleven-basic"
+  },
+  "catatan": [
+    "Angka tidak konsisten: counter menampilkan ROAS 13X dan Pesanan 197%, sedangkan teks RESULT menyebut ROAS 13,77 (turun dari 13,96) dan pesanan naik 198%. mea_angka memakai angka teks (13,77x dan 198%); mohon dipastikan.",
+    "Kanal 'Shopee dan TikTok Shop' disimpulkan dari daftar Services (Shopee Ads, TikTok Ads) dan kalimat 'menjalankan iklan di 2 marketplace berbeda'; TikTok Shop tidak disebut eksplisit. Mohon dicek.",
+    "Layanan: daftar Services hanya Shopee Ads dan TikTok Ads (Iklan). Teks RESULT juga menyebut Meta Ads, konten live, dan affiliate, tetapi tidak dimasukkan ke mea_layanan karena tidak ada di daftar Services; pertimbangkan menambah Live/Affiliate/Konten.",
+    "Periode tidak disebut (hanya 'waktu yang relatif singkat'); mea_periode dikosongkan.",
+    "Tidak ada gambar dokumentasi kasus di halaman (grid galeri kosong); satu-satunya gambar adalah KOKO & CICI-18 (15633) di bagian Hubungi Kami, dilewati. mea_foto_proses dan mea_galeri kosong.",
+    "Bagian APPROACH asli berupa tabel di dalam list; disusun ulang menjadi daftar poin."
+  ]
+}

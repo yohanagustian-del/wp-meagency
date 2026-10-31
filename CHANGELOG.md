@@ -2,6 +2,49 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.7.1 · 30 Okt 2026
+- **Update tema dari WordPress/konektor**: `inc/update.php` + header `Update URI`. WordPress membaca manifest `dist/mea-orbit-update.json` di branch utama repo; bila versinya lebih baru, "Update now" muncul (juga bisa dijalankan lewat konektor). Paket zip diverifikasi SHA-256 dari manifest; paket tidak cocok atau dari URL lain ditolak. Manifest dibuat dengan `tools/release-manifest.sh <commit>`.
+- Termasuk semua isi 0.7.0.
+
+## mea-orbit 0.7.0 · 30 Okt 2026
+- **Homepage, section Konten: blok kedua "Hasil produksi tim kreatif MEA"** di bawah ilustrasi AI. Diisi di Tampilan → Homepage MEA (Konten · blok 2): judul, video (MP4 + poster, WebM opsional, label, link), keterangan (default "Diproduksi oleh tim kreatif MEA Agency"). Blok kosong tidak tampil; keterangan kosong tidak tampil. Desktop grid 3 kolom; HP semua video dalam baris yang bisa digeser (blok AI tetap 1 video di HP).
+- Label opsi blok AI diperjelas ("Konten · blok 1"). Helper `mea_orbit_konten_clips()` dipakai kedua blok.
+- Termasuk semua isi 0.6.0. mea-leads tetap 0.2.0.
+
+## mea-orbit 0.6.0 · 29 Okt 2026
+- **33 studi kasus pindah dari Elementor ke template Orbit** (data live; seed di `docs/seed/studi-kasus/`, rollback di `ROLLBACK.md` folder itu). Teks dan angka diambil dari halaman lama; bila counter dan teks Result bertentangan, angka teks yang dipakai. Denuber (isi salinan Allora) tidak dimigrasi, diberi noindex.
+- **Foto cadangan samping cerita**: studi kasus tanpa foto kasus memakai lima foto realis proses kerja tim MEA (sama dengan "Cara kami bekerja"), berganti saat scroll, judul langkah sebagai keterangan. Sumber satu: `mea_orbit_proses_foto()` (juga dipakai homepage).
+- **Kutipan jadi kutipan perusahaan**: lima kutipan (homepage, layanan, studi kasus) ditulis ulang dengan bahasa formal atas nama MEA Agency (atribusi "MEA Agency", bukan Yohan). Data live sudah diperbarui; default tema ikut.
+- **Header**: link **Studi kasus** setelah empat pilar (aktif di halaman studi kasus). Label pilar tidak pecah baris; header pindah ke menu HP di ≤1180 px.
+
+## mea-orbit 0.5.2 · 29 Okt 2026
+- **Foto samping cerita studi kasus berganti saat scroll** (seperti "Cara kami bekerja" di homepage): dua foto atau lebih di "Foto proses kerja tim" menjadi tumpukan sticky dengan crossfade, foto aktif mengikuti bagian cerita yang sedang dibaca; tanpa fade saat reduced motion. HP: semua foto tampil sebagai grid 2 kolom. Satu foto: tetap statis seperti sebelumnya.
+- Bellarosa: 4 foto samping (produk, konten kreator affiliate, produksi konten di studio, materi iklan).
+
+## mea-orbit 0.5.1 · 29 Okt 2026
+- Galeri studi kasus mendukung **video** dari Media Library (kontrol putar, tanpa autoplay, frame pertama sebagai pratinjau). Video SC18 Bellarosa tampil di Galeri.
+- Panel Hasil studi kasus: jumlah kolom angka mengikuti jumlah angka (maks. 4; tablet 2; HP 1). Bellarosa kini 4 angka, termasuk **1.200% kenaikan traffic organik TikTok** (data TikTok, dikembalikan dari halaman Elementor lama).
+
+## mea-orbit 0.5.0 · 29 Okt 2026
+- **Studi kasus keluar dari Elementor**: section **Galeri** baru (field `galeri`: foto, keterangan, alt) setelah cerita, untuk foto yang dulu hanya ada di grid Elementor. Tersembunyi bila kosong. Bellarosa (14512): mode builder Elementor dimatikan; 12 foto lama siap diisi ke Galeri (`docs/seed/page-14512-bellarosa.json`).
+- Termasuk semua isi 0.3.0 dan 0.4.0. mea-leads tetap 0.2.0.
+
+## mea-orbit 0.4.0 · 29 Okt 2026
+- **Noindex otomatis untuk konten berpassword** (`inc/robots.php`): semua post/page dengan password mendapat `noindex, nofollow` (filter `rank_math/frontend/robots`) dan dikeluarkan dari sitemap Rank Math (filter `rank_math/sitemap/entry`). Halaman tanpa password tidak berubah.
+- **Navigasi 4 pilar layanan**: header berisi E-commerce Service, Performance Ads, Social Media Management, SEO, dengan dropdown anak layanan (hover dan keyboard lewat `:focus-within`, tanpa JavaScript). Menu HP menampilkan anak terindentasi. Header pindah ke menu HP di ≤1080 px.
+- **Footer**: kolom Layanan berisi struktur 4 pilar yang sama (satu sumber, `mea_orbit_pilar()`); menu WordPress lokasi footer (sekarang "Single Menu") pindah ke kolom baru **Perusahaan**; Hubungi digabung di bawah Kantor.
+- **Homepage, Enam sisi**: baris "Juga tersedia: Social Media Management · SEO". Default kartu Shopee → `/jasa-management-marketplace/`, deskripsi Iklan menyebut Meta Ads (isian live diubah lewat opsi Homepage).
+- mea-leads tetap 0.2.0.
+
+## mea-orbit 0.3.0 · 29 Okt 2026
+- **Foto realis menggantikan motion di dua section** (disetujui Yohan, brief `paket-mea-orbit-0.3.0`):
+  - Kartu "Enam sisi operasional, satu tim": foto 4:3 selebar kartu (`assets/foto/layanan/`, 600w + 1200w), statis, zoom 3% saat hover di desktop. Loop video M2 dihapus.
+  - "Cara kami bekerja" (homepage dan semua halaman layanan): lima foto 1:1 bertumpuk (`assets/foto/proses/`) yang berganti dengan crossfade saat langkah aktif pindah; tanpa fade saat reduced motion / Hemat Data. Scroll-scrub 150 frame M3 dihapus. Homepage memakai alt per langkah; halaman layanan `alt=""`, foto berulang bila lebih dari lima langkah.
+- Opsi Homepage: label field kartu layanan "Loop Enam Sisi" → **"Foto layanan"**. Nilai tersimpan tidak berubah (slug sama).
+- Aset `assets/motion/sisi/` dan `assets/motion/proses/` dihapus dari tema (tetap di riwayat git). Zip tema turun dari 10,7 MB ke 8,0 MB.
+- Hero kubus, mockup HP Konten, dan kurva Bellarosa tidak berubah.
+- mea-leads tetap 0.2.0.
+
 ## mea-orbit 0.2.1 · 29 Okt 2026
 - **Perbaikan cache motion**: semua URL aset motion (poster, frame hero dan Cara kerja, video Enam sisi dan Bellarosa) membawa versi tema (`?v=0.2.1`). Setelah 0.2.0 dipasang, pengunjung lama masih melihat kubus hero versi lama, karena nama berkas hero v2 sama dengan v1 sehingga browser/CDN menyajikan salinan cache.
 - mea-leads tetap 0.2.0.

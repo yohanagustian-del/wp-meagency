@@ -1,0 +1,75 @@
+{
+  "page_id": 19951,
+  "url": "/gogo-fashion/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Gogo Fashion",
+    "mea_h1": "Gogo Fashion: ROAS 32x dan GMV naik 90x",
+    "mea_kartu_judul": "Gogo Fashion: ROAS 32x dan GMV naik 90x",
+    "mea_kartu_lede": "Toko fashion wanita kasual ini kami bantu lewat konten TikTok, TikTok Ads, dan campaign yang lebih terarah. Hasilnya ROAS 32x, GMV naik 90x, dan produk terjual naik 105%.",
+    "mea_kategori": "Fashion wanita kasual",
+    "mea_kanal": "TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "Konten",
+        "page_id": 15559
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "32x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "90x",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "105%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Gogo Fashion adalah toko fashion lokal dengan koleksi pakaian wanita kasual, mulai dari celana, kemeja, hingga outerwear, dengan warna netral dan desain simpel. Sebagai toko yang cukup aktif di TikTok Shop, Gogo Fashion punya potensi besar dari sisi volume pencarian dan minat pasar, terutama pada kategori gamis dan pakaian kasual.</p><p>Tantangan utamanya adalah mengubah traffic yang tinggi menjadi konversi yang stabil, khususnya di luar periode event atau promosi besar. Keterbatasan fitur evaluasi pada GMV Max serta manajemen konten yang belum optimal, seperti banner toko dan deskripsi produk, membuat optimasi butuh pendekatan yang lebih terukur dan fleksibel. Toko juga perlu menjaga performa operasional seperti stok, kecepatan respons, dan rating agar mampu bersaing di pasar yang sangat kompetitif.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Konten TikTok yang konsisten.</strong> Membuat konten TikTok yang relevan dengan tren fashion wanita kasual, berfokus pada styling, mix and match, detail bahan, dan penggunaan harian, agar daya tarik visual produk menguat, traffic organik tetap stabil, dan minat beli terbangun di luar periode promosi besar.</li><li><strong>Optimalisasi TikTok Ads.</strong> Menjalankan iklan secara terukur dengan fokus pada produk berpotensi seperti gamis dan pakaian kasual yang permintaannya besar, lewat pengaturan budget yang fleksibel, pengujian materi iklan, dan pemantauan performa campaign agar traffic lebih berkualitas dan konversi lebih stabil.</li><li><strong>Campaign TikTok yang lebih terarah.</strong> Menyusun campaign yang menggabungkan momentum promo, tren pasar, kategori produk unggulan, dan pola belanja audiens, dengan menyinkronkan konten organik, iklan, live, dan affiliate agar exposure produk lebih konsisten.</li><li><strong>TSPro untuk whitelist dan perlindungan akun.</strong> Menggunakan TSPro untuk whitelist dan perlindungan akun, didukung kerja sama resmi dengan tim TikTok, sehingga potensi pelanggaran bisa ditangani lebih cepat dan performa campaign tetap terjaga.</li></ul>",
+    "mea_hasil": "<p>Dengan pengelolaan yang terukur, ROAS Gogo Fashion mencapai 32x, GMV naik hingga 90x, dan jumlah produk terjual naik 105%.</p><p>Kombinasi konten TikTok yang konsisten, TikTok Ads yang lebih optimal, campaign yang lebih terarah, serta dukungan TSPro membantu Gogo Fashion menjaga penjualan tetap produktif dan kompetitif di pasar fashion wanita yang dinamis.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20014,
+      20019,
+      20030
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-gogo-fashion",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Counter baris kedua di halaman lama (ROAS 8X, GMV 730%, TRAFFIC 513%) bertentangan dengan counter baris pertama dan teks RESULT (ROAS 32x, GMV 90X, produk terjual 105%). Dipakai angka baris pertama yang sejalan dengan teks; mohon konfirmasi angka yang benar dan apakah 'GMV 90X' memang 90 kali lipat.",
+    "Kanal: paragraf pembuka menyebut Gogo Fashion aktif di Shopee, sedangkan CHALLENGE dan layanan menyebut TikTok Shop/TikTok. mea_kanal diisi 'TikTok Shop'; cek apakah Shopee juga dikelola.",
+    "Layanan 'Tiktok Ads' dipetakan ke Iklan, 'Tiktok Content' ke Konten. Layanan 'TSPro' di daftar Services tidak punya padanan di label baku, jadi tidak dipetakan.",
+    "Periode pendampingan tidak disebut.",
+    "Teks asli APPROACH memuat salah ketik 'tea,m' (dirapikan jadi 'tim').",
+    "Satu-satunya gambar di halaman adalah media 15633 (KOKO-CICI-18.jpg, judul 'KOKO & CICI-18') di blok CTA 'Hubungi Kami' yang sama di semua halaman studi kasus; tidak dimasukkan ke foto_proses/galeri karena bukan dokumentasi kasus ini. Grid galeri (container 9a02e50) kosong. Perlu foto/aset kasus dari pemilik."
+  ]
+}

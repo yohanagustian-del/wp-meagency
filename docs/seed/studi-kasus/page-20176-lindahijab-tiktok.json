@@ -1,0 +1,73 @@
+{
+  "page_id": 20176,
+  "url": "/lindahijab-tiktok/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Lindahijab.id",
+    "mea_h1": "Lindahijab.id: ROAS 22x dan GMV naik 408% di TikTok Shop",
+    "mea_kartu_judul": "Lindahijab.id: ROAS 22x dan GMV naik 408% di TikTok Shop",
+    "mea_kartu_lede": "Brand hijab instan ini sebelumnya belum beriklan sama sekali. Peluncuran Kalea Instan bersama influencer, live panjang, dan iklan GMV Max menjelang 3.3 menghasilkan ROAS 22x dan kenaikan produk terjual hingga 500%.",
+    "mea_kategori": "Fashion muslimah (hijab instan)",
+    "mea_kanal": "TikTok Shop",
+    "mea_periode": "Peluncuran akhir Februari hingga puncak 3.3",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "22x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "408%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "500%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Lindahijab.id adalah toko fashion muslimah spesialis hijab instan premium berbahan Rayon Bamboo. Sebelum pengelolaan iklan dan peluncuran Kalea Instan, performanya masih terbatas: iklan belum berjalan dan penjualan sepenuhnya mengandalkan organik, live, dan influencer.</p><p>Brand membutuhkan produk hero baru untuk membangun awareness dan permintaan dengan cepat di pasar hijab instan yang sangat kompetitif, sekaligus mengubah traffic menjadi penjualan dalam skala besar secara terstruktur dan terukur.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Scaling TikTok Ads dan GMV Max.</strong> Dua mesin iklan berjalan paralel: GMV Max Live untuk mendistribusikan livestream ke audiens baru secara real-time, dan GMV Max Product untuk mendorong konversi dari halaman produk, video, kartu produk, dan shop tab. Budget bulanan dinaikkan drastis, dengan lonjakan tertinggi di peak day 3.3.</li><li><strong>Peluncuran Kalea Instan bersama influencer.</strong> LINDAHIJAB X IRANANDHA, Kalea Instan (hijab instan Rayon Bamboo), diluncurkan menjelang akhir Februari sebagai persiapan 3.3. Teaser organik dan iklan membangun antusiasme, terlihat dari ribuan orang yang memasukkan produk ke keranjang sebelum live dimulai.</li><li><strong>Live commerce intensif.</strong> Livestream berdurasi panjang dengan co-hosting antara owner Lindahijab dan influencer, didukung GMV Max Live selama sesi. Promo 3.3 Special Restock Kalea Instan yang dimulai dini hari mendatangkan traffic besar.</li><li><strong>Harga flash sale di momen puncak.</strong> Flash sale dengan countdown timer, diskon dari harga normal, dan pilihan warna lengkap untuk menciptakan urgensi dan mendorong konversi instan.</li></ul>",
+    "mea_hasil": "<p>Dengan strategi peluncuran produk dan akselerasi penjualan Kalea Instan di TikTok Shop, Lindahijab.id mencatat:</p><ul><li>ROAS 22x.</li><li>Kenaikan GMV hingga 408%.</li><li>Kenaikan pembelian hingga 500%.</li></ul><p>Hasil ini datang dari kombinasi produk yang relevan dengan pasar, influencer yang tepat, durasi live yang diperpanjang di momen puncak, iklan live yang menjangkau audiens baru, scaling budget yang terukur, serta konten afiliasi yang aktif.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20204,
+      20210,
+      20216
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-lindahijab-tiktok"
+  },
+  "catatan": [
+    "Judul halaman 'Lindahijab.id - Tiktok' (berisi karakter zero-width U+200B setelah .id) dan heading 'Lindahijab.id - TikTok Case'; mea_brand dirapikan menjadi 'Lindahijab.id'. Slug '-tiktok' menandakan mungkin ada halaman studi kasus Lindahijab lain; perlu dibedakan di kartu.",
+    "Nama produk ditulis 'Kalea Instant' dan 'Kalea Instan' di halaman; diseragamkan menjadi 'Kalea Instan'. Nama influencer 'IRANANDHA' disalin apa adanya dari halaman.",
+    "mea_periode: halaman hanya menyebut peluncuran akhir Februari dan puncak 3.3 tanpa tahun.",
+    "Counter 'Produk Terjual 500%', di teks ditulis 'kenaikan pembelian hingga 500%'; dilabeli 'Kenaikan produk terjual'.",
+    "Services (widget HTML): 'Jasa iklan TikTok' dipetakan ke Iklan (14144). Live dan Affiliate tidak tercantum di Services meski dibahas di strategi; mohon dicek.",
+    "Kalimat 'pendekatan holistik yang menjadi standar eksekusi MEA Agency' dibuang dari RESULT karena bersifat promosi.",
+    "Halaman tidak memuat foto/video kasus (grid galeri Elementor kosong). Satu-satunya gambar adalah 15633 'KOKO & CICI-18' di blok CTA umum 'Hubungi Kami' yang sama di semua halaman studi kasus, jadi tidak dimasukkan; mea_foto_proses dan mea_galeri kosong, perlu foto dari pemilik.",
+    "Teks CTA umum 'Hubungi Kami / Partner terbaik yang menghubungkan bisnismu...' tidak disalin."
+  ]
+}

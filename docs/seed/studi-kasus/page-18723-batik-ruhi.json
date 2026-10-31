@@ -1,0 +1,72 @@
+{
+  "page_id": 18723,
+  "url": "/batik-ruhi/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Batik Ruhi",
+    "mea_h1": "Batik Ruhi: omzet iklan naik hingga 33% di minggu terbaik",
+    "mea_kartu_judul": "Batik Ruhi: omzet iklan naik hingga 33% di minggu terbaik",
+    "mea_kartu_lede": "Brand busana batik wanita dengan harga premium ini punya traffic iklan tinggi tetapi konversi rendah dan ROAS di bawah 1x. Optimasi iklan, live streaming, dan fitur Shopee menaikkan omzet iklan hingga 33% di minggu terbaik.",
+    "mea_kategori": "Busana batik wanita",
+    "mea_kanal": "Shopee",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "10x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "33%",
+        "label": "Kenaikan omzet iklan di minggu terbaik",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "28%",
+        "label": "Kontribusi live streaming terhadap performa toko",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Batik Ruhi adalah brand lokal yang menghadirkan busana batik wanita (dress, tunik, dan atasan) dengan desain modern dan elegan, memadukan motif tradisional Indonesia dengan potongan untuk acara formal hingga kasual.</p><p>Di marketplace, Batik Ruhi ingin meningkatkan awareness dan penjualan. Meski tampilan produk sudah menarik dan traffic iklan tinggi, konversi pembelian rendah, terutama karena harga produk tergolong premium. Rasio add to cart dan konversi ke pesanan masih rendah, dan ROAS iklan masih di bawah 1x. Dibutuhkan strategi untuk mengoptimalkan fitur Shopee dan efisiensi iklan agar pengunjung lebih terdorong membeli.</p>",
+    "mea_dikerjakan": "<ul class=\"ticks\"><li><strong>Budget harian bertahap.</strong> Budget harian ditambah bertahap untuk produk berperforma baik dan dikurangi pada produk yang traffic-nya menurun, agar anggaran lebih efisien.</li><li><strong>Live streaming rutin.</strong> Live streaming diaktifkan secara rutin karena terbukti menyumbang lebih dari 25% performa toko pada beberapa periode, mendorong interaksi dan konversi secara real-time.</li><li><strong>Fitur promo Shopee.</strong> Voucher toko, gratis ongkir, cashback extra, dan promo toko diaktifkan bertahap untuk meningkatkan daya tarik dan keputusan pembelian.</li><li><strong>Evaluasi mingguan.</strong> Iklan dievaluasi setiap minggu untuk menentukan produk yang layak ditambah budget-nya atau dinonaktifkan, serta menghapus kata kunci yang tidak efektif.</li><li><strong>Broadcast dan konten.</strong> Broadcast chat dipakai untuk pengingat promo dan live, sementara Shopee Video dan konten visual lain difokuskan untuk meningkatkan kepercayaan dan engagement calon pembeli.</li></ul>",
+    "mea_hasil": "<p>Dengan pendekatan yang konsisten, Batik Ruhi menjaga stabilitas performa di tengah fluktuasi pasar:</p><ul><li>Omzet dari iklan naik hingga 33% di minggu terbaik, walaupun sempat turun di pekan terakhir karena penurunan budget harian.</li><li>Live streaming berkontribusi hingga 28% terhadap total performa toko di beberapa minggu aktif.</li></ul><p>Pendekatan yang menyeluruh dan adaptif terhadap dinamika produk, iklan, dan fitur Shopee menjaga performa toko tetap sehat dan berkembang bertahap.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      18728,
+      18733,
+      18738
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-batik-ruhi",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Judul halaman \"Batik.ruhi\" (dengan U+200B), teks menulis \"Batik Ruhi\" dan \"Batik.Ruhi\"; mea_brand memakai \"Batik Ruhi\". Mohon konfirmasi penulisan resmi.",
+    "PENTING: counter tidak cocok dengan teks. Counter: ROAS 10x, Omset 40x, dan 955% (berlabel \"Pesanan\" di atas, \"Traffic\" di bawah). Teks Result hanya menyebut omzet iklan naik hingga 33% di minggu terbaik dan kontribusi live hingga 28%; Challenge menyebut ROAS awal di bawah 1x.",
+    "mea_angka: ROAS 10x diambil dari counter (tidak disebut di teks); Omset 40x dan 955% sengaja tidak dimasukkan karena bertentangan dengan teks (33%) atau labelnya tidak jelas. Mohon pemilik memverifikasi angka sebenarnya.",
+    "mea_h1 memakai angka dari teks (33%), bukan counter, karena konflik di atas.",
+    "Approach juga mencakup live streaming, Shopee Video, dan broadcast, namun Services hanya \"Jasa iklan Shopee\"; mea_layanan hanya Iklan.",
+    "Periode pendampingan tidak disebut (hanya rujukan mingguan).",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\", tanpa alt) di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; tidak terkait kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto atau video kasus; perlu aset dari pemilik bila ingin galeri."
+  ]
+}

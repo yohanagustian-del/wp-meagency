@@ -143,7 +143,7 @@ main p {
 	border-radius: 999px;
 }
 
-/* Cara kerja: kotak sticky M3 + langkah (PLAN 9.5) */
+/* Cara kerja: kotak sticky berisi foto per langkah + langkah (PLAN 9.5, rilis 0.3.0) */
 .proses {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -169,11 +169,34 @@ main p {
 	display: block;
 }
 
-.proses-visual canvas {
-	position: absolute;
-	inset: 0;
+.proses-stack {
+	position: relative;
 	width: 100%;
 	height: 100%;
+}
+
+.proses-stack picture {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity .6s var(--ease-out);
+}
+
+.proses-stack picture.is-active {
+	opacity: 1;
+}
+
+.proses-stack img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.proses-stack picture {
+		transition: none;
+	}
 }
 
 .steps {
@@ -264,23 +287,13 @@ main p {
 		background: var(--paper);
 	}
 
-	.proses-visual picture {
-		display: block;
+	.proses-stack {
 		width: min(300px, 78vw);
 		height: auto;
 		aspect-ratio: 1 / 1;
 		margin: 0 auto;
 		border-radius: 12px;
 		overflow: hidden;
-	}
-
-	.proses-visual canvas {
-		inset: 12px auto auto 50%;
-		width: min(300px, 78vw);
-		height: auto;
-		aspect-ratio: 1 / 1;
-		transform: translateX(-50%);
-		border-radius: 12px;
 	}
 
 	.proses .steps {
@@ -666,7 +679,7 @@ main p {
 	}
 }
 
-/* Homepage: enam layanan + tile M2 (PLAN 9.6) */
+/* Homepage: enam layanan + foto 4:3 per kartu (PLAN 9.6, rilis 0.3.0) */
 .svc {
 	list-style: none;
 	margin: 0;
@@ -698,19 +711,36 @@ main p {
 	background: var(--white);
 }
 
-.svc-tile {
+.svc-foto {
 	display: block;
-	width: 140px;
-	height: 140px;
+	width: 100%;
+	aspect-ratio: 4 / 3;
 	margin-bottom: 12px;
-	background: #232325;
+	border-radius: var(--r);
+	overflow: hidden;
+	background: #E4E4E7;
 }
 
-.svc-tile img,
-.svc-tile video {
+.svc-foto img {
 	width: 100%;
 	height: 100%;
 	display: block;
+	object-fit: cover;
+	transition: transform .6s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.svc a:hover .svc-foto img,
+	.svc a:focus-visible .svc-foto img {
+		transform: scale(1.03);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.svc-foto img {
+		transition: none;
+		transform: none !important;
+	}
 }
 
 .svc .display {
@@ -751,10 +781,49 @@ main p {
 	.svc li:nth-child(odd) {
 		border-right: 0;
 	}
+}
 
-	.svc-tile {
-		width: 120px;
-		height: 120px;
+.svc-more {
+	margin-top: 20px;
+	font-size: .95rem;
+	color: var(--graphite);
+}
+
+.svc-more a {
+	color: var(--ink);
+	text-underline-offset: 3px;
+}
+
+/* Studi kasus: galeri (foto produk, toko, hasil) */
+.galeri {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.galeri .photo {
+	aspect-ratio: 1 / 1;
+	margin: 0;
+}
+
+.galeri video {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+	background: var(--ink);
+}
+
+@media (max-width: 900px) {
+	.galeri {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 560px) {
+	.galeri {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 8px;
 	}
 }
 
@@ -932,6 +1001,17 @@ main p {
 	padding: clamp(56px, 8vw, 96px) 0;
 }
 
+/* Jumlah kolom angka mengikuti jumlah angka (maks. 4); tablet 2 kolom. */
+.case-results .figures {
+	grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+}
+
+@media (max-width: 1000px) {
+	.case-results .figures {
+		grid-template-columns: repeat(min(var(--n, 3), 2), minmax(0, 1fr));
+	}
+}
+
 .mix {
 	display: flex;
 	margin-top: 48px;
@@ -989,6 +1069,40 @@ main p {
 	gap: 16px;
 }
 
+/* Foto samping cerita: satu foto, atau tumpukan yang berganti saat scroll. */
+.story-single .photo,
+.story-stack {
+	aspect-ratio: 4 / 5;
+}
+
+.story-single .photo {
+	margin: 0;
+}
+
+.story-stack {
+	position: relative;
+	border-radius: var(--r);
+	overflow: hidden;
+}
+
+.story-stack .photo {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	opacity: 0;
+	transition: opacity .6s var(--ease-out);
+}
+
+.story-stack .photo.is-active {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.story-stack .photo {
+		transition: none;
+	}
+}
+
 @media (max-width: 900px) {
 	.story {
 		grid-template-columns: 1fr;
@@ -996,6 +1110,23 @@ main p {
 
 	.story-side {
 		position: static;
+	}
+
+	/* HP: kolom samping turun ke bawah teks, jadi semua foto tampil sebagai grid. */
+	.story-stack {
+		aspect-ratio: auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		border-radius: 0;
+		overflow: visible;
+	}
+
+	.story-stack .photo {
+		position: relative;
+		inset: auto;
+		aspect-ratio: 4 / 5;
+		opacity: 1;
 	}
 }
 
@@ -1208,6 +1339,18 @@ a.phone-card:focus-visible .phone-label {
 	margin: 28px 0 0;
 }
 
+/* Blok kedua (portofolio tim kreatif) di bawah blok ilustrasi AI. */
+.phones-block + .phones-block {
+	margin-top: clamp(56px, 8vw, 96px);
+	padding-top: clamp(40px, 6vw, 64px);
+	border-top: 1px solid var(--line);
+}
+
+.phones-title {
+	font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+	margin: 0 0 32px;
+}
+
 @media (max-width: 767.98px) {
 	.phones {
 		grid-template-columns: minmax(0, 240px);
@@ -1216,6 +1359,37 @@ a.phone-card:focus-visible .phone-label {
 
 	.phones li:nth-child(n + 2) {
 		display: none;
+	}
+
+	/* Portofolio: semua video tampil dalam baris yang bisa digeser. */
+	.phones.is-scroll {
+		grid-auto-flow: column;
+		grid-template-columns: none;
+		grid-auto-columns: min(240px, 72vw);
+		justify-content: start;
+		gap: 16px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		margin-inline: -24px;
+		padding: 0 24px 8px;
+		scroll-padding-inline: 24px;
+		scrollbar-width: none;
+	}
+
+	.phones.is-scroll::-webkit-scrollbar {
+		display: none;
+	}
+
+	.phones.is-scroll li {
+		scroll-snap-align: center;
+	}
+
+	.phones.is-scroll li:nth-child(n + 2) {
+		display: list-item;
+	}
+
+	.phones-title {
+		text-align: center;
 	}
 
 	.phones-note {
@@ -1229,15 +1403,13 @@ a.phone-card:focus-visible .phone-label {
 	--ease-out: cubic-bezier(.16, 1, .3, 1);
 }
 
-/* Scrub M1/M3 dan video M4 berada di atas poster; poster tetap di DOM (alt). */
+/* Scrub M1 dan video M4 berada di atas poster; poster tetap di DOM (alt). */
 .hero-visual canvas[hidden],
-.proses-visual canvas[hidden],
 .case-visual video[hidden] {
 	display: none;
 }
 
-.hero-visual.is-live picture,
-.proses-visual.is-live picture {
+.hero-visual.is-live picture {
 	opacity: 0;
 }
 

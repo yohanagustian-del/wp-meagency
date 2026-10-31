@@ -1,0 +1,79 @@
+{
+  "page_id": 19926,
+  "url": "/alloraboutiqueofficial/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Allora Boutique Official",
+    "mea_h1": "Allora Boutique Official: GMV naik 312% dengan ROAS 9x",
+    "mea_kartu_judul": "Allora Boutique Official: GMV naik 312% dengan ROAS 9x",
+    "mea_kartu_lede": "Brand fashion muslim wanita ini sebelumnya belum beriklan sama sekali. Konten TikTok, kolaborasi creator, dan iklan GMV Max membawa GMV naik 312% dengan ROAS 9x.",
+    "mea_kategori": "Fashion muslim wanita",
+    "mea_kanal": "TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Konten",
+        "page_id": 15559
+      },
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      },
+      {
+        "label": "TikTok Shop",
+        "page_id": 365
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "312%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "9x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "289%",
+        "label": "Kenaikan produk terjual",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Allora Boutique Official adalah brand fashion muslim wanita dengan gaya feminin dan modern, yang menyasar perempuan muda aktif di media sosial yang ingin tampil modis namun tetap sopan. Brand ini rutin merilis koleksi baru yang mengikuti tren busana muslim.</p><p>Visual produk yang menarik menjadi keunggulan Allora Boutique Official, terbukti dari rating yang cukup tinggi. Tantangannya, pendapatan masih sepenuhnya bergantung pada pemasaran organik. Allora sudah punya daftar affiliate, tetapi GMV belum optimal. Iklan belum berjalan sama sekali, sehingga ada celah besar untuk menaikkan konversi dan memperluas jangkauan pasar. Live streaming sudah efektif menghasilkan konversi, tetapi potensinya belum dimaksimalkan.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Optimasi konten berkala.</strong> Membuat konten sesuai kebutuhan audiens dan persona brand, dengan fokus memperbanyak stok konten di feed TikTok agar exposure dan awareness meningkat serta positioning sebagai fashion muslim feminin-modern makin kuat.</li><li><strong>Anggaran iklan bertahap.</strong> Anggaran iklan dinaikkan secara berkala sesuai kebutuhan traffic dan potensi pembelian, untuk menjaga efisiensi dan menghindari pemborosan di fase awal. Saat permintaan naik, iklan diperkuat untuk mendorong konversi.</li><li><strong>Fokus GMV Max.</strong> GMV Max dioptimalkan dengan creative yang lebih variatif: produk unggulan, video internal, hingga konten affiliate/creator, untuk memperkaya pesan iklan dan mendorong ROAS yang lebih kompetitif.</li><li><strong>Kerja sama dengan creator.</strong> Kolaborasi dengan creator/affiliate diperkuat agar pasokan creative tidak putus, kampanye stabil, dan awareness tumbuh lewat social proof.</li></ul>",
+    "mea_hasil": "<p>Kombinasi konten TikTok yang relevan dengan persona audiens, kolaborasi creator, scaling budget bertahap, dan GMV Max menghasilkan pertumbuhan yang terukur:</p><ul><li>ROAS 9x.</li><li>GMV naik hingga 312%.</li><li>Produk terjual naik hingga 289%.</li></ul><p>Strategi ini membantu brand memperluas jangkauan, memperkuat brand image, dan menjaga stabilitas performa iklan berkat pasokan creative yang lebih berkelanjutan.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      19936,
+      19937,
+      19951
+    ],
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-alloraboutiqueofficial",
+    "mea_cdps_client_id": ""
+  },
+  "catatan": [
+    "Nama brand dirapikan dari \"ALLORABOUTIQUEOFFICIAL\" / \"Alloraboutiqueofficial\" (nama toko) menjadi \"Allora Boutique Official\" sesuai contoh brief; teks halaman selalu menulis \"Alloraboutiqueofficial\". Mohon pemilik konfirmasi penulisan resmi.",
+    "Counter ketiga berlabel \"TRAFFIC 289%\", tetapi teks hasil menyebut 289% sebagai kenaikan produk terjual; dipakai label dari teks.",
+    "Pemetaan layanan: \"Ads Content\" -> Konten, \"Tiktok Ads\" -> Iklan, \"TSPro\" -> TikTok Shop (asumsi TSPro = TikTok Shop Pro). Perlu dicek.",
+    "Kanal tidak disebut eksplisit; disimpulkan TikTok Shop dari konten feed TikTok dan iklan GMV Max (fitur iklan TikTok Shop). Periode pendampingan tidak disebut.",
+    "Halaman Denuber (19948) memuat salinan persis konten halaman ini.",
+    "Satu-satunya gambar di halaman adalah media 15633 (\"KOKO & CICI-18\") di blok CTA umum \"Hubungi Kami\" yang sama di semua halaman studi kasus; bukan dokumentasi kasus, jadi tidak dimasukkan ke mea_foto_proses/mea_galeri. Halaman tidak punya foto/video kasus; perlu disiapkan pemilik."
+  ]
+}

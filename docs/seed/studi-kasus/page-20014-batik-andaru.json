@@ -1,0 +1,80 @@
+{
+  "page_id": 20014,
+  "url": "/batik-andaru/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Batik Andaru",
+    "mea_h1": "Batik Andaru: ROAS 19x dan GMV naik 188%",
+    "mea_kartu_judul": "Batik Andaru: ROAS 19x dan GMV naik 188%",
+    "mea_kartu_lede": "Brand batik modern ini menjual di TikTok dan Shopee. Iklan yang difokuskan pada SKU terlaris dan retargeting membuat iklan menyumbang lebih dari 60% omzet toko.",
+    "mea_kategori": "Fashion batik",
+    "mea_kanal": "Shopee dan TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "19x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "188%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "194%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": ">60%",
+        "label": "Porsi omzet toko dari iklan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Batik Andaru adalah brand fashion lokal yang menghadirkan koleksi batik modern seperti dress, tunik, dan kemeja batik, dan menjual lewat TikTok dan Shopee. Produknya sudah cukup diminati, tetapi penjualan sulit stabil di luar momen besar seperti promo atau flash sale, karena sebagian besar pembeli cenderung menunggu promo.</p><p>Selain itu, produksi konten harus tetap konsisten agar tetap relevan di pasar batik yang padat, variasi produk dan stok perlu dijaga, dan sumber traffic dari affiliate serta Shopee Video masih bisa dikembangkan agar toko tidak hanya bergantung pada iklan berbayar.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Optimalisasi anggaran dan model iklan.</strong> Kombinasi Video Shopping Ads (VSA) dan Product Shopping Ads (PSA) untuk memperluas jangkauan dengan biaya per klik (CPC) yang efisien.</li><li><strong>Fokus pada produk potensial.</strong> Iklan diprioritaskan untuk SKU dengan performa tertinggi, seperti KAMAL Batik dan NISMARA Batik, agar kontribusi pesanan dan omzet tetap maksimal.</li><li><strong>Penguatan funnel retargeting.</strong> Mendorong konversi dari percobaan pembelian (Initiate Checkout) yang berasal dari klik iklan, serta retargeting calon pembeli yang belum menyelesaikan transaksi.</li><li><strong>Monitoring dan evaluasi berkala.</strong> Evaluasi performa iklan dan konten setiap minggu untuk menjaga efisiensi budget dan menyesuaikan strategi dengan kebutuhan toko.</li></ul>",
+    "mea_hasil": "<p>Dengan pengelolaan yang terukur, performa iklan Batik Andaru meningkat signifikan:</p><ul><li>ROAS meningkat lebih dari 14 kali lipat.</li><li>Omzet (GMV) yang didorong iklan menyumbang lebih dari 60% total omzet toko selama periode berjalan.</li><li>Volume pesanan dari iklan meningkat lebih dari 70%.</li></ul><p>Fokus pada produk dengan konversi tinggi, retargeting, dan kombinasi Video Shopping Ads serta Product Shopping Ads mempercepat pertumbuhan toko. Evaluasi yang konsisten juga membantu menjaga penjualan tetap stabil di luar momen promo besar.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20019,
+      20030,
+      20046
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-batik-andaru"
+  },
+  "catatan": [
+    "Angka tidak konsisten: counter menampilkan ROAS 19X, sedangkan teks RESULT menyebut 'ROAS meningkat lebih dari 14 kali lipat'. mea_h1 dan mea_angka memakai 19x dari counter; mohon konfirmasi angka yang benar.",
+    "Counter hanya berlabel 'GMV 188%' dan 'TRAFFIC 194%' tanpa keterangan; dilabeli 'Kenaikan GMV' dan 'Kenaikan traffic' dengan asumsi persentase pertumbuhan. Periode pembanding tidak disebut.",
+    "Angka '>60%' (porsi omzet dari iklan) ditulis 'lebih dari 60%' di teks; mea_komposisi tidak diisi karena porsinya tidak eksak.",
+    "Kenaikan volume pesanan dari iklan lebih dari 70% tidak dimasukkan ke mea_angka (maks. 4).",
+    "Services: 'Tiktok Ads' dan 'Shopee Ads', dipetakan ke Iklan (14144) saja.",
+    "mea_kanal disusun dari teks 'platform TikTok dan Shopee'; mea_periode tidak disebut di halaman.",
+    "Halaman tidak memuat foto/video kasus (grid galeri Elementor kosong). Satu-satunya gambar adalah 15633 'KOKO & CICI-18' di blok CTA umum 'Hubungi Kami' yang sama di semua halaman studi kasus, jadi tidak dimasukkan; mea_foto_proses dan mea_galeri kosong, perlu foto dari pemilik.",
+    "Teks CTA umum 'Hubungi Kami / Partner terbaik yang menghubungkan bisnismu...' tidak disalin."
+  ]
+}

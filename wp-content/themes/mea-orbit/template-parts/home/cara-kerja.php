@@ -40,6 +40,7 @@ defined( 'ABSPATH' ) || exit;
 						'deskripsi' => __( 'Hasil minggu lalu dan langkah berikutnya dilaporkan setiap pekan.', 'mea-orbit' ),
 					),
 				),
+				'foto'    => mea_orbit_proses_foto(),
 			)
 		);
 		get_template_part( 'template-parts/global/kutipan', null, array( 'id' => mea_orbit_home( 'cara_kerja_kutipan_id' ) ) );

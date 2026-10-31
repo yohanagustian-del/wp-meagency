@@ -1,0 +1,79 @@
+{
+  "page_id": 20019,
+  "url": "/madame-box/",
+  "template": "page-templates/template-studi-kasus.php",
+  "meta": {
+    "mea_brand": "Madame Box",
+    "mea_h1": "Madame Box: ROAS 8x dan GMV naik 137%",
+    "mea_kartu_judul": "Madame Box: ROAS 8x dan GMV naik 137%",
+    "mea_kartu_lede": "Brand kitchenware ini menaikkan budget iklan secara bertahap tanpa kehilangan efisiensi. Fokus pada produk terlaris, retargeting, dan bundling membuat pesanan naik lebih dari empat kali lipat.",
+    "mea_kategori": "Perlengkapan dapur",
+    "mea_kanal": "Shopee dan TikTok Shop",
+    "mea_periode": "",
+    "mea_layanan": [
+      {
+        "label": "Iklan",
+        "page_id": 14144
+      }
+    ],
+    "mea_angka": [
+      {
+        "nilai": "8x",
+        "label": "ROAS",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "137%",
+        "label": "Kenaikan GMV",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": "170%",
+        "label": "Kenaikan traffic",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      },
+      {
+        "nilai": ">4x",
+        "label": "Kenaikan pesanan",
+        "tampil_beranda": false,
+        "nilai_beranda": "",
+        "label_beranda": ""
+      }
+    ],
+    "mea_komposisi": {
+      "label_a": "",
+      "persen_a": 0,
+      "label_b": "",
+      "persen_b": 0
+    },
+    "mea_tantangan": "<p>Madame Box adalah brand kitchenware dengan wadah penyimpanan makanan kedap udara dan anti tumpah, seperti wadah kulkas bersekat dari plastik PET dan PP. Tantangannya: menjaga iklan tetap efisien ketika budget dinaikkan, dan memastikan traffic yang tinggi benar-benar berujung pada pembelian, bukan hanya klik atau kunjungan.</p><p>Banyak pembeli cenderung menunggu diskon di sesi live, sehingga dibutuhkan strategi agar pembelian juga terjadi di luar momen tersebut. Madame Box juga perlu konsisten membuat konten iklan yang menarik agar penjualan dari channel non-live terus bertumbuh.</p>",
+    "mea_dikerjakan": "<ul><li><strong>Skalasi budget bertahap dan terukur.</strong> Budget dinaikkan secara terukur agar lebih banyak traffic yang terkonversi menjadi penjualan.</li><li><strong>Fokus pada produk dengan konversi terbaik.</strong> Penguatan iklan pada produk yang sudah terbukti laku menjadi penggerak utama kenaikan GMV dan volume produk terjual.</li><li><strong>Optimalisasi funnel retargeting.</strong> Memaksimalkan broadcast chat dan retargeting kepada calon pembeli yang sudah memasukkan produk ke keranjang (ATC).</li><li><strong>Penguatan visual dan testing konten.</strong> Pengujian konten iklan membuat CTR naik dan biaya per klik turun, yang ikut mendorong tahap funnel berikutnya.</li><li><strong>Promo dan bundling secara konsisten.</strong> Menaikkan jumlah produk per transaksi (basket size) untuk mendorong pertumbuhan GMV.</li></ul>",
+    "mea_hasil": "<p>Pesanan Madame Box naik lebih dari empat kali lipat, volume produk terjual melonjak, dan GMV tumbuh signifikan selama periode pengelolaan. Efisiensi biaya tetap terjaga meskipun budget dinaikkan.</p><p>Pendekatan bertahap yang berfokus pada produk dengan konversi terbaik, retargeting, promo dan bundling, serta peningkatan kualitas konten berhasil mengubah traffic menjadi penjualan yang berkelanjutan.</p>",
+    "mea_kutipan_id": "k2",
+    "mea_foto_proses": [],
+    "mea_galeri": [],
+    "mea_kasus_lain": [
+      20030,
+      20046,
+      20160
+    ],
+    "mea_cdps_client_id": "",
+    "mea_izin_publikasi": true,
+    "mea_sumber_form": "studi-kasus-madame-box"
+  },
+  "catatan": [
+    "Counter hanya berlabel 'GMV 137%' dan 'TRAFFIC 170%' tanpa keterangan; dilabeli 'Kenaikan GMV' dan 'Kenaikan traffic' dengan asumsi persentase pertumbuhan. Periode pembanding tidak disebut.",
+    "'>4x' diambil dari teks 'pesanan meningkat lebih dari empat kali lipat'.",
+    "Kategori 'Perlengkapan dapur' dari teks 'brand kitchenware'.",
+    "mea_kanal disimpulkan dari daftar Services ('Tiktok Ads', 'Shopee Ads'); teks halaman tidak menyebut platform secara eksplisit. Mohon dicek.",
+    "Services dipetakan ke Iklan (14144) saja; mea_periode tidak disebut.",
+    "Halaman tidak memuat foto/video kasus (grid galeri Elementor kosong). Satu-satunya gambar adalah 15633 'KOKO & CICI-18' di blok CTA umum 'Hubungi Kami' yang sama di semua halaman studi kasus, jadi tidak dimasukkan; mea_foto_proses dan mea_galeri kosong, perlu foto dari pemilik.",
+    "Teks CTA umum 'Hubungi Kami / Partner terbaik yang menghubungkan bisnismu...' tidak disalin."
+  ]
+}
