@@ -127,6 +127,10 @@ function mea_orbit_field_defs() {
 				),
 			),
 		),
+		'hub_layanan'      => array(
+			'type'  => 'bool',
+			'label' => __( 'Tampilkan daftar semua layanan (hub, untuk /services/)', 'mea-orbit' ),
+		),
 		'service_type'     => array(
 			'type'  => 'text',
 			'label' => __( 'serviceType di schema Service', 'mea-orbit' ),

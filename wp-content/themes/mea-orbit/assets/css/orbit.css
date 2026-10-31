@@ -1641,3 +1641,45 @@ a.phone-card:focus-visible .phone-label {
 .lead-form.is-sent .thanks {
 	animation: mea-rise .5s var(--ease-out);
 }
+
+/* Hub /services/: empat pilar + layanan lain (template-parts/layanan/hub.php). */
+.hub {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 24px;
+}
+
+.hub-pilar {
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	padding: 24px;
+	background: var(--paper);
+}
+
+.hub-pilar h3 {
+	margin-bottom: 12px;
+}
+
+.hub-pilar h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.hub-pilar h3 a:hover {
+	text-decoration: underline;
+}
+
+.hub-pilar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 6px;
+}
+
+.hub-pilar ul a {
+	color: var(--graphite);
+}

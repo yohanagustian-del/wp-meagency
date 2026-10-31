@@ -27,6 +27,10 @@ $mea_orbit_sales = mea_orbit_sales();
 				<nav aria-labelledby="foot-perusahaan">
 					<?php mea_orbit_menu( 'mea-orbit-footer' ); ?>
 				</nav>
+				<p class="foot-h foot-h-next" id="foot-ekosistem"><?php esc_html_e( 'Ekosistem MEA', 'mea-orbit' ); ?></p>
+				<nav aria-labelledby="foot-ekosistem">
+					<?php mea_orbit_link_list( mea_orbit_ekosistem() ); ?>
+				</nav>
 			</div>
 			<div>
 				<p class="foot-h"><?php esc_html_e( 'Kantor', 'mea-orbit' ); ?></p>
