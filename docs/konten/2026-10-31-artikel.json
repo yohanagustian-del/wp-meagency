@@ -1,0 +1,44 @@
+{
+  "keterangan": "Payload POST /wp-json/mea-orbit/v1/ganti-teks (tema 0.9.0). Jalankan dulu dengan uji=true, lalu uji=false. Judul post 15879 diubah terpisah lewat wp_update_post. Meta SEO, slug, dan judul 15889 tidak disentuh.",
+  "15889": {
+    "sebelum": {
+      "judul": "Inilah Jasa Shopee Mall yang Sudah Terpercaya dan Berpengalaman!",
+      "rank_math_title": "Apa Itu Mall Ori? Arti Label &amp; Jasa Shopee Mall Terpercaya"
+    },
+    "payload": {
+      "post_id": 15889,
+      "uji": true,
+      "ganti": [
+        {
+          "lama": "href=\"https://www.meagency.co.id/mengapa-anda-harus-memilih-jasa-pembuatan-toko-online-di-shopee-untuk-bisnis-anda/\">Shopee Mall</a>",
+          "baru": "href=\"https://www.meagency.co.id/jasa-upgrade-shopee-mall/\">Shopee Mall</a>"
+        }
+      ]
+    }
+  },
+  "15879": {
+    "sebelum": {
+      "judul": "Jasa Optimasi Shopee: Cara Kerja, Layanan, dan Tips Pilih yang Tepat",
+      "rank_math_title": "Jasa Optimasi Shopee: Cara Kerja, Layanan, dan Tips Pilih yang Tepat"
+    },
+    "judul_baru": "Cara Optimasi Toko Shopee: Langkah, Tips, dan Kapan Perlu Jasa Optimasi",
+    "payload": {
+      "post_id": 15879,
+      "uji": true,
+      "ganti": [
+        {
+          "lama": "Produk Anda bagus, harga kompetitif, tapi penjualan di Shopee masih stagnan?",
+          "baru": "Produk Anda bagus, harga kompetitif, tapi penjualan di Shopee masih stagnan? Biasanya yang perlu dibenahi adalah cara optimasi toko Shopee Anda: kata kunci, konten produk, iklan, sampai pelayanan harian. Bila tidak sempat mengerjakannya sendiri, tim <a href=\"https://www.meagency.co.id/jasa-optimasi-shopee/\">jasa optimasi Shopee</a> MEA bisa membantu."
+        },
+        {
+          "lama": "Di sinilah jasa optimasi Shopee berperan. Layanan ini hadir untuk membantu seller, terutama UMKM dan bisnis yang sedang berkembang, agar toko mereka lebih mudah ditemukan, lebih menarik di mata pembeli, dan pada akhirnya menghasilkan lebih banyak penjualan.",
+          "baru": "Di sinilah optimasi toko berperan. Optimasi yang tepat membuat toko lebih mudah ditemukan, lebih menarik di mata pembeli, dan pada akhirnya menghasilkan lebih banyak penjualan, baik Anda kerjakan sendiri maupun bersama jasa optimasi Shopee. Ini berlaku untuk semua seller, terutama UMKM dan bisnis yang sedang berkembang."
+        },
+        {
+          "lama": "Melalui artikel berikut, kami akan membahas secara lengkap; apa itu jasa optimasi Shopee, cara kerjanya, tips yang bisa Anda terapkan sendiri, studi kasus nyata klien MEA, hingga panduan memilih penyedia jasa yang tepat untuk bisnis Anda.",
+          "baru": "Melalui artikel berikut, kami membahas cara optimasi toko Shopee secara lengkap: apa saja yang dioptimasi, cara kerjanya, tips yang bisa Anda terapkan sendiri, studi kasus nyata klien MEA, hingga panduan memilih jasa optimasi Shopee bila Anda ingin menyerahkannya ke tim profesional."
+        }
+      ]
+    }
+  }
+}
