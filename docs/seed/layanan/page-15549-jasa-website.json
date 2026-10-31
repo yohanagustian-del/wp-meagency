@@ -1,0 +1,45 @@
+{
+  "page_id": 15549,
+  "url": "/jasa-website/",
+  "template": "page-templates/template-layanan.php",
+  "sebelum": {
+    "template": "default",
+    "_elementor_edit_mode": "builder"
+  },
+  "meta": {
+    "mea_label_hero": "",
+    "mea_h1": "Berapa Banyak Pelanggan yang Hilang Karena Bisnis Anda Belum Punya Website?",
+    "mea_lede": "Saat ini, 80% pembeli mencari produk secara online sebelum memutuskan membeli. Jika bisnis Anda belum memiliki website, Anda membiarkan pesaing mengambil peluang itu.",
+    "mea_isi": "<h2>Bisnis Anda Ada di Media Sosial? Itu Tidak Cukup Tanpa Website Profesional!</h2>\n<p>Mengandalkan media sosial saja itu seperti membangun bisnis di atas tanah orang lain. Miliki website untuk membangun fondasi bisnis yang kuat dan terpercaya</p>\n<h2>Siap Naik Level Bersama Kami?</h2>\n<h2>Berapa Lama Lagi Bisnis Anda Akan Mengandalkan Marketplace dengan Komisi Tinggi?</h2>\n<p>Marketplace memang praktis, tapi biaya komisinya bisa memangkas margin Anda. Dengan website sendiri, Anda punya kontrol penuh atas penjualan tanpa harus membayar potongan besar!</p>\n<h2>Siap Naik Level Bersama Kami?</h2>\n<h2>Teknologi dan Fitur yang Tepat</h2>\n<p><strong>SEO-Friendly</strong> – Membuat website yang mudah dioptimasi untuk mesin pencari.</p>\n<p><strong>Kecepatan Loading Tinggi</strong> – Menggunakan coding yang ringan dan hosting berkualitas tinggi untuk memastikan performa website.</p>\n<p><strong>Integrasi dengan Tools Bisnis</strong> – Menyediakan fitur seperti formulir kontak, chat agent , CRM, dan payment gateway untuk mendukung operasional bisnis.</p>\n<p><strong>CMS yang Mudah Digunakan</strong> – Memberikan kontrol kepada klien untuk mengedit konten tanpa bergantung pada developer.</p>\n<p>[mea-gambar 15665]</p>\n<h2>Desain yang Profesional dan Modern</h2>\n<p><strong>UI/UX yang Menarik dan Fungsional</strong> – Menggabungkan estetika visual dengan pengalaman pengguna yang intuitif.</p>\n<p><strong>Responsif di Semua Perangkat</strong> – Memastikan website berfungsi optimal di desktop, tablet, dan smartphone.</p>\n<p><strong>Desain yang Konsisten dengan Branding</strong> – Menggunakan warna, font, dan elemen desain yang mencerminkan identitas bisnis klien.</p>\n<p><img src=\"https://mobitouch.net/_next/image?url=https%3A%2F%2Fnew.mobitouch.pl%2Fwp-content%2Fuploads%2F2023%2F09%2FUI-Designera_-Blog-Main.jpg&amp;w=3840&amp;q=75\" alt=\"\" loading=\"lazy\"></p>\n<h2>Layanan Purna Jual dan Dukungan Teknis</h2>\n<p><strong>Maintenance Berkala</strong> – Memberikan layanan perawatan untuk memperbarui fitur dan memastikan performa optimal.</p>\n<p><strong>Backup dan Keamanan Data</strong> – Menyediakan sistem backup otomatis untuk melindungi data klien.</p>\n<p><strong>Tim Support yang Siap Membantu</strong> – Memberikan dukungan teknis yang responsif saat klien membutuhkan bantuan.</p>\n<p>[mea-gambar 15663]</p>\n<p>[mea-gambar 15633]</p>\n<h2>Hubungi Kami</h2>\n<p>Partner terbaik yang menghubungkan bisnismu dengan dunia. Temukan formula ads terbaikmu sendiri. Amati, rangkum, susun, eksekusi. Tingkatkan peluang kemenanganmu sendiri. Kami dapat dengan mudah menemukan perpaduan sempurna yang sesuai untuk bisnismu dan audiensmu semuanya sesuai dengan platform yang kamu gunakan. Dapatkan kesempatan untuk menjaga pengeluaran tetap rendah namun laba semakin tinggi!</p>\n<p><a href=\"https://meagency.co.id/contactus/\">CONTACT US</a></p>\n<h2>INI JAWABAN YANG KAMU CARI?</h2>\n<p>[mea-gambar 15657]</p>",
+    "mea_faq": [
+      {
+        "tanya": "Bagaimana cara MEA mengoptimalkan conversion rate?",
+        "jawab": "Setiap bisnis online memiliki cerita unik. Kami membantu Anda mengungkap cerita itu dan menyampaikannya kepada konsumen dengan cara yang menarik. Kami tidak hanya meningkatkan jumlah pengunjung, tetapi juga memastikan mereka melakukan pembelian. Dengan pemahaman mendalam tentang perilaku konsumen, kami optimalkan setiap langkah dalam perjalanan belanja online Anda."
+      },
+      {
+        "tanya": "Hasil apa yang bisa diharapkan?",
+        "jawab": "Kami melakukan riset mendalam terhadap semua klien kami, mulai dari model bisnis, produk sampai konsumennya. Selain itu, kami juga memastikan bahwa anda mendapatkan hasil terbaik dari pembuatan SKU, pengukuran respon pasar terhadap produk, pengoptimalan iklan, live streaming, affiliate, hingga berbagai campaign e-commerce agar anda mendapat hasil yang pasti dengan laporan berkala yang komprehensif."
+      },
+      {
+        "tanya": "Mengapa harus menggunakan agency MEA?",
+        "jawab": "MEA adalah agency paling berpengalaman di bidang e-commerce, dengan kerjasama lebih dari 3000 UMKM SBB(Small-medium business). Kami juga merupakan partner platform resmi yang siap membantu anda dari semua lini bisnis."
+      },
+      {
+        "tanya": "Apa yang bisa anda selesaikan dengan MEA?",
+        "jawab": "Bersama pengalaman kami yang telah terbukti, anda bisa mengatasi masalah persaingan bisnis yang pasti anda temui, mengefektifkan biaya iklan yang dikeluarkan untuk mendapat hasil maksimal."
+      }
+    ],
+    "mea_foto_hero_id": 15661,
+    "mea_judul_pendek": "Jasa Website"
+  },
+  "gambar": [
+    15633,
+    15657,
+    15663,
+    15665
+  ],
+  "catatan": [
+    "gambar sebelum H1 jadi foto hero: 15661",
+    "accordion (4 tanya) jadi field FAQ"
+  ]
+}

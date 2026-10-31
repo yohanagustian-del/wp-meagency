@@ -221,6 +221,7 @@ function mea_orbit_attrs( $attrs ) {
 function mea_orbit_case_published( $case_id ) {
 	return $case_id
 		&& 'publish' === get_post_status( $case_id )
+		&& ! mea_orbit_meta( 'hub_kasus', $case_id )
 		&& 'page-templates/template-studi-kasus.php' === get_page_template_slug( $case_id )
 		&& (bool) mea_orbit_meta( 'izin_publikasi', $case_id );
 }
@@ -311,6 +312,18 @@ function mea_orbit_orbit_breadcrumb() {
 	$id   = get_queried_object_id();
 	$home = array( __( 'Beranda', 'mea-orbit' ), home_url( '/' ) );
 
+	// Halaman hub (/services/, /study-case/): Beranda > halaman ini.
+	if ( mea_orbit_meta( 'hub_layanan' ) || mea_orbit_meta( 'hub_kasus' ) ) {
+		$label = (string) mea_orbit_meta( 'judul_pendek' );
+		if ( mea_orbit_meta( 'hub_kasus' ) ) {
+			$label = __( 'Studi kasus', 'mea-orbit' );
+		}
+		return array(
+			$home,
+			array( '' !== $label ? $label : get_the_title( $id ), get_permalink( $id ) ),
+		);
+	}
+
 	if ( is_page_template( 'page-templates/template-layanan.php' ) ) {
 		$label = (string) mea_orbit_meta( 'judul_pendek' );
 		return array(
@@ -329,4 +342,28 @@ function mea_orbit_orbit_breadcrumb() {
 	}
 
 	return array();
+}
+
+/**
+ * HTML isi halaman (field rich) siap cetak: disaring ulang dengan daftar tag rich,
+ * lalu `[mea-gambar ID]` diganti gambar Media Library (srcset, alt dari Media Library).
+ * Gambar yang sudah tidak ada di Media Library dihilangkan.
+ *
+ * @param string $html Isi field.
+ * @return string
+ */
+function mea_orbit_isi_html( $html ) {
+	$html = wp_kses( (string) $html, mea_orbit_allowed_html_rich() );
+	return (string) preg_replace_callback(
+		'/(?:<p>\s*)?\[mea-gambar (\d+)\](?:\s*<\/p>)?/',
+		static function ( $m ) {
+			$img = mea_orbit_img(
+				(int) $m[1],
+				'large',
+				array( 'sizes' => '(max-width: 760px) 100vw, 720px' )
+			);
+			return '' !== $img ? '<figure class="isi-img">' . $img . '</figure>' : '';
+		},
+		$html
+	);
 }

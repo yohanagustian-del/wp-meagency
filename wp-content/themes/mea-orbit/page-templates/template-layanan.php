@@ -22,6 +22,7 @@ get_header();
 		<?php
 		get_template_part( 'template-parts/layanan/hero' );
 		get_template_part( 'template-parts/layanan/hub' );
+		get_template_part( 'template-parts/global/isi' );
 		get_template_part( 'template-parts/layanan/cocok' );
 		get_template_part( 'template-parts/layanan/dikerjakan' );
 		get_template_part( 'template-parts/layanan/cara-kerja' );

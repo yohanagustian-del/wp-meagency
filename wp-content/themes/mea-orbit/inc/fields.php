@@ -6,7 +6,7 @@
  * konektor), sanitasi, meta box wp-admin, dan pembacaan nilai. Semua meta memakai
  * prefix `mea_`. Isi awal halaman 14144 dan 14512 ada di docs/seed/.
  *
- * Tipe field: text, textarea, html, int, bool, media, page, quote, select,
+ * Tipe field: text, textarea, html, rich (isi halaman), int, bool, media, page, quote, select,
  * lines (daftar teks), pages (daftar ID halaman), repeater (daftar objek),
  * object (satu objek dengan sub-field tetap).
  *
@@ -26,6 +26,10 @@ function mea_orbit_field_defs() {
 			'type'  => 'text',
 			'label' => __( 'Judul pendek (breadcrumb dan schema Service)', 'mea-orbit' ),
 		),
+		'label_hero'       => array(
+			'type'  => 'text',
+			'label' => __( 'Label kecil di atas H1 (opsional)', 'mea-orbit' ),
+		),
 		'h1'               => array(
 			'type'  => 'text',
 			'label' => __( 'H1', 'mea-orbit' ),
@@ -41,6 +45,10 @@ function mea_orbit_field_defs() {
 		'foto_hero_alt'    => array(
 			'type'  => 'text',
 			'label' => __( 'Alt foto hero (kosong = alt di Media Library)', 'mea-orbit' ),
+		),
+		'isi'              => array(
+			'type'  => 'rich',
+			'label' => __( 'Isi halaman (HTML; dipindah dari Elementor, tampil setelah hero)', 'mea-orbit' ),
 		),
 		'cocok'            => array(
 			'type'  => 'lines',
@@ -142,6 +150,22 @@ function mea_orbit_field_defs() {
 	);
 
 	$studi = array(
+		'hub_kasus'      => array(
+			'type'  => 'bool',
+			'label' => __( 'Halaman daftar studi kasus (/study-case/): tampil H1, lede, dan isi saja', 'mea-orbit' ),
+		),
+		'label_hero'     => array(
+			'type'  => 'text',
+			'label' => __( 'Label kecil di atas H1 (halaman daftar)', 'mea-orbit' ),
+		),
+		'lede'           => array(
+			'type'  => 'textarea',
+			'label' => __( 'Lede di bawah H1 (halaman daftar)', 'mea-orbit' ),
+		),
+		'isi'            => array(
+			'type'  => 'rich',
+			'label' => __( 'Isi halaman (HTML; halaman daftar)', 'mea-orbit' ),
+		),
 		'brand'          => array(
 			'type'  => 'text',
 			'label' => __( 'Nama brand', 'mea-orbit' ),
@@ -419,6 +443,30 @@ function mea_orbit_allowed_html() {
 }
 
 /**
+ * Tag HTML untuk field bertipe rich (isi halaman yang dipindah dari Elementor):
+ * struktur dan link saja, tanpa style, class, script, atau iframe. Gambar Media Library
+ * ditulis sebagai `[mea-gambar ID]` dan dirender tema (srcset, alt Media Library).
+ *
+ * @return array<string, array<string, bool>>
+ */
+function mea_orbit_allowed_html_rich() {
+	$tags = mea_orbit_allowed_html();
+	foreach ( array( 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'hr' ) as $tag ) {
+		$tags[ $tag ] = array();
+	}
+	$tags['th']  = array( 'colspan' => true );
+	$tags['td']  = array( 'colspan' => true );
+	$tags['img'] = array(
+		'src'     => true,
+		'alt'     => true,
+		'width'   => true,
+		'height'  => true,
+		'loading' => true,
+	);
+	return $tags;
+}
+
+/**
  * Sanitasi nilai sesuai tipe field.
  *
  * @param mixed                $value Nilai masuk.
@@ -437,6 +485,8 @@ function mea_orbit_sanitize_field( $value, $def ) {
 			return sanitize_textarea_field( (string) $value );
 		case 'html':
 			return wp_kses( (string) $value, mea_orbit_allowed_html() );
+		case 'rich':
+			return wp_kses( (string) $value, mea_orbit_allowed_html_rich() );
 		case 'lines':
 			if ( is_string( $value ) ) {
 				$value = preg_split( '/\r\n|\r|\n/', $value );
@@ -609,9 +659,13 @@ function mea_orbit_render_field( $name, $def, $value ) {
 	switch ( $def['type'] ) {
 		case 'textarea':
 		case 'html':
-			printf( '<textarea id="%1$s" name="%2$s" rows="%3$d" class="large-text">%4$s</textarea>', esc_attr( $id ), esc_attr( $name ), 'html' === $def['type'] ? 8 : 3, esc_textarea( (string) $value ) );
+		case 'rich':
+			printf( '<textarea id="%1$s" name="%2$s" rows="%3$d" class="large-text">%4$s</textarea>', esc_attr( $id ), esc_attr( $name ), array( 'textarea' => 3, 'html' => 8, 'rich' => 20 )[ $def['type'] ], esc_textarea( (string) $value ) );
 			if ( 'html' === $def['type'] ) {
 				echo '<p class="description">' . esc_html__( 'HTML yang boleh: p, ul, li, strong, em, a, br.', 'mea-orbit' ) . '</p>';
+			}
+			if ( 'rich' === $def['type'] ) {
+				echo '<p class="description">' . esc_html__( 'HTML yang boleh: judul h2–h6, p, ul, ol, li, strong, em, a, br, blockquote, tabel, img. Gambar Media Library: [mea-gambar ID] di paragraf sendiri.', 'mea-orbit' ) . '</p>';
 			}
 			break;
 		case 'lines':

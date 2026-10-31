@@ -1,0 +1,25 @@
+{
+  "page_id": 12356,
+  "url": "/services/",
+  "template": "page-templates/template-layanan.php",
+  "sebelum": {
+    "template": "default",
+    "_elementor_edit_mode": "builder"
+  },
+  "meta": {
+    "mea_label_hero": "",
+    "mea_h1": "Agency Terdepan yang Terbukti Mampu Mendorong Omzet 3000 Klien",
+    "mea_lede": "Terdiri dari hanya profesional berpengalaman, bekerja dengan sepenuh hati mengukur dan memaksimalkan kata kunci dan maksud pencarian di setiap lini yang klien hadapi.",
+    "mea_isi": "<h2>Kelebihan dari Jasa yang Diambil</h2>\n<ul><li>Optimasi toko Shopee &amp; Tiktok Shop</li><li>Management iklan Shopee &amp; Tiktok</li><li>Live streaming Shopee &amp; Tiktok</li><li>Pembuatan konten video</li><li>Pencarian affiliate</li><li>Campaign Shopee &amp; Tiktok Shop</li></ul>\n<p>[mea-gambar 14057]</p>\n<h2>Mengubah Momentum Menjadi Untung</h2>\n<p>Kami berhasil menaklukan segala tantangan yang dimiliki sebuah brand baru untuk berhasil menembus pasar, menarik pelanggan, dan menjelma jadi salah satu pemain besar di kategori produk yang sama dengan memanfaatkan konten organik, affiliate, ads, dan momentum.</p>\n<h2>8,2 Miliar GMV</h2>\n<p>Kami berhasil meningkatkan ROAS hingga 21 dengan 75% traffic organik &amp; affiliate, serta mengandalkan 25% ads.</p>\n<p>Traffic Organic &amp; Affiliate: 75%</p>\n<p>Ads: 25%</p>\n<p><a href=\"https://meagency.co.id/bellarosa/\">Lihat Study Case</a></p>",
+    "mea_faq": [],
+    "mea_foto_hero_id": 15674,
+    "mea_judul_pendek": "Layanan",
+    "mea_hub_layanan": true
+  },
+  "gambar": [
+    14057
+  ],
+  "catatan": [
+    "gambar sebelum H1 jadi foto hero: 15674"
+  ]
+}

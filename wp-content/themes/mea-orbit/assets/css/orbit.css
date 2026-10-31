@@ -1683,3 +1683,95 @@ a.phone-card:focus-visible .phone-label {
 .hub-pilar ul a {
 	color: var(--graphite);
 }
+
+/* Isi halaman yang dipindah dari Elementor (template-parts/global/isi.php): kolom baca. */
+.isi-sec {
+	padding-top: 0;
+}
+
+.isi {
+	max-width: 72ch;
+	margin: 0 auto;
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	color: var(--ink);
+}
+
+.isi > * + * {
+	margin-top: 1em;
+}
+
+.isi h2 {
+	font-size: clamp(1.6rem, 3vw, 2.1rem);
+	margin-top: 2em;
+}
+
+.isi h3,
+.isi h4,
+.isi h5,
+.isi h6 {
+	margin-top: 1.6em;
+}
+
+.isi h2 + *,
+.isi h3 + *,
+.isi h4 + * {
+	margin-top: .6em;
+}
+
+.isi ul,
+.isi ol {
+	padding-left: 1.3em;
+}
+
+.isi li + li {
+	margin-top: .4em;
+}
+
+.isi a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.isi blockquote {
+	border-left: 3px solid var(--line);
+	margin-left: 0;
+	padding-left: 1em;
+	color: var(--graphite);
+}
+
+.isi table {
+	width: 100%;
+	border-collapse: collapse;
+	display: block;
+	overflow-x: auto;
+}
+
+.isi th,
+.isi td {
+	border: 1px solid var(--line);
+	padding: 8px 12px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.isi img {
+	max-width: 100%;
+	height: auto;
+}
+
+.isi .isi-img {
+	margin: 1.6em 0;
+}
+
+.isi .isi-img img {
+	border-radius: 16px;
+	width: 100%;
+}
+
+.isi hr {
+	border: 0;
+	border-top: 1px solid var(--line);
+	margin: 2em 0;
+}

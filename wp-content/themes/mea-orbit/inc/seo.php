@@ -101,7 +101,7 @@ function mea_orbit_schema_nodes( $org_id ) {
 		}
 	}
 
-	if ( is_page_template( 'page-templates/template-studi-kasus.php' ) ) {
+	if ( is_page_template( 'page-templates/template-studi-kasus.php' ) && ! mea_orbit_meta( 'hub_kasus' ) ) {
 		$headline = (string) mea_orbit_meta( 'h1' );
 		$article  = array(
 			'@type'            => 'Article',
