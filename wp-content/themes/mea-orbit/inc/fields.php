@@ -50,6 +50,29 @@ function mea_orbit_field_defs() {
 			'type'  => 'rich',
 			'label' => __( 'Isi halaman (HTML; dipindah dari Elementor, tampil setelah hero)', 'mea-orbit' ),
 		),
+		'motion'           => array(
+			'type'    => 'select',
+			'label'   => __( 'Motion pilar setelah hero (kosong = tidak ada; ecommerce = kurva omzet Bellarosa + hitung naik; live = mockup HP memutar video live)', 'mea-orbit' ),
+			'options' => array( '', 'ecommerce', 'live' ),
+		),
+		'motion_poster'    => array(
+			'type'  => 'media',
+			'label' => __( 'Motion live: poster video (frame pertama, juga tampilan reduced motion / hemat data)', 'mea-orbit' ),
+		),
+		'motion_mp4'       => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Motion live: video MP4 (tanpa audio)', 'mea-orbit' ),
+		),
+		'motion_webm'      => array(
+			'type'    => 'media',
+			'library' => 'video',
+			'label'   => __( 'Motion live: video WebM (opsional)', 'mea-orbit' ),
+		),
+		'motion_keterangan' => array(
+			'type'  => 'text',
+			'label' => __( 'Motion live: keterangan di bawah HP (wajib menyebut bila video ilustrasi AI)', 'mea-orbit' ),
+		),
 		'cocok'            => array(
 			'type'  => 'lines',
 			'label' => __( 'Cocok jika (satu poin per baris)', 'mea-orbit' ),

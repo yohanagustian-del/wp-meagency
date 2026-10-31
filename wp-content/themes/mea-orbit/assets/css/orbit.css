@@ -1775,3 +1775,26 @@ a.phone-card:focus-visible .phone-label {
 	border-top: 1px solid var(--line);
 	margin: 2em 0;
 }
+
+/* Motion pilar setelah hero (template-parts/layanan/motion.php). */
+.pilar-motion {
+	padding-top: 0;
+}
+
+.pilar-ecommerce .case-feature {
+	align-items: center;
+}
+
+.pilar-figures {
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	margin: 16px 0 24px;
+}
+
+.pilar-phone {
+	display: grid;
+	justify-items: center;
+	gap: 14px;
+	margin: 0 auto;
+	max-width: 260px;
+	text-align: center;
+}

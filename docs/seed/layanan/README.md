@@ -26,7 +26,8 @@ huruf drop cap yang kini menyatu dengan katanya. Rincian per halaman: `catatan` 
 Field `mea_isi`, `mea_label_hero`, `mea_hub_*` baru terdaftar setelah tema 0.9.0 terpasang.
 Per seed, lewat konektor:
 
-1. `wp_update_post_meta` (post_type `pages`): semua kunci di `meta`.
+1. `wp_update_post_meta` (post_type `pages`): semua kunci di `meta`, ditambah meta motion
+   halaman itu di `motion.json` (E-commerce dan Live).
 2. `wp_update_page`: `template` dari seed.
 3. Cek: `wp_rm_get_head` URL halaman → title, description, robots, canonical sama dengan sebelum;
    halaman tampil dengan H1 = `mea_h1`.

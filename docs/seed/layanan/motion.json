@@ -1,0 +1,8 @@
+{
+  "keterangan": "Meta motion pilar (poin 4, tahap 1: E-commerce dan Live). Terapkan bersama seed halaman yang sama (wp_update_post_meta, post_type pages). Video live = portofolio tim kreatif MEA yang sama dengan blok 2 section Konten homepage (bukan ilustrasi AI).",
+  "halaman": {
+    "14637": { "mea_motion": "ecommerce" },
+    "15567": { "mea_motion": "live", "mea_motion_poster": 35892, "mea_motion_mp4": 35890, "mea_motion_webm": 35891, "mea_motion_keterangan": "Diproduksi oleh tim kreatif MEA Agency" },
+    "16523": { "mea_motion": "live", "mea_motion_poster": 35892, "mea_motion_mp4": 35890, "mea_motion_webm": 35891, "mea_motion_keterangan": "Diproduksi oleh tim kreatif MEA Agency" }
+  }
+}
