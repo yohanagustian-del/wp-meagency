@@ -2,6 +2,13 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.8.0 · 31 Okt 2026
+- **Laporan klien tanpa Elementor (Fase 1 keluar dari Elementor).** Laporan HTML (weekly, monthly, final report) dicetak tema apa adanya: satu halaman penuh tanpa header/footer situs, tanpa CSS/JS Elementor, `noindex, nofollow` (meta + header `X-Robots-Tag`), form password tema tetap muncul dulu bila berpassword.
+  - **Laporan lama otomatis**: halaman Elementor yang isinya hanya widget HTML berisi dokumen utuh (`<!DOCTYPE html>`/`<html>`) **dan** berpassword, private, atau noindex di Rank Math. Isi dibaca dari `_elementor_data`, jadi tetap tampil walau Elementor nanti dinonaktifkan. Halaman terbuka dan terindeks (halaman pemasaran) tidak disentuh; laporan yang memakai widget lain (mis. monthly report dengan gambar tambahan) tetap lewat Elementor.
+  - **Laporan baru**: template halaman **Laporan HTML** + kotak "Kode HTML laporan" (meta `mea_laporan_html`, juga lewat REST). Sumber: kotak itu → isi editor (tab Text) → widget HTML Elementor. Disimpan apa adanya hanya oleh pengguna `unfiltered_html` (admin/editor); selain itu disaring `wp_kses_post`. Halaman bertemplate ini keluar dari sitemap.
+  - Editor Elementor (`?elementor-preview`) tetap memakai template biasa, jadi laporan lama masih bisa diedit dengan Elementor selama transisi.
+- Panduan tim: `docs/LAPORAN-HTML.md`. Test: `php tests/laporan.php` (23 kasus).
+
 ## mea-orbit 0.7.1 · 30 Okt 2026
 - **Update tema dari WordPress/konektor**: `inc/update.php` + header `Update URI`. WordPress membaca manifest `dist/mea-orbit-update.json` di branch utama repo; bila versinya lebih baru, "Update now" muncul (juga bisa dijalankan lewat konektor). Paket zip diverifikasi SHA-256 dari manifest; paket tidak cocok atau dari URL lain ditolak. Manifest dibuat dengan `tools/release-manifest.sh <commit>`.
 - Termasuk semua isi 0.7.0.
