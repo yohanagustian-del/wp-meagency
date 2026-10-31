@@ -2,6 +2,14 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.9.0 · 31 Okt 2026
+- **Redirect 301 lewat Rank Math** (`inc/redirects.php`): 8 redirect berbasis URL (10 sumber: `/mea-jasa-ads-tik-tok/`, `/jasa-traffic-iklan-dan-affiliate-mea/`, `/a-affiliate-mcn-mea-vk/`, `/content-service/`, `/jasa-optimasi-ads/`, `/jasa-marketing-e-commerce/`, `/home-page/`, `/homepage-mea/`, `/en/`, `/about-us-2-0/`) dibuat sebagai entri Rank Math > Redirections lewat `POST /wp-json/mea-orbit/v1/redirects`; sumber yang sudah ber-redirect dilewati. `GET` rute yang sama = laporan 10 sumber baru + 12 redirect objek lama. **URL yang cocok dengan redirect aktif keluar dari sitemap Rank Math.** Cek dari luar: `tools/redirect/cek-redirect.sh`.
+- **Footer**: Live Streaming TikTok (anak E-commerce, khusus footer/hub), Layanan lain: Jasa Website, About Us selalu ada di Perusahaan, grup baru Ekosistem MEA (Gabung MCN MEA, Sebari). **Hub /services/**: section semua layanan dari sumber data yang sama.
+- **Migrasi template**: 16 halaman layanan ke template Layanan dan `/study-case/` ke template Studi kasus (mode daftar). Isi lama dipindah apa adanya ke field baru `isi` (+ `label_hero`, H1, lede, FAQ); slug, judul, dan meta Rank Math tidak berubah. Seed + rollback: `docs/seed/layanan/`, konverter: `tools/elementor-ke-orbit/`.
+- **Motion pilar tahap 1** (field `motion`): E-commerce = Kurva Bellarosa (M4) + angka hitung naik; Live = mockup HP memutar video live portofolio tim. Primitif `motion.js` dipakai ulang; reduced motion / hemat data / 2g-3g = poster. Peta pilar lain: `docs/motion/06-motion-pilar.md`.
+- **Koreksi artikel Elementor** (`POST /wp-json/mea-orbit/v1/ganti-teks`): ganti teks persis di satu post (post_content + `_elementor_data`), uji dulu, cadangan otomatis. Payload 15889 dan 15879: `docs/konten/2026-10-31-artikel.json`.
+- Test: `php tests/redirects.php` (23), `php tests/ganti-teks.php` (7), `python3 -I tests/konversi_test.py` (12).
+
 ## mea-orbit 0.8.0 · 31 Okt 2026
 - **Laporan klien tanpa Elementor (Fase 1 keluar dari Elementor).** Laporan HTML (weekly, monthly, final report) dicetak tema apa adanya: satu halaman penuh tanpa header/footer situs, tanpa CSS/JS Elementor, `noindex, nofollow` (meta + header `X-Robots-Tag`), form password tema tetap muncul dulu bila berpassword.
   - **Laporan lama otomatis**: halaman Elementor yang isinya hanya widget HTML berisi dokumen utuh (`<!DOCTYPE html>`/`<html>`) **dan** berpassword, private, atau noindex di Rank Math. Isi dibaca dari `_elementor_data`, jadi tetap tampil walau Elementor nanti dinonaktifkan. Halaman terbuka dan terindeks (halaman pemasaran) tidak disentuh; laporan yang memakai widget lain (mis. monthly report dengan gambar tambahan) tetap lewat Elementor.
