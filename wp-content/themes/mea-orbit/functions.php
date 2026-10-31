@@ -21,6 +21,7 @@ require MEA_ORBIT_DIR . '/inc/options.php';
 require MEA_ORBIT_DIR . '/inc/orbit.php';
 require MEA_ORBIT_DIR . '/inc/seo.php';
 require MEA_ORBIT_DIR . '/inc/robots.php';
+require MEA_ORBIT_DIR . '/inc/redirects.php';
 require MEA_ORBIT_DIR . '/inc/laporan.php';
 require MEA_ORBIT_DIR . '/inc/elementor.php';
 require MEA_ORBIT_DIR . '/inc/tracking.php';
