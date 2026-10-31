@@ -1,0 +1,44 @@
+{
+  "page_id": 14632,
+  "url": "/social-media-management/",
+  "template": "page-templates/template-layanan.php",
+  "sebelum": {
+    "template": "default",
+    "_elementor_edit_mode": "builder"
+  },
+  "meta": {
+    "mea_label_hero": "",
+    "mea_h1": "CURI PERHATIAN PELANGGAN DENGAN SOCIAL MEDIA MANAGEMENT TERUPDATE DAN SESUAI BRAND ANDA!",
+    "mea_lede": "Tarik minat calon pembeli dengan cerita brand yang unik! Ciptakan kedekatan dengan audiens melalui konten yang tepat sasaran.",
+    "mea_isi": "<p>[mea-gambar 14057]</p>\n<h2>Mengubah Momentum Menjadi Untung</h2>\n<p>Kami berhasil menaklukan segala tantangan yang dimiliki sebuah brand baru untuk berhasil menembus pasar, menarik pelanggan, dan menjelma jadi salah satu pemain besar di kategori produk yang sama dengan memanfaatkan konten organik, affiliate, ads, dan momentum.</p>\n<h2>8,2 Miliar GMV</h2>\n<p>Kami berhasil meningkatkan ROAS hingga 21 dengan 75% traffic organik &amp; affiliate, serta mengandalkan 25% ads.</p>\n<p>Traffic Organic &amp; Affiliate: 75%</p>\n<p>Ads: 25%</p>\n<p><a href=\"https://meagency.co.id/bellarosa/\">Lihat Study Case</a></p>\n<h2>Konten Yang Menarik Dapat Meningkatkan pertumbuhan hingga 30% dan retensi pelanggan hingga 10%</h2>\n<p>Tarik perhatian audiens Anda, mulai dari kesadaran hingga konversi, dengan tim ahli kami yang menyempurnakan konten Anda untuk menjaga merek Anda tetap teratas.</p>\n<h2>HUBUNGI KAMI SEKARANG!</h2>\n<h2>Konten kami dirancang untuk menjual produk Anda relevan, tertarget, dan bernilai.</h2>\n<p>Pemasaran konten adalah permainan jangka panjang, jadi kami membangun strategi yang mendorong pertumbuhan stabil di semua saluran dan tahap funnel. Sebagai mitra pertumbuhan Anda, kami fokus pada mengubah nilai merek menjadi pendapatan jangka panjang.</p>\n<h2>CIPTAKAN KONTENMU SEKARANG!</h2>\n<h2>Sampaikan Pesan Anda</h2>\n<p>Kami menciptakan konten yang bermakna untuk meningkatkan kesadaran merek atau mendorong tindakan - apa pun tujuan Anda, kami memiliki alat untuk mewujudkannya. Dengan strategi konten berbasis data, kami memastikan pesan Anda menjangkau audiens yang tepat pada saat yang tepat.</p>\n<h2>LIHAT HASIL KERJA KAMI.</h2>\n<p>[mea-gambar 15633]</p>\n<h2>Hubungi Kami</h2>\n<p>Partner terbaik yang menghubungkan bisnismu dengan dunia. Temukan formula ads terbaikmu sendiri. Amati, rangkum, susun, eksekusi. Tingkatkan peluang kemenanganmu sendiri. Kami dapat dengan mudah menemukan perpaduan sempurna yang sesuai untuk bisnismu dan audiensmu semuanya sesuai dengan platform yang kamu gunakan. Dapatkan kesempatan untuk menjaga pengeluaran tetap rendah namun laba semakin tinggi!</p>\n<p><a href=\"https://meagency.co.id/contactus/\">CONTACT US</a></p>\n<h2>INI JAWABAN YANG KAMU CARI?</h2>\n<p>[mea-gambar 15657]</p>",
+    "mea_faq": [
+      {
+        "tanya": "Mengapa pemasaran konten yang sukses penting bagi perusahaan?",
+        "jawab": "Pemasaran konten sangat penting karena, jika dilakukan dengan benar, akan membantu Anda membangun hubungan dengan audiens, menghasilkan prospek, dan meningkatkan konversi. Strategi pemasaran konten yang efektif juga akan membantu membangun otoritas dan kredibilitas industri."
+      },
+      {
+        "tanya": "Apa komponen utama dari pemasaran konten?",
+        "jawab": "Upaya pemasaran konten mencakup semua bentuk pembuatan konten. Ada banyak jenis konten, termasuk artikel blog, video, panduan cara-cara, studi kasus, dan postingan sosial media. MEA memiliki keahlian luar biasa di semua media ini dan akan menyusun strategi pemasaran konten terbaik untuk merek Anda."
+      },
+      {
+        "tanya": "Apa yang membuat layanan pemasaran konten MEA berbeda?",
+        "jawab": "MEA memprioritaskan konten berkualitas tinggi dan bernilai yang mendorong lalu lintas, keterlibatan audiens, dan konversi. Para ahli konten kami menganalisis nilai bisnis dan menciptakan konten khusus untuk memastikan audiens menemukan nilai unik dalam merek Anda."
+      },
+      {
+        "tanya": "Apa yang dilakukan oleh pemasar konten?",
+        "jawab": "Pemasar konten merencanakan, membuat, mendistribusikan, dan menganalisis konten untuk menarik dan melibatkan calon pelanggan. Mereka menggunakan konten informatif, strategi berbasis data, dan daya tarik visual untuk menginformasikan, memikat, dan membujuk calon pelanggan untuk berinteraksi dengan produk atau layanan."
+      }
+    ],
+    "mea_foto_hero_id": 15682,
+    "mea_judul_pendek": "Social Media Management"
+  },
+  "gambar": [
+    14057,
+    15633,
+    15657
+  ],
+  "catatan": [
+    "gambar sebelum H1 jadi foto hero: 15682",
+    "accordion (4 tanya) jadi field FAQ"
+  ]
+}

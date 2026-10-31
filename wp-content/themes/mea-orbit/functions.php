@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MEA_ORBIT_VERSION', '0.8.0' );
+define( 'MEA_ORBIT_VERSION', '0.9.0' );
 define( 'MEA_ORBIT_DIR', get_template_directory() );
 define( 'MEA_ORBIT_URI', get_template_directory_uri() );
 
@@ -21,6 +21,8 @@ require MEA_ORBIT_DIR . '/inc/options.php';
 require MEA_ORBIT_DIR . '/inc/orbit.php';
 require MEA_ORBIT_DIR . '/inc/seo.php';
 require MEA_ORBIT_DIR . '/inc/robots.php';
+require MEA_ORBIT_DIR . '/inc/redirects.php';
+require MEA_ORBIT_DIR . '/inc/ganti-teks.php';
 require MEA_ORBIT_DIR . '/inc/laporan.php';
 require MEA_ORBIT_DIR . '/inc/elementor.php';
 require MEA_ORBIT_DIR . '/inc/tracking.php';

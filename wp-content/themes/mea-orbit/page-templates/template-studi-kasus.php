@@ -19,16 +19,24 @@ get_header();
 	else :
 		?>
 		<div class="wrap"><?php mea_orbit_breadcrumb( mea_orbit_orbit_breadcrumb() ); ?></div>
-		<article aria-labelledby="judul-kasus">
-			<?php
-			get_template_part( 'template-parts/studi-kasus/head' );
-			get_template_part( 'template-parts/studi-kasus/hasil' );
-			get_template_part( 'template-parts/studi-kasus/cerita' );
-			get_template_part( 'template-parts/studi-kasus/galeri' );
-			?>
-		</article>
 		<?php
-		get_template_part( 'template-parts/studi-kasus/lain' );
+		if ( mea_orbit_meta( 'hub_kasus' ) ) :
+			// Halaman daftar studi kasus (/study-case/): label, H1, lede, isi.
+			get_template_part( 'template-parts/studi-kasus/hub' );
+			get_template_part( 'template-parts/global/isi' );
+		else :
+			?>
+			<article aria-labelledby="judul-kasus">
+				<?php
+				get_template_part( 'template-parts/studi-kasus/head' );
+				get_template_part( 'template-parts/studi-kasus/hasil' );
+				get_template_part( 'template-parts/studi-kasus/cerita' );
+				get_template_part( 'template-parts/studi-kasus/galeri' );
+				?>
+			</article>
+			<?php
+			get_template_part( 'template-parts/studi-kasus/lain' );
+		endif;
 		get_template_part( 'template-parts/global/konsultasi', null, array( 'sumber' => mea_orbit_form_source( 'studi-kasus-' ) ) );
 	endif;
 	?>

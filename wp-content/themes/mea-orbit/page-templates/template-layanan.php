@@ -21,6 +21,9 @@ get_header();
 		<div class="wrap"><?php mea_orbit_breadcrumb( mea_orbit_orbit_breadcrumb() ); ?></div>
 		<?php
 		get_template_part( 'template-parts/layanan/hero' );
+		get_template_part( 'template-parts/layanan/motion' );
+		get_template_part( 'template-parts/layanan/hub' );
+		get_template_part( 'template-parts/global/isi' );
 		get_template_part( 'template-parts/layanan/cocok' );
 		get_template_part( 'template-parts/layanan/dikerjakan' );
 		get_template_part( 'template-parts/layanan/cara-kerja' );

@@ -30,9 +30,11 @@ function mea_orbit_consult_url() {
 }
 
 /**
- * Empat pilar layanan: satu sumber untuk navigasi header dan kolom Layanan footer.
+ * Empat pilar layanan: satu sumber untuk navigasi header, kolom Layanan footer, dan hub
+ * /services/. Anak bertanda `'footer'` (elemen ketiga) hanya tampil di footer dan hub,
+ * tidak di dropdown header.
  *
- * @return array<int, array{0:string, 1:string, 2:array<int, array{0:string, 1:string}>}> [label, path, anak].
+ * @return array<int, array{0:string, 1:string, 2:array<int, array{0:string, 1:string, 2?:string}>}> [label, path, anak].
  */
 function mea_orbit_pilar() {
 	return array(
@@ -45,6 +47,7 @@ function mea_orbit_pilar() {
 				array( __( 'Upgrade Shopee Mall', 'mea-orbit' ), '/jasa-upgrade-shopee-mall/' ),
 				array( __( 'Kelola TikTok Shop', 'mea-orbit' ), '/jasa-kelola-tiktok-shop/' ),
 				array( __( 'Live Streaming', 'mea-orbit' ), '/jasa-live-streaming/' ),
+				array( __( 'Live Streaming TikTok', 'mea-orbit' ), '/jasa-live-streaming-tiktok/', 'footer' ),
 				array( __( 'Affiliate', 'mea-orbit' ), '/affiliate/' ),
 			),
 		),
@@ -67,6 +70,41 @@ function mea_orbit_pilar() {
 			),
 		),
 		array( __( 'SEO', 'mea-orbit' ), '/seo/', array() ),
+	);
+}
+
+/**
+ * Layanan MEA Agency di luar empat pilar (footer kolom Layanan dan hub /services/).
+ *
+ * @return array<int, array{0:string, 1:string}> [label, path].
+ */
+function mea_orbit_layanan_lain() {
+	return array(
+		array( __( 'Jasa Website', 'mea-orbit' ), '/jasa-website/' ),
+	);
+}
+
+/**
+ * Brand lain di ekosistem MEA (footer, di bawah Perusahaan).
+ *
+ * @return array<int, array{0:string, 1:string}> [label, path].
+ */
+function mea_orbit_ekosistem() {
+	return array(
+		array( __( 'Gabung MCN MEA', 'mea-orbit' ), '/gabung-mcn-mea/' ),
+		array( __( 'Sebari', 'mea-orbit' ), '/sebari/' ),
+	);
+}
+
+/**
+ * Link kolom Perusahaan yang selalu ada, walau tidak dimasukkan ke menu footer di
+ * wp-admin (ditambahkan di akhir menu bila URL-nya belum ada).
+ *
+ * @return array<int, array{0:string, 1:string}> [label, path].
+ */
+function mea_orbit_perusahaan_wajib() {
+	return array(
+		array( __( 'About Us', 'mea-orbit' ), '/about-us/' ),
 	);
 }
 
@@ -114,6 +152,9 @@ function mea_orbit_pilar_menu() {
 		}
 		echo '<li class="menu-item menu-item-has-children">' . $link( $pilar[0], $pilar[1] ) . '<ul class="sub-menu">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
 		foreach ( $pilar[2] as $anak ) {
+			if ( 'footer' === ( $anak[2] ?? '' ) ) {
+				continue;
+			}
 			echo '<li class="menu-item">' . $link( $anak[0], $anak[1] ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di $link.
 		}
 		echo '</ul></li>';
@@ -157,6 +198,7 @@ function mea_orbit_menu( $location ) {
 				'menu_class'     => 'menu',
 				'depth'          => $header ? 2 : 1,
 				'fallback_cb'    => false,
+				'items_wrap'     => $header ? '<ul id="%1$s" class="%2$s">%3$s</ul>' : '<ul id="%1$s" class="%2$s">%3$s' . str_replace( '%', '%%', mea_orbit_perusahaan_extra( $location ) ) . '</ul>',
 			)
 		);
 		return;
@@ -171,6 +213,50 @@ function mea_orbit_menu( $location ) {
 	echo '<ul class="menu">';
 	foreach ( mea_orbit_fallback_menu_items() as $item ) {
 		printf( '<li><a href="%1$s"%3$s>%2$s</a></li>', esc_url( $item[1] ), esc_html( $item[0] ), $current === $item[1] ? ' aria-current="page"' : '' );
+	}
+	echo mea_orbit_perusahaan_extra( '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- di-escape di fungsinya.
+	echo '</ul>';
+}
+
+/**
+ * Item <li> untuk link Perusahaan wajib yang belum ada di menu lokasi itu.
+ *
+ * @param string $location Lokasi menu (kosong = menu cadangan tema).
+ * @return string
+ */
+function mea_orbit_perusahaan_extra( $location ) {
+	$have = array();
+	if ( '' !== $location ) {
+		$menus = get_nav_menu_locations();
+		$items = ! empty( $menus[ $location ] ) ? wp_get_nav_menu_items( $menus[ $location ] ) : array();
+		foreach ( (array) $items as $item ) {
+			if ( empty( $item->menu_item_parent ) ) {
+				$have[] = untrailingslashit( (string) $item->url );
+			}
+		}
+	}
+	$current = mea_orbit_current_url();
+	$out     = '';
+	foreach ( mea_orbit_perusahaan_wajib() as $item ) {
+		$url = home_url( $item[1] );
+		if ( in_array( untrailingslashit( $url ), $have, true ) ) {
+			continue;
+		}
+		$out .= sprintf( '<li class="menu-item"><a href="%1$s"%3$s>%2$s</a></li>', esc_url( $url ), esc_html( $item[0] ), $current === $url ? ' aria-current="page"' : '' );
+	}
+	return $out;
+}
+
+/**
+ * Daftar link sederhana (footer: Layanan lain, Ekosistem MEA).
+ *
+ * @param array<int, array{0:string, 1:string}> $items Pasangan [label, path].
+ * @return void
+ */
+function mea_orbit_link_list( $items ) {
+	echo '<ul>';
+	foreach ( $items as $item ) {
+		echo '<li><a href="' . esc_url( home_url( $item[1] ) ) . '">' . esc_html( $item[0] ) . '</a></li>';
 	}
 	echo '</ul>';
 }
@@ -193,6 +279,9 @@ function mea_orbit_pilar_footer() {
 		}
 		echo '</div>';
 	}
+	echo '<div><span class="foot-pilar-h">' . esc_html__( 'Layanan lain', 'mea-orbit' ) . '</span>';
+	mea_orbit_link_list( mea_orbit_layanan_lain() );
+	echo '</div>';
 	echo '</div>';
 }
 
