@@ -438,6 +438,8 @@ ANGKA_RESMI = [
     ('4.000+ affiliator', 'jaringan 12.000 kreator MEA'),
     ('Rp 30 miliar budget iklan', 'budget iklan TikTok USD 4-5 juta (2026)'),
     ('1.000+ brand', '3.000 brand'),
+    ('jaringan lebih dari 5.000 kreator', 'jaringan 12.000 kreator MEA'),
+    ('berhasil mencatat prestasi gemilang dengan menempati peringkat Top 3 penjualan terbaik TikTok Indonesia untuk kategori lifestyle, sekaligus masuk Top 7 dengan total omzet tertinggi yang dikelola.', 'berhasil meraih penghargaan TSP Fashion Top Rising of the Year 2026 (Indonesia Summit 2026, Tokopedia &amp; TikTok Shop).'),
     ('peringkat 3 terbaik TikTok Indonesia kategori fashion', 'penghargaan TSP Fashion Top Rising of the Year 2026 (Indonesia Summit 2026, Tokopedia & TikTok Shop)'),
 ]
 
