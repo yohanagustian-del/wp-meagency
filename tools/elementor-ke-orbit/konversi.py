@@ -49,6 +49,8 @@ class Clean(HTMLParser):
         self.ldjson = []
         self.in_ld = False
         self.fixed = 0
+        self.a_href = ''      # href link yang sedang terbuka
+        self.card_href = ''   # link kartu yang dipindah ke judul pertama di dalamnya
 
     def _in_block(self):
         return any(t in BLOCK or t in ('ul', 'ol', 'table') for t in self.stack) or self.implicit
@@ -87,10 +89,22 @@ class Clean(HTMLParser):
             # Span berdampingan (mis. deretan logo media) dipisah spasi.
             self.out[-1] = ' '
         if tag in CONTAINER or tag == 'span' or tag not in KEEP:
-            if tag in CONTAINER:
+            # Kontainer di dalam link (kartu yang seluruhnya bisa diklik) tidak memecah paragraf.
+            if tag in CONTAINER and 'a' not in self.stack:
                 self._close_implicit()
+            elif tag in CONTAINER and self.out and self.out[-1] != ' ':
+                self.out.append(' ')
             return
         if tag in BLOCK or tag in ('ul', 'ol', 'table', 'hr'):
+            if 'a' in self.stack:
+                # Kartu link berisi blok (judul, paragraf): tutup link di sini, pindahkan
+                # href ke judul pertama di dalam kartu.
+                self.card_href = self.a_href
+                while self.stack:
+                    t = self.stack.pop()
+                    self.out.append('</%s>' % t)
+                    if t == 'a':
+                        break
             self._close_implicit()
         elif tag in INLINE_OK and not self._in_block():
             self.out.append('<p>')
@@ -114,8 +128,15 @@ class Clean(HTMLParser):
         if tag in ('br', 'img', 'hr'):
             self.out.append('<%s%s>' % (tag, attr))
             return
+        if tag == 'a':
+            self.a_href = (a.get('href') or '').strip()
         self.out.append('<%s%s>' % (tag, attr))
         self.stack.append(tag)
+        if self.card_href and re.fullmatch(r'h[1-6]', tag):
+            self.out.append('<a href="%s">' % html.escape(self.card_href))
+            self.stack.append('a')
+            self.card_href = ''
+            self.notes.append('link kartu dipindah ke judulnya')
 
     def handle_endtag(self, tag):
         if self.drop:
@@ -124,8 +145,13 @@ class Clean(HTMLParser):
                 self.in_ld = False
             return
         tag = MAP.get(tag, tag)
+        if tag == 'a' and 'a' not in self.stack:
+            self.card_href = ''
         if tag in CONTAINER:
-            self._close_implicit()
+            if 'a' not in self.stack:
+                self._close_implicit()
+            elif self.out and self.out[-1] != ' ':
+                self.out.append(' ')
             return
         if tag == 'span':
             self.out.append('\0span')
@@ -137,6 +163,8 @@ class Clean(HTMLParser):
             self.out.append('</%s>' % t)
             if t == tag:
                 break
+        if tag == 'a' and self.implicit:
+            self.out.append(' ')
         if tag == 'a' and self.fixed and 'a' not in self.stack and self.stack and self.stack[-1] == 'p':
             self.fixed -= 1
             self.out.append('</%s>' % self.stack.pop())
@@ -168,8 +196,8 @@ class Clean(HTMLParser):
         text = re.sub(r'\s*(<br>\s*)+</p>', '</p>', text)
         text = re.sub(r'<p>\s*(<br>\s*)+', '<p>', text)
         text = re.sub(r' +', ' ', text)
-        text = re.sub(r'<(p|li|h[1-6]|td|th)( [^>]*)?>\s+', r'<\1\2>', text)
-        text = re.sub(r'\s+</(p|li|h[1-6]|td|th)>', r'</\1>', text)
+        text = re.sub(r'<(p|li|h[1-6]|td|th|a)( [^>]*)?>\s+', r'<\1\2>', text)
+        text = re.sub(r'\s+</(p|li|h[1-6]|td|th|a)>', r'</\1>', text)
         return text
 
 
@@ -392,6 +420,52 @@ JUDUL_PENDEK = {
 }
 
 
+# H1 baru (1 Nov 2026). H1 lama tidak dibuang: jadi H2 di posisi yang sama dalam isi.
+H1_BARU = {
+    '/jasa-live-streaming/': 'Jasa Live Streaming Shopee dan TikTok Shop dari Studio Bandung',
+    '/jasa-live-streaming-tiktok/': 'Jasa Live Streaming TikTok dengan Host dan Studio Profesional',
+}
+
+# Angka usang -> versi resmi (1 Nov 2026). Hanya angka ini yang diubah; teks lain apa adanya.
+# Pasangan dicocokkan persis pada HTML hasil konversi (isi, lede, FAQ).
+ANGKA_RESMI = [
+    ('<p>Rp30M+</p>\n<p>Budget iklan yang sudah dikelola</p>', '<p>USD 4-5 juta</p>\n<p>Budget iklan TikTok yang dikelola (2026)</p>'),
+    ('<p>1.000+</p>\n<p>Brand yang mempercayai MEA</p>', '<p>3.000</p>\n<p>Brand yang mempercayai MEA</p>'),
+    ('<p>1.000+</p>\n<p>Toko yang dibantu di marketplace</p>', '<p>3.000</p>\n<p>Toko yang dibantu di marketplace</p>'),
+    ('MEA telah mendampingi 1.000 + seller', 'MEA telah mendampingi 3.000 seller'),
+    ('Jaringan 4.000+ affiliator', 'Jaringan 12.000 kreator MEA'),
+    ('jaringan 4.000+ affiliator', 'jaringan 12.000 kreator MEA'),
+    ('4.000+ affiliator', 'jaringan 12.000 kreator MEA'),
+    ('Rp 30 miliar budget iklan', 'budget iklan TikTok USD 4-5 juta (2026)'),
+    ('1.000+ brand', '3.000 brand'),
+    ('jaringan lebih dari 5.000 kreator', 'jaringan 12.000 kreator MEA'),
+    ('berhasil mencatat prestasi gemilang dengan menempati peringkat Top 3 penjualan terbaik TikTok Indonesia untuk kategori lifestyle, sekaligus masuk Top 7 dengan total omzet tertinggi yang dikelola.', 'berhasil meraih penghargaan TSP Fashion Top Rising of the Year 2026 (Indonesia Summit 2026, Tokopedia &amp; TikTok Shop).'),
+    ('peringkat 3 terbaik TikTok Indonesia kategori fashion', 'penghargaan TSP Fashion Top Rising of the Year 2026 (Indonesia Summit 2026, Tokopedia & TikTok Shop)'),
+]
+
+
+def entitas_4byte(text):
+    """Karakter di luar BMP (emoji) -> &#xHEX;."""
+    return re.sub('[\U00010000-\U0010FFFF]', lambda m: '&#x%X;' % ord(m.group(0)), text)
+
+
+def angka_resmi(meta, notes):
+    """Ganti angka usang dengan versi resmi di field teks seed; catat tiap penggantian."""
+    def swap(text):
+        for old, new in ANGKA_RESMI:
+            n = text.count(old)
+            if n:
+                text = text.replace(old, new)
+                notes.append('angka resmi (%dx): %s -> %s' % (n, norm(old), norm(new)))
+        return text
+    for key in ('mea_lede', 'mea_isi'):
+        if key in meta:
+            meta[key] = swap(meta[key])
+    for row in meta.get('mea_faq', []):
+        row['tanya'] = swap(row['tanya'])
+        row['jawab'] = swap(row['jawab'])
+
+
 def convert(post, template):
     data = post['meta']['_elementor_data']
     data = json.loads(data) if isinstance(data, str) else data
@@ -409,7 +483,15 @@ def convert(post, template):
     h1, lede, label, isi = '', '', '', []
     pre = []
     after_h1 = False
+    url = '/%s/' % post['post']['slug']
     for kind, b, wid in doc.blocks:
+        if kind == 'h1' and url in H1_BARU:
+            h1 = H1_BARU[url]
+            after_h1 = True
+            old = '<h2>%s</h2>' % html.escape(b, quote=False)
+            pre.append((old, wid))
+            doc.notes.append('H1 baru: %s; H1 lama jadi H2 di posisinya: %s' % (h1, b))
+            continue
         if kind == 'h1':
             h1 = b
             after_h1 = True
@@ -443,6 +525,15 @@ def convert(post, template):
             doc.notes.append('foto hero %d tidak dipakai (template studi kasus)' % doc.hero_img)
     if not h1:
         doc.notes.append('PERHATIAN: tidak ada H1')
+    angka_resmi(meta, doc.notes)
+    # Tabel database situs belum utf8mb4: emoji dan karakter 4-byte lain ditulis sebagai
+    # entitas HTML (tampil sama), kalau tidak update_post_meta gagal.
+    for key in ('mea_label_hero', 'mea_h1', 'mea_lede', 'mea_isi'):
+        if key in meta:
+            meta[key] = entitas_4byte(meta[key])
+    for row in meta.get('mea_faq', []):
+        row['tanya'] = entitas_4byte(row['tanya'])
+        row['jawab'] = entitas_4byte(row['jawab'])
     gambar = sorted(set(int(x) for x in re.findall(r'\[mea-gambar (\d+)\]', meta['mea_isi'])))
     return {
         'page_id': post['post']['id'],
