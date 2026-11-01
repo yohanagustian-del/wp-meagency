@@ -17,7 +17,6 @@ $mea_orbit_sales = mea_orbit_sales();
 		<div class="sec-head">
 			<h2 id="judul-konsultasi"><?php esc_html_e( 'Ceritakan kondisi toko Anda', 'mea-orbit' ); ?></h2>
 			<p class="lede"><?php esc_html_e( 'Tim kami membaca data toko Anda sebelum menghubungi. Konsultasi pertama tidak dipungut biaya dan tidak mengikat.', 'mea-orbit' ); ?></p>
-			<p class="small"><?php esc_html_e( 'Lebih suka langsung bicara? Hubungi tim sales di', 'mea-orbit' ); ?> <a href="<?php echo esc_url( $mea_orbit_sales['wa'] ); ?>"><?php echo esc_html( $mea_orbit_sales['tampil'] ); ?></a>.</p>
 		</div>
 		<?php if ( function_exists( 'mea_leads_form' ) ) : ?>
 			<?php echo mea_leads_form( array( 'sumber' => (string) ( $args['sumber'] ?? '' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup form sudah di-escape oleh plugin. ?>

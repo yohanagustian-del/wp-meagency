@@ -13,8 +13,6 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$mea_orbit_sales = mea_orbit_sales();
-
 while ( have_posts() ) :
 	the_post();
 	$mea_orbit_categories = get_the_category();
@@ -81,7 +79,6 @@ while ( have_posts() ) :
 				<p><?php esc_html_e( 'Tim kami membaca data toko Anda sebelum menghubungi. Konsultasi pertama tidak dipungut biaya dan tidak mengikat.', 'mea-orbit' ); ?></p>
 				<div class="btn-row">
 					<a class="btn btn-primary" href="<?php echo esc_url( mea_orbit_consult_url() ); ?>"><?php esc_html_e( 'Jadwalkan konsultasi', 'mea-orbit' ); ?></a>
-					<a class="btn btn-ghost" href="<?php echo esc_url( $mea_orbit_sales['wa'] ); ?>"><?php esc_html_e( 'Chat tim sales', 'mea-orbit' ); ?></a>
 				</div>
 			</aside>
 
