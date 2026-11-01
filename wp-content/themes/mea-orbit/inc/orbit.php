@@ -345,15 +345,59 @@ function mea_orbit_orbit_breadcrumb() {
 }
 
 /**
- * HTML isi halaman (field rich) siap cetak: disaring ulang dengan daftar tag rich,
- * lalu `[mea-gambar ID]` diganti gambar Media Library (srcset, alt dari Media Library).
- * Gambar yang sudah tidak ada di Media Library dihilangkan.
+ * Link CTA lama di isi halaman diarahkan ke form konsultasi di halaman yang sama.
+ *
+ * Tujuan lama: `/klik/*`, `meagency.co.id/klik/*`, `sebari.co.id/form/*` (http/https,
+ * dengan/tanpa www, juga `//domain`). href diganti `$target`; atribut target dan rel
+ * di link itu dibuang. Link lain tidak disentuh.
+ *
+ * @param string $html   Isi field / konten.
+ * @param string $target Tujuan baru (default form di halaman yang sama).
+ * @return string
+ */
+function mea_orbit_isi_cta_lama( $html, $target = '#konsultasi' ) {
+	$html = (string) $html;
+	if ( false === stripos( $html, '/klik' ) && false === stripos( $html, 'sebari.co.id/form' ) ) {
+		return $html;
+	}
+	return (string) preg_replace_callback(
+		'/<a\b[^>]*>/i',
+		static function ( $m ) use ( $target ) {
+			$tag = $m[0];
+			if ( ! preg_match( '/\shref\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $tag, $h ) ) {
+				return $tag;
+			}
+			$href = trim( html_entity_decode( $h[1] . ( $h[2] ?? '' ) . ( $h[3] ?? '' ), ENT_QUOTES ) );
+			$lama = '#^(?:(?:https?:)?//(?:www\.)?meagency\.co\.id)?/klik(?:[/?\#]|$)#i';
+			$form = '#^(?:https?:)?//(?:www\.)?sebari\.co\.id/form/#i';
+			if ( ! preg_match( $lama, $href ) && ! preg_match( $form, $href ) ) {
+				return $tag;
+			}
+			$tag = preg_replace( '/\s(?:target|rel)\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+)/i', '', $tag );
+			return (string) preg_replace_callback(
+				'/\shref\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+)/i',
+				static function () use ( $target ) {
+					return ' href="' . htmlspecialchars( $target, ENT_QUOTES ) . '"';
+				},
+				(string) $tag,
+				1
+			);
+		},
+		$html
+	);
+}
+
+/**
+ * HTML isi halaman (field rich) siap cetak: link CTA lama diarahkan ke `#konsultasi`,
+ * disaring ulang dengan daftar tag rich, lalu `[mea-gambar ID]` diganti gambar Media
+ * Library (srcset, alt dari Media Library). Gambar yang sudah tidak ada dihilangkan.
  *
  * @param string $html Isi field.
  * @return string
  */
 function mea_orbit_isi_html( $html ) {
-	$html = wp_kses( (string) $html, mea_orbit_allowed_html_rich() );
+	$html = mea_orbit_isi_cta_lama( (string) $html );
+	$html = wp_kses( $html, mea_orbit_allowed_html_rich() );
 	return (string) preg_replace_callback(
 		'/(?:<p>\s*)?\[mea-gambar (\d+)\](?:\s*<\/p>)?/',
 		static function ( $m ) {
