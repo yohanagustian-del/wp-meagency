@@ -2,6 +2,11 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.9.2 · 1 Nov 2026
+- **Semua kontak jasa lewat form konsultasi** (permintaan Yohan): kalimat "Lebih suka langsung bicara? Hubungi tim sales di 0821-1793-2648" di atas form dihapus; footer "Hubungi" kini berisi link **Form konsultasi** (`mea_orbit_consult_url()`), bukan nomor WA; tombol "Chat tim sales" di kotak CTA artikel dihapus (tinggal "Jadwalkan konsultasi").
+- Tetap: tombol WA di pesan terima kasih setelah form terkirim (plugin mea-leads) dan tombol WA cadangan bila plugin form nonaktif.
+- Data live (konektor, tanpa kode): blok paket lama "Pak Encep dkk" di 4932 diganti CTA ke form; FAQ 287 tidak lagi menyebut nomor +62 812-8083-2339; label "via WhatsApp" di 30030/30483 dibuang; baris WhatsApp di 9289 dihapus. Rincian: `docs/seed/layanan/AUDIT-2026-11-01.md`.
+
 ## mea-orbit 0.9.1 · 1 Nov 2026
 - **CTA lama di field isi → form konsultasi** (`mea_orbit_isi_cta_lama()`, dipanggil `mea_orbit_isi_html()` sebelum `wp_kses`): link ke `/klik/*`, `meagency.co.id/klik/*`, `sebari.co.id/form/*` (http/https, www, `//`) diganti `href="#konsultasi"`, atribut target/rel dibuang. Berlaku untuk semua field isi (layanan dan halaman daftar studi kasus).
 - **Code Snippet #14 pindah ke tema** (`inc/cta-lama.php`): redirect 302 `/klik/*` → `/#konsultasi` dan penulisan ulang CTA lama di konten artikel, render Elementor, dan widget teks (±60 artikel masih memuat link lama). Setelah tema ini terpasang, snippet #14 boleh dimatikan tanpa mengubah perilaku situs.
