@@ -392,6 +392,50 @@ JUDUL_PENDEK = {
 }
 
 
+# H1 baru (1 Nov 2026). H1 lama tidak dibuang: jadi H2 di posisi yang sama dalam isi.
+H1_BARU = {
+    '/jasa-live-streaming/': 'Jasa Live Streaming Shopee dan TikTok Shop dari Studio Bandung',
+    '/jasa-live-streaming-tiktok/': 'Jasa Live Streaming TikTok dengan Host dan Studio Profesional',
+}
+
+# Angka usang -> versi resmi (1 Nov 2026). Hanya angka ini yang diubah; teks lain apa adanya.
+# Pasangan dicocokkan persis pada HTML hasil konversi (isi, lede, FAQ).
+ANGKA_RESMI = [
+    ('<p>Rp30M+</p>\n<p>Budget iklan yang sudah dikelola</p>', '<p>USD 4-5 juta</p>\n<p>Budget iklan TikTok yang dikelola (2026)</p>'),
+    ('<p>1.000+</p>\n<p>Brand yang mempercayai MEA</p>', '<p>3.000</p>\n<p>Brand yang mempercayai MEA</p>'),
+    ('<p>1.000+</p>\n<p>Toko yang dibantu di marketplace</p>', '<p>3.000</p>\n<p>Toko yang dibantu di marketplace</p>'),
+    ('MEA telah mendampingi 1.000 + seller', 'MEA telah mendampingi 3.000 seller'),
+    ('Jaringan 4.000+ affiliator', 'Jaringan 12.000 kreator MEA'),
+    ('jaringan 4.000+ affiliator', 'jaringan 12.000 kreator MEA'),
+    ('4.000+ affiliator', 'jaringan 12.000 kreator MEA'),
+    ('Rp 30 miliar budget iklan', 'budget iklan TikTok USD 4-5 juta (2026)'),
+    ('1.000+ brand', '3.000 brand'),
+    ('peringkat 3 terbaik TikTok Indonesia kategori fashion', 'penghargaan TSP Fashion Top Rising of the Year 2026 (Indonesia Summit 2026, Tokopedia & TikTok Shop)'),
+]
+
+
+def entitas_4byte(text):
+    """Karakter di luar BMP (emoji) -> &#xHEX;."""
+    return re.sub('[\U00010000-\U0010FFFF]', lambda m: '&#x%X;' % ord(m.group(0)), text)
+
+
+def angka_resmi(meta, notes):
+    """Ganti angka usang dengan versi resmi di field teks seed; catat tiap penggantian."""
+    def swap(text):
+        for old, new in ANGKA_RESMI:
+            n = text.count(old)
+            if n:
+                text = text.replace(old, new)
+                notes.append('angka resmi (%dx): %s -> %s' % (n, norm(old), norm(new)))
+        return text
+    for key in ('mea_lede', 'mea_isi'):
+        if key in meta:
+            meta[key] = swap(meta[key])
+    for row in meta.get('mea_faq', []):
+        row['tanya'] = swap(row['tanya'])
+        row['jawab'] = swap(row['jawab'])
+
+
 def convert(post, template):
     data = post['meta']['_elementor_data']
     data = json.loads(data) if isinstance(data, str) else data
@@ -409,7 +453,15 @@ def convert(post, template):
     h1, lede, label, isi = '', '', '', []
     pre = []
     after_h1 = False
+    url = '/%s/' % post['post']['slug']
     for kind, b, wid in doc.blocks:
+        if kind == 'h1' and url in H1_BARU:
+            h1 = H1_BARU[url]
+            after_h1 = True
+            old = '<h2>%s</h2>' % html.escape(b, quote=False)
+            pre.append((old, wid))
+            doc.notes.append('H1 baru: %s; H1 lama jadi H2 di posisinya: %s' % (h1, b))
+            continue
         if kind == 'h1':
             h1 = b
             after_h1 = True
@@ -443,6 +495,15 @@ def convert(post, template):
             doc.notes.append('foto hero %d tidak dipakai (template studi kasus)' % doc.hero_img)
     if not h1:
         doc.notes.append('PERHATIAN: tidak ada H1')
+    angka_resmi(meta, doc.notes)
+    # Tabel database situs belum utf8mb4: emoji dan karakter 4-byte lain ditulis sebagai
+    # entitas HTML (tampil sama), kalau tidak update_post_meta gagal.
+    for key in ('mea_label_hero', 'mea_h1', 'mea_lede', 'mea_isi'):
+        if key in meta:
+            meta[key] = entitas_4byte(meta[key])
+    for row in meta.get('mea_faq', []):
+        row['tanya'] = entitas_4byte(row['tanya'])
+        row['jawab'] = entitas_4byte(row['jawab'])
     gambar = sorted(set(int(x) for x in re.findall(r'\[mea-gambar (\d+)\]', meta['mea_isi'])))
     return {
         'page_id': post['post']['id'],
