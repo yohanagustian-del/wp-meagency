@@ -2,6 +2,12 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.9.1 · 1 Nov 2026
+- **CTA lama di field isi → form konsultasi** (`mea_orbit_isi_cta_lama()`, dipanggil `mea_orbit_isi_html()` sebelum `wp_kses`): link ke `/klik/*`, `meagency.co.id/klik/*`, `sebari.co.id/form/*` (http/https, www, `//`) diganti `href="#konsultasi"`, atribut target/rel dibuang. Berlaku untuk semua field isi (layanan dan halaman daftar studi kasus).
+- **Code Snippet #14 pindah ke tema** (`inc/cta-lama.php`): redirect 302 `/klik/*` → `/#konsultasi` dan penulisan ulang CTA lama di konten artikel, render Elementor, dan widget teks (±60 artikel masih memuat link lama). Setelah tema ini terpasang, snippet #14 boleh dimatikan tanpa mengubah perilaku situs.
+- **Audit data live 1 Nov** (tanpa perubahan kode, lewat konektor): sisa ikon Elementor dibuang dari field isi (48 paragraf di 4 halaman), gambar eksternal kelas-work di 15567 dan 16523 diganti Media Library 35906, FAQ 15567 dipindah dari isi ke field FAQ (11 tanya-jawab, teks sama). Rincian: `docs/seed/layanan/AUDIT-2026-11-01.md`.
+- Test: `php tests/isi-cta.php` (24).
+
 ## mea-orbit 0.9.0 · 31 Okt 2026
 - **Redirect 301 lewat Rank Math** (`inc/redirects.php`): 8 redirect berbasis URL (10 sumber: `/mea-jasa-ads-tik-tok/`, `/jasa-traffic-iklan-dan-affiliate-mea/`, `/a-affiliate-mcn-mea-vk/`, `/content-service/`, `/jasa-optimasi-ads/`, `/jasa-marketing-e-commerce/`, `/home-page/`, `/homepage-mea/`, `/en/`, `/about-us-2-0/`) dibuat sebagai entri Rank Math > Redirections lewat `POST /wp-json/mea-orbit/v1/redirects`; sumber yang sudah ber-redirect dilewati. `GET` rute yang sama = laporan 10 sumber baru + 12 redirect objek lama. **URL yang cocok dengan redirect aktif keluar dari sitemap Rank Math.** Cek dari luar: `tools/redirect/cek-redirect.sh`.
 - **Footer**: Live Streaming TikTok (anak E-commerce, khusus footer/hub), Layanan lain: Jasa Website, About Us selalu ada di Perusahaan, grup baru Ekosistem MEA (Gabung MCN MEA, Sebari). **Hub /services/**: section semua layanan dari sumber data yang sama.
