@@ -49,6 +49,8 @@ class Clean(HTMLParser):
         self.ldjson = []
         self.in_ld = False
         self.fixed = 0
+        self.a_href = ''      # href link yang sedang terbuka
+        self.card_href = ''   # link kartu yang dipindah ke judul pertama di dalamnya
 
     def _in_block(self):
         return any(t in BLOCK or t in ('ul', 'ol', 'table') for t in self.stack) or self.implicit
@@ -87,10 +89,22 @@ class Clean(HTMLParser):
             # Span berdampingan (mis. deretan logo media) dipisah spasi.
             self.out[-1] = ' '
         if tag in CONTAINER or tag == 'span' or tag not in KEEP:
-            if tag in CONTAINER:
+            # Kontainer di dalam link (kartu yang seluruhnya bisa diklik) tidak memecah paragraf.
+            if tag in CONTAINER and 'a' not in self.stack:
                 self._close_implicit()
+            elif tag in CONTAINER and self.out and self.out[-1] != ' ':
+                self.out.append(' ')
             return
         if tag in BLOCK or tag in ('ul', 'ol', 'table', 'hr'):
+            if 'a' in self.stack:
+                # Kartu link berisi blok (judul, paragraf): tutup link di sini, pindahkan
+                # href ke judul pertama di dalam kartu.
+                self.card_href = self.a_href
+                while self.stack:
+                    t = self.stack.pop()
+                    self.out.append('</%s>' % t)
+                    if t == 'a':
+                        break
             self._close_implicit()
         elif tag in INLINE_OK and not self._in_block():
             self.out.append('<p>')
@@ -114,8 +128,15 @@ class Clean(HTMLParser):
         if tag in ('br', 'img', 'hr'):
             self.out.append('<%s%s>' % (tag, attr))
             return
+        if tag == 'a':
+            self.a_href = (a.get('href') or '').strip()
         self.out.append('<%s%s>' % (tag, attr))
         self.stack.append(tag)
+        if self.card_href and re.fullmatch(r'h[1-6]', tag):
+            self.out.append('<a href="%s">' % html.escape(self.card_href))
+            self.stack.append('a')
+            self.card_href = ''
+            self.notes.append('link kartu dipindah ke judulnya')
 
     def handle_endtag(self, tag):
         if self.drop:
@@ -124,8 +145,13 @@ class Clean(HTMLParser):
                 self.in_ld = False
             return
         tag = MAP.get(tag, tag)
+        if tag == 'a' and 'a' not in self.stack:
+            self.card_href = ''
         if tag in CONTAINER:
-            self._close_implicit()
+            if 'a' not in self.stack:
+                self._close_implicit()
+            elif self.out and self.out[-1] != ' ':
+                self.out.append(' ')
             return
         if tag == 'span':
             self.out.append('\0span')
@@ -137,6 +163,8 @@ class Clean(HTMLParser):
             self.out.append('</%s>' % t)
             if t == tag:
                 break
+        if tag == 'a' and self.implicit:
+            self.out.append(' ')
         if tag == 'a' and self.fixed and 'a' not in self.stack and self.stack and self.stack[-1] == 'p':
             self.fixed -= 1
             self.out.append('</%s>' % self.stack.pop())
@@ -168,8 +196,8 @@ class Clean(HTMLParser):
         text = re.sub(r'\s*(<br>\s*)+</p>', '</p>', text)
         text = re.sub(r'<p>\s*(<br>\s*)+', '<p>', text)
         text = re.sub(r' +', ' ', text)
-        text = re.sub(r'<(p|li|h[1-6]|td|th)( [^>]*)?>\s+', r'<\1\2>', text)
-        text = re.sub(r'\s+</(p|li|h[1-6]|td|th)>', r'</\1>', text)
+        text = re.sub(r'<(p|li|h[1-6]|td|th|a)( [^>]*)?>\s+', r'<\1\2>', text)
+        text = re.sub(r'\s+</(p|li|h[1-6]|td|th|a)>', r'</\1>', text)
         return text
 
 

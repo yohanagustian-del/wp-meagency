@@ -87,5 +87,11 @@ seed = konversi.convert(post([
 ]), 'layanan')
 t('angka resmi diganti, teks lain tetap', '<p>USD 4-5 juta</p>\n<p>Budget iklan TikTok yang dikelola (2026)</p>\n<p>Jaringan 12.000 kreator MEA kami.</p>', seed['meta']['mea_isi'])
 
+seed = konversi.convert(post([w('heading', title='X', header_size='h1'), w('html', html='<div><p>Pembuka.</p></div><div class="g"><a href="/a/"><div>A</div><div>Lihat →</div></a><a href="/b/"><div>B</div></a></div>')]), 'layanan')
+t('kartu link berisi div tetap satu link utuh', '<p><a href="/a/">A Lihat →</a> <a href="/b/">B</a></p>', seed['meta']['mea_isi'])
+
+seed = konversi.convert(post([w('heading', title='X', header_size='h1'), w('html', html='<p>Awal.</p><a href="/k/" class="card"><div>⚙</div><h3>Kelola</h3><p>Deskripsi.</p><span>Pelajari →</span></a>')]), 'layanan')
+t('kartu link berisi judul: link pindah ke judul', '<p><a href="/k/">⚙</a></p>\n<h3><a href="/k/">Kelola</a></h3>\n<p>Deskripsi.</p>\n<p>Pelajari →</p>', seed['meta']['mea_isi'])
+
 print('\n%s' % ('semua lolos' if not gagal else '%d gagal' % gagal))
 sys.exit(1 if gagal else 0)
