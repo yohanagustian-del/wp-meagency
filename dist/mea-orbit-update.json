@@ -1,7 +1,7 @@
 {
-  "version": "0.9.1",
-  "package": "https://raw.githubusercontent.com/yohanagustian-del/wp-meagency/15623e68acc4/dist/mea-orbit-0.9.1.zip",
-  "sha256": "7d5947ad98252c1bba75eacd4950bb66aad1b185bf7c553a23df96a661273bd8",
+  "version": "0.9.2",
+  "package": "https://raw.githubusercontent.com/yohanagustian-del/wp-meagency/57ea1fa3bd73/dist/mea-orbit-0.9.2.zip",
+  "sha256": "c30bde0f7a46ee8b7131a62ae89e1117fe7c11cb3b9451222b2d52fa27603eb7",
   "requires": "6.4",
   "requires_php": "8.0"
 }
