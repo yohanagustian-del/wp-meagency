@@ -94,7 +94,7 @@ namespace {
 	}
 	t( '10 sumber baru', 10, count( $sources ) );
 	t( '/en/ ke beranda', '/', $sources['/en/'] );
-	t( '/a-affiliate-mcn-mea-vk/ ke gabung MCN', '/gabung-mcn-mea/', $sources['/a-affiliate-mcn-mea-vk/'] );
+	t( '/a-affiliate-mcn-mea-vk/ langsung ke meamcn.com/kreator', 'https://meamcn.com/kreator/', $sources['/a-affiliate-mcn-mea-vk/'] );
 	t( '12 sumber redirect objek lama', 12, count( mea_orbit_redirect_legacy_sources() ) );
 	t( 'tidak ada sumber yang juga tujuan', array(), array_values( array_intersect( array_keys( $sources ), array_values( $sources ) ) ) );
 
@@ -127,6 +127,9 @@ namespace {
 	t( 'yang dilewati dilaporkan', 8, $home['dilewati'][0]['redirect_id'] );
 	t( 'tujuan URL penuh, 301', array( 'https://www.meagency.co.id/jasa-tiktok-ads/', '301' ), array( $GLOBALS['mea_rm_saved'][0]['url_to'], $GLOBALS['mea_rm_saved'][0]['header_code'] ) );
 	t( 'sumber exact', 'exact', $GLOBALS['mea_rm_saved'][0]['sources'][0]['comparison'] );
+	t( 'tujuan eksternal disimpan apa adanya', 'https://meamcn.com/kreator/', $GLOBALS['mea_rm_saved'][2]['url_to'] );
+	t( 'tujuan path jadi URL situs', 'https://www.meagency.co.id/about-us/', mea_orbit_redirect_target( '/about-us/' ) );
+	t( 'tujuan URL absolut tidak diubah', 'https://meamcn.com/kreator/', mea_orbit_redirect_target( 'https://meamcn.com/kreator/' ) );
 
 	echo "Sitemap\n";
 	$entry = array( 'loc' => 'https://www.meagency.co.id/jasa-live-shopee/' );
@@ -147,6 +150,7 @@ namespace {
 	t( 'objek tanpa redirect tidak cocok', false, $byid['/jasa-webinar/']['cocok'] );
 	$baru = array_column( $rep['baru'], null, 'sumber' );
 	t( 'sumber baru dengan tujuan sesuai', true, $baru['/homepage-mea/']['cocok'] );
+	t( 'tujuan harap eksternal dilaporkan apa adanya', 'https://meamcn.com/kreator/', $baru['/a-affiliate-mcn-mea-vk/']['tujuan_harap'] );
 
 	echo "\n$total kasus, $failed gagal\n";
 	exit( $failed ? 1 : 0 );

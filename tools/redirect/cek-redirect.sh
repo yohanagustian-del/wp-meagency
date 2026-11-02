@@ -7,11 +7,12 @@ set -u
 base="${1:-https://www.meagency.co.id}"
 gagal=0
 
-# sumber|tujuan (tujuan kosong = cukup 301). Sama dengan inc/redirects.php.
+# sumber|tujuan (tujuan kosong = cukup 301; path = di situs ini, http(s)://… = URL absolut).
+# Sama dengan inc/redirects.php.
 daftar='
 /mea-jasa-ads-tik-tok/|/jasa-tiktok-ads/
 /jasa-traffic-iklan-dan-affiliate-mea/|/affiliate/
-/a-affiliate-mcn-mea-vk/|/gabung-mcn-mea/
+/a-affiliate-mcn-mea-vk/|https://meamcn.com/kreator/
 /content-service/|/jasa-konten/
 /jasa-optimasi-ads/|/jasa-performance-ads/
 /jasa-marketing-e-commerce/|/ecommerce-service/
@@ -47,7 +48,8 @@ echo "$daftar" | while IFS='|' read -r src dst; do
 	lok=$(printf '%s\n' "$head" | sed -n 's/^[Ll]ocation: *//p' | head -1)
 	status=ok
 	[ "$kode" = 301 ] || status=GAGAL
-	if [ -n "$dst" ] && [ "${lok%/}" != "$base${dst%/}" ] && [ "$lok" != "$base$dst" ]; then status=GAGAL; fi
+	case "$dst" in http://* | https://*) url="$dst" ;; *) url="$base$dst" ;; esac
+	if [ -n "$dst" ] && [ "${lok%/}" != "${url%/}" ] && [ "$lok" != "$url" ]; then status=GAGAL; fi
 	if grep -qx "$base$src" "$tmp"; then status="GAGAL (di sitemap)"; fi
 	printf '%-6s %s %s -> %s\n' "$status" "$kode" "$src" "${lok:-?}"
 done | tee /dev/stderr | grep -q '^GAGAL' && gagal=1
