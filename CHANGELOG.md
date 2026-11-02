@@ -2,6 +2,12 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.9.3 · 2 Nov 2026
+- **Footer Ekosistem MEA**: "Gabung MCN MEA" langsung ke `https://meamcn.com/kreator/` (sebelumnya `/gabung-mcn-mea/`, yang 301 ke sana). `mea_orbit_link_list()` memakai URL absolut (`http(s)://`) apa adanya, path situs tetap lewat `home_url()`; tetap `esc_url`.
+- **Redirect**: `/a-affiliate-mcn-mea-vk/` → `https://meamcn.com/kreator/` (301, tanpa rantai). `mea_orbit_redirect_target()`: tujuan path → `home_url()`, URL absolut apa adanya (untuk `url_to` entri Rank Math dan laporan REST). Redirect tetap dijalankan Rank Math, yang menerima tujuan domain lain, jadi `allowed_redirect_hosts` tidak diubah.
+- Data live Rank Math (disetujui Yohan, lewat konektor): #154 `a-affiliate-mcn-mea-vk/` tujuan diganti `https://meamcn.com/`→`https://meamcn.com/kreator/`; #183 (duplikat sumber sama → `/gabung-mcn-mea/`, 0 hit) dinonaktifkan, tidak dihapus.
+- Test: `php tests/redirects.php` (27). `tools/redirect/cek-redirect.sh` menerima tujuan absolut.
+
 ## Data live · 2 Nov 2026 (tanpa perubahan kode)
 - **Post 15879 bersudut "cara optimasi toko shopee"** (disetujui Yohan): lewat `POST mea-orbit/v1/ganti-teks` dalam dua panggilan (Elementor 13 pasangan, lalu post_content 6 pasangan; semua cocok tepat 1x). Ringkasan 5 bullet baru, H2 "Apa Saja yang Dioptimasi", "Langkah Cara Optimasi Toko Shopee" (tips digabung, link internal tetap), "Kapan Toko Anda Perlu Jasa Optimasi Shopee?", MEA dipadatkan, kesimpulan baru, FAQ 5 + FAQPage JSON-LD identik, 3 klaim tanpa sumber dihapus, 3 CTA `/klik/` diganti 1 CTA akhir ke `/contactus/`. Judul, slug, dan meta Rank Math tetap. Cache post dibersihkan. Cadangan: `backups/15879-20261102.*`; payload dan diff: `docs/konten/2026-11-02-15879-*`.
 
