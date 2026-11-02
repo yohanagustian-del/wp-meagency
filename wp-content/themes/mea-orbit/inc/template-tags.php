@@ -87,11 +87,11 @@ function mea_orbit_layanan_lain() {
 /**
  * Brand lain di ekosistem MEA (footer, di bawah Perusahaan).
  *
- * @return array<int, array{0:string, 1:string}> [label, path].
+ * @return array<int, array{0:string, 1:string}> [label, path atau URL absolut].
  */
 function mea_orbit_ekosistem() {
 	return array(
-		array( __( 'Gabung MCN MEA', 'mea-orbit' ), '/gabung-mcn-mea/' ),
+		array( __( 'Gabung MCN MEA', 'mea-orbit' ), 'https://meamcn.com/kreator/' ),
 		array( __( 'Sebari', 'mea-orbit' ), '/sebari/' ),
 	);
 }
@@ -248,15 +248,17 @@ function mea_orbit_perusahaan_extra( $location ) {
 }
 
 /**
- * Daftar link sederhana (footer: Layanan lain, Ekosistem MEA).
+ * Daftar link sederhana (footer: Layanan lain, Ekosistem MEA). Path situs dilewatkan
+ * home_url(); URL absolut (http/https, mis. domain brand lain) dipakai apa adanya.
  *
- * @param array<int, array{0:string, 1:string}> $items Pasangan [label, path].
+ * @param array<int, array{0:string, 1:string}> $items Pasangan [label, path atau URL absolut].
  * @return void
  */
 function mea_orbit_link_list( $items ) {
 	echo '<ul>';
 	foreach ( $items as $item ) {
-		echo '<li><a href="' . esc_url( home_url( $item[1] ) ) . '">' . esc_html( $item[0] ) . '</a></li>';
+		$url = preg_match( '#^https?://#i', $item[1] ) ? $item[1] : home_url( $item[1] );
+		echo '<li><a href="' . esc_url( $url ) . '">' . esc_html( $item[0] ) . '</a></li>';
 	}
 	echo '</ul>';
 }
