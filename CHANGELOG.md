@@ -2,6 +2,9 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## Data live · 2 Nov 2026 (tanpa perubahan kode)
+- **Post 15879 bersudut "cara optimasi toko shopee"** (disetujui Yohan): lewat `POST mea-orbit/v1/ganti-teks` dalam dua panggilan (Elementor 13 pasangan, lalu post_content 6 pasangan; semua cocok tepat 1x). Ringkasan 5 bullet baru, H2 "Apa Saja yang Dioptimasi", "Langkah Cara Optimasi Toko Shopee" (tips digabung, link internal tetap), "Kapan Toko Anda Perlu Jasa Optimasi Shopee?", MEA dipadatkan, kesimpulan baru, FAQ 5 + FAQPage JSON-LD identik, 3 klaim tanpa sumber dihapus, 3 CTA `/klik/` diganti 1 CTA akhir ke `/contactus/`. Judul, slug, dan meta Rank Math tetap. Cache post dibersihkan. Cadangan: `backups/15879-20261102.*`; payload dan diff: `docs/konten/2026-11-02-15879-*`.
+
 ## mea-orbit 0.9.2 · 1 Nov 2026
 - **Semua kontak jasa lewat form konsultasi** (permintaan Yohan): kalimat "Lebih suka langsung bicara? Hubungi tim sales di 0821-1793-2648" di atas form dihapus; footer "Hubungi" kini berisi link **Form konsultasi** (`mea_orbit_consult_url()`), bukan nomor WA; tombol "Chat tim sales" di kotak CTA artikel dihapus (tinggal "Jadwalkan konsultasi").
 - Tetap: tombol WA di pesan terima kasih setelah form terkirim (plugin mea-leads) dan tombol WA cadangan bila plugin form nonaktif.
