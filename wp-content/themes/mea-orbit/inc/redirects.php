@@ -23,7 +23,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Redirect 301 berbasis URL (31 Okt 2026). Satu entri Rank Math per baris; baris dengan
- * beberapa sumber menjadi satu entri bersumber banyak.
+ * beberapa sumber menjadi satu entri bersumber banyak. `to` berupa path situs atau URL
+ * absolut (domain lain, mis. meamcn.com); lihat mea_orbit_redirect_target().
  *
  * @return array<int, array{sources: string[], to: string}>
  */
@@ -38,8 +39,9 @@ function mea_orbit_redirect_rules() {
 			'to'      => '/affiliate/',
 		),
 		array(
+			// Langsung ke tujuan akhir: /gabung-mcn-mea/ sendiri 301 ke sini (tanpa rantai).
 			'sources' => array( '/a-affiliate-mcn-mea-vk/' ),
-			'to'      => '/gabung-mcn-mea/',
+			'to'      => 'https://meamcn.com/kreator/',
 		),
 		array(
 			'sources' => array( '/content-service/' ),
@@ -85,6 +87,17 @@ function mea_orbit_redirect_legacy_sources() {
 		'/jasa-kelola-sosial-media-maksimalkan-branding-bisnis/',
 		'/mengapa-anda-harus-memilih-jasa-iklan-shopee-untuk-meningkatkan-visibilitas-produk-anda/',
 	);
+}
+
+/**
+ * Tujuan redirect sebagai URL penuh: path situs lewat home_url(), URL absolut (http/https)
+ * apa adanya. Redirect dijalankan Rank Math, yang menerima tujuan di domain lain.
+ *
+ * @param string $to Path situs atau URL absolut.
+ * @return string
+ */
+function mea_orbit_redirect_target( $to ) {
+	return preg_match( '#^https?://#i', $to ) ? $to : home_url( $to );
 }
 
 /**
@@ -189,7 +202,7 @@ add_filter( 'rank_math/sitemap/entry', 'mea_orbit_redirect_sitemap_entry', 100, 
  * Status satu sumber: redirect yang cocok dan apakah objeknya masih calon sitemap.
  *
  * @param string $source Path sumber.
- * @param string $expect Tujuan yang diharapkan (path) atau kosong.
+ * @param string $expect Tujuan yang diharapkan (path atau URL absolut) atau kosong.
  * @return array<string, mixed>
  */
 function mea_orbit_redirect_report_row( $source, $expect = '' ) {
@@ -207,8 +220,8 @@ function mea_orbit_redirect_report_row( $source, $expect = '' ) {
 		'masuk_sitemap' => ! $match && $post_id && 'publish' === get_post_status( $post_id ) && '' === (string) get_post_field( 'post_password', $post_id ),
 	);
 	if ( '' !== $expect ) {
-		$row['tujuan_harap'] = home_url( $expect );
-		$row['cocok']        = $match && 301 === $row['kode'] && untrailingslashit( $row['tujuan'] ) === untrailingslashit( home_url( $expect ) );
+		$row['tujuan_harap'] = mea_orbit_redirect_target( $expect );
+		$row['cocok']        = $match && 301 === $row['kode'] && untrailingslashit( $row['tujuan'] ) === untrailingslashit( $row['tujuan_harap'] );
 	} else {
 		$row['cocok'] = $match && 301 === $row['kode'];
 	}
@@ -273,7 +286,7 @@ function mea_orbit_redirect_apply() {
 			$redirection = \RankMath\Redirections\Redirection::from(
 				array(
 					'sources'     => $sources,
-					'url_to'      => home_url( $rule['to'] ),
+					'url_to'      => mea_orbit_redirect_target( $rule['to'] ),
 					'header_code' => '301',
 				)
 			);
