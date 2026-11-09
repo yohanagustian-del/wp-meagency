@@ -2,6 +2,17 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.10.0 · 9 Nov 2026
+- **Galeri studi kasus mode bulanan** (field baru `galeri_mode`: `grid` | `bulanan`, default `grid`, jadi galeri foto produk lama tidak berubah). Mode bulanan untuk tangkapan layar Seller Center per bulan:
+  - Judul section "Data per bulan dari Seller Center"; baris tab bulan (label = keterangan sebelum " — " atau " · "), tombol ‹ › kiri-kanan, geser di HP (CSS scroll-snap, satu bulan per geser), panah kiri/kanan (Home/End di tab).
+  - Satu panel per bulan: gambar ukuran asli + srcset, lebar penuh, rasio asli (tanpa crop 1:1), keterangan utuh di bawahnya. Alt dari field (kosong = alt Media Library).
+  - Semua panel ada di HTML; panel 1 `loading="eager"` (tanpa fetchpriority tinggi, galeri di bawah lipatan), sisanya `lazy`.
+  - Aksesibilitas: `tablist`/`tab`/`tabpanel`, `aria-selected`, `aria-controls`, roving tabindex. Tanpa JavaScript: tab = link ke panelnya, panel tetap bisa digeser.
+  - JS `assets/js/galeri-bulanan.js` (2.027 byte, ±1 KB gzip, tanpa library), dimuat `defer` hanya di template studi kasus yang memakai mode bulanan dan galerinya terisi.
+- Field `select` kini divalidasi terhadap daftar opsinya (nilai asing → default/opsi pertama; kosong tetap kosong supaya baris repeater baru tetap dibuang).
+- Data live (konektor): halaman 36702 (`/studi-kasus-fashion-muslim-shopee/`) `mea_galeri_mode = bulanan`. Tema 0.9.3 mengabaikan meta ini, jadi galerinya tetap grid sampai 0.10.0 terpasang.
+- Test: `php tests/galeri-bulanan.php` (39).
+
 ## mea-orbit 0.9.3 · 2 Nov 2026
 - **Footer Ekosistem MEA**: "Gabung MCN MEA" langsung ke `https://meamcn.com/kreator/` (sebelumnya `/gabung-mcn-mea/`, yang 301 ke sana). `mea_orbit_link_list()` memakai URL absolut (`http(s)://`) apa adanya, path situs tetap lewat `home_url()`; tetap `esc_url`.
 - **Redirect**: `/a-affiliate-mcn-mea-vk/` → `https://meamcn.com/kreator/` (301, tanpa rantai). `mea_orbit_redirect_target()`: tujuan path → `home_url()`, URL absolut apa adanya (untuk `url_to` entri Rank Math dan laporan REST). Redirect tetap dijalankan Rank Math, yang menerima tujuan domain lain, jadi `allowed_redirect_hosts` tidak diubah.
