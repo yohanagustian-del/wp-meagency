@@ -21,6 +21,9 @@ function esc_attr( $text ) {
 function esc_url( $url ) {
 	return esc_html( $url );
 }
+function esc_html__( $text ) {
+	return esc_html( $text );
+}
 function esc_html_e( $text ) {
 	echo esc_html( $text );
 }
@@ -40,7 +43,7 @@ function get_post_mime_type( $id ) {
 	return $id < 900 ? 'image/webp' : 'video/mp4';
 }
 function wp_get_attachment_url( $id ) {
-	return "https://contoh.id/$id.mp4";
+	return $id < 900 ? "https://contoh.id/$id-asli.webp" : "https://contoh.id/$id.mp4";
 }
 function get_the_title( $id ) {
 	return "Judul $id";
@@ -149,6 +152,12 @@ t( 'alt kosong → alt Media Library', false, isset( $GLOBALS['img_calls'][1][2]
 t( 'tombol sebelumnya nonaktif di awal', true, 1 === preg_match( '/data-arah="-1"[^>]*disabled/', $html ) );
 t( 'tombol berikutnya aktif', 0, preg_match( '/data-arah="1"[^>]*disabled/', $html ) );
 t( 'tanpa kelas photo (crop 1:1)', false, strpos( $html, 'class="photo"' ) );
+t( 'gambar dibungkus link ke file asli', 3, substr_count( $html, '<a class="bulanan-zoom" href="https://contoh.id/' ) );
+t( 'link ke file asli panel 2', true, false !== strpos( $html, 'href="https://contoh.id/101-asli.webp" target="_blank" rel="noopener" tabindex="-1"><img' ) );
+t( 'link panel 1 bisa difokus', true, false !== strpos( $html, 'href="https://contoh.id/100-asli.webp" target="_blank" rel="noopener" tabindex="0">' ) );
+t( 'teks pembaca layar link', 3, substr_count( $html, '<span class="screen-reader-text">(buka ukuran penuh di tab baru)</span></a>' ) );
+t( 'panel berisi link tanpa tabindex sendiri', 0, preg_match( '/role="tabpanel"[^>]*tabindex/', $html ) );
+t( 'petunjuk ketuk gambar', true, false !== strpos( $html, '<p class="bulanan-hint">Ketuk atau klik gambar untuk melihat ukuran penuh.</p>' ) );
 
 echo "Template mode bulanan, satu bulan + video\n";
 $GLOBALS['meta']['galeri'] = array( $rows[0] );
@@ -164,6 +173,9 @@ $GLOBALS['meta']['galeri'] = array(
 );
 $html                      = render();
 t( 'video di panel kedua tidak memuat dulu', true, false !== strpos( $html, 'preload="none"' ) );
+t( 'panel video tetap bisa difokus (tabindex sendiri)', 1, preg_match( '/id="bulan-2" aria-labelledby="bulan-tab-2" tabindex="-1"/', $html ) );
+$GLOBALS['meta']['galeri'] = array( $GLOBALS['meta']['galeri'][1] );
+t( 'hanya video: tanpa petunjuk ketuk', false, strpos( render(), 'bulanan-hint' ) );
 
 echo "Template kosong\n";
 $GLOBALS['meta'] = array( 'galeri_mode' => 'bulanan' );

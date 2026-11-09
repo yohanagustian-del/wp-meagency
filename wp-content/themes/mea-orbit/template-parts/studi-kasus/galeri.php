@@ -41,6 +41,16 @@ foreach ( (array) mea_orbit_meta( 'galeri' ) as $mea_orbit_row ) {
 			$mea_orbit_attr['alt'] = $mea_orbit_row['alt'];
 		}
 		$mea_orbit_html = $mea_orbit_media && wp_attachment_is_image( $mea_orbit_media ) ? wp_get_attachment_image( $mea_orbit_media, 'full', false, $mea_orbit_attr ) : '';
+		if ( $mea_orbit_html ) {
+			// Ketuk/klik gambar = buka file asli di tab baru (angka tangkapan layar bisa di-zoom di HP).
+			$mea_orbit_html = sprintf(
+				'<a class="bulanan-zoom" href="%1$s" target="_blank" rel="noopener" tabindex="%3$s">%2$s<span class="screen-reader-text">%4$s</span></a>',
+				esc_url( (string) wp_get_attachment_url( $mea_orbit_media ) ),
+				$mea_orbit_html,
+				$mea_orbit_items ? '-1' : '0',
+				esc_html__( '(buka ukuran penuh di tab baru)', 'mea-orbit' )
+			);
+		}
 	} else {
 		$mea_orbit_html = mea_orbit_img(
 			$mea_orbit_media,
@@ -52,7 +62,7 @@ foreach ( (array) mea_orbit_meta( 'galeri' ) as $mea_orbit_row ) {
 		);
 	}
 	if ( $mea_orbit_html ) {
-		$mea_orbit_items[] = array( $mea_orbit_html, (string) $mea_orbit_row['keterangan'] );
+		$mea_orbit_items[] = array( $mea_orbit_html, (string) $mea_orbit_row['keterangan'], 0 === strpos( $mea_orbit_html, '<a ' ) );
 	}
 }
 if ( ! $mea_orbit_items ) {
@@ -76,7 +86,7 @@ if ( $mea_orbit_bulanan ) :
 				</div>
 				<div class="bulanan-track">
 					<?php foreach ( $mea_orbit_items as $mea_orbit_i => $mea_orbit_item ) : ?>
-						<figure class="bulanan-panel" role="tabpanel" id="bulan-<?php echo (int) $mea_orbit_i + 1; ?>" aria-labelledby="bulan-tab-<?php echo (int) $mea_orbit_i + 1; ?>" tabindex="<?php echo 0 === $mea_orbit_i ? '0' : '-1'; ?>">
+						<figure class="bulanan-panel" role="tabpanel" id="bulan-<?php echo (int) $mea_orbit_i + 1; ?>" aria-labelledby="bulan-tab-<?php echo (int) $mea_orbit_i + 1; ?>"<?php echo $mea_orbit_item[2] ? '' : ' tabindex="' . ( 0 === $mea_orbit_i ? '0' : '-1' ) . '"'; // Panel berisi link: link yang menerima fokus. ?>>
 							<?php echo $mea_orbit_item[0]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- dari wp_get_attachment_image() atau di-escape di atas. ?>
 							<?php if ( '' !== $mea_orbit_item[1] ) : ?>
 								<figcaption><?php echo esc_html( $mea_orbit_item[1] ); ?></figcaption>
@@ -84,6 +94,9 @@ if ( $mea_orbit_bulanan ) :
 						</figure>
 					<?php endforeach; ?>
 				</div>
+				<?php if ( array_filter( array_column( $mea_orbit_items, 2 ) ) ) : ?>
+					<p class="bulanan-hint"><?php esc_html_e( 'Ketuk atau klik gambar untuk melihat ukuran penuh.', 'mea-orbit' ); ?></p>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
