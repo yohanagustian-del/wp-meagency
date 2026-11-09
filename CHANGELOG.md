@@ -2,6 +2,14 @@
 
 Keputusan di balik setiap perubahan: `docs/DECISIONS.md`.
 
+## mea-orbit 0.10.1 · 9 Nov 2026
+- **Galeri bulanan: ketuk/klik gambar = buka ukuran penuh** di tab baru, supaya angka tangkapan layar Seller Center bisa di-zoom di HP. Petunjuk "Ketuk atau klik gambar untuk melihat ukuran penuh." di bawah galeri (hanya bila ada gambar). Link punya teks pembaca layar; fokus keyboard pindah ke link panel aktif (roving tabindex), panel video tetap bisa difokus sendiri.
+- **Tinggi galeri mengikuti bulan aktif** (sebelumnya mengikuti gambar paling tinggi, jadi bulan dengan gambar pendek menyisakan ruang kosong hingga ±420 px di desktop). Animasi tinggi mati saat reduced motion.
+- Hover tab, tombol ‹ ›, dan gambar hanya di perangkat bermouse (`@media (hover: hover)`), supaya tab yang disentuh di HP tidak tampak tetap tersorot.
+- Pilih bulan lewat `#bulan-N` di URL saat halaman dibuka tidak lagi didukung JS (link `#bulan-N` tanpa JS tetap jalan), demi batas JS < 2 KB (`galeri-bulanan.js` 2.032 byte).
+- Data live (konektor): `/study-case/` (14645, field isi): link Amigos Pet Shop diperbaiki (`/a-study-case-template/` → `/amigos-pet-shop/`), ditambah Gerai Henna & Kutek, Butik Kemeja Batik, dan Brand Fashion Muslim (Shopee, 36702). Cadangan: `backups/14645-mea_isi-20261109.html`.
+- Test: `php tests/galeri-bulanan.php` (47).
+
 ## mea-orbit 0.10.0 · 9 Nov 2026
 - **Galeri studi kasus mode bulanan** (field baru `galeri_mode`: `grid` | `bulanan`, default `grid`, jadi galeri foto produk lama tidak berubah). Mode bulanan untuk tangkapan layar Seller Center per bulan:
   - Judul section "Data per bulan dari Seller Center"; baris tab bulan (label = keterangan sebelum " — " atau " · "), tombol ‹ › kiri-kanan, geser di HP (CSS scroll-snap, satu bulan per geser), panah kiri/kanan (Home/End di tab).

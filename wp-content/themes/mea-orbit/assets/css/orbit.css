@@ -870,9 +870,19 @@ main p {
 	transition: background-color .2s, border-color .2s, color .2s;
 }
 
-.bulanan-tab:hover {
-	border-color: var(--graphite);
-	color: var(--ink);
+@media (hover: hover) {
+	.bulanan-tab:hover {
+		border-color: var(--graphite);
+		color: var(--ink);
+	}
+
+	.bulanan-arah:hover:not(:disabled) {
+		border-color: var(--ink);
+	}
+
+	.bulanan-zoom:hover img {
+		border-color: var(--graphite);
+	}
 }
 
 .bulanan-tab[aria-selected="true"] {
@@ -899,10 +909,6 @@ main p {
 	margin-top: -3px;
 }
 
-.bulanan-arah:hover:not(:disabled) {
-	border-color: var(--ink);
-}
-
 .bulanan-arah:disabled {
 	opacity: .35;
 	cursor: default;
@@ -910,8 +916,16 @@ main p {
 
 .bulanan-track {
 	align-items: flex-start;
+	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
 	border-radius: var(--r);
+	transition: height .3s var(--ease-out, ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bulanan-track {
+		transition: none;
+	}
 }
 
 .bulanan-panel {
@@ -945,8 +959,21 @@ main p {
 	color: var(--graphite);
 }
 
-.bulanan-panel:focus-visible {
+.bulanan-panel:focus-visible,
+.bulanan-zoom:focus-visible {
 	outline-offset: -3px;
+}
+
+.bulanan-zoom {
+	display: block;
+	border-radius: var(--r);
+	cursor: zoom-in;
+}
+
+.bulanan-hint {
+	margin: 8px 0 0;
+	font-size: .8rem;
+	color: var(--graphite);
 }
 
 @media (max-width: 560px) {
