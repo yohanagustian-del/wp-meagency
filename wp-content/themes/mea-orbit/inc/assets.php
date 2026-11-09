@@ -47,6 +47,20 @@ function mea_orbit_enqueue_assets() {
 			'ver'  => MEA_ORBIT_VERSION,
 		);
 		wp_add_inline_script( 'mea-orbit-motion', 'window.meaMotion=' . wp_json_encode( $motion ) . ';', 'before' );
+
+		// Galeri bulanan: hanya di template studi kasus yang memakai mode itu.
+		if ( is_page_template( 'page-templates/template-studi-kasus.php' ) && 'bulanan' === mea_orbit_meta( 'galeri_mode' ) && mea_orbit_meta( 'galeri' ) && ! mea_orbit_meta( 'hub_kasus' ) ) {
+			wp_enqueue_script(
+				'mea-orbit-galeri-bulanan',
+				MEA_ORBIT_URI . '/assets/js/galeri-bulanan.js',
+				array(),
+				mea_orbit_asset_version( 'assets/js/galeri-bulanan.js' ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
 		return;
 	}
 

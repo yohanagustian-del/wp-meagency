@@ -332,6 +332,12 @@ function mea_orbit_field_defs() {
 				),
 			),
 		),
+		'galeri_mode'    => array(
+			'type'    => 'select',
+			'label'   => __( 'Tampilan galeri: grid = kotak 1:1 (foto produk); bulanan = tab per bulan, gambar utuh tanpa crop (tangkapan layar Seller Center). Label tab = keterangan sebelum " — " atau " · "', 'mea-orbit' ),
+			'options' => array( 'grid', 'bulanan' ),
+			'default' => 'grid',
+		),
 		'kasus_lain'     => array(
 			'type'  => 'pages',
 			'label' => __( 'Studi kasus lain (ID halaman, dipisah koma)', 'mea-orbit' ),
@@ -540,8 +546,15 @@ function mea_orbit_sanitize_field( $value, $def ) {
 			}
 			return $rows;
 		case 'quote':
-		case 'select':
 			return sanitize_key( (string) $value );
+		case 'select':
+			// Nilai di luar daftar opsi jatuh ke default (atau opsi pertama). Kosong tetap kosong,
+			// supaya baris repeater baru yang belum diisi tetap dibuang saat disimpan.
+			$value = sanitize_key( (string) $value );
+			if ( '' === $value || in_array( $value, $def['options'], true ) ) {
+				return $value;
+			}
+			return (string) ( $def['default'] ?? $def['options'][0] );
 		default:
 			return sanitize_text_field( (string) $value );
 	}

@@ -293,6 +293,22 @@ function mea_orbit_case_numbers( $case_id, $context = 'studi' ) {
 }
 
 /**
+ * Label tab galeri bulanan: teks keterangan sebelum " — " atau " · " (pemisah pertama yang
+ * muncul), mis. "Februari 2026 — panel Kriteria Utama" → "Februari 2026". Tanpa pemisah =
+ * seluruh keterangan; keterangan kosong = "Bagian N".
+ *
+ * @param string $keterangan Keterangan baris galeri.
+ * @param int    $nomor      Urutan baris, mulai 1.
+ * @return string
+ */
+function mea_orbit_galeri_label( $keterangan, $nomor ) {
+	$parts = preg_split( '/(?:^|\s+)[\x{2014}\x{00B7}]\s+/u', trim( (string) $keterangan ), 2 );
+	$label = trim( (string) ( $parts[0] ?? '' ) );
+	/* translators: %d: urutan gambar di galeri. */
+	return '' !== $label ? $label : sprintf( __( 'Bagian %d', 'mea-orbit' ), (int) $nomor );
+}
+
+/**
  * Sumber form untuk halaman ini.
  *
  * @param string $prefix Awalan bawaan (`layanan-`, `studi-kasus-`).
